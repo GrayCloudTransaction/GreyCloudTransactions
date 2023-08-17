@@ -1,0 +1,46 @@
+body {
+    background: url(./assets/bgLoginCadastro.png);
+    height: 100vh;
+    background-size: cover;
+    background-position: 15%;
+}
+
+nav {
+    background-color: #002D40;
+}
+
+.p {
+    color: white;
+    cursor: default;
+}
+
+.p:hover {
+    color: white;
+}
+
+.txt-nav {
+    color: white;
+}
+
+.txt-nav:hover {
+    color: gray;
+}
+
+label {
+    color: white;
+    margin: 0!important;
+}
+input[type="text"],[type="number"],[type="email"]{
+    background-color: #D9D9D9;
+    border-radius: 10px;
+}
+.cardCadastro{
+    box-shadow: 0px 4px 36px 0px #000;
+}
+.button{
+    border-radius: 45px;
+    color: white;
+    background: #026874;
+    font-size: 19px;
+    filter: drop-shadow(8px 8px 20px rgba(0, 0, 0, 1)) drop-shadow(0px 0px 3px rgba(255, 255, 255, 0.795));
+}
