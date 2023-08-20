@@ -3,7 +3,7 @@ function login() {
 
     sessionStorage.ID_USUARIO = 0;
 
-    
+
     var emailVar = email.value;
     var senhaVar = password.value;
 
