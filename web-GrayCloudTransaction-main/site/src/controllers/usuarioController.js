@@ -1,11 +1,8 @@
 var usuarioModel = require("../models/usuarioModel");
 
 function autenticar(req, res) {
-    var email = req.body.emailVar;
-    var senha = req.body.senhaVar;
-
-    console.log(email);
-    console.log(senha);
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
 
     if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
@@ -33,7 +30,8 @@ function autenticar(req, res) {
             );
     }
 }
-/*
+
+
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer;
@@ -67,8 +65,8 @@ function cadastrar(req, res) {
             );
     }
 }
-*/
+
 module.exports = {
-    autenticar
-  //  cadastrar
+    autenticar,
+    cadastrar
 }
