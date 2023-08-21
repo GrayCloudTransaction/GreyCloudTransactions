@@ -31,7 +31,7 @@ function entrar() {
             if (resposta.ok) {
                 
                 
-                /*
+                
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
@@ -45,7 +45,7 @@ function entrar() {
                     }, 1000); // apenas para exibir o loading
                     
                 });
-                */
+                
                window.location = "index.html"
                
             } else {
