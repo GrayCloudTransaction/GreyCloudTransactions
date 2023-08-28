@@ -11,8 +11,8 @@ visualizacaoDesejada = 0
 
 conexao = mysql.connector.connect(
         host = "localhost",
-        user = "urubu100",
-        password = "Urubu100@",
+        user = "Cliente",
+        password = "Cliente123%",
         port = 3306,
         database = "SistemaMarise"
         )
@@ -162,6 +162,9 @@ def MostrarValoresDiscoLocal():
     # print("\nEm uso: " + str(porcentagemEmUso) + "%" + " (com base no total e na quantidade em uso.)")
     # print("\nQuantidade livre(GB): " + str(megaByteToGigabyteLivre) + "\n")
 
+    print("-" * 100)
+    print((" " * 40) + "Dados da Memória de Massa: \n")
+    print("-" * 100)
     print("\nDe bytes para Gigabytes: ")
     print("\nQuantidade total: " + Fore.BLUE + str(formatted_total1) + " GB" + Style.RESET_ALL + "\n")
     print("Quantidade livre: " + Fore.BLUE + str(formatted_total3) + " GB" + Style.RESET_ALL + "\n")
@@ -211,7 +214,9 @@ def MostrarValoresRAM():
     ramByteToGigabyteLivre = (float(ramLivre) * (1 * pow(10,-9)))
 
     
-
+    print("-" * 100)
+    print((" " * 40) + "Dados da Memória Virtual: \n")
+    print("-" * 100)
     print("Memória RAM total: " + Fore.BLUE + "{:.2f}".format(ramByteToGigabyteTotal) + " GB" + Style.RESET_ALL + "\n")
     print( "Memória RAM disponível: " + Fore.BLUE + "{:.2f}".format(ramByteToGigabyteDisponivel) + " GB" + Style.RESET_ALL + "\n")
     print( "Memória RAM usado: " + Fore.BLUE + "{:.2f}".format(ramByteToGigabyteUsando) + " GB" + Style.RESET_ALL + "\n")
@@ -280,13 +285,13 @@ if visualizacaoDesejada == 1:
 elif visualizacaoDesejada == 2:
     while True:
         MostrarValoresDiscoLocal()
-        clearConsole()
         sleep(2)
+        clearConsole()
 elif visualizacaoDesejada == 3:
     while True:
         MostrarValoresRAM()
-        clearConsole()
         sleep(2)
+        clearConsole()
 
         
 else:
