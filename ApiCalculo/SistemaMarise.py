@@ -9,6 +9,15 @@ import mysql.connector.errorcode
 
 visualizacaoDesejada = 0
 
+conexao = mysql.connector.connect(
+        host = "localhost",
+        user = "urubu100",
+        password = "urubu100",
+        port = 3306,
+        database = "SistemaMarise"
+        )
+
+comando = conexao.cursor()
 
 def MostrarMsgGCT():
     print("=" * 100)
@@ -60,6 +69,9 @@ def MostrarValoresCPU():
         porcentagemUtilizacaoCPU = psutil.cpu_percent()
         frequenciaCpu = psutil.cpu_freq()
 
+        
+        #conexao.close()
+
         print('-' * 100)
         print("\n" + "Quantidade de Cores:" + str(qtdCores) + "\nQuantidade Threads: " + str(qtdThreads) + "\n")
         print('-' * 100)
@@ -96,6 +108,26 @@ def MostrarValoresCPU():
               + "Frequência Máxima: " + str(frequenciaCpu.max)+ "MHz" + "\n")
         print("-" * 100)
         
+
+        UtilizacaoCore = "{:.0f}".format(porcentagemUtilizacaoCore[i]); 
+        freqCpuMin = "{:.0f}".format(frequenciaCpu.min);
+
+
+        comando.execute("INSERT INTO Registro(tipoRegistro, valorRegistro, unidadeRegistro) VALUES" 
+                        f"('Quantidade de Cores', '{qtdCores}', 'null')," +
+                        f"('Quantidade de Threads', '{qtdThreads}', 'null')," +
+                        f"('Tempo CPU User','{temposCpu.user}','segundos')," +
+                        f"('Tempo CPU System','{temposCpu.system}','segundos')," +
+                        f"('Tempo CPU Idle','{temposCpu.idle}','segundos')," +
+                        f"('Porcentagem Utilizada Core', '{UtilizacaoCore}', '%')," + 
+                        f"('Porcentagem Utilizada CPU', '{porcentagemUtilizacaoCPU}', '%')," + 
+                        f"('Frequência CPU', '{frequenciaCpu.current}', 'MHz')," +
+                        f"('Freq. CPU Min.','{frequenciaCpu.min}', 'MHz')," +
+                        f"('Freq. CPU Max.','{frequenciaCpu.max}', 'MHz')");
+        
+        # print("No of Record Inserted :", comando.rowcount) 
+        #print("Inserted Id :", comando.lastrowid) 
+        conexao.commit()  
         
         
         
@@ -159,6 +191,17 @@ def MostrarValoresDiscoLocal():
         print('-' * 100)
         print(psutil.disk_usage('C:\\'))
 
+
+        comando.execute("INSERT INTO Registro(tipoRegistro, valorRegistro, unidadeRegistro) VALUES" 
+                        f"('Quantidade total de memória', '{formatted_total1}', 'Gigabytes')," +
+                        f"('Quantidade livre de memória', '{formatted_total3}', 'Gigabytes')," +
+                        f"('Quantidade de memória em uso','{formatted_total2}','Gigabytes')," +
+                        f"('Memória em uso','{porcentagemEmUso}','%')");
+
+        conexao.commit();
+        
+
+
         print("=" * 100)
         sleep(2)
 
@@ -200,6 +243,18 @@ def MostrarValoresRAM():
     print('-' * 100)
     print(valoresMemoriaRam)
 
+
+    comando.execute("INSERT INTO Registro(tipoRegistro, valorRegistro, unidadeRegistro) VALUES" 
+                        f"('Memória RAM total', '{ramByteToGigabyteTotal}', 'Gigabytes')," +
+                        f"('Memória RAM disponível', '{ramByteToGigabyteDisponivel}', 'Gigabytes')," +
+                        f"('Memória RAM usado','{ramByteToGigabyteUsando}','Gigabytes')," +
+                        f"('Memória RAM livre','{ramByteToGigabyteLivre}','Gigabytes')," +
+                        f"('Memória RAM em uso','{ramPercentualUtilizado}','%')");
+
+    conexao.commit();
+
+
+
     print("=" * 100)
     sleep(2)
 
@@ -214,15 +269,9 @@ def MostrarTodosValores():
 
 MostrarMsgGCT()
 
-conexao = mysql.connector.connect(
-    host = "localhost",
-    user = "urubu100",
-    password = "urubu100",
-    port = 3306,
-    database = "ScriptGCT"
-)
 
-comando = conexao.cursor()
+
+
 
 visualizacaoDesejada = int(input("Qual componente deseja visualizar? (1 = CPU, 2 = Disco Local, 3 = Memória RAM, 4 = Todos)"))
 while visualizacaoDesejada != 1 or visualizacaoDesejada != 2 or visualizacaoDesejada != 3 or visualizacaoDesejada != 4:

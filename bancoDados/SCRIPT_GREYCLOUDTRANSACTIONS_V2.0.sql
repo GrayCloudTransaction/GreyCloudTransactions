@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `ScriptGCT`.`Funcionario` (
   `Nome` VARCHAR(45),
   `Cargo` VARCHAR(45),
   `CPF` INT NULL,
-  `Supervisor` INT,
+  `fkSupervisor` INT,
   `fkEmpresa` INT,
   PRIMARY KEY (`idFuncionario`),
   FOREIGN KEY (`fkSupervisor`) REFERENCES `ScriptGCT`.`Funcionario` (`idFuncionario`),
@@ -93,5 +93,8 @@ CREATE TABLE IF NOT EXISTS `ScriptGCT`.`Registro` (
   `DataRegistro` DATETIME,
   PRIMARY KEY (`idRegistro`),
   FOREIGN KEY (`fkSubComponente`) REFERENCES `ScriptGCT`.`SubComponente` (`idSubComponentes`)
-);
+) auto_increment = 1;
+
+select * from Registro;
+
 
