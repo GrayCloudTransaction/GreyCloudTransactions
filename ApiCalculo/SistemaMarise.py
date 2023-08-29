@@ -54,6 +54,7 @@ def clearConsole():
         command = 'cls'
     os.system(command)
 
+
 def MostrarValoresCPU():
     porcentagemUtilizacaoCPU = psutil.cpu_percent()
     porcentagemUtilizacaoCore = []
@@ -66,10 +67,12 @@ def MostrarValoresCPU():
     frequenciaCpu = psutil.cpu_freq()
 
     
+
+    
     #conexao.close()
 
     print('-' * 100)
-    print("\n" + "Quantidade de Cores:" + str(qtdCores) + "\nQuantidade Threads: " + str(qtdThreads) + "\n")
+    print("\n" + "Quantidade de Cores: " + str(qtdCores) + "\nQuantidade Threads: " + str(qtdThreads) + "\n")
     print('-' * 100)
 
     print((" " * 45) + "Tempos da CPU: \n")
@@ -107,19 +110,20 @@ def MostrarValoresCPU():
 
     UtilizacaoCore = "{:.0f}".format(porcentagemUtilizacaoCore[i]); 
     freqCpuMin = "{:.0f}".format(frequenciaCpu.min);
+    dataHoraNow = datetime.now()
 
 
-    comando.execute("INSERT INTO Registro(tipoRegistro, valorRegistro, unidadeRegistro) VALUES" 
-                    f"('Quantidade de Cores', '{qtdCores}', 'null')," +
-                    f"('Quantidade de Threads', '{qtdThreads}', 'null')," +
-                    f"('Tempo CPU User','{temposCpu.user}','segundos')," +
-                    f"('Tempo CPU System','{temposCpu.system}','segundos')," +
-                    f"('Tempo CPU Idle','{temposCpu.idle}','segundos')," +
-                    f"('Porcentagem Utilizada Core', '{UtilizacaoCore}', '%')," + 
-                    f"('Porcentagem Utilizada CPU', '{porcentagemUtilizacaoCPU}', '%')," + 
-                    f"('Frequência CPU', '{frequenciaCpu.current}', 'MHz')," +
-                    f"('Freq. CPU Min.','{frequenciaCpu.min}', 'MHz')," +
-                    f"('Freq. CPU Max.','{frequenciaCpu.max}', 'MHz')");
+    comando.execute("INSERT INTO Registro(tipoRegistro, valorRegistro, unidadeRegistro, dataHora) VALUES" 
+                    f"('Quantidade de Cores', '{qtdCores}', 'null', '{dataHoraNow}')," +
+                    f"('Quantidade de Threads', '{qtdThreads}', 'null','{dataHoraNow}')," +
+                    f"('Tempo CPU User','{temposCpu.user}','segundos','{dataHoraNow}')," +
+                    f"('Tempo CPU System','{temposCpu.system}','segundos','{dataHoraNow}')," +
+                    f"('Tempo CPU Idle','{temposCpu.idle}','segundos','{dataHoraNow}')," +
+                    f"('Porcentagem Utilizada Core', '{UtilizacaoCore}', '%','{dataHoraNow}')," + 
+                    f"('Porcentagem Utilizada CPU', '{porcentagemUtilizacaoCPU}', '%','{dataHoraNow}')," + 
+                    f"('Frequência CPU', '{frequenciaCpu.current}', 'MHz','{dataHoraNow}')," +
+                    f"('Freq. CPU Min.','{frequenciaCpu.min}', 'MHz','{dataHoraNow}')," +
+                    f"('Freq. CPU Max.','{frequenciaCpu.max}', 'MHz','{dataHoraNow}')");
     
     # print("No of Record Inserted :", comando.rowcount) 
     #print("Inserted Id :", comando.lastrowid) 
@@ -162,6 +166,9 @@ def MostrarValoresDiscoLocal():
     # print("\nEm uso: " + str(porcentagemEmUso) + "%" + " (com base no total e na quantidade em uso.)")
     # print("\nQuantidade livre(GB): " + str(megaByteToGigabyteLivre) + "\n")
 
+    print("-" * 100)
+    print((" " * 40) + "Dados da Memória de Massa: \n")
+    print("-" * 100)
     print("\nDe bytes para Gigabytes: ")
     print("\nQuantidade total: " + Fore.BLUE + str(formatted_total1) + " GB" + Style.RESET_ALL + "\n")
     print("Quantidade livre: " + Fore.BLUE + str(formatted_total3) + " GB" + Style.RESET_ALL + "\n")
@@ -181,12 +188,13 @@ def MostrarValoresDiscoLocal():
     print('-' * 100)
     print(psutil.disk_usage('/'))
 
+    dataHoraNow = datetime.now()
 
-    comando.execute("INSERT INTO Registro(tipoRegistro, valorRegistro, unidadeRegistro) VALUES" 
-                    f"('Quantidade total de memória de massa', '{formatted_total1}', 'Gigabytes')," +
-                    f"('Quantidade livre de memória de massa', '{formatted_total3}', 'Gigabytes')," +
-                    f"('Quantidade de memória de massa em uso','{formatted_total2}','Gigabytes')," +
-                    f"('Memória de massa em uso','{porcentagemEmUso}','%')");
+    comando.execute("INSERT INTO Registro(tipoRegistro, valorRegistro, unidadeRegistro, dataHora) VALUES" 
+                    f"('Quantidade total de memória de massa', '{formatted_total1}', 'Gigabytes', '{dataHoraNow}')," +
+                    f"('Quantidade livre de memória de massa', '{formatted_total3}', 'Gigabytes', '{dataHoraNow}')," +
+                    f"('Quantidade de memória de massa em uso','{formatted_total2}','Gigabytes', '{dataHoraNow}')," +
+                    f"('Memória de massa em uso','{porcentagemEmUso}','%', '{dataHoraNow}')");
 
     conexao.commit();
     
@@ -211,7 +219,9 @@ def MostrarValoresRAM():
     ramByteToGigabyteLivre = (float(ramLivre) * (1 * pow(10,-9)))
 
     
-
+    print("-" * 100)
+    print((" " * 40) + "Dados da Memória Virtual: \n")
+    print("-" * 100)
     print("Memória RAM total: " + Fore.BLUE + "{:.2f}".format(ramByteToGigabyteTotal) + " GB" + Style.RESET_ALL + "\n")
     print( "Memória RAM disponível: " + Fore.BLUE + "{:.2f}".format(ramByteToGigabyteDisponivel) + " GB" + Style.RESET_ALL + "\n")
     print( "Memória RAM usado: " + Fore.BLUE + "{:.2f}".format(ramByteToGigabyteUsando) + " GB" + Style.RESET_ALL + "\n")
@@ -232,13 +242,14 @@ def MostrarValoresRAM():
     print('-' * 100)
     print(valoresMemoriaRam)
 
+    dataHoraNow = datetime.now()
 
-    comando.execute("INSERT INTO Registro(tipoRegistro, valorRegistro, unidadeRegistro) VALUES" 
-                        f"('Memória RAM total', '{ramByteToGigabyteTotal}', 'Gigabytes')," +
-                        f"('Memória RAM disponível', '{ramByteToGigabyteDisponivel}', 'Gigabytes')," +
-                        f"('Memória RAM usado','{ramByteToGigabyteUsando}','Gigabytes')," +
-                        f"('Memória RAM livre','{ramByteToGigabyteLivre}','Gigabytes')," +
-                        f"('Memória RAM em uso','{ramPercentualUtilizado}','%')");
+    comando.execute("INSERT INTO Registro(tipoRegistro, valorRegistro, unidadeRegistro, dataHora) VALUES" 
+                        f"('Memória RAM total', '{ramByteToGigabyteTotal}', 'Gigabytes', '{dataHoraNow}')," +
+                        f"('Memória RAM disponível', '{ramByteToGigabyteDisponivel}', 'Gigabytes', '{dataHoraNow}')," +
+                        f"('Memória RAM usado','{ramByteToGigabyteUsando}','Gigabytes', '{dataHoraNow}')," +
+                        f"('Memória RAM livre','{ramByteToGigabyteLivre}','Gigabytes', '{dataHoraNow}')," +
+                        f"('Memória RAM em uso','{ramPercentualUtilizado}','%', '{dataHoraNow}')");
 
     conexao.commit();
 
@@ -260,9 +271,6 @@ def MostrarTodosValores():
 MostrarMsgGCT()
 
 
-
-
-
 visualizacaoDesejada = int(input("Qual componente deseja visualizar? (1 = CPU, 2 = Disco Local, 3 = Memória RAM, 4 = Todos)"))
 while visualizacaoDesejada != 1 or visualizacaoDesejada != 2 or visualizacaoDesejada != 3 or visualizacaoDesejada != 4:
     if(visualizacaoDesejada == 1 or visualizacaoDesejada == 2 or visualizacaoDesejada == 3 or visualizacaoDesejada == 4):
@@ -280,35 +288,12 @@ if visualizacaoDesejada == 1:
 elif visualizacaoDesejada == 2:
     while True:
         MostrarValoresDiscoLocal()
-        clearConsole()
         sleep(2)
+        clearConsole()
 elif visualizacaoDesejada == 3:
     while True:
         MostrarValoresRAM()
-        clearConsole()
         sleep(2)
-
-        
-else:
+        clearConsole()
+elif (visualizacaoDesejada == 4):
     MostrarTodosValores()
-
-
-
-# print(Fore.RED + 'some red text')
-# print(Back.GREEN + 'and with a green background')
-# print(Style.DIM + 'and in dim text')
-# print(Style.RESET_ALL)
-# print('back to normal now')
-# dataAgora = datetime.today()
-# frequenciaCpuAtual = psutil.cpu_freq()
-
-
-# while True:
-#     print(dataAgora)
-#     print((float(frequenciaCpuAtual) / 1000))
-#     print("Frequência da CPU atual: " +  + " MHz")
-#     print(psutil.cpu_times())
-#     print(psutil.disk_partitions())
-#     print(psutil.virtual_memory())
-#     print(psutil.sensors_temperatures(fahrenheit=False))
-#     sleep(2)

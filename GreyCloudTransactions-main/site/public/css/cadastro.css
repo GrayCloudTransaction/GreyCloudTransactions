@@ -30,7 +30,7 @@ label {
     color: white;
     margin: 0!important;
 }
-input[type="text"],[type="number"],[type="email"]{
+input[type="text"],[type="number"],[type="email"], [type="password"]{
     background-color: #D9D9D9;
     border-radius: 10px;
 }
