@@ -99,54 +99,55 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-12">
-                        <label for="nomeFuncionario">CPF</label>
-                        <input type="text" class="form-control" id="iptCpfFuncionario">
+                    <div class="d-flex justify-content-between mt-2">
+                        <div class="col-xl-6">
+                            <label for="cpf">CPF</label>
+                            <input type="number" min="0" class="form-control" id="iptCpfFuncionario">
+                        </div>
+                        <div class="col-xl-6">
+                            <label for="cargoFuncionario">CARGO</label>
+                            <input type="text" min="0" class="form-control" id="iptCargoFuncionario">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="col-xl-12">
+                    <label for="email">EMAIL</label>
+                    <input type="email" min="0" class="form-control" id="iptEmailFuncionario">
+                </div>
+
+
+                <div class="d-flex justify-content-between mt-2">
+                    <div class="col-xl-6">
+                        <label for="senha">SENHA</label>
+                        <input type="password" min="0" class="form-control" id="iptSenhaFuncionario">
+                    </div>
+                    <div class="col-xl-6">
+                        <label for="confirmarSenha">CONFIRMAR SENHA</label>
+                        <input type="password" min="0" class="form-control" id="iptConfirmarSenhaFuncionario">
                     </div>
                 </div>
 
-                <div class="col-xl-12">
-                    <label for="nomeFuncionario">CARGO</label>
-                    <input type="text" class="form-control" id="iptCargoFuncionario">
+                <div class="col">
+                    <div class="form-check">
+                        <input type="checkbox" name="remember" id="remember" class="form-check-input">
+                        <label for="remember" class="form-check-label">Eu concordo com os <a href="">TERMOS DE USO E
+                                POLÍTICA DE PRIVACIDADE DA GREY CLOUD TRANSACTIONS.</a></label>
+                    </div>
                 </div>
+
             </div>
 
 
-            <div class="col-xl-12">
-                <label for="email">EMAIL</label>
-                <input type="email" min="0" class="form-control" id="iptEmailFuncionario">
-            </div>
-
-
-            <div class="d-flex justify-content-between mt-2">
-                <div class="col-xl-6">
-                    <label for="senha">SENHA</label>
-                    <input type="password" min="0" class="form-control" id="iptSenhaFuncionario">
-                </div>
-                <div class="col-xl-6">
-                    <label for="confirmarSenha">CONFIRMAR SENHA</label>
-                    <input type="password" min="0" class="form-control" id="iptConfirmarSenhaFuncionario">
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="form-check">
-                    <input type="checkbox" name="remember" id="remember" class="form-check-input">
-                    <label for="remember" class="form-check-label">Eu concordo com os <a href="">TERMOS DE USO E
-                            POLÍTICA DE PRIVACIDADE DA GREY CLOUD TRANSACTIONS.</a></label>
+            <div style="width: 48%; position: absolute;" class="pt-3">
+                <div class="d-flex justify-content-end">
+                    <button onclick="cadastrar()" class="btn btn-lg button px-3 py-2">Cadastrar</button>
                 </div>
             </div>
 
         </div>
-
-
-        <div style="width: 48%; position: absolute;" class="pt-3">
-            <div class="d-flex justify-content-end">
-                <button onclick="cadastrar()" class="btn btn-lg button px-3 py-2">Cadastrar</button>
-            </div>
-        </div>
-
-    </div>
     </div>
     <div style="position: absolute;margin-top: 18vh;" class="pt-3">
         <div class="d-flex justify-content-end" style="width: 20%;">
@@ -315,7 +316,7 @@
                 console.log(erro);
             })
 
-            return false;
+        return false;
     }
 
 </script>
