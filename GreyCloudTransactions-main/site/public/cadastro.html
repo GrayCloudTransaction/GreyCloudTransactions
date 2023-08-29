@@ -151,7 +151,7 @@
     </div>
     <div style="position: absolute;margin-top: 18vh;" class="pt-3">
         <div class="d-flex justify-content-end" style="width: 20%;">
-            <button onclick="cadastrar()" class="btn btn-lg button px-3 py-2">
+            <button id="voltar" style="display: none;" onclick="voltarCadastroEmpresa()" class="btn btn-lg button px-3 py-2">
                 <img style="rotate: 180deg; width: 36%;" src="./assets/right-arrow.png">
                 Voltar</button>
         </div>
@@ -165,11 +165,13 @@
     function voltarCadastroEmpresa() {
         primeiraParte.style.display = 'block';
         segundaParte.style.display = 'none';
+        voltar.style.display = 'none';
     }
 
     function irParaProximaEtapa() {
         primeiraParte.style.display = 'none';
         segundaParte.style.display = 'block';
+        voltar.style.display = 'block';
     }
 
     // function validacoes(){
