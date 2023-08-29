@@ -3,21 +3,21 @@ from math import pow
 import os
 from time import sleep
 import psutil
-from colorama import Fore, Back, Style
-import mysql.connector
-import mysql.connector.errorcode
+# from colorama import Fore, Back, Style
+# import mysql.connector
+# import mysql.connector.errorcode
 
 visualizacaoDesejada = 0
 
-conexao = mysql.connector.connect(
-        host = "localhost",
-        user = "urubu100",
-        password = "Urubu100@",
-        port = 3306,
-        database = "SistemaMarise"
-        )
+# conexao = mysql.connector.connect(
+#         host = "localhost",
+#         user = "urubu100",
+#         password = "Urubu100@",
+#         port = 3306,
+#         database = "SistemaMarise"
+#         )
 
-comando = conexao.cursor()
+# comando = conexao.cursor()
 
 def MostrarMsgGCT():
     print("=" * 100)
