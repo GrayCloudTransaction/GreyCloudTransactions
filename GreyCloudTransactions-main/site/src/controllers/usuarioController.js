@@ -45,29 +45,82 @@ function cadastrar(req, res) {
     var cep = req.body.cepServer;
     var email = req.body.emailServer;
     var telefone = req.body.telefoneServer;
-    
+
     // Faça as validações dos valores   
 
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(razaoSocial, cnpj, logradouro, numero, cep, telefone, email)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
-    
+    // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+    usuarioModel.cadastrar(razaoSocial, cnpj, logradouro, numero, cep, telefone, email)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
 }
+
+function cadastrarFuncionario(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var nomeFuncionario = req.body.nomeFuncionarioServer;
+    var cpfFuncionario = req.body.cpfFuncionarioServer;
+    var cargoFuncionario = req.body.cargoFuncionarioServer;
+    var emailFuncionario = req.body.emailFuncionarioServer;
+    var senhaFuncionario = req.body.senhaFuncionarioServer;
+
+    // Faça as validações dos valores   
+
+    // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+    usuarioModel.cadastrarFuncionario(nomeFuncionario, cpfFuncionario, cargoFuncionario, emailFuncionario, senhaFuncionario)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+}
+
+function pegarIdEmpresa(req, res) {
+    var cnpj = req.params.cnpjId;
+    usuarioModel
+        .pegarIdEmpresa(cnpj)
+        .then(function (resultado) {
+            if (resultado.length == 1) {
+                console.log(resultado);
+                res.json(resultado[0]);
+            } else if (resultado.length == 0) {
+                res.status(403).send("CNPJ INVÁLIDO")
+            } else {
+                res.status(403).send("Mais de um CNPJ inválido")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log(
+                "Houve um ERRO! :",erro.sqlMessage
+            );
+            res.status(500).json(erro.sqlMessage);
+        })
+    }
 
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    cadastrarFuncionario,
+    pegarIdEmpresa
 }
