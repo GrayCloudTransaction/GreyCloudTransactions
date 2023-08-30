@@ -8,7 +8,7 @@ router.get("/pegarIdEmpresa/:cnpjId", function (req, res) {
     usuarioController.pegarIdEmpresa(req,res);
 })
 
-router.post("/cadastrar", function (req, res) {
+router.post("/cadastrarEmpresa", function (req, res) {
     usuarioController.cadastrar(req, res);
 })
 

@@ -143,7 +143,8 @@
 
             <div style="width: 48%; position: absolute;" class="pt-3">
                 <div class="d-flex justify-content-end">
-                    <button onclick="cadastrar()" class="btn btn-lg button px-3 py-2">Cadastrar</button>
+                    <button onclick="cadastrarEmpresaEFuncionario()"
+                        class="btn btn-lg button px-3 py-2">Cadastrar</button>
                 </div>
             </div>
 
@@ -151,7 +152,8 @@
     </div>
     <div style="position: absolute;margin-top: 18vh;" class="pt-3">
         <div class="d-flex justify-content-end" style="width: 20%;">
-            <button id="voltar" style="display: none;" onclick="voltarCadastroEmpresa()" class="btn btn-lg button px-3 py-2">
+            <button id="voltar" style="display: none;" onclick="voltarCadastroEmpresa()"
+                class="btn btn-lg button px-3 py-2">
                 <img style="rotate: 180deg; width: 36%;" src="./assets/right-arrow.png">
                 Voltar</button>
         </div>
@@ -178,26 +180,26 @@
 
     // }
 
-    function cadastrar() {
-        //Recupere o valor da nova input pelo nome do id
-        // Agora vá para o método fetch logo abaixo
-        var razaoSocial = iptRazaoSocial.value;
-        var cnpj = Number(iptCnpj.value);
-        var cep = Number(iptCep.value);
-        var logradouro = iptLogradouro.value;
-        var numero = Number(iptNumero.value);
-        var telefone = Number(iptTelefone.value);
-        var email = iptEmail.value;
+    function cadastrarEmpresaEFuncionario() {
+        // dados empresa
+        const razaoSocial = iptRazaoSocial.value;
+        const cnpj = Number(iptCnpj.value);
+        const cep = Number(iptCep.value);
+        const logradouro = iptLogradouro.value;
+        const numero = Number(iptNumero.value);
+        const telefone = Number(iptTelefone.value);
+        const email = iptEmail.value;
+        // dados funcionario
+        const nomeFuncionario = iptNomeFuncionario.value;
+        const cpfFuncionario = iptCpfFuncionario.value;
+        const cargoFuncionario = iptCargoFuncionario.value;
+        const emailFuncionario = iptEmailFuncionario.value;
+        const senhaFuncionario = iptSenhaFuncionario.value;
+        var idEmpresa = 0;
 
-        if (razaoSocial == "" || cnpj == "" || cep == "" || logradouro == "" || numero == "" || telefone == "" || email == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
 
-            return false;
-        }
-
-        // Enviando o valor da nova input
-        fetch("/usuarios/cadastrar", {
+        // if (validar()) {
+        fetch("/usuarios/cadastrarEmpresa", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -213,114 +215,81 @@
                 telefoneServer: telefone,
                 emailServer: email
             })
-        }).then(function (resposta) {
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
 
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-
-                pegarIdEmpresa();
-
-            } else {
-                throw ("Houve um erro ao tentar realizar o cadastro!");
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-        return false;
-    }
-
-
-    function cadastrarFuncionario() {
-        cadastrar();
-        //Recupere o valor da nova input pelo nome do id
-        // Agora vá para o método fetch logo abaixo
-        var nomeFuncionario = iptNomeFuncionario.value;
-        var cpfFuncionario = iptCpfFuncionario.value;
-        var cargoFuncionario = iptCargoFuncionario.value;
-        var emailFuncionario = iptEmailFuncionario.value;
-        var senhaFuncionario = iptSenhaFuncionario.value;
-        var fkEmpresa = idEmpresa;
-
-        if (nomeFuncionario == "" || emailFuncionario == "" || iptSenhaFuncionario == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-
-            return false;
-        }
-
-        // Enviando o valor da nova input
-        fetch("/usuarios/cadastrarFuncionario", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                nomeFuncionarioServer: nomeFuncionario,
-                cpfFuncionarioServer: cpfFuncionario,
-                cargoFuncionarioServer: cargoFuncionario,
-                emailFuncionarioServer: emailFuncionario,
-                senhaFuncionarioServer: senhaFuncionario
-            })
-        }).then(function (resposta) {
-
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-                cardErro.style.display = "block";
-
-                mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-                setTimeout(() => {
-                    window.location = "login.html";
-                }, "2000")
-
-                limparFormulario();
-            } else {
-                throw ("Houve um erro ao tentar realizar o cadastro!");
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-
-        return false;
-    }
-
-    function pegarIdEmpresa() {
-        var cnpjId = iptCnpj.value;
-        var idEmpresa;
-        fetch(`/usuarios/pegarIdEmpresa/${cnpjId}`,
-            {
-                cache: "no-store",
-            }).then(function (resposta) {
-                console.log("Estou no then do pegarIdEmpresa!")
                 if (resposta.ok) {
-                    console.log(resposta);
+                    resposta.json().then(function (resposta) {
+                        fetch(`/usuarios/pegarIdEmpresa/${cnpj}`, {
+                            method: "GET",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                        })
+                            .then(function (resposta) {
+                                console.log("resposta: ", resposta);
 
-                    reposta.json().then(json => {
-                        console.log(json);
-                        console.log(JSON.stringify(json));
-                        idEmpresa = json.idEmpresa;
-                        //sessionStorage.fkEmpresa = json.idEmpresa;
+                                if (resposta.ok) {
 
+                                    resposta.json().then(function (resposta) {
+                                        console.log(`idEmpresa: ${JSON.stringify(resposta)}`);
+                                        idEmpresa = resposta.idEmpresa;
+                                        console.log(idEmpresa);
+
+                                        fetch("/usuarios/cadastrarFuncionario", {
+                                            method: "POST",
+                                            headers: {
+                                                "Content-Type": "application/json",
+                                            },
+                                            body: JSON.stringify({
+                                                // crie um atributo que recebe o valor recuperado aqui
+                                                // Agora vá para o arquivo routes/usuario.js
+                                                nomeFuncionarioServer: nomeFuncionario,
+                                                cpfFuncionarioServer: cpfFuncionario,
+                                                cargoFuncionarioServer: cargoFuncionario,
+                                                emailFuncionarioServer: emailFuncionario,
+                                                senhaFuncionarioServer: senhaFuncionario,
+                                                fkEmpresaServer: idEmpresa
+                                            }),
+                                        })
+                                            .then(function (resposta) {
+                                                console.log("resposta: ", resposta);
+
+                                                if (resposta.ok) {
+                                                    cardErro.style.display = "block";
+
+                                                    mensagem_erro.innerHTML =
+                                                        "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                                                    setTimeout(() => {
+                                                        window.location = "login.html";
+                                                    }, 2000);
+                                                } else {
+                                                    throw "Houve um erro ao tentar realizar o cadastro!";
+                                                }
+                                            })
+                                            .catch(function (resposta) {
+                                                console.log(`#ERRO: ${resposta}`);
+                                            });
+                                    });
+                                } else {
+                                    throw "Houve um erro ao tentar realizar o cadastro!";
+                                }
+                            })
+                            .catch(function (resposta) {
+                                console.log(`#ERRO: ${resposta}`);
+                            });
                     });
-
                 } else {
-                    console.log("Houve um erro ao pegar o idEmpresa!")
-
-                    resposta.text().then(texto => {
-                        console.error(texto);
-                    });
+                    throw "Houve um erro ao tentar realizar o cadastro!";
                 }
-            }).catch(function (erro) {
-                console.log(erro);
             })
-
-        return false;
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
     }
-
+    // }
 </script>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

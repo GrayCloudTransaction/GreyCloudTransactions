@@ -74,11 +74,12 @@ function cadastrarFuncionario(req, res) {
     var cargoFuncionario = req.body.cargoFuncionarioServer;
     var emailFuncionario = req.body.emailFuncionarioServer;
     var senhaFuncionario = req.body.senhaFuncionarioServer;
+    var fkEmpresa = req.body.fkEmpresaServer;
 
     // Faça as validações dos valores   
 
     // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-    usuarioModel.cadastrarFuncionario(nomeFuncionario, cpfFuncionario, cargoFuncionario, emailFuncionario, senhaFuncionario)
+    usuarioModel.cadastrarFuncionario(nomeFuncionario, cpfFuncionario, cargoFuncionario, emailFuncionario, senhaFuncionario, fkEmpresa)
         .then(
             function (resultado) {
                 res.json(resultado);
