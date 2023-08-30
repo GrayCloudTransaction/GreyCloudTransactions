@@ -352,7 +352,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #hero .hero-logo {
   margin-bottom: 18px;
-  width: 100px;
+  width: 400px;
 }
 
 #hero h1 {
@@ -405,6 +405,11 @@ h1, h2, h3, h4, h5, h6 {
   #hero h2 {
     line-height: 22px;
   }
+}
+
+.titulo-principal {
+  letter-spacing: 5px;
+  word-spacing: 5px;
 }
 
 /*--------------------------------------------------------------
