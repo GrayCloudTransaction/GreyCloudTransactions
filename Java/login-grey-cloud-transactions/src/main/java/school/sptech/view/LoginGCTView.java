@@ -36,6 +36,6 @@ public class LoginGCTView {
 
         LoginGCTController controller = new LoginGCTController(email,senha);
 
-        controller.criarLoginSelectFuncionario();
+        System.out.println(controller.criarLoginSelectFuncionario());
     }
 }

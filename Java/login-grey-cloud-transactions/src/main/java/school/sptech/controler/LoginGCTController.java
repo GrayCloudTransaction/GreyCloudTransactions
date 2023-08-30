@@ -14,24 +14,7 @@ public class LoginGCTController {
         model = new LoginGCTModel(email, senha);
     }
 
-    public void criarLoginSelectFuncionario(){
-        String query = "SELECT Nome FROM Funcionario WHERE Email = '%s' AND Senha = '%s'".formatted(model.getEmail(), model.getSenha());
-
-        ResultSet retorno = MySQLConectionEngine.shared.criarQuery(query);
-
-        if (retorno == null){
-            System.out.println("Retornou NULO");
-        } else {
-            try {
-                String nome = null;
-                if(retorno.next()){
-                    nome = retorno.getString("Nome");
-                }
-                System.out.println(nome);
-            }catch (SQLException e){
-                System.out.println("Esta coluna não existe.");
-            }
-            MySQLConectionEngine.shared.fecharConexao();
-        }
+    public String criarLoginSelectFuncionario(){
+        return model.criarLoginSelectFuncionario();
     }
 }
