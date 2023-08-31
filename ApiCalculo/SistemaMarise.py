@@ -3,21 +3,21 @@ from math import pow
 import os
 from time import sleep
 import psutil
-# from colorama import Fore, Back, Style
-# import mysql.connector
-# import mysql.connector.errorcode
+from colorama import Fore, Back, Style
+import mysql.connector
+import mysql.connector.errorcode
 
 visualizacaoDesejada = 0
 
-# conexao = mysql.connector.connect(
-#         host = "localhost",
-#         user = "urubu100",
-#         password = "Urubu100@",
-#         port = 3306,
-#         database = "SistemaMarise"
-#         )
+conexao = mysql.connector.connect(
+        host = "localhost",
+        user = "urubu100",
+        password = "urubu100",
+        port = 3306,
+        database = "SistemaMarise"
+        )
 
-# comando = conexao.cursor()
+comando = conexao.cursor()
 
 def MostrarMsgGCT():
     print("=" * 100)
@@ -71,6 +71,7 @@ def MostrarValoresCPU():
     
     #conexao.close()
 
+    print("CPU")
     print('-' * 100)
     print("\n" + "Quantidade de Cores: " + str(qtdCores) + "\nQuantidade Threads: " + str(qtdThreads) + "\n")
     print('-' * 100)
@@ -166,6 +167,7 @@ def MostrarValoresDiscoLocal():
     # print("\nEm uso: " + str(porcentagemEmUso) + "%" + " (com base no total e na quantidade em uso.)")
     # print("\nQuantidade livre(GB): " + str(megaByteToGigabyteLivre) + "\n")
 
+
     print("-" * 100)
     print((" " * 40) + "Dados da Memória de Massa: \n")
     print("-" * 100)
@@ -218,7 +220,7 @@ def MostrarValoresRAM():
     ramByteToGigabyteDisponivel = (float(ramDisponivel) * (1 * pow(10,-9)))
     ramByteToGigabyteLivre = (float(ramLivre) * (1 * pow(10,-9)))
 
-    
+
     print("-" * 100)
     print((" " * 40) + "Dados da Memória Virtual: \n")
     print("-" * 100)
@@ -259,6 +261,7 @@ def MostrarValoresRAM():
 
 def MostrarTodosValores():
     while True:
+            MostrarMsgGCT()
             MostrarValoresCPU()
             MostrarValoresDiscoLocal()
             MostrarValoresRAM()
@@ -266,34 +269,53 @@ def MostrarTodosValores():
             clearConsole()
 
 
+def MostrarValores():
+    if visualizacaoDesejada == 1:
+        while True:
+            MostrarMsgGCT()
+            MostrarValoresCPU()
+            sleep(2)
+            clearConsole()
+    elif visualizacaoDesejada == 2:
+        while True:
+            MostrarMsgGCT()
+            MostrarValoresDiscoLocal()
+            sleep(2)
+            clearConsole()
+    elif visualizacaoDesejada == 3:
+        while True:
+            MostrarMsgGCT()
+            MostrarValoresRAM()
+            sleep(2)
+            clearConsole()
+    elif (visualizacaoDesejada == 4):
+        MostrarTodosValores()
 
+
+# MostrarMsgGCT();
+# def MensagemPrincipal():
+#     visualizacaoDesejada = int(input("Qual componente deseja visualizar? (1 = CPU, 2 = Disco Local, 3 = Memória RAM, 4 = Todos, 0= Sair)"))
+# while visualizacaoDesejada != 1 or visualizacaoDesejada != 2 or visualizacaoDesejada != 3 or visualizacaoDesejada != 4:
+#         if(visualizacaoDesejada == 1 or visualizacaoDesejada == 2 or visualizacaoDesejada == 3 or visualizacaoDesejada == 4):
+            
+#             break
+#         else:
+#             visualizacaoDesejada = int(input("Qual componente deseja visualizar? (1 = CPU, 2 = Disco Local, 3 = Memória RAM, 4 = Todos, 0= Sair)"));
+
+# MostrarValores()
 
 MostrarMsgGCT()
-
-
 visualizacaoDesejada = int(input("Qual componente deseja visualizar? (1 = CPU, 2 = Disco Local, 3 = Memória RAM, 4 = Todos)"))
-while visualizacaoDesejada != 1 or visualizacaoDesejada != 2 or visualizacaoDesejada != 3 or visualizacaoDesejada != 4:
-    if(visualizacaoDesejada == 1 or visualizacaoDesejada == 2 or visualizacaoDesejada == 3 or visualizacaoDesejada == 4):
+print(visualizacaoDesejada)
+while visualizacaoDesejada != 0:
         
-        break
-    else :
+    while visualizacaoDesejada < 1 and visualizacaoDesejada > 4:
+        
         visualizacaoDesejada = int(input("Qual componente deseja visualizar? (1 = CPU, 2 = Disco Local, 3 = Memória RAM, 4 = Todos)"))
 
+    MostrarValores()
+    print(visualizacaoDesejada)
 
-if visualizacaoDesejada == 1:
-    while True:
-        MostrarValoresCPU()
-        sleep(2)
-        clearConsole()
-elif visualizacaoDesejada == 2:
-    while True:
-        MostrarValoresDiscoLocal()
-        sleep(2)
-        clearConsole()
-elif visualizacaoDesejada == 3:
-    while True:
-        MostrarValoresRAM()
-        sleep(2)
-        clearConsole()
-elif (visualizacaoDesejada == 4):
-    MostrarTodosValores()
+# Mensagem inicial
+
+
