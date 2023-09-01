@@ -332,9 +332,27 @@ h1, h2, h3, h4, h5, h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("../img/hero-bg.png");
+  background: url("../img/bg_video.mp4");
   position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.hero-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100vh;
+}
+.hero-container .content {
+  position: relative;
+  z-index: 1;
+}
+
 
 #hero .hero-container {
   position: absolute;
@@ -351,8 +369,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #hero .hero-logo {
-  margin-bottom: 18px;
-  width: 400px;
+  /* margin-bottom: 5px; */
+  margin-top: 0;
+  width: 240px;
 }
 
 #hero h1 {
