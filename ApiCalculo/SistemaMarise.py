@@ -48,6 +48,43 @@ def MostrarMsgGCT():
     )
     print("=" * 100)
 
+def bannerCpu():
+    print(
+        """
+                                      █████╗ ██████╗ ██╗   ██╗
+                                     ██╔══██╗██╔══██╗██║   ██║
+___________________________________  ██║  ╚═╝██████╔╝██║   ██║  ___________________________________
+                                     ██║  ██╗██╔═══╝ ██║   ██║
+                                     ╚█████╔╝██║     ╚██████╔╝
+                                      ╚════╝ ╚═╝      ╚═════╝
+"""
+    )
+
+def bannerDisco():
+    print(
+        """
+           ██████╗ ██╗ ██████╗ █████╗  █████╗   ██╗      █████╗  █████╗  █████╗ ██╗
+           ██╔══██╗██║██╔════╝██╔══██╗██╔══██╗  ██║     ██╔══██╗██╔══██╗██╔══██╗██║
+_________  ██║  ██║██║╚█████╗ ██║  ╚═╝██║  ██║  ██║     ██║  ██║██║  ╚═╝███████║██║       _________
+           ██║  ██║██║ ╚═══██╗██║  ██╗██║  ██║  ██║     ██║  ██║██║  ██╗██╔══██║██║     
+           ██████╔╝██║██████╔╝╚█████╔╝╚█████╔╝  ███████╗╚█████╔╝╚█████╔╝██║  ██║███████╗
+           ╚═════╝ ╚═╝╚═════╝  ╚════╝  ╚════╝   ╚══════╝ ╚════╝  ╚════╝ ╚═   ╚═╝╚══════╝     
+"""
+    )
+
+def bannerMemoria():
+    print(
+        """
+
+      ███╗   ███╗███████╗███╗   ███╗ █████╗ ██████╗ ██╗ █████╗   ██████╗  █████╗ ███╗   ███╗ 
+      ████╗ ████║██╔════╝████╗ ████║██╔══██╗██╔══██╗██║██╔══██╗  ██╔══██╗██╔══██╗████╗ ████║
+____  ██╔████╔██║█████╗  ██╔████╔██║██║  ██║██████╔╝██║███████║  ██████╔╝███████║██╔████╔██║  _____
+      ██║╚██╔╝██║██╔══╝  ██║╚██╔╝██║██║  ██║██╔══██╗██║██╔══██║  ██╔══██╗██╔══██║██║╚██╔╝██║
+      ██║ ╚═╝ ██║███████╗██║ ╚═╝ ██║╚█████╔╝██║  ██║██║██║  ██║  ██║  ██║██║  ██║██║ ╚═╝ ██║
+      ╚═╝     ╚═╝╚══════╝╚═╝     ╚═╝ ╚════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝  ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝
+"""
+    )
+
 def clearConsole():
     command = 'clear'
     if os.name in ('nt', 'dos'):  # Caso seja utilizado no Windows
@@ -71,7 +108,7 @@ def MostrarValoresCPU():
     
     #conexao.close()
 
-    print("CPU")
+    bannerCpu()
     print('-' * 100)
     print("\n" + "Quantidade de Cores: " + str(qtdCores) + "\nQuantidade Threads: " + str(qtdThreads) + "\n")
     print('-' * 100)
@@ -167,7 +204,7 @@ def MostrarValoresDiscoLocal():
     # print("\nEm uso: " + str(porcentagemEmUso) + "%" + " (com base no total e na quantidade em uso.)")
     # print("\nQuantidade livre(GB): " + str(megaByteToGigabyteLivre) + "\n")
 
-
+    bannerDisco()
     print("-" * 100)
     print((" " * 40) + "Dados da Memória de Massa: \n")
     print("-" * 100)
@@ -220,9 +257,9 @@ def MostrarValoresRAM():
     ramByteToGigabyteDisponivel = (float(ramDisponivel) * (1 * pow(10,-9)))
     ramByteToGigabyteLivre = (float(ramLivre) * (1 * pow(10,-9)))
 
-
+    bannerMemoria()
     print("-" * 100)
-    print((" " * 40) + "Dados da Memória Virtual: \n")
+    print((" " * 37) + "Dados da Memória Virtual: \n")
     print("-" * 100)
     print("Memória RAM total: " + Fore.BLUE + "{:.2f}".format(ramByteToGigabyteTotal) + " GB" + Style.RESET_ALL + "\n")
     print( "Memória RAM disponível: " + Fore.BLUE + "{:.2f}".format(ramByteToGigabyteDisponivel) + " GB" + Style.RESET_ALL + "\n")
@@ -259,63 +296,55 @@ def MostrarValoresRAM():
 
     print("=" * 100)
 
-def MostrarTodosValores():
-    while True:
-            MostrarMsgGCT()
-            MostrarValoresCPU()
-            MostrarValoresDiscoLocal()
-            MostrarValoresRAM()
-            sleep(2)
-            clearConsole()
-
-
-def MostrarValores():
+def MostrarValores(visuDesejada):
+    visualizacaoDesejada = visuDesejada
     if visualizacaoDesejada == 1:
-        while True:
-            MostrarMsgGCT()
+        for i in range(0, 2):
+            clearConsole()
             MostrarValoresCPU()
             sleep(2)
             clearConsole()
     elif visualizacaoDesejada == 2:
-        while True:
-            MostrarMsgGCT()
+        for i in range(0, 2):
+            clearConsole()
             MostrarValoresDiscoLocal()
             sleep(2)
             clearConsole()
     elif visualizacaoDesejada == 3:
-        while True:
-            MostrarMsgGCT()
+        for i in range(0, 2):
+            clearConsole()
             MostrarValoresRAM()
             sleep(2)
             clearConsole()
     elif (visualizacaoDesejada == 4):
-        MostrarTodosValores()
+        for i in range(0, 2):
+            clearConsole()
+            MostrarValoresCPU()
+            MostrarValoresDiscoLocal()
+            MostrarValoresRAM()
+            sleep(2)
+            clearConsole()
+    elif visualizacaoDesejada == 0:
+        print("\n☁️  Até logo!")
+        exit()
+    voltar = int(input("0 = Voltar a seleção de componentes \n1 = Continuar a captação de dados \n=> "))
+    while voltar != 0 and voltar != 1:
+        voltar = int(input("0 = Voltar a seleção de componentes \n1 = Continuar a captação de dados \n=> "))
+    if voltar == 1:
+        MostrarValores(visualizacaoDesejada)
+    elif voltar == 0:
+        print(visualizacaoDesejada)
+        MensagemTeste()
 
+def MensagemTeste():
+    MostrarMsgGCT()
+    visualizacaoDesejada = int(input("Escolha o componente que deseja visualizar \n1 = CPU \n2 = Disco Local \n3 = Memória RAM \n4 = Todos \n0 = Para finalizar o processo \n=> "))
 
-# MostrarMsgGCT();
-# def MensagemPrincipal():
-#     visualizacaoDesejada = int(input("Qual componente deseja visualizar? (1 = CPU, 2 = Disco Local, 3 = Memória RAM, 4 = Todos, 0= Sair)"))
-# while visualizacaoDesejada != 1 or visualizacaoDesejada != 2 or visualizacaoDesejada != 3 or visualizacaoDesejada != 4:
-#         if(visualizacaoDesejada == 1 or visualizacaoDesejada == 2 or visualizacaoDesejada == 3 or visualizacaoDesejada == 4):
-            
-#             break
-#         else:
-#             visualizacaoDesejada = int(input("Qual componente deseja visualizar? (1 = CPU, 2 = Disco Local, 3 = Memória RAM, 4 = Todos, 0= Sair)"));
-
-# MostrarValores()
-
-MostrarMsgGCT()
-visualizacaoDesejada = int(input("Qual componente deseja visualizar? (1 = CPU, 2 = Disco Local, 3 = Memória RAM, 4 = Todos)"))
-print(visualizacaoDesejada)
-while visualizacaoDesejada != 0:
+    while visualizacaoDesejada != 1 and visualizacaoDesejada != 2 and visualizacaoDesejada != 3 and visualizacaoDesejada != 4 and visualizacaoDesejada != 0:
         
-    while visualizacaoDesejada < 1 and visualizacaoDesejada > 4:
-        
-        visualizacaoDesejada = int(input("Qual componente deseja visualizar? (1 = CPU, 2 = Disco Local, 3 = Memória RAM, 4 = Todos)"))
-
-    MostrarValores()
-    print(visualizacaoDesejada)
+        visualizacaoDesejada = int(input("Escolha o componente que deseja visualizar \n1 = CPU \n2 = Disco Local \n3 = Memória RAM \n4 = Todos \n0 = Para finalizar o processo \n=> "))
+    MostrarValores(visualizacaoDesejada)
 
 # Mensagem inicial
 
-
+MensagemTeste()
