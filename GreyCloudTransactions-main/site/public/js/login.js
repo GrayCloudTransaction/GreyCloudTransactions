@@ -40,7 +40,7 @@ function entrar() {
                     sessionStorage.ID_USUARIO = json.id;     
                 });
                 
-               window.location = "index.html"
+               window.location = "./dashboardAnalista.html"
                
             } else {
                 
