@@ -8,7 +8,7 @@ import colorama
 from colorama import *
 from datetime import date, datetime
 
-taxaAtt = 2;
+taxaAtt = 2
 def atualizarTaxaAtt(args):
   if(args == '2 SEGUNDOS') :
     taxaAtt = 2

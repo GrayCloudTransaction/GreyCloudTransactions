@@ -2,6 +2,7 @@
 
 function entrar() {
 
+
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
 
@@ -40,7 +41,8 @@ function entrar() {
                     sessionStorage.ID_USUARIO = json.id;     
                 });
                 
-               window.location = "./dashboardAnalista.html"
+             window.location = "../../../bootstrap/material-dashboard-master/material-dashboard-master/pages/dashboardAnalista.html"
+
                
             } else {
                 
