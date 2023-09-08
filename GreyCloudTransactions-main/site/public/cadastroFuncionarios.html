@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar funcionario</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/cadastro.css">
+    </link>
+</head>
+
+<body>
+    <header>
+        <nav class="d-flex justify-content-between">
+            <p class="mt-3 ml-4" style="color: white;">
+                Gray Cloud Transactions
+            </p>
+            <div class="align-items-center d-flex">
+                <a class="txt-nav text-decoration-none mx-2" href="">SOBRE NÓS</a>
+                <a class="txt-nav text-decoration-none mx-2" href="">PRODUTO</a>
+                <a class="p text-decoration-none mx-2" href="">|</a>
+                <a class="txt-nav text-decoration-none ml-2 mr-3" href="">LOGIN</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Cadastro Funcionário -->
+    <div class="container mt-4" id="segundaParte">
+        <div class="row d-flex justify-content-center">
+            <h2>CADASTRO FUNCIONARIO</h2>
+        </div>
+
+        <div class="d-flex justify-content-center mt-5">
+            <div style="background-color: #2aacdf; width: 60%; border-radius: 20px;" class="cardCadastro px-5 py-5">
+                <div class="form-group">
+                    <div>
+
+                        <div class="col-xl-12">
+                            <label for="nomeFuncionario">NOME</label>
+                            <input type="text" class="form-control" id="iptNomeFuncionario">
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-2">
+                        <div class="col-xl-6">
+                            <label for="cpf">CPF</label>
+                            <input type="number" min="0" class="form-control" id="iptCpfFuncionario">
+                        </div>
+                        <div class="col-xl-6">
+                            <label for="cargoFuncionario">CARGO</label>
+                            <input type="text" min="0" class="form-control" id="iptCargoFuncionario">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="d-flex justify-content-between mt-2">
+                    <div class="col-xl-7">
+                        <label for="email">EMAIL</label>
+                        <input type="email" min="0" class="form-control" id="iptEmailFuncionario">
+                    </div>
+                    <div class="col-xl-5">
+                        <label for="iptPermissao">PERMISSÃO</label>
+                        <select type="number" min="0" class="form-control" id="iptPermissao">
+                            <option value="1">1-Geral</option>
+                            <option value="2">2-Cadastrar/Editar/Remover componentes</option>
+                            <option value="3">3-Editar componentes</option>
+                            <option value="4">4-Visualização</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between mt-2">
+                    <div class="col-xl-6">
+                        <label for="senha">SENHA</label>
+                        <input type="password" min="0" class="form-control" id="iptSenhaFuncionario">
+                    </div>
+                    <div class="col-xl-6">
+                        <label for="confirmarSenha">CONFIRMAR SENHA</label>
+                        <input type="password" min="0" class="form-control" id="iptConfirmarSenhaFuncionario">
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div style="width: 32%; position: absolute;" class="pt-3">
+                <div class="d-flex justify-content-end">
+                    <button onclick="cadastrarNovoFuncionario()"
+                        class="btn btn-lg button px-3 py-2">Cadastrar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+
+</body>
+
+<script src="./js/cadastroFuncionarios.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+
+</html>

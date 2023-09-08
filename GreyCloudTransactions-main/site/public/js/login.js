@@ -36,9 +36,10 @@ function entrar() {
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;     
+                    sessionStorage.ID_USUARIO = json.idFuncionario;     
+                    sessionStorage.EMAIL_USUARIO = json.Email;
+                    sessionStorage.NOME_USUARIO = json.Nome;
+                    sessionStorage.PERMISSAO = json.Permissao;
                 });
                 
              window.location = "../../../bootstrap/material-dashboard-master/material-dashboard-master/pages/dashboardAnalista.html"

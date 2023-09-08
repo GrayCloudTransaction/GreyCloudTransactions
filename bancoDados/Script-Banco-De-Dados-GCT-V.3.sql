@@ -1,99 +1,128 @@
 DROP SCHEMA IF EXISTS `ScriptGCT` ;
 CREATE SCHEMA IF NOT EXISTS `ScriptGCT`;
-USE `ScriptGCT`;
+USE `ScriptGCT` ;
 
-DROP TABLE IF EXISTS `ScriptGCT`.`Empresa` ;
+DROP TABLE IF EXISTS `Empresa` ;
 
-CREATE TABLE IF NOT EXISTS `ScriptGCT`.`Empresa` (
-  `idEmpresa` INT PRIMARY KEY AUTO_INCREMENT,
-  `RazaoSocial` VARCHAR(120),
+CREATE USER IF NOT EXISTS urubu100 IDENTIFIED BY 'urubu100';
+GRANT SELECT, INSERT, UPDATE, DELETE ON ScriptGCT.* TO urubu100;
+FLUSH PRIVILEGES;
+
+CREATE TABLE IF NOT EXISTS `Empresa` (
+  `idEmpresa` INT auto_increment,
+  `RazaoSocial` VARCHAR(45),
   `CNPJ` INT,
-  `Logradouro` INT,
+  `Logradouro` VARCHAR(120),
+  `Número` INT,
   `CEP` INT,
-  `Email` VARCHAR(150),
-  `Telefone` INT
-);
+  `Email` VARCHAR(45),
+  `Telefone` INT,
+  PRIMARY KEY (`idEmpresa`)
+  ) auto_increment = 10;
+  
 
-DROP TABLE IF EXISTS `ScriptGCT`.`Funcionario` ;
+  
+DROP TABLE IF EXISTS `Funcionario` ;
 
-CREATE TABLE IF NOT EXISTS `ScriptGCT`.`Funcionario` (
-  `idFuncionario` INT PRIMARY KEY AUTO_INCREMENT,
-  `Nome` VARCHAR(120),
-  `Email` VARCHAR(150),
-  `Senha` VARCHAR(150),
-  `Cargo` VARCHAR(90),
+CREATE TABLE IF NOT EXISTS `Funcionario` (
+  `idFuncionario` INT auto_increment,
+  `Nome` VARCHAR(45),
+  `Email` VARCHAR(45),
+  `Senha` VARCHAR(45),
+  `Cargo` VARCHAR(45),
   `CPF` INT,
-  `Permissao` INT,
+  `Permissao` CHAR(1) not null,
+   constraint `chkPermissao` check (`Permissao` = '1' or `Permissao` = '2'  or `Permissao` = '3' ),
+  -- fkGerente
   `fkGerente` INT,
   `fkEmpresa` INT,
-  FOREIGN KEY (`fkGerente`) REFERENCES `ScriptGCT`.`Funcionario` (`idFuncionario`),
-  FOREIGN KEY (`fkEmpresa`) REFERENCES `ScriptGCT`.`Empresa` (`idEmpresa`)
-);
+  PRIMARY KEY (`idFuncionario`),
+  FOREIGN KEY (`fkGerente`) REFERENCES `Funcionario` (`idFuncionario`),
+  FOREIGN KEY (`fkEmpresa`) REFERENCES `Empresa` (`idEmpresa`)
+  ) auto_increment = 100;
 
-DROP TABLE IF EXISTS `ScriptGCT`.`Maquina` ;
+DROP TABLE IF EXISTS `Maquina` ;
 
-CREATE TABLE IF NOT EXISTS `ScriptGCT`.`Maquina` (
-  `idMaquina` INT PRIMARY KEY AUTO_INCREMENT,
-  `Nome` VARCHAR(60),
-  `Codigo` VARCHAR(50),
+CREATE TABLE IF NOT EXISTS `Maquina` (
+  `idMaquina` INT auto_increment,
+  `Nome` VARCHAR(45),
+  `Codigo` VARCHAR(45),
   `fkEmpresa` INT,
-  FOREIGN KEY (`fkEmpresa`) REFERENCES `ScriptGCT`.`Empresa` (`idEmpresa`)
-);
+  PRIMARY KEY (`idMaquina`),
+  FOREIGN KEY (`fkEmpresa`) REFERENCES `Empresa` (`idEmpresa`)
+) auto_increment = 1000;
 
-DROP TABLE IF EXISTS `ScriptGCT`.`UnidadeMedida` ;
+DROP TABLE IF EXISTS `Metrica` ;
 
-CREATE TABLE IF NOT EXISTS `ScriptGCT`.`UnidadeMedida` (
-  `idUnidadeMedida` INT PRIMARY KEY AUTO_INCREMENT,
-  `UnidadeDeMedida` VARCHAR(60),
-  `TipoMedida` VARCHAR(60)
-);
+CREATE TABLE IF NOT EXISTS `Metrica` (
+  `idMetrica` INT auto_increment,
+  `Metrica` VARCHAR(45),
+  PRIMARY KEY (`idMetrica`)
+  ) auto_increment = 1;
 
-DROP TABLE IF EXISTS `ScriptGCT`.`ModeloComponente`;
+DROP TABLE IF EXISTS `TipoComponente` ;
 
-CREATE TABLE IF NOT EXISTS `ScriptGCT`.`ModeloComponente`(
-  `idModeloComponente` INT PRIMARY KEY AUTO_INCREMENT,
-  `Modelo` VARCHAR(60),
-  `Fabricante` VARCHAR(60)
-);
+CREATE TABLE IF NOT EXISTS `TipoComponente` (
+  `idTipoComponente` INT auto_increment,
+  `Tipo` VARCHAR(45),
+  PRIMARY KEY (`idTipoComponente`)
+  );
 
-DROP TABLE IF EXISTS `ScriptGCT`.`SubComponente` ;
+DROP TABLE IF EXISTS `Componente` ;
 
-CREATE TABLE IF NOT EXISTS `ScriptGCT`.`SubComponente` (
-  `idSubComponentes` INT PRIMARY KEY AUTO_INCREMENT,
-  `Nome` VARCHAR(60),
-  `fkUnidadeMedida` INT,
-  `fkModeloComponente` INT,
-    FOREIGN KEY (`fkUnidadeMedida`) REFERENCES `ScriptGCT`.`UnidadeMedida` (`idUnidadeMedida`),
-    FOREIGN KEY (`fkModeloComponente`) REFERENCES `ScriptGCT`.`ModeloComponente` (`idModeloComponente`)
-);
+CREATE TABLE IF NOT EXISTS `Componente` (
+  `idComponente` INT auto_increment,
+  `Modelo` VARCHAR(45),
+  `Marca` VARCHAR(45),
+  `fkMetrica` INT,
+  `fkTipoComponente` INT,
+  `metricaMin` INT,
+  `metricaMax` INT,
+  PRIMARY KEY (`idComponente`),
+  FOREIGN KEY (`fkMetrica`) REFERENCES `Metrica` (`idMetrica`),
+  FOREIGN KEY (`fkTipoComponente`) REFERENCES `TipoComponente` (`idTipoComponente`)
+  ) auto_increment = 10000;
 
-DROP TABLE IF EXISTS `ScriptGCT`.`Registro` ;
+DROP TABLE IF EXISTS `Registro` ;
 
-CREATE TABLE IF NOT EXISTS `ScriptGCT`.`Registro` (
-  `idRegistro` INT PRIMARY KEY AUTO_INCREMENT,
-  `ValorRegistro` DOUBLE,
-  `DataRegistro` DATETIME,
-  `fkSubComponente` INT,
-    FOREIGN KEY (`fkSubComponente`) REFERENCES `ScriptGCT`.`SubComponente` (`idSubComponentes`)
-);
+CREATE TABLE IF NOT EXISTS `Registro` (
+  `fkMaquina` INT auto_increment,
+  `fkComponente` INT,
+  `idRegistro` INT,
+  `ValorRegistro` INT,
+  PRIMARY KEY (`idRegistro`),
+  FOREIGN KEY (`fkMaquina`) REFERENCES `Maquina` (`idMaquina`),
+  FOREIGN KEY (`fkComponente`) REFERENCES `Componente` (`idComponente`)
+)auto_increment = 10000;
 
-DROP TABLE IF EXISTS `ScriptGCT`.`Componente` ;
+ -- DESC Empresa;
+-- DESC Funcionario;
+-- DESC Maquina;
+-- DESC Metrica;
+-- DESC TipoComponente;
+-- DESC Componente;
+-- DESC Registro;
 
-CREATE TABLE IF NOT EXISTS `ScriptGCT`.`Componente` (
-  `idComponente` INT PRIMARY KEY AUTO_INCREMENT,
-  `fkMaquina` INT,
-  `TipoComponente` VARCHAR(60),
-  `fkModeloComponente` INT,
-    FOREIGN KEY (`fkMaquina`) REFERENCES `ScriptGCT`.`Maquina` (`idMaquina`),
-    FOREIGN KEY (`fkModeloComponente`) REFERENCES `ScriptGCT`.`ModeloComponente` (`idModeloComponente`)
-);
+INSERT INTO Empresa values 
+(null, "Coca-Cola",12345678,"Marco Aurélio", 984, 09260640, "cocacola@gmail.com", 123123123),
+(null, "SPTECH",124456789,"Haddock Lobo", 298,0609260641, "sptech@gmail.com", 456456456),
+(null, "Amazon",884456889,"Califórnia", 234,0609260641, "amazon@gmail.com", 889877677)
+;
+-- Select * from Empresa;
 
-DROP TABLE IF EXISTS `ScriptGCT`.`MetricaSubComponente` ;
+Insert into Funcionario values
+(null,"Gabriel","gabriel@gmail.com","12345","presidente",09348571, '1', null, 10),
+(null,"Raphael","raphael@gmail.com","12345","Analísta Junior",09343343, '2', 100, 10),
+(null,"Carlos","carlos@gmail.com","12345","Analísta Sênior",09309848, '1', null, 11)
+;
+-- select * from Funcionario;
 
-CREATE TABLE IF NOT EXISTS `ScriptGCT`.`MetricaSubComponente` (
-  `idMetricaSubComponente` INT PRIMARY KEY AUTO_INCREMENT,
-  `MetricaMinima` VARCHAR(50),
-  `MetricaMaxima` VARCHAR(50),
-  `fkSubComponente` INT,
-    FOREIGN KEY (`fkSubComponente`) REFERENCES `ScriptGCT`.`SubComponente` (`idSubComponentes`)
-);
+select * from Funcionario where email = "gabriel@gmail.com" and senha = "12345";
+
+Insert into Maquina values
+(null, "Servidor-18-08", 024, 10),
+(null, "Servidor-19-07", 357, 11),
+(null, "Servidor-14-12", 504, 12)
+;
+-- select * from Maquina;
+;
