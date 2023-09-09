@@ -2,6 +2,7 @@
 
 function entrar() {
 
+    window.location = "../../../bootstrap/material-dashboard-master/material-dashboard-master/pages/dashboardAnalista.html"
 
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
@@ -27,7 +28,7 @@ function entrar() {
         }).then(function (resposta) {
             alert("ESTOU NO THEN DO entrar()!")
             console.log(resposta);
-
+            
             
             if (resposta.ok) {
                 
@@ -42,7 +43,6 @@ function entrar() {
                     sessionStorage.PERMISSAO = json.Permissao;
                 });
                 
-             window.location = "../../../bootstrap/material-dashboard-master/material-dashboard-master/pages/dashboardAnalista.html"
 
                
             } else {
