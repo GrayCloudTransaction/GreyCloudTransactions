@@ -2,8 +2,7 @@
 
 function entrar() {
 
-    window.location = "../../../bootstrap/material-dashboard-master/material-dashboard-master/pages/dashboardAnalista.html"
-
+    
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
 
@@ -43,8 +42,19 @@ function entrar() {
                     sessionStorage.PERMISSAO = json.Permissao;
                 });
                 
-
-               
+                switch (id.sessionStorage) {
+                    case 1:
+                        window.location = "material-dashboard-master/pages/dashboardCliente.html"
+                        break;
+                    case 2:
+                        window.location = "material-dashboard-master/pages/dashboardAnalista.html"
+                    default:
+                        alert("Houve um erro ao carregar a página, tente novamente mais tarde.")
+                        break;
+                }
+                
+                
+                
             } else {
                 
                 alert("Houve um erro ao tentar realizar o login!");
