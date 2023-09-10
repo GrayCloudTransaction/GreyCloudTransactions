@@ -97,6 +97,38 @@ function cadastrarFuncionario(req, res) {
 
 }
 
+function cadastrarNovoFuncionario(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var nomeFuncionario = req.body.nomeFuncionarioServer;
+    var emailFuncionario = req.body.emailFuncionarioServer;
+    var senhaFuncionario = req.body.senhaFuncionarioServer;
+    var cargoFuncionario = req.body.cargoFuncionarioServer;
+    var cpfFuncionario = req.body.cpfFuncionarioServer;
+    var permissaoFuncionario = req.body.permissaoFuncionarioServer;
+    var fkGerente = req.body.fkGerenteServer;
+    var fkEmpresa = req.body.fkEmpresaServer;
+
+    // Faça as validações dos valores   
+
+    // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+    usuarioModel.cadastrarNovoFuncionario(nomeFuncionario, emailFuncionario, senhaFuncionario, cargoFuncionario, cpfFuncionario, permissaoFuncionario, fkGerente, fkEmpresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+}
+
 function pegarIdEmpresa(req, res) {
     var cnpj = req.params.cnpjId;
     usuarioModel
@@ -113,15 +145,18 @@ function pegarIdEmpresa(req, res) {
         }).catch(function (erro) {
             console.log(erro);
             console.log(
-                "Houve um ERRO! :",erro.sqlMessage
+                "Houve um ERRO! :", erro.sqlMessage
             );
             res.status(500).json(erro.sqlMessage);
         })
-    }
+}
+
+
 
 module.exports = {
     autenticar,
     cadastrar,
     cadastrarFuncionario,
+    cadastrarNovoFuncionario,
     pegarIdEmpresa
 }

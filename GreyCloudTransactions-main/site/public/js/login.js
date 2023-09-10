@@ -31,28 +31,22 @@ function entrar() {
             
             if (resposta.ok) {
                 
-                
-                
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
                     sessionStorage.ID_USUARIO = json.idFuncionario;     
                     sessionStorage.EMAIL_USUARIO = json.Email;
                     sessionStorage.NOME_USUARIO = json.Nome;
+                    sessionStorage.ID_EMPRESA = json.fkEmpresa;
                     sessionStorage.PERMISSAO = json.Permissao;
                 });
                 
-                switch (id.sessionStorage) {
-                    case 1:
-                        window.location = "material-dashboard-master/pages/dashboardCliente.html"
-                        break;
-                    case 2:
-                        window.location = "material-dashboard-master/pages/dashboardAnalista.html"
-                    default:
-                        alert("Houve um erro ao carregar a página, tente novamente mais tarde.")
-                        break;
-                }
-                
+                // if(sessionStorage.PERMISSAO == 1){
+                    window.location = "material-dashboard-master/pages/dashboardCliente.html"
+                // } else{
+                    // }
+                    
+                    window.location = "material-dashboard-master/pages/dashboardAnalista.html"
                 
                 
             } else {
