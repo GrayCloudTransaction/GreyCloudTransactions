@@ -6,12 +6,13 @@ DROP TABLE IF EXISTS `ScriptGCT`.`Empresa` ;
 
 CREATE TABLE IF NOT EXISTS `ScriptGCT`.`Empresa` (
   `idEmpresa` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `RazaoSocial` VARCHAR(120) NULL,
-  `CNPJ` CHAR(14) NULL,
-  `Logradouro` INT NULL,
-  `CEP` INT NULL,
-  `Email` VARCHAR(150) NULL,
-  `Telefone` INT NULL
+  `RazaoSocial` VARCHAR(120) NOT NULL,
+  `CNPJ` CHAR(14)  NOT NULL,
+  `Logradouro` VARCHAR(12) NOT NULL,
+  `Numero` INT  NOT NULL,
+  `CEP` INT  NOT NULL,
+  `Email` VARCHAR(150) NOT  NULL,
+  `Telefone` INT  NOT NULL
 );
 
 DROP TABLE IF EXISTS `ScriptGCT`.`Funcionario` ;
