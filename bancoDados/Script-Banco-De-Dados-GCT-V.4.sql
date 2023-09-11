@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `ScriptGCT`.`Funcionario` (
   `Email` VARCHAR(150) NULL,
   `Senha` VARCHAR(150) NULL,
   `Cargo` VARCHAR(90) NULL,
-  `CPF` INT NULL,
+  `CPF` CHAR(11) NULL,
   `Permissao` INT NOT NULL,
   `fkGerente` INT NOT NULL,
   `fkEmpresa` INT NOT NULL,
@@ -99,3 +99,5 @@ CREATE TABLE IF NOT EXISTS `ScriptGCT`.`ModeloComponente` (
     FOREIGN KEY (`fkComponente`) REFERENCES `ScriptGCT`.`Componente` (`idComponente`)
 );
 
+select * from Empresa;
+select * from Funcionario;
