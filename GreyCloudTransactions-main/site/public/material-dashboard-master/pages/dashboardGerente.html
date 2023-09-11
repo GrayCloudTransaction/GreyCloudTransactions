@@ -423,8 +423,8 @@
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 ">Número de reuniões</h6>
-              <p class="text-sm ">Quantidade de reuniões realizadas por mês</p>
+              <h6 class="mb-0 ">Tempo de Atualização e Manutenção</h6>
+              <p class="text-sm ">Tempo médio de atualização e manutenção mensal (em horas)</p>
               <hr class="dark horizontal">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
@@ -447,7 +447,7 @@
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 "> Quantidade de erros </h6>
+              <h6 class="mb-0 "> Alertas e Incidentes</h6>
               <p class="text-sm "> Quantidade de erros ocorridos em cada mês</p>
               <hr class="dark horizontal">
               <div class="d-flex ">
@@ -469,8 +469,8 @@
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 ">Gráfico de Disco</h6>
-              <p class="text-sm ">Quantidade de uso do disco por tempo (em minutos)</p>
+              <h6 class="mb-0 ">Latência de Transação</h6>
+              <p class="text-sm ">Média mensal da latência de transação dos servidores (em milissegundos)</p>
               <hr class="dark horizontal">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
@@ -1011,7 +1011,7 @@
       data: {
         labels: ["Maio", "Junho", "Julho", "Agosto", "Setembro"],
         datasets: [{
-          label: "Mobile apps",
+          label: "Horas",
           tension: 0,
           borderWidth: 0,
           pointRadius: 5,
@@ -1022,7 +1022,7 @@
           borderWidth: 4,
           backgroundColor: "transparent",
           fill: true,
-          data: [10, 15, 23, 18, 20],
+          data: [2,3,5,1,3,4],
           maxBarThickness: 6
 
         }],
@@ -1095,7 +1095,7 @@
       data: {
         labels: ["Maio", "Junho", "Julho", "Agosto", "Setembro"],
         datasets: [{
-          label: "Mobile apps",
+          label: "Alertas e Erros",
           tension: 0,
           borderWidth: 0,
           pointRadius: 5,
@@ -1106,7 +1106,7 @@
           borderWidth: 4,
           backgroundColor: "transparent",
           fill: true,
-          data: [4.8, 5.0, 5.6, 4.6, 4.7],
+          data: [2,6,4,2,5,7],
           maxBarThickness: 6
 
         }],
@@ -1178,7 +1178,7 @@
       data: {
         labels: ["Maio", "Junho", "Julho", "Agosto", "Setembro"],
         datasets: [{
-          label: "Mobile apps",
+          label: "Milissegundos",
           tension: 0,
           borderWidth: 0,
           pointRadius: 5,
@@ -1188,7 +1188,7 @@
           borderWidth: 4,
           backgroundColor: "transparent",
           fill: true,
-          data: [4.0, 4.2, 5.6, 4.5, 4.6],
+          data: [120,222,156,255,189,132,455,220,440],
           maxBarThickness: 6
 
         }],
