@@ -362,7 +362,7 @@
                         <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
                       </td>
                       <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs display-func" data-toggle="tooltip" data-original-title="Edit user">
                           Editar
                         </a>
                       </td>
@@ -391,7 +391,7 @@
                         <span class="text-secondary text-xs font-weight-bold">11/01/19</span>
                       </td>
                       <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs display-func" data-toggle="tooltip" data-original-title="Edit user">
                           Editar
                         </a>
                       </td>
@@ -419,7 +419,7 @@
                         <span class="text-secondary text-xs font-weight-bold">19/09/17</span>
                       </td>
                       <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs display-func" data-toggle="tooltip" data-original-title="Edit user">
                           Editar
                         </a>
                       </td>
@@ -447,7 +447,7 @@
                         <span class="text-secondary text-xs font-weight-bold">24/12/08</span>
                       </td>
                       <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs display-func" data-toggle="tooltip" data-original-title="Edit user">
                           Editar
                         </a>
                       </td>
@@ -475,7 +475,7 @@
                         <span class="text-secondary text-xs font-weight-bold">04/10/21</span>
                       </td>
                       <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs display-func" data-toggle="tooltip" data-original-title="Edit user">
                           Editar
                         </a>
                       </td>
@@ -505,7 +505,7 @@
                         <span class="text-secondary text-xs font-weight-bold">14/09/20</span>
                       </td>
                       <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs display-func" data-toggle="tooltip" data-original-title="Edit user">
                           Editar
                         </a>
                       </td>
@@ -515,7 +515,7 @@
                       <td>
                         <div class="d-flex px-2 py-1">
                           <div class="d-flex flex-column justify-content-center">
-                            <a href="../../cadastroFuncionarios.html" class="text-secondary font-weight-bold text-xs addFunc-button" data-toggle="tooltip" data-original-title="Edit user" onclick="adicionarFuncionario()">
+                            <a href="../../cadastroFuncionarios.html" class="text-secondary font-weight-bold text-xs addFunc-button display-func" data-toggle="tooltip" data-original-title="Edit user" onclick="adicionarFuncionario()">
                               Adicionar +
                             </a>
                           </div>
@@ -891,6 +891,19 @@
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/material-dashboard.min.js?v=3.1.0"></script>
   <script></script>
+
+  <script>
+    var teste_edit = 0
+    if (teste_edit == 0) {
+
+      var botoes = document.getElementsByClassName('display-func')
+
+      for(var i = 0; i < botoes.length; i++){
+        botoes[i].style.display = "none"
+      }
+      // edit_a.style.display = "none"
+    }
+  </script>
 </body>
 
 </html>
