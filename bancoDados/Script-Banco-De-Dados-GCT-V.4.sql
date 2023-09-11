@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS `ScriptGCT`.`Empresa` (
   `idEmpresa` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `RazaoSocial` VARCHAR(120) NOT NULL,
   `CNPJ` CHAR(14)  NOT NULL,
-  `Logradouro` VARCHAR(12) NOT NULL,
+  `Logradouro` VARCHAR(55) NOT NULL,
   `Numero` INT  NOT NULL,
   `CEP` CHAR(8)  NOT NULL,
   `Email` VARCHAR(150) NOT  NULL,
