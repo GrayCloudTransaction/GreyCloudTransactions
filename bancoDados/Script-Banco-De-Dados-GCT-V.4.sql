@@ -6,12 +6,13 @@ DROP TABLE IF EXISTS `ScriptGCT`.`Empresa` ;
 
 CREATE TABLE IF NOT EXISTS `ScriptGCT`.`Empresa` (
   `idEmpresa` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `RazaoSocial` VARCHAR(120) NULL,
-  `CNPJ` INT NULL,
-  `Logradouro` INT NULL,
-  `CEP` INT NULL,
-  `Email` VARCHAR(150) NULL,
-  `Telefone` INT NULL
+  `RazaoSocial` VARCHAR(120) NOT NULL,
+  `CNPJ` CHAR(14)  NOT NULL,
+  `Logradouro` VARCHAR(12) NOT NULL,
+  `Numero` INT  NOT NULL,
+  `CEP` CHAR(8)  NOT NULL,
+  `Email` VARCHAR(150) NOT  NULL,
+  `Telefone` CHAR(11)  NOT NULL
 );
 
 DROP TABLE IF EXISTS `ScriptGCT`.`Funcionario` ;
@@ -22,9 +23,9 @@ CREATE TABLE IF NOT EXISTS `ScriptGCT`.`Funcionario` (
   `Email` VARCHAR(150) NULL,
   `Senha` VARCHAR(150) NULL,
   `Cargo` VARCHAR(90) NULL,
-  `CPF` INT NULL,
+  `CPF` CHAR(11) NULL,
   `Permissao` INT NOT NULL,
-  `fkGerente` INT NOT NULL,
+  `fkGerente` INT,
   `fkEmpresa` INT NOT NULL,
     FOREIGN KEY (`fkGerente`) REFERENCES `ScriptGCT`.`Funcionario` (`idFuncionario`),
     FOREIGN KEY (`fkEmpresa`) REFERENCES `ScriptGCT`.`Empresa` (`idEmpresa`)
@@ -98,3 +99,5 @@ CREATE TABLE IF NOT EXISTS `ScriptGCT`.`ModeloComponente` (
     FOREIGN KEY (`fkComponente`) REFERENCES `ScriptGCT`.`Componente` (`idComponente`)
 );
 
+select * from Empresa;
+select * from Funcionario;

@@ -126,7 +126,6 @@ function cadastrarNovoFuncionario(req, res) {
                 res.status(500).json(erro.sqlMessage);
             }
         );
-
 }
 
 function pegarIdEmpresa(req, res) {

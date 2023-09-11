@@ -12,23 +12,25 @@ function irParaProximaEtapa() {
 }
 
 function validar() {
-    const razaoSocial = iptRazaoSocial.value;
-    const cnpj = Number(iptCnpj.value);
-    const cep = Number(iptCep.value);
-    const logradouro = iptLogradouro.value;
-    const numero = Number(iptNumero.value);
-    const telefone = Number(iptTelefone.value);
-    const email = iptEmail.value;
+    var razaoSocial = iptRazaoSocial.value;
+    var cnpj = Number(iptCnpj.value);
+    var cep = Number(iptCep.value);
+    var logradouro = iptLogradouro.value;
+    var numero = Number(iptNumero.value);
+    var telefone = Number(iptTelefone.value);
+    var email = iptEmail.value;
     // dados funcionario
-    const nomeFuncionario = iptNomeFuncionario.value;
-    const cpfFuncionario = iptCpfFuncionario.value;
-    const cargoFuncionario = iptCargoFuncionario.value;
-    const emailFuncionario = iptEmailFuncionario.value;
-    const senhaFuncionario = iptSenhaFuncionario.value;
-    const confirmarSenha = iptConfirmarSenhaFuncionario.value;
+    var nomeFuncionario = iptNomeFuncionario.value;
+    var cpfFuncionario = iptCpfFuncionario.value;
+    var cargoFuncionario = iptCargoFuncionario.value;
+    var emailFuncionario = iptEmailFuncionario.value;
+    var senhaFuncionario = iptSenhaFuncionario.value;
+    var confirmarSenha = iptConfirmarSenhaFuncionario.value;
 
     var correcaoRazaoSocial = razaoSocial.length >= 45;
     var correcaoCnpj = cnpj.length != 14;
+    console.log(cnpj)
+    console.log(correcaoCnpj);
     var correcaoCep = cep.length != 8;
     var correcaoLogradouro = logradouro.length >= 120;
     var correcaoEmail = email.indexOf("@") <= -1 || email.length > 45;
@@ -72,7 +74,7 @@ function validar() {
         }
     }
 
-    if (correcaoCnpj) {
+    if (cnpj.toString().length != 14) {
         textoAlerta += "Favor inserir um CNPJ válido, sem pontuações.\n";
     }
     if (correcaoEmail) {
