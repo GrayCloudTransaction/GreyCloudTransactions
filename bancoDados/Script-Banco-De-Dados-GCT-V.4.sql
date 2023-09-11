@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS `ScriptGCT`.`Empresa` ;
 CREATE TABLE IF NOT EXISTS `ScriptGCT`.`Empresa` (
   `idEmpresa` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `RazaoSocial` VARCHAR(120) NULL,
-  `CNPJ` INT NULL,
+  `CNPJ` CHAR(14) NULL,
   `Logradouro` INT NULL,
   `CEP` INT NULL,
   `Email` VARCHAR(150) NULL,
