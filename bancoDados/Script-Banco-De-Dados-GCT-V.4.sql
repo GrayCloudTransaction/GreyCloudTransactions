@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS `ScriptGCT`.`Empresa` (
   `CNPJ` CHAR(14)  NOT NULL,
   `Logradouro` VARCHAR(12) NOT NULL,
   `Numero` INT  NOT NULL,
-  `CEP` INT  NOT NULL,
+  `CEP` CHAR(8)  NOT NULL,
   `Email` VARCHAR(150) NOT  NULL,
   `Telefone` CHAR(11)  NOT NULL
 );
