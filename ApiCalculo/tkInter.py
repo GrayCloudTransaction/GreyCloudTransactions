@@ -17,6 +17,7 @@ class Teste:
         porcentagemUtilizacaoThread = psutil.cpu_percent(percpu=True)
         porcentagemUtilizacaoCPU = psutil.cpu_percent()
         frequenciaCpu = psutil.cpu_freq() 
+        
 
         return [porcentagemUtilizacaoCPU,porcentagemUtilizacaoThread, qtdCores, 
                 qtdThreads, temposCpu, frequenciaCpu]
@@ -47,6 +48,8 @@ class Teste:
         byteToGigabyteLivre = (float(espacoLivre) * (1 * pow(10,-9)))
 
         return [porcentagemEmUso, byteToGigabyteTotal, byteToGigabyteUsando, byteToGigabyteLivre]
+
+        
 
 
     def __init__(self,master=None):
@@ -84,6 +87,8 @@ class Teste:
 
         self.labelPercentUtilizacaoThread = Label(self.widget1, highlightbackground="black", highlightcolor="black", highlightthickness=1, width=49, font=(12))
         self.labelPercentUtilizacaoThread.grid(row=7, column=0)
+
+        
 
         self.labelTituloFrenquenciaCpu = Label(self.widget1, text='FREQUENCIA DA CPU', highlightbackground="black", highlightthickness=1, width=49, font=(14), height=2, bg="gray", foreground="white")
         self.labelTituloFrenquenciaCpu.grid(row=8, column=0)
@@ -124,14 +129,13 @@ class Teste:
             Processos do Sistema (system): {"{:.2f}".format(Teste.getDadosCPU()[4].system)} s
             Tempo Ocioso (idle): {"{:.2f}".format(Teste.getDadosCPU()[4].idle)} s  
             """
-        
-            # self.labelPercentUtilizacaoCpu["text"] =f"""
-            #     Utilização Total da CPU: {Teste.getDadosCPU()[0]}
-            #     """
 
-            # for i in range(len(Teste.getDadosCPU()[1])):
-            #     text = self.labelPercentUtilizacaoThread.cget("text") + f"\n Thread {i + 1}: {Teste.getDadosCPU([1][i])} %"
-            #     self.labelPercentUtilizacaoThread.configure(text=text)
+            self.labelPercentUtilizacaoThread['text'] = ''
+            for i in range(len(Teste.getDadosCPU()[1])):
+                  text = self.labelPercentUtilizacaoThread.cget("text") + f"\n Thread {i + 1}: {Teste.getDadosCPU()[1][i]} %"
+                  self.labelPercentUtilizacaoThread.configure(text=text)
+
+            
 
             self.labelFrequenciaCpu["text"] = f"""
                 Frequência Atual: {Teste.getDadosCPU()[5].current} MHz
