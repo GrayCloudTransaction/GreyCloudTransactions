@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `ScriptGCT`.`Funcionario` (
   `Cargo` VARCHAR(90) NULL,
   `CPF` CHAR(11) NULL,
   `Permissao` INT NOT NULL,
-  `fkGerente` INT NOT NULL,
+  `fkGerente` INT,
   `fkEmpresa` INT NOT NULL,
     FOREIGN KEY (`fkGerente`) REFERENCES `ScriptGCT`.`Funcionario` (`idFuncionario`),
     FOREIGN KEY (`fkEmpresa`) REFERENCES `ScriptGCT`.`Empresa` (`idEmpresa`)
