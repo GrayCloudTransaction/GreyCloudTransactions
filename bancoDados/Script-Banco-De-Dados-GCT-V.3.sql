@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `Empresa` (
   `RazaoSocial` VARCHAR(45),
   `CNPJ` INT,
   `Logradouro` VARCHAR(120),
-  `Número` INT,
+  `Número` CHAR(14),
   `CEP` INT,
   `Email` VARCHAR(45),
   `Telefone` INT,
