@@ -26,37 +26,37 @@
         </nav>
     </header>
 
-    <!-- Cadastro Funcionário -->
-    <div class="container mt-4" id="segundaParte">
+    <!-- Cadastro Maquina -->
+    <div class="container mt-4">
         <div class="row d-flex justify-content-center">
-            <h2>CADASTRO FUNCIONARIO</h2>
+            <h2 style="color: white;" id="titulo">CADASTRO SERVIDOR</h2>
         </div>
 
         <div class="d-flex justify-content-center mt-5">
-            <div style="background-color: #2aacdf; width: 60%; border-radius: 20px;" class="cardCadastro px-5 py-5">
-                <div class="form-group">
+            <div id="parteUm" style="background-color: #2aacdf; width: 60%; border-radius: 20px;" class="cardCadastro px-5 py-5">
+                <div class="form-group" >
                     <div>
 
                         <div class="col-xl-12">
-                            <label for="nomeFuncionario">NOME</label>
-                            <input type="text" class="form-control" id="iptNomeFuncionario">
+                            <label for="nomeMaquina">Identificação por nome:</label>
+                            <input type="text" class="form-control" id="iptNomeServidor">
                         </div>
                     </div>
 
-                    <div class="d-flex justify-content-between mt-2">
-                        <div class="col-xl-6">
-                            <label for="cpf">CPF</label>
-                            <input type="number" min="0" class="form-control" id="iptCpfFuncionario">
+                    <div class="d-flex justify-content-between mt-3">
+                        <div class="col-xl-12">
+                            <label for="Codigo">Codigo do servidor</label>
+                            <input type="text"" class="form-control" id="iptCodigoServidor">
                         </div>
-                        <div class="col-xl-6">
-                            <label for="cargoFuncionario">CARGO</label>
+                        <!-- <div class="col-xl-6">
+                            <label for="cargoFuncionario"></label>
                             <input type="text" min="0" class="form-control" id="iptCargoFuncionario">
-                        </div>
+                        </div> -->
                     </div>
 
                 </div>
 
-                <div class="d-flex justify-content-between mt-2">
+                <!-- <div class="d-flex justify-content-between mt-2">
                     <div class="col-xl-7">
                         <label for="email">EMAIL</label>
                         <input type="email" min="0" class="form-control" id="iptEmailFuncionario">
@@ -81,12 +81,78 @@
                         <label for="confirmarSenha">CONFIRMAR SENHA</label>
                         <input type="password" min="0" class="form-control" id="iptConfirmarSenhaFuncionario">
                     </div>
-                </div>
+                </div> -->
 
                 <div class="divBtn pt-3">
                     <div class="d-flex justify-content-end">
-                        <button onclick="cadastrarNovoFuncionario()"
-                            class="btn btn-lg button px-3 py-2">Cadastrar</button>
+                        <button onclick="continuar()"
+                            class="btn btn-lg button px-3 py-2">Continuar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="parteDois" style="background-color: #2aacdf; width: 60%; border-radius: 20px; display: none;" class="cardCadastro px-5 py-5">
+                <div class="form-group" >
+                    <div>
+                        <div class="col-xl-12 mb-4">
+                            <label for="Modelo">Modelo:</label>
+                            <input type="text" class="form-control" id="iptModeloComponente">
+                        </div>
+                    </div>
+
+                        <div class="col-xl-12 mb-4" >
+                            <label for="Fabricante">Fabricante:</label>
+                            <input type="text"" class="form-control" id="iptFabricanteComponente">
+                        </div>
+                        <div class="col-xl-6">
+                            <label for="iptTipoComponente">Tipo do componente</label>
+                            <select type="number" min="0" class="form-control" id="iptTipoComponente">
+                                <option value="1">Selecionar</option>
+                                <option value="2">Processador</option>
+                                <option value="3">Memória RAM</option>
+                                <option value="4">Disco Rígido | HD / SSD</option>
+                            </select>
+                        </div>
+
+                </div>
+
+                <!-- <div class="d-flex justify-content-between mt-2">
+                    <div class="col-xl-7">
+                        <label for="email">EMAIL</label>
+                        <input type="email" min="0" class="form-control" id="iptEmailFuncionario">
+                    </div>
+                    <div class="col-xl-5">
+                        <label for="iptPermissao">PERMISSÃO</label>
+                        <select type="number" min="0" class="form-control" id="iptPermissao">
+                            <option value="1">1-Geral</option>
+                            <option value="2">2-Cadastrar/Editar/Remover componentes</option>
+                            <option value="3">3-Editar componentes</option>
+                            <option value="4">4-Visualização</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between mt-2">
+                    <div class="col-xl-6">
+                        <label for="senha">SENHA</label>
+                        <input type="password" min="0" class="form-control" id="iptSenhaFuncionario">
+                    </div>
+                    <div class="col-xl-6">
+                        <label for="confirmarSenha">CONFIRMAR SENHA</label>
+                        <input type="password" min="0" class="form-control" id="iptConfirmarSenhaFuncionario">
+                    </div>
+                </div> -->
+
+                <div class="divBtn pt-3">
+                    <div class="d-flex justify-content-end">
+                        <button onclick="continuar()"
+                            class="btn btn-lg button px-3 py-2">Continuar</button>
+                    </div>
+                </div>
+                <div class="divBtn pt-3" style="transform: translateX(-15%);">
+                    <div class="d-flex justify-content-start">
+                        <button onclick="maisComponentes()"
+                            class="btn btn-lg button px-3 py-2">Mais Componentes</button>
                     </div>
                 </div>
             </div>
@@ -110,5 +176,20 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
+
+    <script>
+        var clicks = 1;
+        function continuar(){
+            if (clicks == 1){
+            parteUm.style.display = "none";
+            parteDois.style.display = "block";
+            titulo.innerHTML = "CADASTRO DOS COMPONENTES DO SERVIDOR"
+            clicks++
+        } else if(clicks == 2){
+            ParteDois.style.display = "none"
+            clicks++
+        }
+        }
+    </script>
 
 </html>
