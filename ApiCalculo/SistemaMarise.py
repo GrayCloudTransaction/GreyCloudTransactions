@@ -283,19 +283,12 @@ def MostrarValoresRAM():
 
     dataHoraNow = datetime.now()
 
-    comando.execute("INSERT INTO Registro(ValorRegistro, dataRegistro) VALUES" 
-                        f"('{ramByteToGigabyteTotal}', '{dataHoraNow}')," +
-                        f"('{ramByteToGigabyteDisponivel}', '{dataHoraNow}')," +
-                        f"('{ramByteToGigabyteUsando}', '{dataHoraNow}')," +
-                        f"('{ramByteToGigabyteLivre}', '{dataHoraNow}')," +
-                        f"('{ramPercentualUtilizado}', '{dataHoraNow}')");
-    
-    comando.execute("INSERT INTO UnidadeMedida(UnidadeDeMedida, TipoMedida) VALUES" 
-                        f"('Gigabytes', Memória RAM total')" +
-                        f"('Gigabytes', 'Memória RAM disponível')," +
-                        f"('Gigabytes', 'Memória RAM usado')," +
-                        f"('Gigabytes', 'Memória RAM livre')," +
-                        f"('%', 'Memória RAM em uso')");
+    comando.execute("INSERT INTO Registro(tipoRegistro, valorRegistro, unidadeRegistro, dataHora) VALUES" 
+                        f"('Memória RAM total', '{ramByteToGigabyteTotal}', 'Gigabytes', '{dataHoraNow}')," +
+                        f"('Memória RAM disponível', '{ramByteToGigabyteDisponivel}', 'Gigabytes', '{dataHoraNow}')," +
+                        f"('Memória RAM usado','{ramByteToGigabyteUsando}','Gigabytes', '{dataHoraNow}')," +
+                        f"('Memória RAM livre','{ramByteToGigabyteLivre}','Gigabytes', '{dataHoraNow}')," +
+                        f"('Memória RAM em uso','{ramPercentualUtilizado}','%', '{dataHoraNow}')");
 
     conexao.commit();
 
