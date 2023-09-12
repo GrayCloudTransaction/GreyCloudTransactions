@@ -127,7 +127,11 @@ function validar() {
   if (textoAlerta == "") {
     return true;
   } else {
-    alert(textoAlerta);
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: `${textoAlerta}`
+    })
     return false;
   }
 }
@@ -208,12 +212,20 @@ function cadastrarEmpresaEFuncionario() {
                         console.log("resposta: ", resposta);
 
                         if (resposta.ok) {
-                          cardErro.style.display = "block";
-
-                          mensagem_erro.innerHTML =
-                            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+                          Swal.fire(
+                            "Sucesso!",
+                            "Cadastro Realizado!",
+                            "success"
+                          );
+                          setTimeout(() => {
+                            window.location = "login.html";
+                          }, 2000);
                         } else {
-                          throw "Houve um erro ao tentar realizar o cadastro!";
+                          Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Houve um erro ao tentar realizar o cadastro!'
+                          })
                         }
                       })
                       .catch(function (resposta) {
@@ -228,9 +240,7 @@ function cadastrarEmpresaEFuncionario() {
                 console.log(`#ERRO: ${resposta}`);
               });
           });
-          setTimeout(() => {
-            window.location = "login.html";
-          }, 2000);
+          
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
