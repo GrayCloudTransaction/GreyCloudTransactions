@@ -151,17 +151,17 @@ def MostrarValoresCPU():
     dataHoraNow = datetime.now()
 
 
-    comando.execute("INSERT INTO Registro(tipoRegistro, valorRegistro, unidadeRegistro, dataHora) VALUES" 
-                    f"('Quantidade de Cores', '{qtdCores}', 'null', '{dataHoraNow}')," +
-                    f"('Quantidade de Threads', '{qtdThreads}', 'null','{dataHoraNow}')," +
-                    f"('Tempo CPU User','{temposCpu.user}','segundos','{dataHoraNow}')," +
-                    f"('Tempo CPU System','{temposCpu.system}','segundos','{dataHoraNow}')," +
-                    f"('Tempo CPU Idle','{temposCpu.idle}','segundos','{dataHoraNow}')," +
-                    f"('Porcentagem Utilizada Core', '{UtilizacaoCore}', '%','{dataHoraNow}')," + 
-                    f"('Porcentagem Utilizada CPU', '{porcentagemUtilizacaoCPU}', '%','{dataHoraNow}')," + 
-                    f"('Frequência CPU', '{frequenciaCpu.current}', 'MHz','{dataHoraNow}')," +
-                    f"('Freq. CPU Min.','{frequenciaCpu.min}', 'MHz','{dataHoraNow}')," +
-                    f"('Freq. CPU Max.','{frequenciaCpu.max}', 'MHz','{dataHoraNow}')");
+    comando.execute("INSERT INTO Registro(idServidor, tipoRegistro, valorRegistro, unidadeRegistro, dateNow) VALUES" 
+                    f"(1,'Quantidade de Cores', '{qtdCores}', 'null', '{dataHoraNow}')," +
+                    f"(1,'Quantidade de Threads', '{qtdThreads}', 'null','{dataHoraNow}')," +
+                    f"(1,'Tempo CPU User','{temposCpu.user}','segundos','{dataHoraNow}')," +
+                    f"(1,'Tempo CPU System','{temposCpu.system}','segundos','{dataHoraNow}')," +
+                    f"(1,'Tempo CPU Idle','{temposCpu.idle}','segundos','{dataHoraNow}')," +
+                    f"(1,'Porcentagem Utilizada Core', '{UtilizacaoCore}', '%','{dataHoraNow}')," + 
+                    f"(1,'Porcentagem Utilizada CPU', '{porcentagemUtilizacaoCPU}', '%','{dataHoraNow}')," + 
+                    f"(1,'Frequência CPU', '{frequenciaCpu.current}', 'MHz','{dataHoraNow}')," +
+                    f"(1,'Freq. CPU Min.','{frequenciaCpu.min}', 'MHz','{dataHoraNow}')," +
+                    f"(1,'Freq. CPU Max.','{frequenciaCpu.max}', 'MHz','{dataHoraNow}')");
     
     # print("No of Record Inserted :", comando.rowcount) 
     #print("Inserted Id :", comando.lastrowid) 
@@ -229,11 +229,11 @@ def MostrarValoresDiscoLocal():
 
     dataHoraNow = datetime.now()
 
-    comando.execute("INSERT INTO Registro(tipoRegistro, valorRegistro, unidadeRegistro, dataHora) VALUES" 
-                    f"('Quantidade total de memória de massa', '{formatted_total1}', 'Gigabytes', '{dataHoraNow}')," +
-                    f"('Quantidade livre de memória de massa', '{formatted_total3}', 'Gigabytes', '{dataHoraNow}')," +
-                    f"('Quantidade de memória de massa em uso','{formatted_total2}','Gigabytes', '{dataHoraNow}')," +
-                    f"('Memória de massa em uso','{porcentagemEmUso}','%', '{dataHoraNow}')");
+    comando.execute("INSERT INTO Registro(idServidor, tipoRegistro, valorRegistro, unidadeRegistro, dateNow) VALUES" 
+                    f"(1,'Quantidade total de memória de massa', '{formatted_total1}', 'Gigabytes', '{dataHoraNow}')," +
+                    f"(1,'Quantidade livre de memória de massa', '{formatted_total3}', 'Gigabytes', '{dataHoraNow}')," +
+                    f"(1,'Quantidade de memória de massa em uso','{formatted_total2}','Gigabytes', '{dataHoraNow}')," +
+                    f"(1,'Memória de massa em uso','{porcentagemEmUso}','%', '{dataHoraNow}')");
 
     conexao.commit();
     
@@ -283,12 +283,12 @@ def MostrarValoresRAM():
 
     dataHoraNow = datetime.now()
 
-    comando.execute("INSERT INTO Registro(tipoRegistro, valorRegistro, unidadeRegistro, dataHora) VALUES" 
-                        f"('Memória RAM total', '{ramByteToGigabyteTotal}', 'Gigabytes', '{dataHoraNow}')," +
-                        f"('Memória RAM disponível', '{ramByteToGigabyteDisponivel}', 'Gigabytes', '{dataHoraNow}')," +
-                        f"('Memória RAM usado','{ramByteToGigabyteUsando}','Gigabytes', '{dataHoraNow}')," +
-                        f"('Memória RAM livre','{ramByteToGigabyteLivre}','Gigabytes', '{dataHoraNow}')," +
-                        f"('Memória RAM em uso','{ramPercentualUtilizado}','%', '{dataHoraNow}')");
+    comando.execute("INSERT INTO Registro(idServidor, tipoRegistro, valorRegistro, unidadeRegistro, dateNow) VALUES" 
+                        f"(1,'Memória RAM total', '{ramByteToGigabyteTotal}', 'Gigabytes', '{dataHoraNow}')," +
+                        f"(1,'Memória RAM disponível', '{ramByteToGigabyteDisponivel}', 'Gigabytes', '{dataHoraNow}')," +
+                        f"(1,'Memória RAM usado','{ramByteToGigabyteUsando}','Gigabytes', '{dataHoraNow}')," +
+                        f"(1,'Memória RAM livre','{ramByteToGigabyteLivre}','Gigabytes', '{dataHoraNow}')," +
+                        f"(1,'Memória RAM em uso','{ramPercentualUtilizado}','%', '{dataHoraNow}')");
 
     conexao.commit();
 
@@ -299,25 +299,25 @@ def MostrarValoresRAM():
 def MostrarValores(visuDesejada):
     visualizacaoDesejada = visuDesejada
     if visualizacaoDesejada == 1:
-        for i in range(0, 2):
+        for i in range(0, 10):
             clearConsole()
             MostrarValoresCPU()
             sleep(2)
             clearConsole()
     elif visualizacaoDesejada == 2:
-        for i in range(0, 2):
+        for i in range(0, 10):
             clearConsole()
             MostrarValoresDiscoLocal()
             sleep(2)
             clearConsole()
     elif visualizacaoDesejada == 3:
-        for i in range(0, 2):
+        for i in range(0, 10):
             clearConsole()
             MostrarValoresRAM()
             sleep(2)
             clearConsole()
     elif (visualizacaoDesejada == 4):
-        for i in range(0, 2):
+        for i in range(0, 10):
             clearConsole()
             MostrarValoresCPU()
             MostrarValoresDiscoLocal()
