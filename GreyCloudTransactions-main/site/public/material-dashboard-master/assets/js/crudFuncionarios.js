@@ -42,7 +42,7 @@ function sair(){
 
   function receberFuncLogado() {
     // funcionarioLogado
-    idNomeUsuario.innerHTML = sessionStorage.NOME_USUARIO;
+    // idNomeUsuario.innerHTML = sessionStorage.NOME_USUARIO;
     // idNomeUsuario.innerHTML = `
     //         ${funcionarioLogado[0].nome}
     //     `;

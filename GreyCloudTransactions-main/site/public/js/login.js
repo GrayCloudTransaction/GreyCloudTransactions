@@ -44,15 +44,15 @@ function entrar() {
           // if(sessionStorage.PERMISSAO == 1){
           setTimeout((x) => {
             window.location =
-              "material-dashboard-master/pages/dashboardCliente.html";
+              "material-dashboard-master/pages/dashboardGerente.html";
           }, 2000);
           // } else{
           // }
 
-          setTimeout((y) => {
-            window.location =
-              "material-dashboard-master/pages/dashboardAnalista.html";
-          }, 2000);
+          // setTimeout((y) => {
+          //   window.location =
+          //     "material-dashboard-master/pages/dashboardAnalista.html";
+          // }, 2000);
         } else {
           Swal.fire({
             icon: "error",

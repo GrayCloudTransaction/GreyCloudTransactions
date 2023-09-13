@@ -6,6 +6,10 @@ import psutil
 from colorama import Fore, Back, Style
 import mysql.connector
 import mysql.connector.errorcode
+import json
+import requests
+
+
 
 visualizacaoDesejada = 0
 
@@ -123,7 +127,7 @@ def MostrarValoresCPU():
     print((" " * 35) + "Porcentagem de Utilização da CPU: \n")
     if(porcentagemUtilizacaoCPU > 70):
         print("\n" + "Utilização da Total da CPU:" + Fore.RED+str(porcentagemUtilizacaoCPU) + "%" + Style.RESET_ALL + "\n")
-    elif porcentagemUtilizacaoCPU > 50 :
+    elif porcentagemUtilizacaoCPU > 20 :
         print("\n" + "Utilização da Total da CPU:" + Fore.YELLOW+str(porcentagemUtilizacaoCPU) + "%" + Style.RESET_ALL + "\n")
     else :
         print("\n" + "Utilização da Total da CPU:" + Fore.GREEN+str(porcentagemUtilizacaoCPU) + "%" + Style.RESET_ALL + "\n")
@@ -274,6 +278,12 @@ def MostrarValoresRAM():
             print("\n" + "Em uso: " + Fore.RED + str(ramPercentualUtilizado) + "%" + Style.RESET_ALL + "\n")
     elif ramPercentualUtilizado > 50 :
             print("\n" + "Em uso: " + Fore.YELLOW + str(ramPercentualUtilizado) + "%" + Style.RESET_ALL + "\n")
+            mensagem = {"text": f"""
+                ⚙️ === ALERTA❗️
+                Descrição => Sua Memória RAM está sobrecarregando!
+                """}
+            chatMonitoramento = "https://hooks.slack.com/services/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"
+            postMsg = requests.post(chatMonitoramento, data=json.dumps(mensagem))
     else :
             print("\n" + "Em uso: " + Fore.GREEN + str(ramPercentualUtilizado) + "%" + Style.RESET_ALL + "\n")
         
