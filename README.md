@@ -1,7 +1,29 @@
 # Grey Cloud Transactions ☁️🌐
 Nós somos uma startup de tecnologia, fictícia, fundada em 2023, com o propósito de garantir a continuidade dos serviços de transações comerciais realizadas por meio de TEF (Transferências  Eletrônicas de Fundo), através do monitoramento do desempenho dos servidores referentes a essa área.
 
+## Equipe
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/eduardoseba05"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/125585882?v=4" width="100px;" alt=""/><br /><sub><b>Eduardo Camargo</b></sub></a><br /><a href="#" >:smile:</a></td>
+    <td align="center"><a href="https://github.com/FelipeSantos-cco"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/125617308?v=4" width="100px;" alt=""/><br /><sub><b>Felipe Santos </b></sub></a><br /><a href="#" >☕</a></td>
+    <td align="center"><a href="https://github.com/GabrielBifon05"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/125585322?v=4" width="100px;" alt=""/><br /><sub><b>Gabriel Bifon</b></sub></a><br /><a href="#">:smile:</a></td>
+    <td align="center"><a href="https://github.com/giomenezes"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/125585787?v=4" width="100px;" alt=""/><br /><sub><b>Giovanna Vilas Boas</b></sub></a><br /><a href="https://rocketseat.com.br/" title="Rocketseat">:smile:</a></td>
+    <td align="center"><a href="https://github.com/rafaelScheneider"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/125584950?v=4" width="100px;" alt=""/><br /><sub><b>Rafael Scheneider</b></sub></a><br /><a href="#">:smile:</a></td>
+    <td align="center"><a href="https://github.com/Hideki19"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/125586686?v=4" width="100px;" alt=""/><br /><sub><b>Vitor Hideki</b></sub></a><br /><a href="#">:smile:</a></td>
+  </tr>
+</table>
+
+
+
 ## Documentação do projeto
+
+* [Contexto](#contexto)
+* [Objetivo](#objetivo)
+* [Justificativa](#justificativa)
+* [Escopo](#escopo)
+* [Diagramas](#diagramas)
+* [Bibliografia](#bibliografia)
+  
 
 ### Contexto
 Transações financeiras são procedimentos em que há a troca de recursos entre pessoas, sejam elas físicas ou jurídicas. Ao longo de um mês, uma empresa realiza centenas, se não milhares de operações desse tipo, obviamente, dependendo do seu tamanho e do fluxo de movimentações. 
@@ -106,7 +128,3 @@ Solução (arquitetura técnica do projeto):
 - https://informatavel.wordpress.com/category/tef/
 - https://www.itau.com.br/atendimento-itau/para-voce/conta-corrente/como-funcionam-as-transferencias-entre-contas-itau-tef-doc-e-ted
 - https://site.getnet.com.br/ofertas-tef-getnet/#:~:text=Pe%C3%A7a%20por%20apenas%20R%2435%2C00%2Fm%C3%AAs%20cada%20equipamento
-
- 
-
-
