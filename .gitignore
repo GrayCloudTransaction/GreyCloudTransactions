@@ -1,1 +1,3 @@
 GreyCloudTransactions-main/site/src/database/config.js
+web/site/node_modules
+web/site/package-lock.json
