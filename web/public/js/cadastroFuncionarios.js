@@ -10,7 +10,7 @@ function cadastrarNovoFuncionario() {
     var idEmpresa = sessionStorage.ID_EMPRESA;
 
 
-    fetch("/usuarios/cadastrarNovoFuncionario", {
+    fetch("/funcionario/cadastrarNovo", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

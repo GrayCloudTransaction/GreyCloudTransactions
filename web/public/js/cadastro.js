@@ -155,7 +155,7 @@ function cadastrarEmpresaEFuncionario() {
   var idEmpresa = 0;
 
   if (validar()) {
-    fetch("/usuarios/cadastrarEmpresa", {
+    fetch("/empresa/cadastrarEmpresa", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -177,7 +177,7 @@ function cadastrarEmpresaEFuncionario() {
 
         if (resposta.ok) {
           resposta.json().then(function (resposta) {
-            fetch(`/usuarios/pegarIdEmpresa/${cnpj}`, {
+            fetch(`/empresa/pegarId/${cnpj}`, {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
@@ -192,7 +192,7 @@ function cadastrarEmpresaEFuncionario() {
                     idEmpresa = resposta.idEmpresa;
                     console.log(idEmpresa);
 
-                    fetch("/usuarios/cadastrarFuncionario", {
+                    fetch("/funcionario/cadastrarFuncionario", {
                       method: "POST",
                       headers: {
                         "Content-Type": "application/json",
