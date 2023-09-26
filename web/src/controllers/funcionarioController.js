@@ -1,13 +1,8 @@
 var funcionarioModel = require("../models/funcionarioModel");
 
 // Funções locais -- Usado somene por esse arquivo;
-function info(func, resp=null){
-    if(resultado == null){
-        console.log(`[Funcionário Controller] Função: ${func};`)
-    }
-    else{
-        console.log(`[Funcionário Controller] Função: ${func};\nResultado: ${resp}`)
-    }
+function info(func){
+    console.log(`[Funcionário Controller] Função: ${func};`)
 }
 
 

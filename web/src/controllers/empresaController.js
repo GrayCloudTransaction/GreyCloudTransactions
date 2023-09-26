@@ -1,13 +1,8 @@
 var empresaModel = require("../models/empresaModel");
 
 // Funções locais -- Usado somene por esse arquivo;
-function info(func, resp=null){
-    if(resultado == null){
-        console.log(`[Empresa Controller] Função: ${func};`)
-    }
-    else{
-        console.log(`[Empresa Controller] Função: ${func};\nResultado: ${resp}`)
-    }
+function info(func){
+    console.log(`[Empresa Controller] Função: ${func};`)
 }
 
 
@@ -51,7 +46,6 @@ function pegarId(req, res) {
     empresaModel.pegarId(cnpj).then(function (resultado) {
             
             if (resultado.length == 1) {
-                info("Pegar Id", resultado)
                 res.json(resultado[0]);
             } 
             else if (resultado.length == 0) {

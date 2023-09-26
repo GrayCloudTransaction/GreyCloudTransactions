@@ -1,15 +1,9 @@
 var usuarioModel = require("../models/usuarioModel");
 
 // Funções locais -- Usado somene por esse arquivo;
-function info(func, resp=null){
-    if(resultado == null){
-        console.log(`[Usuário Controller] Função: ${func};`)
-    }
-    else{
-        console.log(`[Usuário Controller] Função: ${func};\nResultado: ${resp}`)
-    }
+function info(func){
+    console.log(`[Usuário Controller] Função: ${func};`)
 }
-
 
 // Funções para exportar -- Usada por outros arquivos
 
