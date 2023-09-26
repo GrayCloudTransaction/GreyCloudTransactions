@@ -23,7 +23,7 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/empresa", empresaRouter);
-app.use("/avisos", funcionarioRouter);
+app.use("/funcionario", funcionarioRouter);
 // app.use("/medidas", medidasRouter);
 
 app.listen(PORTA, function () {
