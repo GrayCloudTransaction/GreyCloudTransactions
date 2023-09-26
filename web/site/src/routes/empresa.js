@@ -1,14 +1,26 @@
 var express = require("express");
 var router = express.Router();
+var empresaController = require("../controllers/empresaController");
 
-var aquarioController = require("../controllers/empresaController");
 
-router.get("/:idUsuario", function (req, res) {
-  aquarioController.buscarAquariosPorUsuario(req, res);
-});
+// Funções locais -- Usado somene por esse arquivo;
+function info(rota){
+    console.log(`[Empresa Router] Rota: ${rota};`)
+}
 
-router.post("/cadastrar", function (req, res) {
-  aquarioController.cadastrar(req, res);
+
+// Funções para exportar -- Usada por outros arquivos
+
+router.get("/pegarId/:cnpjId", function (req, res) {
+    info("/pegarId/:cnpjId")
+
+    empresaController.pegarId(req,res);
+})
+
+router.post("/cadastrarEmpresa", function (req, res) {
+    info("/cadastrarEmpresa")
+
+    empresaController.cadastrar(req, res);
 })
 
 module.exports = router;

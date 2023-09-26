@@ -1,37 +1,40 @@
-var avisoModel = require("../models/funcionarioModel");
+var funcionarioModel = require("../models/funcionarioModel");
 
-function listar(req, res) {
-    avisoModel.listar().then(function (resultado) {
-        if (resultado.length > 0) {
-            res.status(200).json(resultado);
-        } else {
-            res.status(204).send("Nenhum resultado encontrado!")
-        }
-    }).catch(function (erro) {
-        console.log(erro);
-        console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
-    });
+// Funções locais -- Usado somene por esse arquivo;
+function info(func, resp=null){
+    if(resultado == null){
+        console.log(`[Funcionário Controller] Função: ${func};`)
+    }
+    else{
+        console.log(`[Funcionário Controller] Função: ${func};\nResultado: ${resp}`)
+    }
 }
 
-function listarPorUsuario(req, res) {
-    var idUsuario = req.params.idUsuario;
 
-    avisoModel.listarPorUsuario(idUsuario)
+// Funções para exportar -- Usada por outros arquivos
+
+function cadastrarFuncionario(req, res) {
+    
+    info("Cadastrar Funcionário")
+
+    var nomeFuncionario = req.body.nomeFuncionarioServer;
+    var cpfFuncionario = req.body.cpfFuncionarioServer;
+    var cargoFuncionario = req.body.cargoFuncionarioServer;
+    var emailFuncionario = req.body.emailFuncionarioServer;
+    var senhaFuncionario = req.body.senhaFuncionarioServer;
+    var fkEmpresa = req.body.fkEmpresaServer;
+
+
+    funcionarioModel.cadastrarFuncionario(nomeFuncionario, cpfFuncionario, cargoFuncionario, emailFuncionario, senhaFuncionario, fkEmpresa)
         .then(
             function (resultado) {
-                if (resultado.length > 0) {
-                    res.status(200).json(resultado);
-                } else {
-                    res.status(204).send("Nenhum resultado encontrado!");
-                }
+                res.json(resultado);
             }
-        )
-        .catch(
+        ).catch(
             function (erro) {
                 console.log(erro);
                 console.log(
-                    "Houve um erro ao buscar os avisos: ",
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
                     erro.sqlMessage
                 );
                 res.status(500).json(erro.sqlMessage);
@@ -39,98 +42,38 @@ function listarPorUsuario(req, res) {
         );
 }
 
-function pesquisarDescricao(req, res) {
-    var descricao = req.params.descricao;
+function cadastrarNovoFuncionario(req, res) {
+    
+    info("Cadastrar NOVO funcionário")
 
-    avisoModel.pesquisarDescricao(descricao)
+    var nomeFuncionario = req.body.nomeFuncionarioServer;
+    var emailFuncionario = req.body.emailFuncionarioServer;
+    var senhaFuncionario = req.body.senhaFuncionarioServer;
+    var cargoFuncionario = req.body.cargoFuncionarioServer;
+    var cpfFuncionario = req.body.cpfFuncionarioServer;
+    var permissaoFuncionario = req.body.permissaoFuncionarioServer;
+    var fkGerente = req.body.fkGerenteServer;
+    var fkEmpresa = req.body.fkEmpresaServer;
+
+    
+    usuarioModel.cadastrarNovoFuncionario(nomeFuncionario, emailFuncionario, senhaFuncionario, cargoFuncionario, cpfFuncionario, permissaoFuncionario, fkGerente, fkEmpresa)
         .then(
             function (resultado) {
-                if (resultado.length > 0) {
-                    res.status(200).json(resultado);
-                } else {
-                    res.status(204).send("Nenhum resultado encontrado!");
-                }
+                res.json(resultado);
             }
         ).catch(
             function (erro) {
                 console.log(erro);
-                console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
-}
-
-function publicar(req, res) {
-    var titulo = req.body.titulo;
-    var descricao = req.body.descricao;
-    var idUsuario = req.params.idUsuario;
-
-    if (titulo == undefined) {
-        res.status(400).send("O título está indefinido!");
-    } else if (descricao == undefined) {
-        res.status(400).send("A descrição está indefinido!");
-    } else if (idUsuario == undefined) {
-        res.status(403).send("O id do usuário está indefinido!");
-    } else {
-        avisoModel.publicar(titulo, descricao, idUsuario)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
-            )
-            .catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
-    }
-}
-
-function editar(req, res) {
-    var novaDescricao = req.body.descricao;
-    var idAviso = req.params.idAviso;
-
-    avisoModel.editar(novaDescricao, idAviso)
-        .then(
-            function (resultado) {
-                res.json(resultado);
-            }
-        )
-        .catch(
-            function (erro) {
-                console.log(erro);
-                console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
-
-}
-
-function deletar(req, res) {
-    var idAviso = req.params.idAviso;
-
-    avisoModel.deletar(idAviso)
-        .then(
-            function (resultado) {
-                res.json(resultado);
-            }
-        )
-        .catch(
-            function (erro) {
-                console.log(erro);
-                console.log("Houve um erro ao deletar o post: ", erro.sqlMessage);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
                 res.status(500).json(erro.sqlMessage);
             }
         );
 }
 
 module.exports = {
-    listar,
-    listarPorUsuario,
-    pesquisarDescricao,
-    publicar,
-    editar,
-    deletar
+    cadastrarFuncionario,
+    cadastrarNovoFuncionario
 }

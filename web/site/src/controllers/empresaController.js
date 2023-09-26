@@ -1,49 +1,76 @@
-var aquarioModel = require("../models/empresaModel");
+var empresaModel = require("../models/empresaModel");
 
-function buscarAquariosPorUsuario(req, res) {
-  var idUsuario = req.params.idUsuario;
-
-  aquarioModel.buscarAquariosPorUsuario(idUsuario).then((resultado) => {
-    if (resultado.length > 0) {
-      res.status(200).json(resultado);
-    } else {
-      res.status(204).json([]);
+// Funções locais -- Usado somene por esse arquivo;
+function info(func, resp=null){
+    if(resultado == null){
+        console.log(`[Empresa Controller] Função: ${func};`)
     }
-  }).catch(function (erro) {
-    console.log(erro);
-    console.log("Houve um erro ao buscar os aquarios: ", erro.sqlMessage);
-    res.status(500).json(erro.sqlMessage);
-  });
+    else{
+        console.log(`[Empresa Controller] Função: ${func};\nResultado: ${resp}`)
+    }
 }
 
 
+// Funções para exportar -- Usada por outros arquivos
+
 function cadastrar(req, res) {
-  var descricao = req.body.descricao;
-  var idUsuario = req.body.idUsuario;
 
-  if (descricao == undefined) {
-    res.status(400).send("descricao está undefined!");
-  } else if (idUsuario == undefined) {
-    res.status(400).send("idUsuario está undefined!");
-  } else {
+    info("Cadastrar")
 
+    var razaoSocial = req.body.razaoSocialServer;
+    var cnpj = req.body.cnpjServer;
+    var logradouro = req.body.logradouroServer;
+    var numero = req.body.numeroServer;
+    var cep = req.body.cepServer;
+    var email = req.body.emailServer;
+    var telefone = req.body.telefoneServer;
 
-    aquarioModel.cadastrar(descricao, idUsuario)
-      .then((resultado) => {
-        res.status(201).json(resultado);
-      }
-      ).catch((erro) => {
-        console.log(erro);
-        console.log(
-          "\nHouve um erro ao realizar o cadastro! Erro: ",
-          erro.sqlMessage
+    empresaModel.cadastrar(razaoSocial, cnpj, logradouro, numero, cep, telefone, email)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
         );
-        res.status(500).json(erro.sqlMessage);
-      });
-  }
+
+}
+
+function pegarId(req, res) {
+
+    info("Pegar Id")
+
+    var cnpj = req.params.cnpjId;
+    empresaModel.pegarId(cnpj).then(function (resultado) {
+            
+            if (resultado.length == 1) {
+                info("Pegar Id", resultado)
+                res.json(resultado[0]);
+            } 
+            else if (resultado.length == 0) {
+                res.status(403).send("CNPJ INVÁLIDO")
+            } 
+            else {
+                res.status(403).send("Mais de um CNPJ. Inválido")
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log(
+                "Houve um ERRO! :", erro.sqlMessage
+            );
+            res.status(500).json(erro.sqlMessage);
+        })
 }
 
 module.exports = {
-  buscarAquariosPorUsuario,
-  cadastrar
+    cadastrar,
+    pegarId
 }

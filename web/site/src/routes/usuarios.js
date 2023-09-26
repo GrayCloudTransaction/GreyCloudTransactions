@@ -1,24 +1,15 @@
 var express = require("express");
 var router = express.Router();
-
 var usuarioController = require("../controllers/usuarioController");
 
-//Recebendo os dados do html e direcionando para a função cadastrar de usuarioController.js
-router.get("/pegarIdEmpresa/:cnpjId", function (req, res) {
-    usuarioController.pegarIdEmpresa(req,res);
-})
 
-router.post("/cadastrarEmpresa", function (req, res) {
-    usuarioController.cadastrar(req, res);
-})
+// Funções locais -- Usado somene por esse arquivo;
+function info(rota){
+    console.log(`[Usuário Router] Rota: ${rota};`)
+}
 
-router.post("/cadastrarFuncionario", function (req, res) {
-    usuarioController.cadastrarFuncionario(req, res);
-})
 
-router.post("/cadastrarNovoFuncionario", function (req, res) {
-    usuarioController.cadastrarNovoFuncionario(req, res);
-})
+// Funções para exportar -- Usada por outros arquivos
 
 router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
