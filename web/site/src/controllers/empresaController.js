@@ -1,4 +1,4 @@
-var aquarioModel = require("../models/aquarioModel");
+var aquarioModel = require("../models/empresaModel");
 
 function buscarAquariosPorUsuario(req, res) {
   var idUsuario = req.params.idUsuario;

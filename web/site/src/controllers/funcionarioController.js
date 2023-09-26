@@ -1,4 +1,4 @@
-var avisoModel = require("../models/avisoModel");
+var avisoModel = require("../models/funcionarioModel");
 
 function listar(req, res) {
     avisoModel.listar().then(function (resultado) {
