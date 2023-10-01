@@ -7,9 +7,9 @@ function info(func, query){
 
 
 // Funções para exportar -- Usada por outros arquivos
-function cadastrar(razaoSocial, cnpj, logradouro, numero, cep, telefone, email) {
+function cadastrar(razaoSocial, cnpj, numero, cep, telefone, email) {
     var instrucao = `
-        INSERT INTO Empresa VALUES (NULL , '${razaoSocial}', '${cnpj}', '${logradouro}', ${numero}, '${cep}','${email}', '${telefone}');
+        INSERT INTO Empresa VALUES (NULL , '${razaoSocial}', '${cnpj}', ${numero}, '${cep}','${email}', '${telefone}');
     `;
 
     info("Cadastrar", instrucao)
@@ -19,7 +19,7 @@ function cadastrar(razaoSocial, cnpj, logradouro, numero, cep, telefone, email) 
 
 function pegarId(cnpj) {
     var instrucao = `
-    select idEmpresa from Empresa where cnpj = ${cnpj};
+    select id_empresa from Empresa where cnpj = '${cnpj}';
     `
 
     info("Pegar Id", instrucao)

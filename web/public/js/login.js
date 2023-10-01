@@ -29,11 +29,11 @@ function entrar() {
           resposta.json().then((json) => {
             console.log(json);
             console.log(JSON.stringify(json));
-            sessionStorage.ID_USUARIO = json.idFuncionario;
-            sessionStorage.EMAIL_USUARIO = json.Email;
-            sessionStorage.NOME_USUARIO = json.Nome;
-            sessionStorage.ID_EMPRESA = json.fkEmpresa;
-            sessionStorage.PERMISSAO = json.Permissao;
+            sessionStorage.ID_USUARIO = json.id_funcionario;
+            sessionStorage.EMAIL_USUARIO = json.email;
+            sessionStorage.NOME_USUARIO = json.nome;
+            sessionStorage.ID_EMPRESA = json.fk_empresa;
+            sessionStorage.PERMISSAO = json.permissao;
           });
           Swal.fire(
             "Sucesso!",

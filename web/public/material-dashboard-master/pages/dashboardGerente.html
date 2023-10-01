@@ -40,7 +40,7 @@
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
 </head>
 
-<body class="g-sidenav-show  bg-gray-200">
+<body class="g-sidenav-show  bg-gray-200" onload="validarSessao()">
   <!-- Menu lateral esquerdo-->
   <aside
     class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark"
@@ -142,8 +142,8 @@
     <div class="sidenav-footer position-absolute w-100 bottom-0 ">
       <div class="mx-3">
         <a class="btn btn-outline-primary mt-4 w-100"
-          href="index.html"
-          type="button">Deslogar</a>
+          href="../../index.html"
+          type="button" onclick="limparSessao()">Deslogar</a>
         <!-- <a class="btn bg-gradient-primary w-100" href="https://www.creative-tim.com/product/material-dashboard-pro?ref=sidebarfree" type="button">Upgrade to pro</a> -->
       </div>
     </div>
@@ -1266,6 +1266,31 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/material-dashboard.min.js?v=3.1.0"></script>
+
+  <script>
+    validarSessao()
+    // sessão
+    function validarSessao() {
+    var email = sessionStorage.EMAIL_USUARIO;
+    var nome = sessionStorage.NOME_USUARIO;
+
+    if (email == undefined && nome == undefined) {
+        // Swal.fire({
+        //     icon: 'error',
+        //     title: 'Oops...',
+        //     text: `Faça login para acessar essa área do site`
+        //   })
+        console.log("Faça login")
+        alert("Faça login")
+        window.location = "../../login.html";
+    } 
+  } 
+
+  function limparSessao() {
+    sessionStorage.clear();
+    //window.location = "../../index.html";
+  }
+  </script>
 </body>
 
 </html>

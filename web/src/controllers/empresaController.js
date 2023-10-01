@@ -14,13 +14,13 @@ function cadastrar(req, res) {
 
     var razaoSocial = req.body.razaoSocialServer;
     var cnpj = req.body.cnpjServer;
-    var logradouro = req.body.logradouroServer;
+    //var logradouro = req.body.logradouroServer;
     var numero = req.body.numeroServer;
     var cep = req.body.cepServer;
     var email = req.body.emailServer;
     var telefone = req.body.telefoneServer;
 
-    empresaModel.cadastrar(razaoSocial, cnpj, logradouro, numero, cep, telefone, email)
+    empresaModel.cadastrar(razaoSocial, cnpj, numero, cep, telefone, email)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -42,7 +42,7 @@ function pegarId(req, res) {
 
     info("Pegar Id")
 
-    var cnpj = req.params.cnpjId;
+    var cnpj = req.body.cnpjServer;
     empresaModel.pegarId(cnpj).then(function (resultado) {
             
             if (resultado.length == 1) {

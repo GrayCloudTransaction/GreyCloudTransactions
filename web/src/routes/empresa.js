@@ -11,8 +11,8 @@ function info(rota){
 
 // Funções para exportar -- Usada por outros arquivos
 
-router.get("/pegarId/:cnpjId", function (req, res) {
-    info("/pegarId/:cnpjId")
+router.post("/pegarId", function (req, res) {
+    info("/pegarId")
 
     empresaController.pegarId(req,res);
 })

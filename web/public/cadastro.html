@@ -38,37 +38,33 @@
                     <div>
                         <div class="col-xl-12 col-12">
                             <label for="razaoSocial">RAZÃO SOCIAL</label>
-                            <input type="text" class="form-control" id="iptRazaoSocial">
+                            <input type="text" class="form-control" id="iptRazaoSocial" maxlength="120">
                         </div>
                     </div>
                     <div class="d-flex justify-content-between mt-2">
                         <div class="col-xl-6 col-sm-6 col-6">
                             <label for="cnpj">CNPJ</label>
-                            <input type="number" min="0" class="form-control" id="iptCnpj">
+                            <input type="text" min="0" class="form-control" id="iptCnpj" maxlength="18" placeholder="XX.XXX.XXX/XXXX-XX" oninput="mascara(this, 'cnpj')">
                         </div>
-                        <div class="col-xl-6 col-sm-6 col-6">
-                            <label for="cep">CEP</label>
-                            <input type="number" min="0" class="form-control" id="iptCep">
+                        <div class="col-xl-6 col-6">
+                            <label for="telefone">TELEFONE</label>
+                            <input type="text" min="0" class="form-control" id="iptTelefone" maxlength="13" placeholder="(XX)XXXX-XXXX" oninput="mascara(this, 'tel')">
                         </div>
                     </div>
                     <div class="d-flex justify-content-between mt-2">
-                        <div class="col-xl-8 col-sm-6 col-6">
-                            <label for="logradouro">LOGRADOURO</label>
-                            <input type="text" min="0" class="form-control" id="iptLogradouro">
+                        <div class="col-xl-6 col-sm-6 col-6">
+                            <label for="cep">CEP</label>
+                            <input type="text" min="0" class="form-control" id="iptCep" maxlength="9" placeholder="XXXXX-XXX" oninput="mascara(this, 'cep')">
                         </div>
-                        <div class="col-xl-4 col-sm-6 col-6">
+                        <div class="col-xl-6 col-sm-6 col-6">
                             <label for="numero">NÚMERO</label>
                             <input type="number" min="0" class="form-control" id="iptNumero">
                         </div>
                     </div>
-                    <div class="d-flex justify-content-between mt-2">
-                        <div class="col-xl-4 col-6">
-                            <label for="telefone">TELEFONE</label>
-                            <input type="text" min="0" class="form-control" id="iptTelefone">
-                        </div>
-                        <div class="col-xl-8 col-6">
+                    <div style="margin-top: 8px">    
+                        <div class="col-xl-12 col-12">
                             <label for="email">EMAIL</label>
-                            <input type="email" min="0" class="form-control" id="iptEmail">
+                            <input type="email" min="0" class="form-control" id="iptEmail" maxlength="150">
                         </div>
                     </div>
                 </div>
@@ -96,38 +92,36 @@
 
                         <div class="col-xl-12 col-12">
                             <label for="nomeFuncionario">NOME</label>
-                            <input type="text" class="form-control" id="iptNomeFuncionario">
+                            <input type="text" class="form-control" id="iptNomeFuncionario" maxlength="120">
                         </div>
                     </div>
 
                     <div class="d-flex justify-content-between mt-2">
                         <div class="col-xl-6 col-6">
                             <label for="cpf">CPF</label>
-                            <input type="number" min="0" class="form-control" id="iptCpfFuncionario">
+                            <input type="text" min="0" class="form-control" id="iptCpfFuncionario" maxlength="14" placeholder="XXX.XXX.XXX-XX" oninput="mascara(this, 'cpf')">
                         </div>
                         <div class="col-xl-6 col-6">
                             <label for="cargoFuncionario">CARGO</label>
-                            <input type="text" min="0" class="form-control" id="iptCargoFuncionario">
+                            <input type="text" min="0" class="form-control" id="iptCargoFuncionario" maxlength="90">
                         </div>
                     </div>
 
                 </div>
 
-
                 <div class="col-xl-12 col-12">
                     <label for="email">EMAIL</label>
-                    <input type="email" min="0" class="form-control" id="iptEmailFuncionario">
+                    <input type="email" min="0" class="form-control" id="iptEmailFuncionario" maxlength="150">
                 </div>
-
 
                 <div class="d-flex justify-content-between mt-2">
                     <div class="col-xl-6 col-6">
                         <label for="senha">SENHA</label>
-                        <input type="password" min="0" class="form-control" id="iptSenhaFuncionario">
+                        <input type="password" min="0" class="form-control" id="iptSenhaFuncionario" maxlength="150">
                     </div>
                     <div class="col-xl-6 col-6">
                         <label for="confirmarSenha">CONFIRMAR SENHA</label>
-                        <input type="password" min="0" class="form-control" id="iptConfirmarSenhaFuncionario">
+                        <input type="password" min="0" class="form-control" id="iptConfirmarSenhaFuncionario" maxlength="150">
                     </div>
                 </div>
 
@@ -138,17 +132,15 @@
                                 POLÍTICA DE PRIVACIDADE DA GREY CLOUD TRANSACTIONS.</a></label>
                     </div>
                 </div>
+
                 <div class="divBtn pt-3">
                     <div class="d-flex justify-content-end">
                         <button onclick="cadastrarEmpresaEFuncionario()"
                             class="btn btn-lg button px-3 py-2">Cadastrar</button>
                     </div>
                 </div>
+
             </div>
-
-
-           
-
         </div>
     </div>
 
