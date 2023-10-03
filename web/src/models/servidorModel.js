@@ -17,6 +17,21 @@ function listar(idEmpresa) {
     return database.executar(query);
 }
 
+function alterar(id_servidor, nome, codigo, tipo, descricao){
+    var query = `
+    UPDATE servidor 
+        SET nome = "${nome}"
+        , codigo= "${codigo}"
+        , tipo = "${tipo}"
+        , descricao = "${descricao}"
+        WHERE id_servidor = ${id_servidor};
+    `
+    info("Alterar", query);
+
+    return database.executar(query);
+}
+
 module.exports = {
-    listar
+    listar,
+    alterar
 };

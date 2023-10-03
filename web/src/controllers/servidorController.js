@@ -1,4 +1,3 @@
-
 var servidorModel = require("../models/servidorModel");
 
 // Funções locais
@@ -25,7 +24,7 @@ function listar(req, res) {
     
             }).catch(function (erro) {
                 console.log(erro);
-                console.log("Houve um erro ao realizar a consulta!Erro: ", erro.sqlMessage);
+                console.log("Houve um erro ao realizar a consulta!\nErro: ", erro.sqlMessage);
                 res.status(500).json(erro.sqlMessage);
 
             })
@@ -36,7 +35,42 @@ function listar(req, res) {
     }
 }
 
+function alterar(req, res) {
+    info("Alterar");
+
+    var idServidor = req.params.idServidor;
+    var nome = req.body.nome;
+    var codigo = req.body.codigo;
+    var tipo = req.body.tipo;
+    var descricao = req.body.descricao;
+
+    if(idServidor != "" || idServidor != undefined){
+        if((nome || codigo || tipo || descricao) != undefined){
+
+            servidorModel.alterar(idServidor, nome, codigo, tipo, descricao)
+            .then(function (resultado) {
+                res.status(200).json(resultado);
+
+            }).catch(function (erro){
+                console.log(erro);
+                console.log("Houve um erro ao realizar o UPDATE!\nErro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+
+            })
+            
+        }
+        else{
+            res.status(400).send(`Dados undefined\nNome: ${nome}\nCódigo: ${codigo}\nTipo: ${tipo}\nDescrição: ${descricao}`);
+        }
+    }
+    else {
+        res.status(400).send("ID Servidor está vazio ou undefined");
+    }
+}
+
+
 
 module.exports = {
-    listar
+    listar,
+    alterar
 }

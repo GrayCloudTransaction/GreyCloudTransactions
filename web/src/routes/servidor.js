@@ -13,5 +13,10 @@ rota.get("/idEmpresa/:idEmpresa", (req, res) => {
     servidorController.listar(req, res);
 });
 
+rota.put("/alterar/:idServidor", (req, res) => {
+    info("Alterar");
+    servidorController.alterar(req, res);
+})
+
 
 module.exports = rota;
