@@ -13,6 +13,7 @@ var usuarioRouter = require("./src/routes/usuarios");
 var empresaRouter = require("./src/routes/empresa");
 var funcionarioRouter = require("./src/routes/funcionario");
 var emailRouter = require("./src/routes/email");
+var servidorRouter = require("./src/routes/servidor")
 // var medidasRouter = require("./src/routes/medidas");
 
 app.use(express.json());
@@ -26,6 +27,7 @@ app.use("/usuarios", usuarioRouter);
 app.use("/empresa", empresaRouter);
 app.use("/funcionario", funcionarioRouter);
 app.use("/email", emailRouter);
+app.use("/servidor", servidorRouter);
 // app.use("/medidas", medidasRouter);
 
 app.listen(PORTA, function () {
