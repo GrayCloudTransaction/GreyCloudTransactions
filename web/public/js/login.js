@@ -34,6 +34,17 @@ function entrar() {
             sessionStorage.NOME_USUARIO = json.nome;
             sessionStorage.ID_EMPRESA = json.fk_empresa;
             sessionStorage.PERMISSAO = json.permissao;
+            
+            // Manter Conectado
+            if(!sessionStorage.MANTER_CONECTADO){
+              if(document.getElementById("remember").checked){
+                sessionStorage.SENHA_USER = json.senha;
+                sessionStorage.MANTER_CONECTADO = true;
+              }else{
+                sessionStorage.MANTER_CONECTADO = false;
+              }
+            }
+
           });
           Swal.fire(
             "Sucesso!",
@@ -70,5 +81,13 @@ function entrar() {
       });
 
     return false;
+  }
+}
+
+function manterConectado(){
+  if(sessionStorage.MANTER_CONECTADO){
+    email_input.value = sessionStorage.EMAIL_USUARIO;
+    senha_input.value = sessionStorage.SENHA_USER;
+    entrar()
   }
 }
