@@ -102,6 +102,30 @@ function inserir(req, res) {
     }
 }
 
+function deletar(req, res) {
+    info("Deletar");
+
+    var id_servidor = req.params.id_servidor;
+
+    if(id_servidor != "" || id_servidor != undefined){
+
+        servidorModel.deletar(id_servidor).then(function (resultado) {
+            
+            res.json(resultado);
+
+        }).catch(function (erro){
+            console.log(erro);
+            console.log("Houve um erro ao realizar o DELETE!\nErro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+
+        })
+
+    }
+    else {
+        res.status(400).send("ID Servidor está vazio ou undefined");
+    }
+}
+
 
 
 
@@ -109,5 +133,6 @@ function inserir(req, res) {
 module.exports = {
     listar,
     alterar,
-    inserir
+    inserir,
+    deletar
 }

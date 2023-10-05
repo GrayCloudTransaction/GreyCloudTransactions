@@ -23,5 +23,10 @@ rota.post("/inserir/:fk_empresa", (req, res) =>{
     servidorController.inserir(req, res);
 })
 
+rota.delete("/deletar/:id_servidor", (req, res) =>{
+    info("Deletar");
+    servidorController.deletar(req, res);
+})
+
 
 module.exports = rota;

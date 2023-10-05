@@ -41,8 +41,18 @@ function inserir(nome, codigo, tipo, descricao, fk_empresa){
     return database.executar(query);
 }
 
+function deletar(id_servidor){
+    var query = `
+    DELETE FROM servidor WHERE id_servidor = ${id_servidor};
+    `
+    info("Deletar", query)
+
+    return database.executar(query);
+}
+
 module.exports = {
     listar,
     alterar,
-    inserir
+    inserir,
+    deletar
 };
