@@ -31,7 +31,28 @@ function alterar(id_servidor, nome, codigo, tipo, descricao){
     return database.executar(query);
 }
 
+function inserir(nome, codigo, tipo, descricao, fk_empresa){
+    var query =`
+    INSERT INTO servidor (nome, codigo, tipo, descricao, fk_empresa)
+    VALUES ('${nome}', '${codigo}', '${tipo}', '${descricao}', ${fk_empresa});
+    `;
+    info("Inserir", query);
+
+    return database.executar(query);
+}
+
+function deletar(id_servidor){
+    var query = `
+    DELETE FROM servidor WHERE id_servidor = ${id_servidor};
+    `
+    info("Deletar", query)
+
+    return database.executar(query);
+}
+
 module.exports = {
     listar,
-    alterar
+    alterar,
+    inserir,
+    deletar
 };

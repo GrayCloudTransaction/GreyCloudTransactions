@@ -51,7 +51,7 @@ function cadastrarNovoFuncionario(req, res) {
     var fkEmpresa = req.body.fkEmpresaServer;
 
     
-    usuarioModel.cadastrarNovoFuncionario(nomeFuncionario, emailFuncionario, senhaFuncionario, cargoFuncionario, cpfFuncionario, permissaoFuncionario, fkGerente, fkEmpresa)
+    funcionarioModel.cadastrarNovoFuncionario(nomeFuncionario, emailFuncionario, senhaFuncionario, cargoFuncionario, cpfFuncionario, permissaoFuncionario, fkGerente, fkEmpresa)
         .then(
             function (resultado) {
                 res.json(resultado);

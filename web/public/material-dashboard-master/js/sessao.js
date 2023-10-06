@@ -22,6 +22,14 @@ function validarSessao() {
 }
 
 function limparSessao() {
-    sessionStorage.clear();
-    //window.location = "../../index.html";
+    
+    // Manter conectado 
+    if(sessionStorage.MANTER_CONECTADO){
+        window.location = "../../index.html";
+    }
+    else{
+        sessionStorage.clear();
+    }
+        
+    
 }

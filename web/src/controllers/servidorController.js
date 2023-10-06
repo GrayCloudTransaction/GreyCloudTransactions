@@ -69,8 +69,70 @@ function alterar(req, res) {
 }
 
 
+function inserir(req, res) {
+    info("Inserir");
+
+    var nome = req.body.nome;
+    var codigo = req.body.codigo;
+    var tipo = req.body.tipo;
+    var descricao = req.body.descricao;
+    var fk_empresa = req.params.fk_empresa;
+
+    if(fk_empresa != "" || fk_empresa != undefined){
+        if((nome || codigo || tipo || descricao) != undefined){
+
+            servidorModel.inserir(nome, codigo, tipo, descricao, fk_empresa)
+            .then(function (resultado) {
+                res.status(200).json(resultado);
+
+            }).catch(function (erro){
+                console.log(erro);
+                console.log("Houve um erro ao realizar o INSERT!\nErro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+
+            })
+            
+        }
+        else{
+            res.status(400).send(`Dados undefined\nNome: ${nome}\nCódigo: ${codigo}\nTipo: ${tipo}\nDescrição: ${descricao}`);
+        }
+    }
+    else {
+        res.status(400).send("FK da Empresa está vazio ou undefined");
+    }
+}
+
+function deletar(req, res) {
+    info("Deletar");
+
+    var id_servidor = req.params.id_servidor;
+
+    if(id_servidor != "" || id_servidor != undefined){
+
+        servidorModel.deletar(id_servidor).then(function (resultado) {
+            
+            res.json(resultado);
+
+        }).catch(function (erro){
+            console.log(erro);
+            console.log("Houve um erro ao realizar o DELETE!\nErro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+
+        })
+
+    }
+    else {
+        res.status(400).send("ID Servidor está vazio ou undefined");
+    }
+}
+
+
+
+
 
 module.exports = {
     listar,
-    alterar
+    alterar,
+    inserir,
+    deletar
 }

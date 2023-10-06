@@ -7,7 +7,7 @@
     <title>Adicionar funcionario</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/cadastro.css">
+    <link rel="stylesheet" href="../../css/cadastro.css">
     </link>
 </head>
 
@@ -36,21 +36,20 @@
             <div style="background-color: #2aacdf; width: 60%; border-radius: 20px;" class="cardCadastro px-5 py-5">
                 <div class="form-group">
                     <div>
-
-                        <div class="col-xl-12">
+                        <div class="col-xl-12 col-12">
                             <label for="nomeFuncionario">NOME</label>
-                            <input type="text" class="form-control" id="iptNomeFuncionario">
+                            <input type="text" class="form-control" id="iptNomeFuncionario" maxlength="120">
                         </div>
                     </div>
 
                     <div class="d-flex justify-content-between mt-2">
-                        <div class="col-xl-6">
+                        <div class="col-xl-6 col-6">
                             <label for="cpf">CPF</label>
-                            <input type="number" min="0" class="form-control" id="iptCpfFuncionario">
+                            <input type="text" min="0" class="form-control" id="iptCpfFuncionario" maxlength="14" placeholder="XXX.XXX.XXX-XX" oninput="mascara(this, 'cpf')">
                         </div>
-                        <div class="col-xl-6">
+                        <div class="col-xl-6 col-6">
                             <label for="cargoFuncionario">CARGO</label>
-                            <input type="text" min="0" class="form-control" id="iptCargoFuncionario">
+                            <input type="text" min="0" class="form-control" id="iptCargoFuncionario" maxlength="90">
                         </div>
                     </div>
 
@@ -59,7 +58,7 @@
                 <div class="d-flex justify-content-between mt-2">
                     <div class="col-xl-7">
                         <label for="email">EMAIL</label>
-                        <input type="email" min="0" class="form-control" id="iptEmailFuncionario">
+                        <input type="email" min="0" class="form-control" id="iptEmailFuncionario" maxlength="150">
                     </div>
                     <div class="col-xl-5">
                         <label for="iptPermissao">PERMISSÃO</label>
@@ -73,13 +72,13 @@
                 </div>
 
                 <div class="d-flex justify-content-between mt-2">
-                    <div class="col-xl-6">
+                    <div class="col-xl-6 col-6">
                         <label for="senha">SENHA</label>
-                        <input type="password" min="0" class="form-control" id="iptSenhaFuncionario">
+                        <input type="password" min="0" class="form-control" id="iptSenhaFuncionario" maxlength="150">
                     </div>
-                    <div class="col-xl-6">
+                    <div class="col-xl-6 col-6">
                         <label for="confirmarSenha">CONFIRMAR SENHA</label>
-                        <input type="password" min="0" class="form-control" id="iptConfirmarSenhaFuncionario">
+                        <input type="password" min="0" class="form-control" id="iptConfirmarSenhaFuncionario" maxlength="150">
                     </div>
                 </div>
 
@@ -99,7 +98,7 @@
 
 </body>
 
-<script src="./js/cadastroFuncionarios.js"></script>
+<script src="../js/crudFuncionarios.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -110,5 +109,29 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+<script>
+    function mascara(input,tipo) {
+        var valorInput = input.value;
+
+        if (isNaN(valorInput[valorInput.length-1])) {
+            input.value = valorInput.substring(0, valorInput.length-1);
+            return;
+        }
+        
+        if (tipo == "cpf") {
+            if (valorInput.length == 3 || valorInput.length == 7) {   
+            input.value += ".";
+            } else if (valorInput.length == 11) {   
+            input.value += "-";
+            } 
+        }
+    }
+</script>
 
 </html>
