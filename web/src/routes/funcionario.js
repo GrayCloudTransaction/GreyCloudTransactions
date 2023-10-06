@@ -18,5 +18,17 @@ router.post("/cadastrarNovo", function (req, res) {
     funcionarioController.cadastrarNovoFuncionario(req, res);
 })
 
+router.post("/select", function (req, res) {
+    funcionarioController.select_funcionario(req, res);
+})
+
+router.post("/delete", function (req, res) {
+    funcionarioController.delete_funcionario(req, res);
+})
+
+router.post("/update", function(req, res){
+    funcionarioController.update_funcionario(req, res)
+})
+
 
 module.exports = router;

@@ -28,7 +28,37 @@ function cadastrarNovoFuncionario(nomeFuncionario, emailFuncionario, senhaFuncio
     return database.executar(instrucao);
 }
 
+function select_funcionario(id_empresa){
+    var instrucao = `
+        SELECT * FROM funcionario WHERE fk_empresa = ${id_empresa}
+    `
+    info("Select dos Funcionarios", instrucao)
+
+    return database.executar(instrucao);
+}
+
+function delete_funcionario(id_funcionario){
+    var instrucao = `
+        SELECT * FROM funcionario WHERE id_funcionario = ${id_funcionario}
+    `
+    info("Select dos Funcionarios", instrucao)
+
+    return database.executar(instrucao);
+}
+
+function update_funcionario(nome, email, senha, cargo, cpf, permissao, id_funcionario){
+    var instrucao = `
+        UPDATE funcionario SET nome = "${nome}", email = "${email}", senha = ${senha}, cargo = "${cargo}", cpf = "${cpf}", permissao = ${permissao} WHERE id_funcionario = ${id_funcionario};
+    `
+    info("Select dos Funcionarios", instrucao)
+
+    return database.executar(instrucao);
+}
+
 module.exports = {
     cadastrarFuncionario,
-    cadastrarNovoFuncionario   
+    cadastrarNovoFuncionario,
+    select_funcionario,
+    delete_funcionario,
+    update_funcionario
 }
