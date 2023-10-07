@@ -71,7 +71,7 @@ function cadastrarNovoFuncionario(req, res) {
 function select_funcionario(req, res){
     info("Select")
 
-    var id_empresa = req.body.id_empresa;
+    var id_empresa = req.body.idEmpresaServer;
 
     if (id_empresa == undefined) {
         res.status(400).send("Seu email está undefined!");
@@ -82,10 +82,10 @@ function select_funcionario(req, res){
                 function (resultado_autenticar) {
                     console.log(`\nResultados encontrados: ${resultado_autenticar.length}`);
                     console.log(`Resultados: ${JSON.stringify(resultado_autenticar)}`); // transforma JSON em String
-
-                    if (resultado_autenticar.length == 1) {
+                
+                    if (resultado_autenticar.length >= 1) {
                         console.log(resultado_autenticar);
-                        res.json(resultado_autenticar[0]);
+                        res.json(resultado_autenticar);
 
                     } else if (resultado_autenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
@@ -133,13 +133,13 @@ function delete_funcionario(req, res){
 function update_funcionario(req, res){
     info("Update")
 
-    var nome = req.body.nome;
-    var email = req.body.email;
-    var senha = req.body.senha
-    var cargo = req.body.cargo
-    var cpf = req.body.cpf
-    var permissao = req.body.permissao
-    var id_funcionario = req.body.id_funcionario;
+    var nome = req.body.nomeServer;
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+    var cargo = req.body.cargoServer;
+    var cpf = req.body.cpfServer;
+    var permissao = req.body.permissaoServer;
+    var id_funcionario = req.body.idFuncionarioServer;
 
     if (id_funcionario == undefined) {
         res.status(400).send("Seu email está undefined!");

@@ -1,0 +1,155 @@
+.password {
+    -webkit-text-security: disc;
+}
+
+a {
+    cursor: pointer;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 2; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+
+  .modal-wrapper {
+    margin-left: 17.125rem;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Modal Content/Box */
+  .modal-header {
+    padding: 20px 16px;
+    background-image: linear-gradient(195deg, #49a3f1 0%, #1A73E8 100%);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 2vh;
+  }
+
+  .modal-header h6 {
+    margin: 0;
+    color: white;
+  }
+  
+  /* Modal Body */
+  .modal-body {padding: 2px 16px;}
+  
+  /* Modal Content */
+  .modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s
+  }
+  
+  /* Add Animation */
+  @keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+  }
+  
+  /* The Close Button */
+  .close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: rgb(200, 200, 200);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  select {
+    background-image:
+      linear-gradient(45deg, transparent 50%, gray 50%),
+      linear-gradient(135deg, gray 50%, transparent 50%),
+      linear-gradient(to right, #ccc, #ccc);
+    background-position:
+      calc(100% - 20px) calc(1em + 2px),
+      calc(100% - 15px) calc(1em + 2px),
+      calc(100% - 2.5em) 0.5em;
+    background-size:
+      5px 5px,
+      5px 5px,
+      1px 1.5em;
+    background-repeat: no-repeat;
+  }
+  
+  select:focus {
+    background-image:
+      linear-gradient(45deg, green 50%, transparent 50%),
+      linear-gradient(135deg, transparent 50%, green 50%),
+      linear-gradient(to right, #ccc, #ccc);
+    background-position:
+      calc(100% - 15px) 1em,
+      calc(100% - 20px) 1em,
+      calc(100% - 2.5em) 0.5em;
+    background-size:
+      5px 5px,
+      5px 5px,
+      1px 1.5em;
+    background-repeat: no-repeat;
+    border-color: green;
+    outline: 0;
+  }
+  
+  
+  select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+  }
+
+  /* @media screen and (max-width: 451.98px) {
+    label{
+      font-size: 8px;
+    }
+      .divBtn {
+      width: 48%;
+    }
+  }
+  @media screen and (min-width: 450px) and (max-width: 980.98px) {
+      label{
+          font-size: 10px;
+        }
+    }
+  @media screen and (min-width: 1520px) and (max-width: 1614.98px) {
+    .divBtn {
+      width: 45%;
+    }
+  }
+  
+  @media screen and (min-width: 1615px) and (max-width: 1679.98px) {
+    .divBtn {
+      width: 45%;
+    }
+  }
+  @media screen and (min-width: 1680px) and (max-width: 1760.98px) {
+    .divBtn {
+      width: 37%;
+    }
+  }
+  @media screen and (min-width: 1761px) and (max-width: 2100px) {
+    .divBtn {
+      width: 37%!important;
+    }
+  } */
+  
