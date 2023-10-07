@@ -8,7 +8,7 @@ function info(func, query){
 // Funções para Exportar
 function listarPorEmpresa(id_empresa){
     var query =`
-    SELECT * FROM chamados WHERE id_empresa = ${id_empresa};
+    SELECT * FROM chamados WHERE fk_empresa = ${id_empresa};
     `;
     info("Listar", query);
     return  database.executar(query);

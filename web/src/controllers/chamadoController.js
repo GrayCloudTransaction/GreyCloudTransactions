@@ -11,7 +11,7 @@ function listarPorEmpresa(req, res){
 
     var id_empresa = req.params.id_empresa;
 
-    if(id_empresa != null && id_empresa != 0){
+    if(id_empresa != null && id_empresa != ""){
         chamadoModel.listarPorEmpresa(id_empresa)
         .then(function (resultado){
             if(resultado.length > 0){

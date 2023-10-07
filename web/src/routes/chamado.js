@@ -8,7 +8,7 @@ function info(rota){
 }
 
 // Rotas
-rota.get("/listar/:idEmpresa", (req, res) => {
+rota.get("/listar/:id_empresa", (req, res) => {
     info("Listar");
     chamadoController.listarPorEmpresa(req, res);
 });
