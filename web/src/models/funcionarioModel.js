@@ -39,7 +39,7 @@ function select_funcionario(id_empresa){
 
 function delete_funcionario(id_funcionario){
     var instrucao = `
-        SELECT * FROM funcionario WHERE id_funcionario = ${id_funcionario}
+        DELETE FROM funcionario WHERE id_funcionario = ${id_funcionario}
     `
     info("Delete dos Funcionarios", instrucao)
 

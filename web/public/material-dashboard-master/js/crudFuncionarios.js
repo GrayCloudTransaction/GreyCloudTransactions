@@ -258,7 +258,7 @@ function validarEditar() {
   }
 }
 
-function modal() {
+function modalEditar() {
   var modal = document.getElementById("modalEditarFuncionario");
   var modal_wrapper = document.getElementById("modalWrapperEditarFuncionario");
 
@@ -280,7 +280,7 @@ function modal() {
 
 function editarFuncionario (idFuncionario) {
   
-  modal();
+  modalEditar();
 
   var nome = document.querySelector(`#nome_${idFuncionario}`).textContent;
   var email = document.querySelector(`#email_${idFuncionario}`).textContent;
@@ -358,3 +358,77 @@ function editarFuncionario (idFuncionario) {
   }
 }
 
+
+function modalExcluir() {
+
+  var modal = document.getElementById("modalExcluirFuncionario");
+  var modal_wrapper = document.getElementById("modalWrapperExcluirFuncionario");
+
+  var span = document.getElementsByClassName("close")[1];
+
+  modal.style.display = "block";
+
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal || event.target == modal_wrapper) {
+      modal.style.display = "none";
+    }
+  }
+
+}
+
+
+function excluirFuncionario(idFuncionario) {
+
+
+  modalExcluir();
+
+  var btnExcluir = document.getElementById("btnExcluir");
+
+  btnExcluir.onclick = function (){
+
+      fetch("/funcionario/delete", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          idFuncionarioServer: idFuncionario
+        }),
+      })
+      .then(function (resposta) {
+        console.log(resposta);
+    
+        if (resposta.ok) {
+          Swal.fire(
+            "Sucesso!",
+            "Funcionário excluido com sucesso!",
+            "success"
+          );
+          
+          setTimeout(() => {
+            location.reload();
+          }, 3000);
+            
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Houve um erro ao tentar excluir!'
+          })
+        }
+  
+        resposta.text().then((texto) => {
+          console.error(texto);
+        });
+      })
+      .catch(function (erro) {
+        console.log(erro);
+      });      
+    }
+
+}

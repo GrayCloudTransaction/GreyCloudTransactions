@@ -107,7 +107,7 @@ function select_funcionario(req, res){
 function delete_funcionario(req, res){
     info("Delete")
 
-    var id_funcionario = req.body.id_funcionario;
+    var id_funcionario = req.body.idFuncionarioServer;
 
     if (id_funcionario == undefined) {
         res.status(400).send("Seu email está undefined!");
