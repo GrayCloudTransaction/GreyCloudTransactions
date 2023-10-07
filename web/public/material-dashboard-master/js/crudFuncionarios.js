@@ -299,6 +299,14 @@ function editarFuncionario (idFuncionario) {
   var btnEditar = document.getElementById("btnEditar");
 
   btnEditar.onclick = function (){
+
+    nome = iptNomeFuncionario.value;
+    email = iptEmailFuncionario.value;
+    senha = iptSenhaFuncionario.value ;
+    cargo = iptCargoFuncionario.value;
+    cpf = iptCpfFuncionario.value;
+    permissao = iptPermissaoFuncionario.value;
+
     if (validarEditar()) {
 
       fetch("/funcionario/update", {
@@ -324,7 +332,12 @@ function editarFuncionario (idFuncionario) {
             "Sucesso!",
             "Funcionário atualizado com sucesso!",
             "success"
-            );
+          );
+          
+          setTimeout(() => {
+            location.reload();
+          }, 3000);
+          
                 
         } else {
           Swal.fire({
