@@ -13,8 +13,8 @@ var usuarioRouter = require("./src/routes/usuarios");
 var empresaRouter = require("./src/routes/empresa");
 var funcionarioRouter = require("./src/routes/funcionario");
 var emailRouter = require("./src/routes/email");
-var servidorRouter = require("./src/routes/servidor")
-// var medidasRouter = require("./src/routes/medidas");
+var servidorRouter = require("./src/routes/servidor");
+var chamadoRouter = require("./src/routes/chamado");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -28,7 +28,7 @@ app.use("/empresa", empresaRouter);
 app.use("/funcionario", funcionarioRouter);
 app.use("/email", emailRouter);
 app.use("/servidor", servidorRouter);
-// app.use("/medidas", medidasRouter);
+app.use("/chamado", chamadoRouter);
 
 app.listen(PORTA, function () {
     console.log(`URL do Site: http://localhost:${PORTA} \n
