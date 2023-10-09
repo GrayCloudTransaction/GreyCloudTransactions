@@ -74,20 +74,17 @@ function validar() {
 
   var correcaoCpf = cpfFuncionario.length != 14;
   var correcaoConfirmacaoSenha = confirmarSenha != senhaFuncionario;
-  var correcaoSenha =
-    senhaFuncionario.indexOf(0) >= 1 ||
-    senhaFuncionario.indexOf(1) >= 1 ||
-    senhaFuncionario.indexOf(2) >= 1 ||
-    senhaFuncionario.indexOf(3) >= 1 ||
-    senhaFuncionario.indexOf(4) >= 1 ||
-    senhaFuncionario.indexOf(5) >= 1 ||
-    senhaFuncionario.indexOf(6) >= 1 ||
-    senhaFuncionario.indexOf(7) >= 1 ||
-    senhaFuncionario.indexOf(8) >= 1 ||
-    senhaFuncionario.indexOf(9) >= 1 ||
-    senhaFuncionario.indexOf("*") == 1 ||
-    senhaFuncionario.indexOf("#") == 1 ||
-    senhaFuncionario.indexOf("_") >= 1;
+  // var correcaoSenha =
+  //   senhaFuncionario.indexOf(0) >= 1 ||
+  //   senhaFuncionario.indexOf(1) >= 1 ||
+  //   senhaFuncionario.indexOf(2) >= 1 ||
+  //   senhaFuncionario.indexOf(3) >= 1 ||
+  //   senhaFuncionario.indexOf(4) >= 1 ||
+  //   senhaFuncionario.indexOf(5) >= 1 ||
+  //   senhaFuncionario.indexOf(6) >= 1 ||
+  //   senhaFuncionario.indexOf(7) >= 1 ||
+  //   senhaFuncionario.indexOf(8) >= 1 ||
+  //   senhaFuncionario.indexOf(9) >= 1;
 
   var textoAlerta = "";
 
@@ -125,9 +122,9 @@ function validar() {
     textoAlerta += "Favor inserir um CPF válido.\n";
   }
 
-  if (correcaoSenha) {
-    textoAlerta += "Insira pelo menos um número e um caracter especial (*, # ou _ ) na senha.\n";
-  }
+  // if (correcaoSenha) {
+  //   textoAlerta += "Insira pelo menos um número e um caracter especial (*, # ou _ ) na senha.\n";
+  // }
 
   if (correcaoConfirmacaoSenha) {
     textoAlerta += "A senha do campo 'Confirmar senha' está diferente da senha inserida anteriormente.\n";
