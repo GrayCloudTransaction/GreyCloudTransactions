@@ -46,9 +46,9 @@ function delete_funcionario(id_funcionario){
     return database.executar(instrucao);
 }
 
-function update_funcionario(nome, email, senha, cargo, cpf, permissao, id_funcionario){
+function update_funcionario(nome, email, cargo, cpf, permissao, id_funcionario){
     var instrucao = `
-        UPDATE funcionario SET nome = "${nome}", email = "${email}", senha = ${senha}, cargo = "${cargo}", cpf = "${cpf}", permissao = ${permissao} WHERE id_funcionario = ${id_funcionario};
+        UPDATE funcionario SET nome = "${nome}", email = "${email}", cargo = "${cargo}", cpf = "${cpf}", permissao = ${permissao} WHERE id_funcionario = ${id_funcionario};
     `
     info("Update dos Funcionarios", instrucao)
 

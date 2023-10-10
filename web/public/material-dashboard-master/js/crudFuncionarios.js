@@ -1,12 +1,67 @@
+function verificarCpf(cpf) {
+
+  var soma = 0;
+  var resto;
+  var primeiroDigitoVerificador;
+  var segundoDigitoVerificador;
+  
+  var primeirosDigitos = cpf.substring(0, 3) + cpf.substring(4, 7) + cpf.substring(8, 11);
+
+  for (var i = 0; i < primeirosDigitos.length; i++) {
+    
+    soma += Number(primeirosDigitos.substring(i,i+1)) * (10 - i)
+    
+  }
+  
+  resto = soma % 11;
+  primeiroDigitoVerificador = 11 - resto;
+  
+  if (primeiroDigitoVerificador >= 10) {
+      primeiroDigitoVerificador = 0;
+  }
+  
+  if (primeiroDigitoVerificador != Number(cpf[12])) {
+    
+    return true;
+  }
+  
+  /* --------------------------------------------------- Segunda Parte --------------------------------------------------- */
+  
+  soma = 0;
+  resto = 0;
+  primeirosDigitos = cpf.substring(0, 3) + cpf.substring(4, 7) + cpf.substring(8, 11) + cpf.substring(12, 13);
+  
+  for (var i = 0; i < primeirosDigitos.length; i++) {
+    
+    soma += Number(primeirosDigitos.substring(i,i+1)) * (10 - i)
+    
+  }
+  
+  resto = soma % 11;
+  segundoDigitoVerificador = 11 - resto;
+  
+  if (segundoDigitoVerificador >= 10) {
+
+      segundoDigitoVerificador = 0;
+  }
+  
+  if (segundoDigitoVerificador != Number(cpf[13])) {
+
+    return true;
+  } else {
+
+    return false;
+  }
+  
+}
+
 function validarCadastrar() {
-  var nomeFuncionario = iptNomeFuncionario.value;
-  var cpfFuncionario = iptCpfFuncionario.value;
-  var cargoFuncionario = iptCargoFuncionario.value;
-  var emailFuncionario = iptEmailFuncionario.value;
-  var senhaFuncionario = iptSenhaFuncionario.value;
-  var confSenhaFuncionario = iptConfirmarSenhaFuncionario.value;
-  var fkGerente = sessionStorage.ID_USUARIO;
-  var idEmpresa = sessionStorage.ID_EMPRESA;
+  var nomeFuncionario = iptCadastrarNomeFuncionario.value;
+  var cpfFuncionario = iptCadastrarCpfFuncionario.value;
+  var cargoFuncionario = iptCadastrarCargoFuncionario.value;
+  var emailFuncionario = iptCadastrarEmailFuncionario.value;
+  var senhaFuncionario = iptCadastrarSenhaFuncionario.value;
+  var confSenhaFuncionario = iptCadastrarConfirmarSenhaFuncionario.value;
 
   var correcaoEmail = emailFuncionario.indexOf("@") <= -1 || emailFuncionario.indexOf(".") <= -1;
   var correcaoCpf = cpfFuncionario.length != 14;
@@ -36,6 +91,10 @@ function validarCadastrar() {
 
   if (correcaoCpf) {
     textoAlerta += "Favor inserir um CPF válido.\n";
+  } else {
+    if(verificarCpf(cpfFuncionario)) {
+      textoAlerta += "Favor inserir um CPF válido.\n";
+    }
   }
 
   if (correcaoConfirmacaoSenha) {
@@ -57,24 +116,52 @@ function validarCadastrar() {
 
 }
 
+function modalCadastrar() {
+  var modal = document.getElementById("modalCadastrarFuncionario");
+  var modal_wrapper = document.getElementById("modalWrapperCadastrarFuncionario");
+
+  var span = document.getElementsByClassName("close")[0];
+
+  modal.style.display = "block";
+
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    if (event.target == modal || event.target == modal_wrapper) {
+      modal.style.display = "none";
+    }
+  }
+}
+
 function cadastrarNovoFuncionario() {
   
-  var nomeFuncionario = iptNomeFuncionario.value;
-  var cpfFuncionario = iptCpfFuncionario.value;
-  var cargoFuncionario = iptCargoFuncionario.value;
-  var emailFuncionario = iptEmailFuncionario.value;
-  var permissaoFuncionario = iptPermissao.value;
-  var senhaFuncionario = iptSenhaFuncionario.value;
-  var confSenhaFuncionario = iptConfirmarSenhaFuncionario.value;
-  var fkGerente = sessionStorage.ID_USUARIO;
-  var idEmpresa = sessionStorage.ID_EMPRESA;
+  modalCadastrar();
 
-  if (validarCadastrar()) {
+  var inputFocus = document.getElementById("iptCadastrarNomeFuncionario")
+
+  inputFocus.focus();
+
+  var btnCadastrar = document.getElementById("btnCadastrar");
+
+  btnCadastrar.onclick = function (){
+
+    if (validarCadastrar()) {
+
+      var nomeFuncionario = iptCadastrarNomeFuncionario.value;
+      var cpfFuncionario = iptCadastrarCpfFuncionario.value;
+      var cargoFuncionario = iptCadastrarCargoFuncionario.value;
+      var emailFuncionario = iptCadastrarEmailFuncionario.value;
+      var permissaoFuncionario = iptCadastrarPermissaoFuncionario.value;
+      var senhaFuncionario = iptCadastrarSenhaFuncionario.value;
+      var fkGerente = sessionStorage.ID_USUARIO;
+      var idEmpresa = sessionStorage.ID_EMPRESA;
     
-    fetch("/funcionario/cadastrarNovo", {
+      fetch("/funcionario/cadastrarNovo", {
       method: "POST",
       headers: {
-          "Content-Type": "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         // crie um atributo que recebe o valor recuperado aqui
@@ -101,22 +188,29 @@ function cadastrarNovoFuncionario() {
             "Funcionário cadastrado com sucesso!",
             "success"
             ); 
+
+            setTimeout(() => {
+              location.reload();
+            }, 3000);
+
         } else {
-            
+          
           Swal.fire({
             icon: "error",
             title: "Oops...",
             text: "Houve um erro no cadastro!",
           });
-              throw "Houve um erro ao tentar realizar o cadastro!";
+          throw "Houve um erro ao tentar realizar o cadastro!";
         }
       })
-        .catch(function (resposta) {
-          console.log(`#ERRO: ${resposta}`);
-        });
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+    }
   }
 }
         
+
 function listarFuncionarios() {
   
   var idEmpresa = sessionStorage.ID_EMPRESA;
@@ -183,7 +277,7 @@ function listarFuncionarios() {
             <td>
               <div class="d-flex px-2 py-1">
                 <div class="d-flex flex-column justify-content-center">
-                  <a href="./cadastroFuncionarios.html" class="text-secondary font-weight-bold text-xs addFunc-button display-func" data-toggle="tooltip" data-original-title="Edit user" onclick="adicionarFuncionario()">
+                  <a onclick="cadastrarNovoFuncionario()" class="text-secondary font-weight-bold text-xs addFunc-button display-func" data-toggle="tooltip" data-original-title="Edit user" onclick="adicionarFuncionario()">
                     Adicionar +
                   </a>
                 </div>
@@ -204,17 +298,15 @@ function listarFuncionarios() {
    
 }
 
+
 function validarEditar() {
-  var nomeFuncionario = iptNomeFuncionario.value;
-  var cpfFuncionario = iptCpfFuncionario.value;
-  var cargoFuncionario = iptCargoFuncionario.value;
-  var emailFuncionario = iptEmailFuncionario.value;
-  var senhaFuncionario = iptSenhaFuncionario.value;
-  var confSenhaFuncionario = iptConfirmarSenhaFuncionario.value;
+  var nomeFuncionario = iptEditarNomeFuncionario.value;
+  var cpfFuncionario = iptEditarCpfFuncionario.value;
+  var cargoFuncionario = iptEditarCargoFuncionario.value;
+  var emailFuncionario = iptEditarEmailFuncionario.value;
 
   var correcaoEmail = emailFuncionario.indexOf("@") <= -1 || emailFuncionario.indexOf(".") <= -1;
   var correcaoCpf = cpfFuncionario.length != 14;
-  var correcaoConfirmacaoSenha = confSenhaFuncionario != senhaFuncionario;
 
   var textoAlerta = "";
 
@@ -223,8 +315,6 @@ function validarEditar() {
     cpfFuncionario,
     cargoFuncionario,
     emailFuncionario,
-    senhaFuncionario,
-    confSenhaFuncionario,
   ];
 
   for (var i = 0; i < campos.length; i++) {
@@ -242,9 +332,6 @@ function validarEditar() {
     textoAlerta += "Favor inserir um CPF válido.\n";
   }
 
-  if (correcaoConfirmacaoSenha) {
-    textoAlerta += "A senha do campo 'Confirmar senha' está diferente da senha inserida anteriormente.\n";
-  }
 
   if (textoAlerta == "") {
     return true;
@@ -262,7 +349,7 @@ function modalEditar() {
   var modal = document.getElementById("modalEditarFuncionario");
   var modal_wrapper = document.getElementById("modalWrapperEditarFuncionario");
 
-  var span = document.getElementsByClassName("close")[0];
+  var span = document.getElementsByClassName("close")[1];
 
   modal.style.display = "block";
 
@@ -270,7 +357,6 @@ function modalEditar() {
     modal.style.display = "none";
   }
 
-  // When the user clicks anywhere outside of the modal, close it
   window.onclick = function(event) {
     if (event.target == modal || event.target == modal_wrapper) {
       modal.style.display = "none";
@@ -284,28 +370,25 @@ function editarFuncionario (idFuncionario) {
 
   var nome = document.querySelector(`#nome_${idFuncionario}`).textContent;
   var email = document.querySelector(`#email_${idFuncionario}`).textContent;
-  var senha = document.querySelector(`#senha_${idFuncionario}`).textContent;
   var cargo = document.querySelector(`#cargo_${idFuncionario}`).textContent;
   var cpf = document.querySelector(`#cpf_${idFuncionario}`).textContent;
   var permissao = document.querySelector(`#permissao_${idFuncionario}`).textContent;
 
-  iptNomeFuncionario.value = nome;
-  iptEmailFuncionario.value = email;
-  iptSenhaFuncionario.value = senha;
-  iptCargoFuncionario.value = cargo;
-  iptCpfFuncionario.value = cpf;
-  iptPermissaoFuncionario.value = permissao;
+  iptEditarNomeFuncionario.value = nome;
+  iptEditarEmailFuncionario.value = email;
+  iptEditarCargoFuncionario.value = cargo;
+  iptEditarCpfFuncionario.value = cpf;
+  iptEditarPermissaoFuncionario.value = permissao;
 
   var btnEditar = document.getElementById("btnEditar");
 
   btnEditar.onclick = function (){
 
-    nome = iptNomeFuncionario.value;
-    email = iptEmailFuncionario.value;
-    senha = iptSenhaFuncionario.value ;
-    cargo = iptCargoFuncionario.value;
-    cpf = iptCpfFuncionario.value;
-    permissao = iptPermissaoFuncionario.value;
+    nome = iptEditarNomeFuncionario.value;
+    email = iptEditarEmailFuncionario.value;
+    cargo = iptEditarCargoFuncionario.value;
+    cpf = iptEditarCpfFuncionario.value;
+    permissao = iptEditarPermissaoFuncionario.value;
 
     if (validarEditar()) {
 
@@ -317,7 +400,6 @@ function editarFuncionario (idFuncionario) {
         body: JSON.stringify({
           nomeServer: nome,
           emailServer: email,
-          senhaServer: senha,
           cargoServer: cargo,
           cpfServer: cpf,
           permissaoServer: permissao,
@@ -364,7 +446,7 @@ function modalExcluir() {
   var modal = document.getElementById("modalExcluirFuncionario");
   var modal_wrapper = document.getElementById("modalWrapperExcluirFuncionario");
 
-  var span = document.getElementsByClassName("close")[1];
+  var span = document.getElementsByClassName("close")[2];
 
   modal.style.display = "block";
 
@@ -380,7 +462,6 @@ function modalExcluir() {
   }
 
 }
-
 
 function excluirFuncionario(idFuncionario) {
 

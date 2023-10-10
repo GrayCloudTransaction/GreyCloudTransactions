@@ -51,6 +51,146 @@ function mascara(input,tipo) {
       input.value = valorInput + "-";
     }
   }
+
+}
+
+function verificarCpf(cpf) {
+
+  var soma = 0;
+  var resto;
+  var primeiroDigitoVerificador;
+  var segundoDigitoVerificador;
+  
+  var primeirosDigitos = cpf.substring(0, 3) + cpf.substring(4, 7) + cpf.substring(8, 11);
+
+  for (var i = 0; i < primeirosDigitos.length; i++) {
+    
+    soma += Number(primeirosDigitos.substring(i,i+1)) * (10 - i)
+    
+  }
+  
+  resto = soma % 11;
+  primeiroDigitoVerificador = 11 - resto;
+  
+  if (primeiroDigitoVerificador >= 10) {
+      primeiroDigitoVerificador = 0;
+  }
+  
+  if (primeiroDigitoVerificador != Number(cpf[12])) {
+    
+    return true;
+  }
+  
+  /* --------------------------------------------------- Segunda Parte --------------------------------------------------- */
+  
+  soma = 0;
+  resto = 0;
+  primeirosDigitos = cpf.substring(0, 3) + cpf.substring(4, 7) + cpf.substring(8, 11) + cpf.substring(12, 13);
+  
+  for (var i = 0; i < primeirosDigitos.length; i++) {
+    
+    soma += Number(primeirosDigitos.substring(i,i+1)) * (10 - i)
+    
+  }
+  
+  resto = soma % 11;
+  segundoDigitoVerificador = 11 - resto;
+  
+  if (segundoDigitoVerificador >= 10) {
+
+      segundoDigitoVerificador = 0;
+  }
+  
+  if (segundoDigitoVerificador != Number(cpf[13])) {
+
+    return true;
+  } else {
+
+    return false;
+  }
+  
+}
+
+function verificarCnpj(cnpj) {
+
+  var soma = 0;
+  var resto;
+  var primeiroDigitoVerificador;
+  var segundoDigitoVerificador;
+  
+  var primeirosDigitos = cnpj.substring(11, 15).split("").reverse().join("") + cnpj.substring(7, 10).split("").reverse().join("") + cnpj.substring(3, 6).split("").reverse().join("") + cnpj.substring(0, 2).split("").reverse().join("");
+
+  console.log(primeirosDigitos)
+
+  for (var i = 0; i < primeirosDigitos.length; i++) {
+    
+    if (i == 0) {
+      var multiplicador = 2;
+      
+    } else {
+      multiplicador++;
+    }
+    
+    if (multiplicador == 10) {
+      multiplicador = 2;
+    }
+    
+    soma += Number(primeirosDigitos.substring(i,i+1)) * multiplicador;
+    
+  }
+  
+  resto = soma % 11;
+  primeiroDigitoVerificador = 11 - resto;
+  
+  if (primeiroDigitoVerificador >= 10) {
+      primeiroDigitoVerificador = 0;
+  }
+  
+  if (primeiroDigitoVerificador != Number(cnpj[16])) {
+    console.log("true")
+    return true;
+  }
+  
+  // Segunda parte
+  
+  soma = 0;
+  resto = 0;
+  
+  primeirosDigitos = cnpj.substring(16,17) + cnpj.substring(11, 15).split("").reverse().join("") + cnpj.substring(7, 10).split("").reverse().join("") + cnpj.substring(3, 6).split("").reverse().join("") + cnpj.substring(0, 2).split("").reverse().join("");
+
+  console.log(primeirosDigitos)
+
+  for (var i = 0; i < primeirosDigitos.length; i++) {
+    
+    if (i == 0) {
+      var multiplicador = 2;
+      
+    } else {
+      multiplicador++;
+    }
+    
+    if (multiplicador == 10) {
+      multiplicador = 2;
+    }
+    
+    soma += Number(primeirosDigitos.substring(i,i+1)) * multiplicador;
+    
+  }
+  
+  resto = soma % 11;
+  segundoDigitoVerificador = 11 - resto;
+  
+  if (segundoDigitoVerificador >= 10) {
+      segundoDigitoVerificador = 0;
+  }
+  
+  if (segundoDigitoVerificador != Number(cnpj[17])) {
+    console.log("true")
+    return true;
+  } else {
+    console.log("false")
+    return false;
+  }
 }
 
 function validar() {
@@ -71,20 +211,10 @@ function validar() {
   var correcaoCnpj = cnpj.length != 18;
   var correcaoCep = cep.length != 9;
   var correcaoEmail = email.indexOf("@") <= -1 || email.indexOf(".") <= -1 || email.length > 45;
-
+  
   var correcaoCpf = cpfFuncionario.length != 14;
+  var correcaoEmailFuncionario = email.indexOf("@") <= -1 || email.indexOf(".") <= -1 || email.length > 45;
   var correcaoConfirmacaoSenha = confirmarSenha != senhaFuncionario;
-  // var correcaoSenha =
-  //   senhaFuncionario.indexOf(0) >= 1 ||
-  //   senhaFuncionario.indexOf(1) >= 1 ||
-  //   senhaFuncionario.indexOf(2) >= 1 ||
-  //   senhaFuncionario.indexOf(3) >= 1 ||
-  //   senhaFuncionario.indexOf(4) >= 1 ||
-  //   senhaFuncionario.indexOf(5) >= 1 ||
-  //   senhaFuncionario.indexOf(6) >= 1 ||
-  //   senhaFuncionario.indexOf(7) >= 1 ||
-  //   senhaFuncionario.indexOf(8) >= 1 ||
-  //   senhaFuncionario.indexOf(9) >= 1;
 
   var textoAlerta = "";
 
@@ -98,7 +228,7 @@ function validar() {
     nomeFuncionario,
     cpfFuncionario,
     cargoFuncionario,
-    email,
+    emailFuncionario,
     senhaFuncionario,
     confirmarSenha,
   ];
@@ -112,6 +242,14 @@ function validar() {
 
   if (correcaoCnpj) {
     textoAlerta += "Favor inserir um CNPJ válido.\n";
+  } else {
+    if (verificarCnpj(cnpj)) {
+      textoAlerta += "Favor inserir um CNPJ válido.\n";
+    }
+  }
+
+  if (correcaoCep) {
+    textoAlerta += "Favor inserir um CEP válido.\n";
   }
 
   if (correcaoEmail) {
@@ -120,11 +258,15 @@ function validar() {
 
   if (correcaoCpf) {
     textoAlerta += "Favor inserir um CPF válido.\n";
+  } else {
+    if(verificarCpf(cpfFuncionario)) {
+      textoAlerta += "Favor inserir um CPF válido.\n";
+    }
   }
 
-  // if (correcaoSenha) {
-  //   textoAlerta += "Insira pelo menos um número e um caracter especial (*, # ou _ ) na senha.\n";
-  // }
+  if (correcaoEmailFuncionario) {
+    textoAlerta += "Favor inserir um e-mail válido.\n";
+  }
 
   if (correcaoConfirmacaoSenha) {
     textoAlerta += "A senha do campo 'Confirmar senha' está diferente da senha inserida anteriormente.\n";

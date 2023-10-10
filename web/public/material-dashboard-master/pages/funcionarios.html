@@ -358,6 +358,75 @@
         </div>
       </div>
 
+      <div class="modal" id="modalCadastrarFuncionario">
+
+        <div class="modal-wrapper" id="modalWrapperCadastrarFuncionario">
+
+          <div class="modal-content">
+            <div class="modal-header">
+              <h6 text-white text-capitalize ps-3>Cadastrar</h6>
+              <span class="close">&times;</span>
+            </div>
+
+            <div class="modal-body">
+              
+              <div class="col-xl-12 col-12">
+                <label for="nomeFuncionario">NOME</label>
+                <input type="text" class="form-control" id="iptCadastrarNomeFuncionario" maxlength="120"
+                  placeholder="Nome">
+              </div>
+
+              <div class="d-flex justify-content-between mt-2" style="margin-left: 0;">
+                <div class="col-xl-6 col-6">
+                  <label for="cpf">CPF</label>
+                  <input type="text" min="0" class="form-control" id="iptCadastrarCpfFuncionario" maxlength="14"
+                    placeholder="XXX.XXX.XXX-XX" oninput="mascara(this, 'cpf')">
+                </div>
+                <div class="col-xl-6 col-6">
+                  <label for="cargoFuncionario">CARGO</label>
+                  <input type="text" min="0" class="form-control" id="iptCadastrarCargoFuncionario" maxlength="90" placeholder="Cargo">
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-between mt-2" style="margin-left: 0;">
+
+                <div class="col-xl-6">
+                  <label for="email">EMAIL</label>
+                  <input type="email" min="0" class="form-control" id="iptCadastrarEmailFuncionario" maxlength="150" placeholder="Email">
+                </div>
+                <div class="col-xl-6">
+                  <label for="iptPermissao">PERMISSÃO</label>
+                  <select type="number" min="0" class="form-control" id="iptCadastrarPermissaoFuncionario">
+                      <option value="1">1-Geral</option>
+                      <option value="2">2-Cadastrar/Editar/Remover componentes</option>
+                      <option value="3">3-Editar componentes</option>
+                      <option value="4">4-Visualização</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="d-flex justify-content-between mt-2" style="margin-left: 0;">
+                <div class="col-xl-6 col-6">
+                  <label for="senha">SENHA</label>
+                  <input type="password" min="0" class="form-control" id="iptCadastrarSenhaFuncionario" maxlength="150" placeholder="Crie uma senha">
+                </div>
+                <div class="col-xl-6 col-6">
+                  <label for="confirmarSenha">CONFIRMAR SENHA</label>
+                  <input type="password" min="0" class="form-control" id="iptCadastrarConfirmarSenhaFuncionario" maxlength="150" placeholder="Confirme a senha">
+                </div>
+              </div>
+
+              <div class="divBtn pt-3">
+                <div class="d-flex justify-content-center">
+                  <button class="btn btn-outline-primary" id="btnCadastrar">Cadastrar</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="modal" id="modalEditarFuncionario">
 
         <div class="modal-wrapper" id="modalWrapperEditarFuncionario">
@@ -372,18 +441,18 @@
               
               <div class="col-xl-12 col-12">
                 <label for="nomeFuncionario">NOME</label>
-                <input type="text" class="form-control" id="iptNomeFuncionario" maxlength="120">
+                <input type="text" class="form-control" id="iptEditarNomeFuncionario" maxlength="120">
               </div>
 
               <div class="d-flex justify-content-between mt-2" style="margin-left: 0;">
                 <div class="col-xl-6 col-6">
                   <label for="cpf">CPF</label>
-                  <input type="text" min="0" class="form-control" id="iptCpfFuncionario" maxlength="14"
+                  <input type="text" min="0" class="form-control" id="iptEditarCpfFuncionario" maxlength="14"
                     placeholder="XXX.XXX.XXX-XX" oninput="mascara(this, 'cpf')">
                 </div>
                 <div class="col-xl-6 col-6">
                   <label for="cargoFuncionario">CARGO</label>
-                  <input type="text" min="0" class="form-control" id="iptCargoFuncionario" maxlength="90">
+                  <input type="text" min="0" class="form-control" id="iptEditarCargoFuncionario" maxlength="90">
                 </div>
               </div>
 
@@ -391,11 +460,11 @@
 
                 <div class="col-xl-6">
                   <label for="email">EMAIL</label>
-                  <input type="email" min="0" class="form-control" id="iptEmailFuncionario" maxlength="150">
+                  <input type="email" min="0" class="form-control" id="iptEditarEmailFuncionario" maxlength="150">
                 </div>
                 <div class="col-xl-6">
                   <label for="iptPermissao">PERMISSÃO</label>
-                  <select type="number" min="0" class="form-control" id="iptPermissaoFuncionario">
+                  <select type="number" min="0" class="form-control" id="iptEditarPermissaoFuncionario">
                       <option value="1">1-Geral</option>
                       <option value="2">2-Cadastrar/Editar/Remover componentes</option>
                       <option value="3">3-Editar componentes</option>
@@ -404,18 +473,6 @@
                 </div>
               </div>
               
-              <div class="d-flex justify-content-between mt-2" style="margin-left: 0;">
-                <div class="col-xl-6 col-6">
-                  <label for="senha">SENHA</label>
-                  <input type="password" min="0" class="form-control" id="iptSenhaFuncionario" maxlength="150">
-                  <input type="checkbox" onclick="myFunction()">Show Password
-                </div>
-                <div class="col-xl-6 col-6">
-                  <label for="confirmarSenha">CONFIRMAR SENHA</label>
-                  <input type="password" min="0" class="form-control" id="iptConfirmarSenhaFuncionario" maxlength="150">
-                </div>
-              </div>
-
               <div class="divBtn pt-3">
                 <div class="d-flex justify-content-center">
                   <button class="btn btn-outline-primary" id="btnEditar">Editar</button>
@@ -559,6 +616,7 @@
 <!-- SWAL --><script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- SWAL -->
 <script src="../js/sessao.js"></script>
 <script src="../js/crudFuncionarios.js"></script>
+<script src="../../js/cadastro.js"></script>
 
 <script>
   validarSessao()

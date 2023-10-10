@@ -135,7 +135,6 @@ function update_funcionario(req, res){
 
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
-    var senha = req.body.senhaServer;
     var cargo = req.body.cargoServer;
     var cpf = req.body.cpfServer;
     var permissao = req.body.permissaoServer;
@@ -144,7 +143,7 @@ function update_funcionario(req, res){
     if (id_funcionario == undefined) {
         res.status(400).send("Seu email está undefined!");
     } else {
-        funcionarioModel.update_funcionario(nome, email, senha, cargo, cpf, permissao, id_funcionario)
+        funcionarioModel.update_funcionario(nome, email, cargo, cpf, permissao, id_funcionario)
             .then(
                 function (resultado) {
                     res.json(resultado);
