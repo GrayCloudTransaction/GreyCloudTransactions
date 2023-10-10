@@ -170,3 +170,28 @@ INSERT INTO `registro` (`valor_registro`, `data_registro`, `fk_modelo_componente
 (4, "2023-10-09 14:05:32", 4), -- ramByteToGigabyteUsando
 (12, "2023-10-09 14:05:32", 4), -- ramByteToGigabyteLivre
 (25, "2023-10-09 14:05:32", 4); -- ramPercentualUtilizado
+
+INSERT INTO `unidade_medida` (`unidade_medida`, `tipo_medida`, `fk_componente`) VALUES
+('%', 'Utilização da CPU', 1),
+('%', 'Utilização da CPU', 2),
+('%', 'Utilização da CPU', 3);
+
+CREATE OR REPLACE VIEW `vw_registro_geral` AS 
+SELECT 
+    `registro`.`data_registro`,
+    `registro`.`valor_registro`,
+    `unidade_medida`.`unidade_medida`,
+    `unidade_medida`.`tipo_medida`,
+    `modelo_componente`.`metrica_maxima`,
+    `modelo_componente`.`modelo`,
+    `modelo_componente`.`fabricante`,
+    `modelo_componente`.`fk_servidor` 
+FROM `registro` 
+    INNER JOIN `modelo_componente` ON 
+        `registro`.`fk_modelo_componente` = `modelo_componente`.`id_modelo_componente`
+    INNER JOIN `componente` ON 
+        `componente`.`id_componente` = `modelo_componente`.`fk_componente`
+    INNER JOIN `unidade_medida` ON 
+        `unidade_medida`.`fk_componente` = `componente`.`id_componente`;
+
+SELECT * FROM `vw_registro_geral` WHERE `fk_servidor` = 1;
