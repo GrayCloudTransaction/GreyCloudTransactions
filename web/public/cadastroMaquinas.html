@@ -4,7 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar funcionario</title>
+    <title>Adicionar maquina</title>
+    
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <link rel="stylesheet" href="js/cadastroMaquina.js">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/cadastro.css">
@@ -33,8 +38,9 @@
         </div>
 
         <div class="d-flex justify-content-center mt-5">
-            <div id="parteUm" style="background-color: #2aacdf; width: 60%; border-radius: 20px;" class="cardCadastro px-5 py-5">
-                <div class="form-group" >
+            <div id="parteUm" style="background-color: #2aacdf; width: 60%; border-radius: 20px;"
+                class="cardCadastro px-5 py-5">
+                <div class="form-group">
                     <div>
 
                         <div class="col-xl-12">
@@ -46,7 +52,7 @@
                     <div class="d-flex justify-content-between mt-3">
                         <div class="col-xl-12">
                             <label for="Codigo">Codigo do servidor</label>
-                            <input type="text"" class="form-control" id="iptCodigoServidor">
+                            <input type="text"" class=" form-control" id="iptCodigoServidor">
                         </div>
                         <!-- <div class="col-xl-6">
                             <label for="cargoFuncionario"></label>
@@ -85,14 +91,14 @@
 
                 <div class="divBtn pt-3">
                     <div class="d-flex justify-content-end">
-                        <button onclick="continuar()"
-                            class="btn btn-lg button px-3 py-2">Continuar</button>
+                        <button onclick="continuar()" class="btn btn-lg button px-3 py-2">Continuar</button>
                     </div>
                 </div>
             </div>
 
-            <div id="parteDois" style="background-color: #2aacdf; width: 60%; border-radius: 20px; display: none;" class="cardCadastro px-5 py-5">
-                <div class="form-group" >
+            <div id="parteDois" style="background-color: #2aacdf; width: 60%; border-radius: 20px; display: none;"
+                class="cardCadastro px-5 py-5">
+                <div class="form-group">
                     <div>
                         <div class="col-xl-12 mb-4">
                             <label for="Modelo">Modelo:</label>
@@ -100,19 +106,19 @@
                         </div>
                     </div>
 
-                        <div class="col-xl-12 mb-4" >
-                            <label for="Fabricante">Fabricante:</label>
-                            <input type="text"" class="form-control" id="iptFabricanteComponente">
-                        </div>
-                        <div class="col-xl-6">
-                            <label for="iptTipoComponente">Tipo do componente</label>
-                            <select type="number" min="0" class="form-control" id="iptTipoComponente">
-                                <option value="1">Selecionar</option>
-                                <option value="2">Processador</option>
-                                <option value="3">Memória RAM</option>
-                                <option value="4">Disco Rígido | HD / SSD</option>
-                            </select>
-                        </div>
+                    <div class="col-xl-12 mb-4">
+                        <label for="Fabricante">Fabricante:</label>
+                        <input type="text"" class=" form-control" id="iptFabricanteComponente">
+                    </div>
+                    <div class="col-xl-6">
+                        <label for="iptTipoComponente">Tipo do componente</label>
+                        <select type="number" min="0" class="form-control" id="iptTipoComponente">
+                            <option value="1">Selecionar</option>
+                            <option value="2">Processador</option>
+                            <option value="3">Memória RAM</option>
+                            <option value="4">Disco Rígido | HD / SSD</option>
+                        </select>
+                    </div>
 
                 </div>
 
@@ -145,14 +151,13 @@
 
                 <div class="divBtn pt-3">
                     <div class="d-flex justify-content-end">
-                        <button onclick="continuar()"
-                            class="btn btn-lg button px-3 py-2">Continuar</button>
+                        <button onclick="continuar()" class="btn btn-lg button px-3 py-2">Continuar</button>
                     </div>
                 </div>
                 <div class="divBtn pt-3" style="transform: translateX(-15%);">
                     <div class="d-flex justify-content-start">
-                        <button onclick="maisComponentes()"
-                            class="btn btn-lg button px-3 py-2">Mais Componentes</button>
+                        <button onclick="maisComponentes()" class="btn btn-lg button px-3 py-2">Mais
+                            Componentes</button>
                     </div>
                 </div>
             </div>
@@ -161,7 +166,7 @@
 
         </div>
     </div>
-    
+
 
 </body>
 
@@ -175,19 +180,25 @@
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
 
-    <script>
-        var clicks = 1;
-        function continuar(){
-            if (clicks == 1){
+<script>
+    var clicks = 1;
+    function continuar(cadastroMaquina) {
+        const nomeServidor = iptNomeServidor.value;
+        const codigoServidor = iptCodigoServidor.value;
+        const modeloComponente = iptModeloComponente.value;
+        const fabricanteComponente = iptFabricanteComponente.value;
+        var tipoComponete = iptTipoComponente.value;
+
+        if (clicks == 1) {
             parteUm.style.display = "none";
             parteDois.style.display = "block";
             titulo.innerHTML = "CADASTRO DOS COMPONENTES DO SERVIDOR"
             clicks++
-        } else if(clicks == 2){
-            ParteDois.style.display = "none"
-            clicks++
+        } else if (clicks == 2) {
+            alert("Servidor cadastrado com sucesso!")
         }
-        }
-    </script>
+    }
+
+</script>
 
 </html>

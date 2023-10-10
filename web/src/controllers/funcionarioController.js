@@ -74,7 +74,7 @@ function select_funcionario(req, res){
     var id_empresa = req.body.idEmpresaServer;
 
     if (id_empresa == undefined) {
-        res.status(400).send("Seu email está undefined!");
+        res.status(400).send("Seu id_empresa está undefined!");
     } else {
 
         funcionarioModel.select_funcionario(id_empresa)
