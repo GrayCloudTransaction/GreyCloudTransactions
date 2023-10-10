@@ -2,169 +2,189 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/cadastro.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    </link>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Grey Cloud - Cadastro</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/cadastro.css">
+
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
 </head>
 
 <body>
-    <header>
-        <nav class="d-flex justify-content-between">
-            <p class="mt-3 ml-4" style="color: white;">
-                Grey Cloud Transactions
-            </p>
-            <div class="align-items-center d-flex">
-                <a class="txt-nav text-decoration-none mx-2" href="index.html">SOBRE NÓS</a>
-                <a class="txt-nav text-decoration-none mx-2" href="index.html">PRODUTO</a>
-                <a class="p text-decoration-none mx-2" href="">|</a>
-                <a class="txt-nav text-decoration-none ml-2 mr-3" href="login.html">LOGIN</a>
-            </div>
-        </nav>
-    </header>
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
 
-    <div class="container mt-4" id="primeiraParte" style="display: block;">
-        <div class="row d-flex justify-content-center">
-            <h2>CADASTRO</h2>
-        </div>
+      <div class="logo">
+        <a href="index.html"><img src="assets/img/navbar2.png" alt="" class="img-fluid"></a>
+      </div>
 
-        <div class="d-flex justify-content-center mt-5">
-            <div style="background-color: #011C27; width: 60%; border-radius: 20px;" class="cardCadastro px-5 py-5">
-                <div class="form-group">
-                    <div>
-                        <div class="col-xl-12 col-12">
-                            <label for="razaoSocial">RAZÃO SOCIAL</label>
-                            <input type="text" class="form-control" id="iptRazaoSocial" maxlength="120">
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-between mt-2">
-                        <div class="col-xl-6 col-sm-6 col-6">
-                            <label for="cnpj">CNPJ</label>
-                            <input type="text" min="0" class="form-control" id="iptCnpj" maxlength="18" placeholder="XX.XXX.XXX/XXXX-XX" oninput="mascara(this, 'cnpj')">
-                        </div>
-                        <div class="col-xl-6 col-6">
-                            <label for="telefone">TELEFONE</label>
-                            <input type="text" min="0" class="form-control" id="iptTelefone" maxlength="13" placeholder="(XX)XXXX-XXXX" oninput="mascara(this, 'tel')">
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-between mt-2">
-                        <div class="col-xl-6 col-sm-6 col-6">
-                            <label for="cep">CEP</label>
-                            <input type="text" min="0" class="form-control" id="iptCep" maxlength="9" placeholder="XXXXX-XXX" oninput="mascara(this, 'cep')">
-                        </div>
-                        <div class="col-xl-6 col-sm-6 col-6">
-                            <label for="numero">NÚMERO</label>
-                            <input type="number" min="0" class="form-control" id="iptNumero">
-                        </div>
-                    </div>
-                    <div style="margin-top: 8px">    
-                        <div class="col-xl-12 col-12">
-                            <label for="email">EMAIL</label>
-                            <input type="email" min="0" class="form-control" id="iptEmail" maxlength="150">
-                        </div>
-                    </div>
-                </div>
-                <div class="divBtn pt-3">
-                    <div class="d-flex justify-content-end">
-                        <button onclick="irParaProximaEtapa()" class="btn btn-lg button px-3 py-2"> Próxima
-                            Página</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto" href="index.html">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">Sobre-nós</a></li>
+          <li><a class="nav-link scrollto" href="#services">Serviços</a></li>
+          <li><a class="nav-link scrollto" href="#team">Time</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contato</a></li>
+          <li class="spacing">|</li>
+          <li><a class="nav-link scrollto" href="login.html">Login</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
 
     </div>
+  </header><!-- End Header -->
 
-    <!-- Cadastro Funcionário -->
-    <div class="container mt-4" id="segundaParte" style="display: none;">
-        <div class="row d-flex justify-content-center">
-            <h2>CADASTRO</h2>
-        </div>
+  <main id="main">
+    <section id="cadastro" class="cadastro_bg">
+      <div class="container">
+        <div class="row">
 
-        <div class="d-flex justify-content-center mt-5">
-            <div style="background-color: #011C27; width: 60%; border-radius: 20px;" class="cardCadastro px-5 py-5">
-                <div class="form-group">
-                    <div>
-
-                        <div class="col-xl-12 col-12">
-                            <label for="nomeFuncionario">NOME</label>
-                            <input type="text" class="form-control" id="iptNomeFuncionario" maxlength="120">
-                        </div>
-                    </div>
-
-                    <div class="d-flex justify-content-between mt-2">
-                        <div class="col-xl-6 col-6">
-                            <label for="cpf">CPF</label>
-                            <input type="text" min="0" class="form-control" id="iptCpfFuncionario" maxlength="14" placeholder="XXX.XXX.XXX-XX" oninput="mascara(this, 'cpf')">
-                        </div>
-                        <div class="col-xl-6 col-6">
-                            <label for="cargoFuncionario">CARGO</label>
-                            <input type="text" min="0" class="form-control" id="iptCargoFuncionario" maxlength="90">
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-xl-12 col-12">
-                    <label for="email">EMAIL</label>
-                    <input type="email" min="0" class="form-control" id="iptEmailFuncionario" maxlength="150">
-                </div>
-
-                <div class="d-flex justify-content-between mt-2">
-                    <div class="col-xl-6 col-6">
-                        <label for="senha">SENHA</label>
-                        <input type="password" min="0" class="form-control" id="iptSenhaFuncionario" maxlength="150">
-                    </div>
-                    <div class="col-xl-6 col-6">
-                        <label for="confirmarSenha">CONFIRMAR SENHA</label>
-                        <input type="password" min="0" class="form-control" id="iptConfirmarSenhaFuncionario" maxlength="150">
-                    </div>
-                </div>
-
-                <div class="col mt-4">
-                    <div class="form-check">
-                        <input type="checkbox" name="remember" id="remember" class="form-check-input">
-                        <label for="remember" class="form-check-label">Eu concordo com os <a href="">TERMOS DE USO E
-                                POLÍTICA DE PRIVACIDADE DA GREY CLOUD TRANSACTIONS.</a></label>
-                    </div>
-                </div>
-
-                <div class="divBtn pt-3">
-                    <div class="d-flex justify-content-end">
-                        <button onclick="cadastrarEmpresaEFuncionario()"
-                            class="btn btn-lg button px-3 py-2">Cadastrar</button>
-                    </div>
-                </div>
-
+          <div class="col-lg-4">
+            <div class="d-flex flex-column justify-content-center" data-aos="fade-right">
+              <img src="./assets/cadastro_foto.png" alt="">
             </div>
-        </div>
-    </div>
+          </div>
 
-    <div style="position: absolute;margin-top: 4vh;" class="pt-3 ml-4">
-        <div class="d-flex justify-content-end" style="width: 20%;">
-            <button id="voltar" style="display: none;" onclick="voltarCadastroEmpresa()"
-                class="btn btn-lg button px-3 py-2">
-                <img style="rotate: 180deg; width: 36%;" src="./assets/right-arrow.png">Voltar</button>
-        </div>
-    </div>
+          <div class="col-lg-7 mt-5 mt-lg-3">
+            <div class="container mt-4" id="primeiraParte" style="display: block;">
+              <div class="form-group mt-3">
+                <span class="input_cadastro">Razão social:</span>
+                <input type="text" name="nome_empresa" class="form-control" id="nome_empresa_input">
+              </div>
+              <div class="form-group mt-3">
+                <span class="input_cadastro">Email:</span>
+                <input type="email" class="form-control" name="email" id="email_input">
+              </div>
 
+              <div class="row">
+                <div class="col-md-6 form-group mt-3">
+                  <span class="input_cadastro">CNPJ:</span>
+                  <input type="text" class="form-control" name="cnpj" id="cnpj_input">
+                </div>
+                <div class="col-md-6 form-group mt-3">
+                  <span class="input_cadastro">Telefone:</span>
+                  <input type="text" class="form-control" name="telefone" id="telefone_input">
+                </div>
+                <div class="col-md-6 form-group mt-3">
+                  <span class="input_cadastro">CEP:</span>
+                  <input type="text" class="form-control" name="cep" id="cep_input">
+                </div>
+                <div class="col-md-6 form-group mt-3">
+                  <span class="input_cadastro">Número:</span>
+                  <input type="text" class="form-control" name="numero" id="numero_input">
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <span class="input_cadastro">Complemento:</span>
+                <input type="text" class="form-control" name="complemento" id="complemento_input">
+              </div>
+
+              <div class="text-center" id="btn_cadastro">
+                <span class="contador">1/2</span>
+                <button onclick="irParaProximaEtapa()">PRÓXIMO</button>
+              </div>
+            </div>
+
+            <div class="container mt-4" id="segundaParte" style="display: none;">
+              <div class="form-group mt-3">
+                <span class="input_cadastro">Nome:</span>
+                <input type="text" name="nome_empresa" class="form-control" id="nome_empresa_input">
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 form-group mt-3">
+                  <span class="input_cadastro">CPF:</span>
+                  <input type="email" class="form-control" name="email" id="email_input">
+                </div>
+                <div class="col-md-6 form-group mt-3">
+                  <span class="input_cadastro">Cargo:</span>
+                  <input type="text" class="form-control" name="cnpj" id="cnpj_input">
+                </div>
+              </div>
+
+              <div class="form-group mt-3">
+                <span class="input_cadastro">Email:</span>
+                <input type="text" class="form-control" name="telefone" id="telefone_input">
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 form-group mt-3">
+                  <span class="input_cadastro">Senha:</span>
+                  <input type="text" class="form-control" name="cep" id="cep_input">
+                </div>
+                <div class="col-md-6 form-group mt-3">
+                  <span class="input_cadastro">Confirmação de senha:</span>
+                  <input type="text" class="form-control" name="numero" id="numero_input">
+                </div>
+              </div>
+              <div class="col mt-4">
+                <div class="form-check">
+                  <input type="checkbox" name="remember" id="remember" class="form-check-input">
+                  <label for="remember" class="form-check-label">Eu concordo com os <a href="">TERMOS DE USO E
+                      POLÍTICA DE PRIVACIDADE DA GREY CLOUD TRANSACTIONS.</a></label>
+                </div>
+              </div>
+
+              <div class="text-center" id="btn_cadastro">
+                <span class="contador">2/2</span>
+                <button onclick="cadastrarEmpresaEFuncionario()">CADASTRAR</button>
+              </div>
+
+              <span class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-left-short"
+                onclick="voltarCadastroEmpresa()"></i></span>
+                
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
 
 </body>
 
 <script src="js/cadastro.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-    crossorigin="anonymous"></script>
+  integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
+  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-    crossorigin="anonymous"></script>
+  integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 </html>
