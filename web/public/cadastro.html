@@ -75,29 +75,29 @@
             <div class="container mt-4" id="primeiraParte" style="display: block;">
               <div class="form-group mt-3">
                 <span class="input_cadastro">Razão social:</span>
-                <input type="text" name="nome_empresa" class="form-control" id="nome_empresa_input">
+                <input type="text" name="nome_empresa" class="form-control" id="iptRazaoSocial" maxlength="120">
               </div>
               <div class="form-group mt-3">
                 <span class="input_cadastro">Email:</span>
-                <input type="email" class="form-control" name="email" id="email_input">
+                <input type="email" class="form-control" name="email" id="iptEmail" maxlength="150">
               </div>
 
               <div class="row">
                 <div class="col-md-6 form-group mt-3">
                   <span class="input_cadastro">CNPJ:</span>
-                  <input type="text" class="form-control" name="cnpj" id="cnpj_input">
+                  <input type="text" class="form-control" name="cnpj" id="iptCnpj" maxlength="18" placeholder="XX.XXX.XXX/XXXX-XX" oninput="mascara(this, 'cnpj')">
                 </div>
                 <div class="col-md-6 form-group mt-3">
                   <span class="input_cadastro">Telefone:</span>
-                  <input type="text" class="form-control" name="telefone" id="telefone_input">
+                  <input type="text" class="form-control" name="telefone" id="iptTelefone" maxlength="13" placeholder="(XX)XXXX-XXXX" oninput="mascara(this, 'tel')">
                 </div>
                 <div class="col-md-6 form-group mt-3">
                   <span class="input_cadastro">CEP:</span>
-                  <input type="text" class="form-control" name="cep" id="cep_input">
+                  <input type="text" class="form-control" name="cep" id="iptCep" maxlength="9" placeholder="XXXXX-XXX" oninput="mascara(this, 'cep')">
                 </div>
                 <div class="col-md-6 form-group mt-3">
                   <span class="input_cadastro">Número:</span>
-                  <input type="text" class="form-control" name="numero" id="numero_input">
+                  <input type="number" class="form-control" name="numero" id="iptNumero">
                 </div>
               </div>
               <div class="form-group mt-3">
@@ -114,33 +114,33 @@
             <div class="container mt-4" id="segundaParte" style="display: none;">
               <div class="form-group mt-3">
                 <span class="input_cadastro">Nome:</span>
-                <input type="text" name="nome_empresa" class="form-control" id="nome_empresa_input">
+                <input type="text" name="nome_funcionario" class="form-control" id="iptNomeFuncionario" maxlength="120">
               </div>
 
               <div class="row">
                 <div class="col-md-6 form-group mt-3">
                   <span class="input_cadastro">CPF:</span>
-                  <input type="email" class="form-control" name="email" id="email_input">
+                  <input type="text" class="form-control" name="cpf" id="iptCpfFuncionario" maxlength="14" placeholder="XXX.XXX.XXX-XX" oninput="mascara(this, 'cpf')" min="0">
                 </div>
                 <div class="col-md-6 form-group mt-3">
                   <span class="input_cadastro">Cargo:</span>
-                  <input type="text" class="form-control" name="cnpj" id="cnpj_input">
+                  <input type="text" class="form-control" name="cargo" id="iptCargoFuncionario" maxlength="90">
                 </div>
               </div>
 
               <div class="form-group mt-3">
                 <span class="input_cadastro">Email:</span>
-                <input type="text" class="form-control" name="telefone" id="telefone_input">
+                <input type="email" class="form-control" name="email" id="iptEmailFuncionario" maxlength="150">
               </div>
 
               <div class="row">
                 <div class="col-md-6 form-group mt-3">
                   <span class="input_cadastro">Senha:</span>
-                  <input type="text" class="form-control" name="cep" id="cep_input">
+                  <input type="password" class="form-control" name="senha" id="iptSenhaFuncionario" maxlength="150">
                 </div>
                 <div class="col-md-6 form-group mt-3">
                   <span class="input_cadastro">Confirmação de senha:</span>
-                  <input type="text" class="form-control" name="numero" id="numero_input">
+                  <input type="password" class="form-control" name="confirmacao_senha" id="iptConfirmarSenhaFuncionario" maxlength="150">
                 </div>
               </div>
               <div class="col mt-4">
