@@ -1,5 +1,5 @@
 {
-  "name": "web-data-viz",
+  "name": "grey-cloud",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -7,7 +7,7 @@
     "start": "node app.js",
     "dev": "nodemon --exec node app.js"
   },
-  "author": "Feito pelos desenvolvedores @ São Paulo Tech School / Bandtec Digital School",
+  "author": "Feito pelos desenvolvedores @ São Paulo Tech School",
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
