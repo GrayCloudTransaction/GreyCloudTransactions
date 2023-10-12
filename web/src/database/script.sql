@@ -201,10 +201,8 @@ SELECT
     `componente`.`fk_servidor`
     
 FROM `registro`
-
     INNER JOIN `unidade_medida` ON 
         `registro`.`fk_unidade_medida` = `unidade_medida`.`id_unidade_medida`
-
     INNER JOIN `componente` ON
         `registro`.`fk_componente` = `componente`.`id_componente`;
 
