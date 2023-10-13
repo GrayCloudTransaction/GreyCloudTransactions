@@ -146,7 +146,9 @@
     </div>
     <div class="sidenav-footer position-absolute w-100 bottom-0 ">
       <div class="mx-3">
-        <a class="btn btn-outline-primary mt-4 w-100" href="../../index.html" type="button">Deslogar</a>
+        <a class="btn btn-outline-primary mt-4 w-100" 
+        href="../../index.html" 
+        type="button" onclick="limparSessao()">Deslogar</a>
         <!-- onclick="sair()"  -->
         <!-- <a class="btn bg-gradient-primary w-100" href="https://www.creative-tim.com/product/material-dashboard-pro?ref=sidebarfree" type="button">Upgrade to pro</a> -->
       </div>
@@ -397,10 +399,8 @@
                 <div class="col-xl-6">
                   <label for="iptPermissao">PERMISSÃO</label>
                   <select type="number" min="0" class="form-control" id="iptCadastrarPermissaoFuncionario">
-                      <option value="1">1-Geral</option>
-                      <option value="2">2-Cadastrar/Editar/Remover componentes</option>
-                      <option value="3">3-Editar componentes</option>
-                      <option value="4">4-Visualização</option>
+                      <option value="1">1-Gerente</option>
+                      <option value="2">2-Analista</option>
                   </select>
                 </div>
               </div>
@@ -465,10 +465,8 @@
                 <div class="col-xl-6">
                   <label for="iptPermissao">PERMISSÃO</label>
                   <select type="number" min="0" class="form-control" id="iptEditarPermissaoFuncionario">
-                      <option value="1">1-Geral</option>
-                      <option value="2">2-Cadastrar/Editar/Remover componentes</option>
-                      <option value="3">3-Editar componentes</option>
-                      <option value="4">4-Visualização</option>
+                      <option value="1">1-Gerente</option>
+                      <option value="2">2-Analista</option>
                   </select>
                 </div>
               </div>

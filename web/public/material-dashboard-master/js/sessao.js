@@ -16,7 +16,7 @@ function validarSessao() {
         if (permissao == 1) {
             link_dashboard.href = "../pages/dashboardGerente.html";
         } else {
-            link_dashboard.href = "../pages/dashboardAnalista.html";
+            link_dashboard.href = "../pages/maquinas.html";
         }
     }
 }
@@ -26,8 +26,7 @@ function limparSessao() {
     // Manter conectado 
     if(sessionStorage.MANTER_CONECTADO){
         window.location = "../../index.html";
-    }
-    else{
+    } else {
         sessionStorage.clear();
     }
         

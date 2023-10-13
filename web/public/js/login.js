@@ -44,26 +44,27 @@ function entrar() {
             //     sessionStorage.MANTER_CONECTADO = false;
             //   }
             // }
+            Swal.fire(
+              "Sucesso!",
+              "Você será redirecionado em segundos!",
+              "success"
+            );
+  
+            if(sessionStorage.PERMISSAO == 1){
+              setTimeout(() => {
+                window.location =
+                  "material-dashboard-master/pages/dashboardGerente.html";
+              }, 2000);
+            } else{
+  
+              setTimeout(() => {
+                window.location =
+                  "material-dashboard-master/pages/maquinas.html";
+              }, 2000);
+            }
 
           });
-          Swal.fire(
-            "Sucesso!",
-            "Você será redirecionado em segundos!",
-            "success"
-          );
-
-          // if(sessionStorage.PERMISSAO == 1){
-          setTimeout((x) => {
-            window.location =
-              "material-dashboard-master/pages/dashboardGerente.html";
-          }, 2000);
-          // } else{
-          // }
-
-          // setTimeout((y) => {
-          //   window.location =
-          //     "material-dashboard-master/pages/dashboardAnalista.html";
-          // }, 2000);
+          
         } else {
           Swal.fire({
             icon: "error",

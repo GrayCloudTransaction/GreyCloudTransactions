@@ -1,124 +1,231 @@
 .password {
-    -webkit-text-security: disc;
+  -webkit-text-security: disc;
 }
 
 a {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 2; /* Sit on top */
-    left: 0;
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 2;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+.modal-wrapper {
+  margin-left: 17.125rem;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal Content/Box */
+.modal-header {
+  padding: 20px 16px;
+  background-image: linear-gradient(195deg, #49a3f1 0%, #1A73E8 100%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 2vh;
+}
+
+.modal-header h6 {
+  margin: 0;
+  color: white;
+}
+
+/* Modal Body */
+.modal-body {
+  padding: 2px 16px;
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0
+  }
+
+  to {
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    opacity: 1
   }
+}
 
-  .modal-wrapper {
-    margin-left: 17.125rem;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  /* Modal Content/Box */
-  .modal-header {
-    padding: 20px 16px;
-    background-image: linear-gradient(195deg, #49a3f1 0%, #1A73E8 100%);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 2vh;
-  }
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
 
-  .modal-header h6 {
-    margin: 0;
-    color: white;
-  }
-  
-  /* Modal Body */
-  .modal-body {padding: 2px 16px;}
-  
-  /* Modal Content */
-  .modal-content {
-    position: relative;
-    background-color: #fefefe;
-    margin: auto;
-    padding: 0;
-    border: 1px solid #888;
-    width: 80%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    animation-name: animatetop;
-    animation-duration: 0.4s
-  }
-  
-  /* Add Animation */
-  @keyframes animatetop {
-    from {top: -300px; opacity: 0}
-    to {top: 0; opacity: 1}
-  }
-  
-  /* The Close Button */
-  .close {
-    color: white;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: rgb(200, 200, 200);
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
-  select {
-    background-image:
-      linear-gradient(45deg, transparent 50%, gray 50%),
-      linear-gradient(135deg, gray 50%, transparent 50%),
-      linear-gradient(to right, #ccc, #ccc);
-    background-position:
-      calc(100% - 20px) calc(1em + 2px),
-      calc(100% - 15px) calc(1em + 2px),
-      calc(100% - 2.5em) 0.5em;
-    background-size:
-      5px 5px,
-      5px 5px,
-      1px 1.5em;
-    background-repeat: no-repeat;
-  }
-  
-  select:focus {
-    background-image:
-      linear-gradient(45deg, green 50%, transparent 50%),
-      linear-gradient(135deg, transparent 50%, green 50%),
-      linear-gradient(to right, #ccc, #ccc);
-    background-position:
-      calc(100% - 15px) 1em,
-      calc(100% - 20px) 1em,
-      calc(100% - 2.5em) 0.5em;
-    background-size:
-      5px 5px,
-      5px 5px,
-      1px 1.5em;
-    background-repeat: no-repeat;
-    border-color: green;
-    outline: 0;
-  }
-  
-  
-  select:-moz-focusring {
-    color: transparent;
-    text-shadow: 0 0 0 #000;
-  }
+.close:hover,
+.close:focus {
+  color: rgb(200, 200, 200);
+  text-decoration: none;
+  cursor: pointer;
+}
 
-  /* @media screen and (max-width: 451.98px) {
+.btn-outline-primary:hover:not(.active) {
+  background-color: transparent;
+  opacity: .75;
+  box-shadow: none;
+  color: #e91e63;
+}
+
+.btn:hover {
+  color: var(--bs-btn-hover-color);
+  background-color: var(--bs-btn-hover-bg);
+  border-color: var(--bs-btn-hover-border-color);
+}
+
+a:hover {
+  color: var(--bs-link-hover-color);
+  text-decoration: none;
+}
+
+.btn-outline-primary {
+  box-shadow: none;
+}
+
+.btn {
+  margin-bottom: 1rem;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  background-size: 150%;
+  background-position-x: 25%;
+  position: relative;
+  overflow: hidden;
+  -webkit-appearance: none;
+}
+
+.mt-4 {
+  margin-top: 1.5rem !important;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.btn {
+  --bs-btn-padding-x: 1.5rem;
+  --bs-btn-padding-y: 0.625rem;
+  --bs-btn-font-family: ;
+  --bs-btn-font-size: 0.75rem;
+  --bs-btn-font-weight: 700;
+  --bs-btn-line-height: 1.667;
+  --bs-btn-color: #7b809a;
+  --bs-btn-bg: transparent;
+  --bs-btn-border-width: 1px;
+  --bs-btn-border-color: transparent;
+  --bs-btn-border-radius: 0.5rem;
+  --bs-btn-hover-border-color: transparent;
+  --bs-btn-box-shadow: 0 4px 7px -1px rgba(0, 0, 0, 0.11), 0 2px 4px -1px rgba(0, 0, 0, 0.07);
+  --bs-btn-disabled-opacity: 0.65;
+  --bs-btn-focus-box-shadow: 0 0 0 0.2rem rgba(var(--bs-btn-focus-shadow-rgb), .5);
+  display: inline-block;
+  padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);
+  font-family: var(--bs-btn-font-family);
+  font-size: var(--bs-btn-font-size);
+  font-weight: var(--bs-btn-font-weight);
+  line-height: var(--bs-btn-line-height);
+  color: var(--bs-btn-color);
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
+  border-radius: var(--bs-btn-border-radius);
+  background-color: var(--bs-btn-bg);
+  transition: all 0.15s ease-in;
+}
+
+.btn-outline-primary {
+  --bs-btn-color: #e91e63;
+  --bs-btn-border-color: #e91e63;
+  --bs-btn-hover-color: #000;
+  --bs-btn-hover-bg: #e91e63;
+  --bs-btn-hover-border-color: #e91e63;
+  --bs-btn-focus-shadow-rgb: 233, 30, 99;
+  --bs-btn-active-color: #000;
+  --bs-btn-active-bg: #e91e63;
+  --bs-btn-active-border-color: #e91e63;
+  --bs-btn-active-shadow: none;
+  --bs-btn-disabled-color: #e91e63;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: #e91e63;
+  --bs-gradient: none;
+}
+
+select {
+  background-image:
+    linear-gradient(45deg, transparent 50%, gray 50%),
+    linear-gradient(135deg, gray 50%, transparent 50%),
+    linear-gradient(to right, #ccc, #ccc);
+  background-position:
+    calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px),
+    calc(100% - 2.5em) 0.5em;
+  background-size:
+    5px 5px,
+    5px 5px,
+    1px 1.5em;
+  background-repeat: no-repeat;
+}
+
+select:focus {
+  background-image:
+    linear-gradient(45deg, green 50%, transparent 50%),
+    linear-gradient(135deg, transparent 50%, green 50%),
+    linear-gradient(to right, #ccc, #ccc);
+  background-position:
+    calc(100% - 15px) 1em,
+    calc(100% - 20px) 1em,
+    calc(100% - 2.5em) 0.5em;
+  background-size:
+    5px 5px,
+    5px 5px,
+    1px 1.5em;
+  background-repeat: no-repeat;
+  border-color: green;
+  outline: 0;
+}
+
+
+select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #000;
+}
+
+/* @media screen and (max-width: 451.98px) {
     label{
       font-size: 8px;
     }
@@ -152,4 +259,3 @@ a {
       width: 37%!important;
     }
   } */
-  
