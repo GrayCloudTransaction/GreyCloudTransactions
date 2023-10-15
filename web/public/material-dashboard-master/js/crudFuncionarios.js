@@ -259,13 +259,16 @@ function listarFuncionarios() {
                 <p class=" text-xs font-weight-bold mb-0" id="permissao_${idFuncionario}">${funcionario.permissao}</p>
               </td>
               <td class="align-middle">
-                <a onclick="editarFuncionario(${idFuncionario})" class="text-secondary font-weight-bold text-xs display-func" data-toggle="tooltip" data-original-title="Edit user">
-                  Editar
+                <a onclick="editarFuncionario(${idFuncionario})" class="btn btn-link text-dark px-3 mb-0">
+                
+                <i class="material-icons text-sm me-2">edit</i>
+                  EDITAR
                 </a>
               </td>
               <td class="align-middle">
-                <a onclick="excluirFuncionario(${idFuncionario})" class="text-secondary font-weight-bold text-xs display-func" data-toggle="tooltip" data-original-title="Edit user">
-                  Excluir
+                <a onclick="excluirFuncionario(${idFuncionario})" class="btn btn-link text-danger text-gradient px-3 mb-0">
+                <i class="material-icons text-sm me-2">delete</i>
+                  EXCLUIR
                 </a>
               </td>
             </tr>`;

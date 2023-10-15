@@ -8,9 +8,19 @@ function info(rota){
 }
 
 // Rotas
-rota.get("/listar/:id_empresa", (req, res) => {
-    info("Listar");
+rota.get("/listarPorEmpresa/:id_empresa", (req, res) => {
+    info("Listar Por Empresa");
     chamadoController.listarPorEmpresa(req, res);
+});
+
+rota.get("/listarPorServidor/:id_empresa", (req, res) => {
+    info("Listar Por Servidor");
+    chamadoController.listarPorServidor(req, res);
+});
+
+rota.get("/listarPorMes/:id_empresa", (req, res) => {
+    info("Listar Por Mês");
+    chamadoController.listarPorMes(req, res);
 });
 
 module.exports = rota;

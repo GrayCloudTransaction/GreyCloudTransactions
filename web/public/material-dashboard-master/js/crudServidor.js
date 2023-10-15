@@ -34,12 +34,14 @@ function listarServidor() {
                         <span class="text-xs font-weight-bold" id="descricao_${idServidor}">${servidor.descricao}</span>
                       </td>
                       <td class="align-middle">
-                        <a onclick="editarServidor(${idServidor})" class="text-secondary font-weight-bold text-xs display-func" data-toggle="tooltip" data-original-title="Edit user">
+                        <a onclick="editarServidor(${idServidor})" class="btn btn-link text-dark px-3 mb-0">
+                        <i class="material-icons text-sm me-2">edit</i>
                         Editar
                         </a>
                       </td>
               <td class="align-middle">
-                <a onclick="excluirServidor(${idServidor})" class="text-secondary font-weight-bold text-xs display-func" data-toggle="tooltip" data-original-title="Edit user">
+                <a onclick="excluirServidor(${idServidor})" class="btn btn-link text-danger text-gradient px-3 mb-0">
+                <i class="material-icons text-sm me-2">delete</i>
                   Excluir
                 </a>
               </td>
