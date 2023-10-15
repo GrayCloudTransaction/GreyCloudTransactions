@@ -3,7 +3,6 @@ DROP DATABASE ScriptGCT;
 CREATE DATABASE IF NOT EXISTS `ScriptGCT` DEFAULT CHARACTER SET utf8 ;
 USE `ScriptGCT`;
 
-
 CREATE TABLE IF NOT EXISTS `empresa` (
   `id_empresa` INT NOT NULL auto_increment,
   `razao_social` VARCHAR(120) NULL,
@@ -177,18 +176,18 @@ INSERT INTO `registro` (`valor_registro`, `data_registro`, `fk_unidade_medida`, 
 
 -- Disco
 INSERT INTO `registro` (`valor_registro`, `data_registro`, `fk_unidade_medida`, `fk_componente`) VALUES
-(1000, "2023-10-09 14:05:32", 5, 1), -- Quantidade total de massa
-(750, "2023-10-09 14:05:32", 5, 1), -- Quantidade livre de massa
-(250, "2023-10-09 14:05:32", 5, 1), -- Quantidade de massa em uso
-(25, "2023-10-09 14:05:32", 1, 1); -- Porcentagem em uso
+(1000, "2023-10-09 14:05:32", 5, 3), -- Quantidade total de massa
+(750, "2023-10-09 14:05:32", 5, 3), -- Quantidade livre de massa
+(250, "2023-10-09 14:05:32", 5, 3), -- Quantidade de massa em uso
+(25, "2023-10-09 14:05:32", 1, 3); -- Porcentagem em uso
 
 -- RAM
 INSERT INTO `registro` (`valor_registro`, `data_registro`, `fk_unidade_medida`, `fk_componente`) VALUES
-(16, "2023-10-09 14:05:32", 2, 1), -- ramByteToGigabyteTotal
-(12, "2023-10-09 14:05:32", 2, 1), -- ramByteToGigabyteDisponivel
-(4, "2023-10-09 14:05:32", 2, 1), -- ramByteToGigabyteUsando
-(12, "2023-10-09 14:05:32", 2, 1), -- ramByteToGigabyteLivre
-(25, "2023-10-09 14:05:32", 1, 1); -- ramPercentualUtilizado
+(16, "2023-10-09 14:05:32", 2, 2), -- ramByteToGigabyteTotal
+(12, "2023-10-09 14:05:32", 2, 2), -- ramByteToGigabyteDisponivel
+(4, "2023-10-09 14:05:32", 2, 2), -- ramByteToGigabyteUsando
+(12, "2023-10-09 14:05:32", 2, 2), -- ramByteToGigabyteLivre
+(25, "2023-10-09 14:05:32", 1, 2); -- ramPercentualUtilizado
 
 
 
@@ -207,3 +206,20 @@ FROM `registro`
         `registro`.`fk_componente` = `componente`.`id_componente`;
 
 SELECT * FROM `vw_registro_geral` WHERE `fk_servidor` = 1;
+
+
+CREATE OR REPLACE VIEW `vw_registro_RAM` AS 
+SELECT 
+    `registro`.`data_registro`,
+    `registro`.`valor_registro`,
+    `unidade_medida`.`sigla`,
+    `componente`.`tipo_componente`,
+    `componente`.`fk_servidor`
+    
+FROM `registro`
+    INNER JOIN `unidade_medida` ON 
+        `registro`.`fk_unidade_medida` = `unidade_medida`.`id_unidade_medida` AND `unidade_medida`.`sigla` = '%'
+    INNER JOIN `componente` ON
+        `registro`.`fk_componente` = `componente`.`id_componente` AND `componente`.`tipo_componente` LIKE 'RAM';
+
+SELECT `valor_registro` FROM `vw_registro_RAM` WHERE `fk_servidor` = 1;
