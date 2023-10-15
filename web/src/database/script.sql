@@ -149,7 +149,10 @@ VALUES
 INSERT INTO `componente` (`tipo_componente`, `fk_modelo_componente`, `fk_servidor`) VALUES 
 ('CPU', 1, 1),
 ('RAM', 5, 1),
-('Disco', 8, 1);
+('Disco', 8, 1),
+('CPU', 2, 2),
+('RAM', 4, 2),
+('Disco', 7, 2);
 
 
 -- Cadastro de Unidades de Medida
@@ -190,6 +193,17 @@ INSERT INTO `registro` (`valor_registro`, `data_registro`, `fk_unidade_medida`, 
 (25, "2023-10-09 14:05:32", 1, 2); -- ramPercentualUtilizado
 
 
+-- Chamados
+INSERT INTO `chamados` (`titulo`, `descricao`, `data_hora`, `status`, `fk_componente`, `fk_empresa`) VALUES
+("Alerta uso da CPU", "Uso da CPU está em 90%", "2023-09-09 14:00:00", "Aberto", 1, 1),
+("Alerta uso da RAM", "Uso da RAM está em 80%", "2023-09-09 14:00:00", "Aberto", 2, 1),
+("Alerta uso da CPU", "Uso da CPU está em 90%", "2023-09-09 14:00:00", "Aberto", 4, 1),
+("Alerta uso da RAM", "Uso da RAM está em 80%", "2023-09-09 14:00:00", "Aberto", 5, 1),
+("Alerta uso da CPU", "Uso da CPU está em 90%", "2023-10-09 14:05:32", "Aberto", 1, 1),
+("Alerta uso da RAM", "Uso da RAM está em 80%", "2023-10-09 14:05:32", "Aberto", 2, 1),
+("Alerta uso da Disco", "Uso da Disco está em 75%", "2023-10-09 14:05:32", "Aberto", 3, 1),
+("Alerta uso da CPU", "Uso da CPU está em 90%", "2023-10-09 14:05:32", "Aberto", 4, 1),
+("Alerta uso da RAM", "Uso da RAM está em 80%", "2023-10-09 14:05:32", "Aberto", 5, 1);
 
 CREATE OR REPLACE VIEW `vw_registro_geral` AS 
 SELECT 
