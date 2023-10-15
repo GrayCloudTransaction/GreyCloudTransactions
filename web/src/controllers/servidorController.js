@@ -39,10 +39,10 @@ function alterar(req, res) {
     info("Alterar");
 
     var idServidor = req.params.idServidor;
-    var nome = req.body.nome;
-    var codigo = req.body.codigo;
-    var tipo = req.body.tipo;
-    var descricao = req.body.descricao;
+    var nome = req.body.nomeServer;
+    var codigo = req.body.codigoServer;
+    var tipo = req.body.tipoServer;
+    var descricao = req.body.descricaoServer;
 
     if(idServidor != "" || idServidor != undefined){
         if((nome || codigo || tipo || descricao) != undefined){
@@ -72,10 +72,10 @@ function alterar(req, res) {
 function inserir(req, res) {
     info("Inserir");
 
-    var nome = req.body.nome;
-    var codigo = req.body.codigo;
-    var tipo = req.body.tipo;
-    var descricao = req.body.descricao;
+    var nome = req.body.nomeServer;
+    var codigo = req.body.codigoServer;
+    var tipo = req.body.tipoServer;
+    var descricao = req.body.descricaoServer;
     var fk_empresa = req.params.fk_empresa;
 
     if(fk_empresa != "" || fk_empresa != undefined){

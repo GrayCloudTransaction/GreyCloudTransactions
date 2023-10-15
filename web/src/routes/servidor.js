@@ -13,7 +13,7 @@ rota.get("/listar/:idEmpresa", (req, res) => {
     servidorController.listar(req, res);
 });
 
-rota.put("/alterar/:idServidor", (req, res) => {
+rota.post("/alterar/:idServidor", (req, res) => {
     info("Alterar");
     servidorController.alterar(req, res);
 })
