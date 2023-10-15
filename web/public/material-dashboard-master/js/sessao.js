@@ -16,7 +16,7 @@ function validarSessao() {
         if (permissao == 1) {
             link_dashboard.href = "../pages/dashboardGerente.html";
         } else {
-            link_dashboard.href = "../pages/maquinas.html";
+            link_dashboard.href = "../pages/dashboardAnalista.html";
         }
     }
 }
