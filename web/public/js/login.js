@@ -59,7 +59,7 @@ function entrar() {
   
               setTimeout(() => {
                 window.location =
-                  "material-dashboard-master/pages/dashboardAnalista.html";
+                  "material-dashboard-master/pages/maquinas.html";
               }, 2000);
             }
 
