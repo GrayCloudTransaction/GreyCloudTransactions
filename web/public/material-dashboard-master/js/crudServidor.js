@@ -79,9 +79,8 @@ function listarServidor() {
 }
 
 function salvarIdServidor(idServidor) {
-
     sessionStorage.ID_SERVIDOR = idServidor;
-
+  
 }
 
 function modalCadastrar() {

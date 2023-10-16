@@ -5,6 +5,26 @@ function info(func, query){
     console.log(`[Servidor Model] Função: ${func};\nQuery: ${query}`)
 }
 
+function pegarInfoServidor(id_servidor){
+    var query = `
+        SELECT * FROM servidor WHERE id_servidor = ${id_servidor};
+    `;
+
+    info("Pegar info do servidor", query)
+
+    return database.executar(query);
+}
+
+function pegarInfoCompsServidor(id_servidor){
+    var query = `
+        select * from componente join modelo_componente where id_modelo_componente = fk_modelo_componente and fk_servidor = ${id_servidor};
+    `;
+
+    info("Pegar info do servidor", query)
+
+    return database.executar(query);
+}
+
 
 // Funções para exportar
 function listar(idEmpresa) {
@@ -54,5 +74,7 @@ module.exports = {
     listar,
     alterar,
     inserir,
-    deletar
+    deletar,
+    pegarInfoServidor,
+    pegarInfoCompsServidor
 };
