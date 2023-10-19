@@ -13,6 +13,8 @@ function validarSessao() {
         alert("Faça login");
         window.location = "../../login.html";
     } else {
+        usuarioNome.innerHTML = nome
+
         if (permissao == 1) {
             link_dashboard.href = "../pages/dashboardGerente.html";
         } else {

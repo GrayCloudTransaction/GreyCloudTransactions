@@ -15,13 +15,20 @@ function pegarInfoServidor(){
 
         if (resposta.ok) {
             resposta.json().then((json) => {
-                console.log(json);
-                console.log(JSON.stringify(json));
-
-                for (i = 0; i < json.length; i++) {
-                    console.log(json[i])
+                console.log(json[0])
+                codigoServidor.innerHTML = json[0].codigo
+                for(i in json[1]){
+                    if(json[1][i].tipo_componente == 'CPU'){
+                        valorCPU.innerHTML = json[1][i].valor_registro
+                        modeloCPU.innerHTML = json[1][i].modelo
+                    }
+                    else if(json[1][i].tipo_componente == 'RAM'){
+                        valorRAM.innerHTML = json[1][i].valor_registro
+                    }
+                    else{
+                        valorDisco.innerHTML = json[1][i].valor_registro
+                    }
                 }
-
             });
         } else {
 

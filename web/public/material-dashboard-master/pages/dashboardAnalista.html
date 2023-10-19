@@ -50,7 +50,8 @@
         aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" target="_blank">
         <img src="../assets/img/logograyClound.png" class="navbar-brand-img h-100" alt="main_logo">
-        <span class="ms-1 font-weight-bold text-white">G.C.T</span>
+        <span class="ms-1 font-weight-bold text-white">G.C.T</span><br>
+        <span class="ms-1 font-weight-bold text-white" id="usuarioNome"></span>
       </a>
     </div>
     <hr class="horizontal light mt-0 mb-2">
@@ -208,8 +209,8 @@
                 <i class="material-icons opacity-10">weekend</i>
               </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">ID do servidor</p>
-                <h4 class="mb-0">049385</h4>
+                <p class="text-sm mb-0 text-capitalize">Código do servidor</p>
+                <h4 class="mb-0" id="codigoServidor"></h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
@@ -229,7 +230,7 @@
               </div>
               <div class="text-end pt-1">
                 <p class="text-sm mb-0 text-capitalize"> Valor Atual - CPU</p>
-                <h4 class="mb-0">53 %</h4>
+                <h4 class="mb-0" id="valorCPU"></h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
@@ -254,7 +255,7 @@
               </div>
               <div class="text-end pt-1">
                 <p class="text-sm mb-0 text-capitalize">Valor Atual - RAM</p>
-                <h4 class="mb-0">3.46 GB</h4>
+                <h4 class="mb-0" id="valorRAM"></h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
@@ -276,7 +277,7 @@
               </div>
               <div class="text-end pt-1">
                 <p class="text-sm mb-0 text-capitalize">Valor atual - Disco</p>
-                <h4 class="mb-0"> 529 GB</h4>
+                <h4 class="mb-0" id="valorDisco"></h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
@@ -380,7 +381,7 @@
                   </span>
                   <div class="timeline-content">
                     <h6 class="text-dark text-sm font-weight-bold mb-0">Modelo da CPU:</h6>
-                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">Intel Core i7-8700K</p>
+                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0" id="modeloCPU"></p>
                   </div>
                 </div>
                 <div class="timeline-block mb-3">
@@ -424,37 +425,7 @@
           </div>
         </div>
       </div>
-        <div class="container-fluid">
-          <div class="row align-items-center justify-content-lg-between">
-            <div class="col-lg-6 mb-lg-0 mb-4">
-              <div class="copyright text-center text-sm text-muted text-lg-start">
-                © <script>
-                  document.write(new Date().getFullYear())
-                </script>,
-                made with <i class="fa fa-heart"></i> by
-                <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
-                for a better web.
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer> -->
+      </footer>
     </div>
   </main>
 
@@ -807,4 +778,5 @@
 
 <script>
   pegarInfoServidor()
+  
 </script>
