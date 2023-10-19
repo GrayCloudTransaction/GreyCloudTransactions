@@ -21,7 +21,7 @@ function listarServidor() {
                       <td>
                         <div class="d-flex px-2 py-1 justify-content-center">
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm"><a href="dashboardAnalista.html" onclick="salvarIdServidor(${idServidor})">${servidor.codigo}</a></h6>
+                            <h6 class="mb-0 text-sm">${servidor.codigo}</h6>
                           </div>
                         </div>
                       </td>
@@ -29,7 +29,7 @@ function listarServidor() {
                         <span class="text-xs font-weight-bold">${servidor.nome}</span>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <span class="text-xs font-weight-bold">SITUAÇÃO</span>
+                        <span class="text-xs font-weight-bold">${servidor.status == 0 ? "Offline":"Online"}</span>
                       </td>
                       
                     </tr>

@@ -342,8 +342,10 @@
           </div>
         </div> -->
 
+        
+
         <!-- Icone vermelho -->
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="col-xl-3 col-sm-6 mb-xl-4 mb-4">
           <div class="card">
             <div class="card-header p-3 pt-2">
               <div
@@ -351,7 +353,7 @@
                 <i class="material-icons opacity-10">person</i>
               </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize"> tempo ocioso de todos os servidores</p>
+                <p class="text-sm mb-0 text-capitalize">Média de tempo ocioso</p>
                 <h4 class="mb-0">45 s</h4>
               </div>
             </div>
@@ -368,7 +370,7 @@
 
 
         <!-- Icone verde -->
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="col-xl-3 col-sm-6 mb-xl-4 mb-4">
           <div class="card">
             <div class="card-header p-3 pt-2">
               <div
@@ -390,7 +392,7 @@
 
 
         <!-- Icone preto -->
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="col-xl-3 col-sm-6 mb-xl-4 mb-4">
           <div class="card">
             <div class="card-header p-3 pt-2">
               <div
@@ -411,9 +413,30 @@
         </div>
       </div>
 
-
-
       <div class="row mt-4">
+        <div class="col-lg-12 col-md-6 mt-4 mb-4">
+          <div class="card z-index-2 ">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+              <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1" style="background-image: linear-gradient(195deg,#ec407a,#d81b60);">
+                <div class="chart">
+                  <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <h6 class="mb-0 ">Chamados por servidor</h6>
+              <p class="text-sm ">Quantidade total de chamados abertos por servidor</p>
+              <hr class="dark horizontal">
+              <div class="d-flex ">
+                <i class="material-icons text-sm my-auto me-1">schedule</i>
+                <p class="mb-0 text-sm"> Atualizado a um minuto </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="row mt-4">
         <div class="col-lg-4 col-md-6 mt-4 mb-4">
           <div class="card z-index-2 ">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
@@ -433,10 +456,7 @@
               </div>
             </div>
           </div>
-        </div>
-
-
-
+        </div> -->
 
         <div class="col-lg-4 col-md-6 mt-4 mb-4">
           <div class="card z-index-2  ">
@@ -459,8 +479,7 @@
           </div>
         </div>
 
-
-        <div class="col-lg-4 mt-4 mb-3">
+        <!-- <div class="col-lg-4 mt-4 mb-3">
           <div class="card z-index-2 ">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
               <div class="bg-gradient-dark shadow-dark border-radius-lg py-3 pe-1">
@@ -480,7 +499,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <div class="row mb-4">
         <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
@@ -559,28 +578,7 @@
 
       </div>
 
-      <div class="row mt-6">
-        <div class="col-lg-12 col-md-6 mt-4 mb-4">
-          <div class="card z-index-2 ">
-            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-              <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1" style="background-image: linear-gradient(195deg,#ec407a,#d81b60);">
-                <div class="chart">
-                  <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <h6 class="mb-0 ">Chamados por servidor</h6>
-              <p class="text-sm ">Quantidade total de chamados abertos por servidor</p>
-              <hr class="dark horizontal">
-              <div class="d-flex ">
-                <i class="material-icons text-sm my-auto me-1">schedule</i>
-                <p class="mb-0 text-sm"> Atualizado a um minuto </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      
 
       <!-- <footer class="footer py-4  ">
         <div class="container-fluid">
@@ -703,172 +701,172 @@
   <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/chartjs.min.js"></script>
   <script>
+  
+    // var ctx = document.getElementById("chart-line-1").getContext("2d");
 
-    var ctx = document.getElementById("chart-line-1").getContext("2d");
+    // new Chart(ctx, {
+    //   type: "line",
+    //   data: {
+    //     labels: ["Maio", "Junho", "Julho", "Agosto", "Setembro"],
+    //     datasets: [{
+    //       label: "Horas",
+    //       tension: 0,
+    //       borderWidth: 0,
+    //       pointRadius: 5,
+    //       pointBackgroundColor: "rgba(255, 255, 255, .8)",
+    //       pointBorderColor: "transparent",
+    //       borderColor: "rgba(255, 255, 255, .8)",
+    //       borderColor: "rgba(255, 255, 255, .8)",
+    //       borderWidth: 4,
+    //       backgroundColor: "transparent",
+    //       fill: true,
+    //       data: [2, 3, 5, 1, 3, 4],
+    //       maxBarThickness: 6
 
-    new Chart(ctx, {
-      type: "line",
-      data: {
-        labels: ["Maio", "Junho", "Julho", "Agosto", "Setembro"],
-        datasets: [{
-          label: "Horas",
-          tension: 0,
-          borderWidth: 0,
-          pointRadius: 5,
-          pointBackgroundColor: "rgba(255, 255, 255, .8)",
-          pointBorderColor: "transparent",
-          borderColor: "rgba(255, 255, 255, .8)",
-          borderColor: "rgba(255, 255, 255, .8)",
-          borderWidth: 4,
-          backgroundColor: "transparent",
-          fill: true,
-          data: [2, 3, 5, 1, 3, 4],
-          maxBarThickness: 6
-
-        }],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          }
-        },
-        interaction: {
-          intersect: false,
-          mode: 'index',
-        },
-        scales: {
-          y: {
-            grid: {
-              drawBorder: false,
-              display: true,
-              drawOnChartArea: true,
-              drawTicks: false,
-              borderDash: [5, 5],
-              color: 'rgba(255, 255, 255, .2)'
-            },
-            ticks: {
-              display: true,
-              color: '#f8f9fa',
-              padding: 10,
-              font: {
-                size: 14,
-                weight: 300,
-                family: "Roboto",
-                style: 'normal',
-                lineHeight: 2
-              },
-            }
-          },
-          x: {
-            grid: {
-              drawBorder: false,
-              display: false,
-              drawOnChartArea: false,
-              drawTicks: false,
-              borderDash: [5, 5]
-            },
-            ticks: {
-              display: true,
-              color: '#f8f9fa',
-              padding: 10,
-              font: {
-                size: 14,
-                weight: 300,
-                family: "Roboto",
-                style: 'normal',
-                lineHeight: 2
-              },
-            }
-          },
-        },
-      },
-    });
+    //     }],
+    //   },
+    //   options: {
+    //     responsive: true,
+    //     maintainAspectRatio: false,
+    //     plugins: {
+    //       legend: {
+    //         display: false,
+    //       }
+    //     },
+    //     interaction: {
+    //       intersect: false,
+    //       mode: 'index',
+    //     },
+    //     scales: {
+    //       y: {
+    //         grid: {
+    //           drawBorder: false,
+    //           display: true,
+    //           drawOnChartArea: true,
+    //           drawTicks: false,
+    //           borderDash: [5, 5],
+    //           color: 'rgba(255, 255, 255, .2)'
+    //         },
+    //         ticks: {
+    //           display: true,
+    //           color: '#f8f9fa',
+    //           padding: 10,
+    //           font: {
+    //             size: 14,
+    //             weight: 300,
+    //             family: "Roboto",
+    //             style: 'normal',
+    //             lineHeight: 2
+    //           },
+    //         }
+    //       },
+    //       x: {
+    //         grid: {
+    //           drawBorder: false,
+    //           display: false,
+    //           drawOnChartArea: false,
+    //           drawTicks: false,
+    //           borderDash: [5, 5]
+    //         },
+    //         ticks: {
+    //           display: true,
+    //           color: '#f8f9fa',
+    //           padding: 10,
+    //           font: {
+    //             size: 14,
+    //             weight: 300,
+    //             family: "Roboto",
+    //             style: 'normal',
+    //             lineHeight: 2
+    //           },
+    //         }
+    //       },
+    //     },
+    //   },
+    // });
 
 
-    var ctx3 = document.getElementById("chart-line-tasks").getContext("2d");
+    // var ctx3 = document.getElementById("chart-line-tasks").getContext("2d");
 
-    new Chart(ctx3, {
-      type: "line",
-      data: {
-        labels: ["Maio", "Junho", "Julho", "Agosto", "Setembro"],
-        datasets: [{
-          label: "Milissegundos",
-          tension: 0,
-          borderWidth: 0,
-          pointRadius: 5,
-          pointBackgroundColor: "rgba(255, 255, 255, .8)",
-          pointBorderColor: "transparent",
-          borderColor: "rgba(255, 255, 255, .8)",
-          borderWidth: 4,
-          backgroundColor: "transparent",
-          fill: true,
-          data: [120, 222, 156, 255, 189, 132, 455, 220, 440],
-          maxBarThickness: 6
+    // new Chart(ctx3, {
+    //   type: "line",
+    //   data: {
+    //     labels: ["Maio", "Junho", "Julho", "Agosto", "Setembro"],
+    //     datasets: [{
+    //       label: "Milissegundos",
+    //       tension: 0,
+    //       borderWidth: 0,
+    //       pointRadius: 5,
+    //       pointBackgroundColor: "rgba(255, 255, 255, .8)",
+    //       pointBorderColor: "transparent",
+    //       borderColor: "rgba(255, 255, 255, .8)",
+    //       borderWidth: 4,
+    //       backgroundColor: "transparent",
+    //       fill: true,
+    //       data: [120, 222, 156, 255, 189, 132, 455, 220, 440],
+    //       maxBarThickness: 6
 
-        }],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          }
-        },
-        interaction: {
-          intersect: false,
-          mode: 'index',
-        },
-        scales: {
-          y: {
-            grid: {
-              drawBorder: false,
-              display: true,
-              drawOnChartArea: true,
-              drawTicks: false,
-              borderDash: [5, 5],
-              color: 'rgba(255, 255, 255, .2)'
-            },
-            ticks: {
-              display: true,
-              padding: 10,
-              color: '#f8f9fa',
-              font: {
-                size: 14,
-                weight: 300,
-                family: "Roboto",
-                style: 'normal',
-                lineHeight: 2
-              },
-            }
-          },
-          x: {
-            grid: {
-              drawBorder: false,
-              display: false,
-              drawOnChartArea: false,
-              drawTicks: false,
-              borderDash: [5, 5]
-            },
-            ticks: {
-              display: true,
-              color: '#f8f9fa',
-              padding: 10,
-              font: {
-                size: 14,
-                weight: 300,
-                family: "Roboto",
-                style: 'normal',
-                lineHeight: 2
-              },
-            }
-          },
-        },
-      },
-    });
+    //     }],
+    //   },
+    //   options: {
+    //     responsive: true,
+    //     maintainAspectRatio: false,
+    //     plugins: {
+    //       legend: {
+    //         display: false,
+    //       }
+    //     },
+    //     interaction: {
+    //       intersect: false,
+    //       mode: 'index',
+    //     },
+    //     scales: {
+    //       y: {
+    //         grid: {
+    //           drawBorder: false,
+    //           display: true,
+    //           drawOnChartArea: true,
+    //           drawTicks: false,
+    //           borderDash: [5, 5],
+    //           color: 'rgba(255, 255, 255, .2)'
+    //         },
+    //         ticks: {
+    //           display: true,
+    //           padding: 10,
+    //           color: '#f8f9fa',
+    //           font: {
+    //             size: 14,
+    //             weight: 300,
+    //             family: "Roboto",
+    //             style: 'normal',
+    //             lineHeight: 2
+    //           },
+    //         }
+    //       },
+    //       x: {
+    //         grid: {
+    //           drawBorder: false,
+    //           display: false,
+    //           drawOnChartArea: false,
+    //           drawTicks: false,
+    //           borderDash: [5, 5]
+    //         },
+    //         ticks: {
+    //           display: true,
+    //           color: '#f8f9fa',
+    //           padding: 10,
+    //           font: {
+    //             size: 14,
+    //             weight: 300,
+    //             family: "Roboto",
+    //             style: 'normal',
+    //             lineHeight: 2
+    //           },
+    //         }
+    //       },
+    //     },
+    //   },
+    // });
 
 
     var ctx4 = document.getElementById("chart-pie").getContext("2d");
