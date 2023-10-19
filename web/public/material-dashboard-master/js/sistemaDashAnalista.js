@@ -19,14 +19,17 @@ function pegarInfoServidor(){
                 codigoServidor.innerHTML = json[0].codigo
                 for(i in json[1]){
                     if(json[1][i].tipo_componente == 'CPU'){
-                        valorCPU.innerHTML = json[1][i].valor_registro
-                        modeloCPU.innerHTML = json[1][i].modelo
+                        valorCPU.innerHTML = json[1][i].valor_registro + "%"
+                        maxCPU.innerHTML = json[1][i].valor_registro + "%"
+                        // modeloCPU.innerHTML = json[1][i].modelo
                     }
                     else if(json[1][i].tipo_componente == 'RAM'){
-                        valorRAM.innerHTML = json[1][i].valor_registro
+                        valorRAM.innerHTML = json[1][i].valor_registro + "%"
+                        maxRAM.innerHTML = json[1][i].valor_registro + "%"
                     }
                     else{
-                        valorDisco.innerHTML = json[1][i].valor_registro
+                        valorDisco.innerHTML = json[1][i].valor_registro + "%"
+                        maxDisco.innerHTML = json[1][i].valor_registro + "%"
                     }
                 }
             });

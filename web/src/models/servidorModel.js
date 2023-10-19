@@ -17,8 +17,18 @@ function pegarInfoServidor(id_servidor){
 
 function pegarInfoCompsServidor(id_servidor){
     var query = `
-        select componente.*, modelo_componente.*, valor_registro from registro, (select max(id_registro) as id_registro from registro group by fk_componente) as id_recente, modelo_componente, componente
-        where registro.id_registro = id_recente.id_registro and fk_componente = id_componente and fk_modelo_componente = id_modelo_componente and fk_servidor = 1;
+        SELECT componente.*, 
+            modelo_componente.*, 
+            valor_registro
+        FROM registro, 
+            (SELECT MAX(id_registro) AS id_registro FROM registro GROUP BY fk_componente) AS 
+                id_recente, 
+                modelo_componente, 
+                componente
+        WHERE registro.id_registro = id_recente.id_registro AND 
+            fk_componente = id_componente AND 
+            fk_modelo_componente = id_modelo_componente AND 
+            fk_servidor = ${id_servidor};
     `;
 
     info("Pegar info do servidor", query)
