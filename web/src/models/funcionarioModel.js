@@ -2,7 +2,7 @@ var database = require("../database/config");
 
 // Funções locais -- Usado somene por esse arquivo;
 function info(func, query){
-    console.log(`[Empresa Model] Função: ${func};\nQuery: ${query}`)
+    console.log(`[Funcionario Model] Função: ${func};\nQuery: ${query}`)
 }
 
 
