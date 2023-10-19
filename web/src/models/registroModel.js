@@ -16,7 +16,7 @@ function buscarUltimosRegistros(id_servidor, limite) {
         LIMIT ${limite};
     `;
     
-    info("Cadastrar Funcionário", instrucao)
+    info("Buscar Últimos Registros", instrucao)
 
     return database.executar(instrucao);
 }

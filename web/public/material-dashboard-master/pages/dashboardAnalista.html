@@ -75,6 +75,9 @@
         </li>
       </ul>
     </div>
+    <a style="display: none;" id="link_dashboard"> </a>
+
+    </div>
     <div class="sidenav-footer position-absolute w-100 bottom-0 ">
       <div class="mx-3">
         <a class="btn btn-outline-primary mt-4 w-100" href="../../index.html" type="button"
@@ -846,6 +849,7 @@
 <script src="../js/sistemaDashAnalista.js"></script>
 
 <script>
+  validarSessao()
   pegarInfoServidor()
   obterDadosGrafico(sessionStorage.ID_SERVIDOR)
 </script>

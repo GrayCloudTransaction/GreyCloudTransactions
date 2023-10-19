@@ -231,7 +231,7 @@ SELECT
     `componente`.`fk_servidor`
     
 FROM `registro`
-    INNER JOIN `unidade_medida` ON 
+    INNER JOIN `unidade_me dida` ON 
         `registro`.`fk_unidade_medida` = `unidade_medida`.`id_unidade_medida` AND `unidade_medida`.`sigla` = '%'
     INNER JOIN `componente` ON
         `registro`.`fk_componente` = `componente`.`id_componente` AND `componente`.`tipo_componente` LIKE 'RAM';

@@ -38,7 +38,7 @@ function obterDadosGrafico(id_servidor) {
     //if (proximaAtualizacao != undefined) {
     //    clearTimeout(proximaAtualizacao);
     //}
-
+    
     fetch(`/registro/ultimas/${id_servidor}`, {
          cache: 'no-store' 
         }
@@ -47,7 +47,6 @@ function obterDadosGrafico(id_servidor) {
             response.json().then(function (resposta) {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                 console.log(resposta)
-                alert('teste')
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
@@ -56,4 +55,6 @@ function obterDadosGrafico(id_servidor) {
         .catch(function (error) {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
+
+    
 }
