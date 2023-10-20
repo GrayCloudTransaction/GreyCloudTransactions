@@ -42,7 +42,7 @@ function listarServidor() {
                             <span class="text-xs font-weight-bold">${servidor.nome}</span>
                         </td>
                         <td class="align-middle text-center text-sm">
-                            <span class="text-xs font-weight-bold">${servidor.status == 0 ? "Offline" : "Online"}</span>
+                            <span class="text-xs font-weight-bold">${servidorEspecificoForaDoAr(idServidor) < 1.30 ? "Offline" : "Online"}</span>
                         </td>
                         
                         </tr>
@@ -104,6 +104,35 @@ function listarServidor() {
         .catch(function (erro) {
             console.log(erro);
         });
+
+}
+
+function servidorEspecificoForaDoAr(id_servidor) {
+    fetch(`/servidor/foraDoAr/${id_servidor}`, {cache: 'no-store'}).then(function (resposta) {
+        if (resposta.ok){
+            console.log(`>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> RESPOSTA\n\n\n\n\n\n\>>>>>>>>>>>>>>>>>>>>>>>>>>\n${resposta}`)
+            // console.warn(resposta)
+
+            resposta.json().then((json) => {
+                console.log(json);
+                
+                // console.warn(JSON.stringify(json))
+                // console.warn(json[0].tempo_sem_registro)
+                
+                return json[0].tempo_sem_registro;
+
+            })
+            .catch(function (erro) {
+                console.log(erro);
+            });
+            
+        }
+    
+    })
+    .catch(function (erro) {
+        console.log(erro);
+    });
+
 
 }
 
