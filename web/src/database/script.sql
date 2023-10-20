@@ -1,4 +1,4 @@
--- Active: 1692410681355@@127.0.0.1@3306@ScriptGCT
+-- Active: 1696953654739@@127.0.0.1@3306@ScriptGCT
 DROP DATABASE ScriptGCT;
 CREATE DATABASE IF NOT EXISTS `ScriptGCT` DEFAULT CHARACTER SET utf8 ;
 USE `ScriptGCT`;
@@ -237,3 +237,11 @@ FROM `registro`
         `registro`.`fk_componente` = `componente`.`id_componente` AND `componente`.`tipo_componente` LIKE 'RAM';
 
 SELECT `valor_registro` FROM `vw_registro_RAM` WHERE `fk_servidor` = 1;
+
+SELECT registro.*, tipo_componente
+        FROM registro, componente
+        WHERE tipo_componente IN ("CPU", "RAM", "Disco")
+        AND id_componente = fk_componente
+        AND fk_servidor = 1
+        ORDER BY data_registro DESC
+        LIMIT 3;
