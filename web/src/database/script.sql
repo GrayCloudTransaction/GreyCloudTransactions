@@ -1,4 +1,4 @@
--- Active: 1696953654739@@127.0.0.1@3306@ScriptGCT
+-- Active: 1684077642942@@127.0.0.1@3306@scriptgct
 DROP DATABASE ScriptGCT;
 CREATE DATABASE IF NOT EXISTS `ScriptGCT` DEFAULT CHARACTER SET utf8 ;
 USE `ScriptGCT`;
@@ -221,20 +221,17 @@ FROM `registro`
 
 SELECT * FROM `vw_registro_geral` WHERE `fk_servidor` = 1;
 
-
 CREATE OR REPLACE VIEW `vw_registro_RAM` AS 
-SELECT 
-    `registro`.`data_registro`,
-    `registro`.`valor_registro`,
-    `unidade_medida`.`sigla`,
-    `componente`.`tipo_componente`,
-    `componente`.`fk_servidor`
-    
-FROM `registro`
-    INNER JOIN `unidade_me dida` ON 
-        `registro`.`fk_unidade_medida` = `unidade_medida`.`id_unidade_medida` AND `unidade_medida`.`sigla` = '%'
-    INNER JOIN `componente` ON
-        `registro`.`fk_componente` = `componente`.`id_componente` AND `componente`.`tipo_componente` LIKE 'RAM';
+SELECT * FROM `vw_registro_geral` 
+  WHERE `tipo_componente` LIKE 'RAM';
+
+CREATE OR REPLACE VIEW `vw_registro_CPU` AS 
+SELECT * FROM `vw_registro_geral` 
+  WHERE `tipo_componente` LIKE 'CPU';
+
+CREATE OR REPLACE VIEW `vw_registro_Disco` AS 
+SELECT * FROM `vw_registro_geral` 
+  WHERE `tipo_componente` LIKE 'Disco';
 
 SELECT `valor_registro` FROM `vw_registro_RAM` WHERE `fk_servidor` = 1;
 
