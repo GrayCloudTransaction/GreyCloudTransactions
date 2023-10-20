@@ -71,11 +71,24 @@ function deletar(id_servidor){
     return database.executar(query);
 }
 
+function servidorForaDoAr(id_servidor){
+    // Essa divisão por 60 é para trazer os minutos, pois a conta retorna segundos
+    var query =`
+    SELECT (NOW() - data_registro) / 60 AS tempo_sem_registro FROM vw_registro_geral 
+        WHERE fk_servidor = ${id_servidor}
+        ORDER BY tempo_sem_registro DESC
+        LIMIT 1;
+    `
+    info("Servidor Fora Do Ar", query)
+    return database.executar(query);
+}
+
 module.exports = {
     listar,
     alterar,
     inserir,
     deletar,
     pegarInfoServidor,
-    pegarInfoCompsServidor
+    pegarInfoCompsServidor,
+    servidorForaDoAr
 };

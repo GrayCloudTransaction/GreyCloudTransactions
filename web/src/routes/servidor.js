@@ -35,5 +35,9 @@ rota.delete("/deletar/:id_servidor", (req, res) =>{
     servidorController.deletar(req, res);
 })
 
+rota.get("/foraDoAr/:id_servidor", (req, res) => {
+    info("Servidor Fora do Ar");
+    servidorController.servidorForaDoAr(req, res);
+});
 
 module.exports = rota;

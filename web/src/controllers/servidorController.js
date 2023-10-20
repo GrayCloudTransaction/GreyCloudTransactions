@@ -165,10 +165,40 @@ function deletar(req, res) {
     }
 }
 
+function servidorForaDoAr(req, res) {
+    info("Servidor Fora do Ar");
+
+    var id_servidor = req.params.id_servidor;
+
+    if (id_servidor != "" || id_servidor != undefined) {
+
+        servidorModel.servidorForaDoAr(id_servidor).then(function (resultado) {
+
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            }
+            else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao realizar a CONSULTA!\nErro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+
+        })
+
+    }
+    else {
+        res.status(400).send("ID Servidor está vazio ou undefined");
+    }
+}
+
 module.exports = {
     listar,
     alterar,
     inserir,
     deletar,
-    pegarInfoServidor
+    pegarInfoServidor,
+    servidorForaDoAr
 }
