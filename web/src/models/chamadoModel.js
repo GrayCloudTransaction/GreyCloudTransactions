@@ -24,7 +24,7 @@ function listarPorServidor(id_empresa) {
     FROM chamados 
 	    JOIN componente ON chamados.fk_componente = componente.id_componente 
 	    JOIN servidor ON componente.fk_servidor = servidor.id_servidor
-	    WHERE chamados.fk_empresa = ${id_empresa} GROUP BY id_servidor;
+	WHERE chamados.fk_empresa = ${id_empresa} GROUP BY id_servidor;
     `;
     info("Listar por servidor", query);
     return database.executar(query);

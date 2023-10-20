@@ -1,6 +1,10 @@
 function listarServidor() {
 
     var idEmpresa = sessionStorage.ID_EMPRESA;
+    var ctx4 = document.getElementById("chart-pie").getContext("2d");                        
+    var dataGraficoPizza = [0, 0];
+    var qtdServidor = 0;
+    var qtdServidorOff = 0;
 
     fetch(`/servidor/listar/${idEmpresa}`, { cache: 'no-store' })
         .then(function (resposta) {
@@ -11,30 +15,42 @@ function listarServidor() {
                     console.log(json);
                     console.log(JSON.stringify(json));
 
-                    for (i = 0; i < 5; i++) {
+                    for (i = 0; i < json.length; i++) {
                         var servidor = json[i];
                         var idServidor = servidor.id_servidor;
 
-                        listaDeServidores.innerHTML += `
-                    <tr id="${idServidor}">
+                        if (json[i].status == 1) {
+                            dataGraficoPizza[0]++;
+                            qtdServidor++;
+                        } else if (json[i].status == 0) {
+                            dataGraficoPizza[1]++;
+                            qtdServidor;
+                            qtdServidorOff++;
+                        }
 
-                      <td>
-                        <div class="d-flex px-2 py-1 justify-content-center">
-                          <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">${servidor.codigo}</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="text-xs font-weight-bold">${servidor.nome}</span>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="text-xs font-weight-bold">${servidor.status == 0 ? "Offline":"Online"}</span>
-                      </td>
-                      
-                    </tr>
-                    `
+                        listaDeServidores.innerHTML += `
+                        <tr id="${idServidor}">
+
+                        <td>
+                            <div class="d-flex px-2 py-1 justify-content-center">
+                            <div class="d-flex flex-column justify-content-center">
+                                <h6 class="mb-0 text-sm">${servidor.codigo}</h6>
+                            </div>
+                            </div>
+                        </td>
+                        <td class="align-middle text-center text-sm">
+                            <span class="text-xs font-weight-bold">${servidor.nome}</span>
+                        </td>
+                        <td class="align-middle text-center text-sm">
+                            <span class="text-xs font-weight-bold">${servidor.status == 0 ? "Offline" : "Online"}</span>
+                        </td>
+                        
+                        </tr>
+                        `
                     }
+
+                    servidoresForaDoAr.innerHTML += qtdServidorOff;
+                    servidorTotal.innerHTML += qtdServidor;
 
                     listaDeServidores.innerHTML += `
                 <tr>
@@ -51,6 +67,75 @@ function listarServidor() {
                     </td>
                 </tr>
                 `
+                
+                    new Chart(ctx4, {
+                        type: "pie",
+                        data: {
+                            labels: ["Online", "Offline"],
+                            datasets: [{
+                                label: "Servidores",
+                                backgroundColor: ["#66BB6A", "#EF5350"],
+                                hoverBackgroundColor: ["#43A047", "#E53935"],
+                                hoverOffset: 3,
+                                data: dataGraficoPizza, // modificar aq com a query do banco <------------------------------------------------------------
+                            }],
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    display: true,
+                                }
+                            }
+                        },
+                    });
+                });
+
+                
+
+            } else {
+
+                resposta.text().then((texto) => {
+                    console.error(texto);
+                });
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+        });
+
+}
+
+function kpiChamados() {
+
+    var idEmpresa = sessionStorage.ID_EMPRESA;
+    var chamadosAbertos = 0;
+    var chamadosTotais = 0;
+
+    fetch(`/chamado/listarPorEmpresa/${idEmpresa}`, { cache: 'no-store' })
+        .then(function (resposta) {
+            console.log(resposta);
+
+            if (resposta.ok) {
+                resposta.json().then((json) => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    for (i = 0; i < json.length; i++) {
+                        var chamado = json[i];
+                        
+                        if (chamado.status == "Aberto") {
+                            chamadosAbertos++;
+                            chamadosTotais++;
+                        } else {
+                            chamadosTotais++;
+                        }
+ 
+                    }
+
+                    chamadosAberto.innerHTML += chamadosAbertos;
+                    chamadosTotal.innerHTML += chamadosTotais;
                 });
             } else {
 
@@ -88,40 +173,40 @@ function plotarGraficoChamadosPorMes() {
                         var mes = anoMes.substring(4, 7);
 
                         switch (mes) {
-                            case "01": 
+                            case "01":
                                 labelsGrafico.push(`Janeiro/${ano}`);
                                 break;
-                            case "02": 
+                            case "02":
                                 labelsGrafico.push(`Fevereiro/${ano}`);
                                 break;
-                            case "03": 
+                            case "03":
                                 labelsGrafico.push(`Março/${ano}`);
                                 break;
-                            case "04": 
+                            case "04":
                                 labelsGrafico.push(`Abril/${ano}`);
                                 break;
-                            case "05": 
+                            case "05":
                                 labelsGrafico.push(`Maio/${ano}`);
                                 break;
-                            case "06": 
+                            case "06":
                                 labelsGrafico.push(`Junho/${ano}`);
                                 break;
-                            case "07": 
+                            case "07":
                                 labelsGrafico.push(`Julho/${ano}`);
                                 break;
-                            case "08": 
+                            case "08":
                                 labelsGrafico.push(`Agosto/${ano}`);
                                 break;
-                            case "09": 
+                            case "09":
                                 labelsGrafico.push(`Setembro/${ano}`);
                                 break;
-                            case "10": 
+                            case "10":
                                 labelsGrafico.push(`Outubro/${ano}`);
                                 break;
-                            case "11": 
+                            case "11":
                                 labelsGrafico.push(`Novembro/${ano}`);
                                 break;
-                            case "12": 
+                            case "12":
                                 labelsGrafico.push(`Dezembro/${ano}`);
                                 break;
                         }
@@ -253,16 +338,12 @@ function plotarGraficoChamadosPorServidor() {
                                 label: "Quantidade de chamados",
                                 tension: 0,
                                 borderWidth: 0,
-                                pointRadius: 5,
-                                pointBackgroundColor: "rgba(255, 255, 255, .8)",
-                                pointBorderColor: "transparent",
-                                borderColor: "rgba(255, 255, 255, .8)",
-                                borderColor: "rgba(255, 255, 255, .8)",
-                                borderWidth: 4,
-                                backgroundColor: "transparent",
+                                borderWidth: 0,
+                                backgroundColor: "rgba(255, 255, 255, .8)",
                                 fill: true,
                                 data: dataGrafico,
-                                maxBarThickness: 6
+                                barThickness: 60,
+                                maxBarThickness: 100
 
                             }],
                         },
@@ -326,6 +407,8 @@ function plotarGraficoChamadosPorServidor() {
                         },
                     });
 
+                    
+
                 })
             } else {
                 resposta.text().then((texto) => {
@@ -337,3 +420,4 @@ function plotarGraficoChamadosPorServidor() {
             console.log(erro);
         });
 }
+
