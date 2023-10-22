@@ -1,4 +1,4 @@
--- Active: 1684077642942@@127.0.0.1@3306@scriptgct
+-- Active: 1692410681355@@127.0.0.1@3306@ScriptGCT
 DROP DATABASE ScriptGCT;
 CREATE DATABASE IF NOT EXISTS `ScriptGCT` DEFAULT CHARACTER SET utf8 ;
 USE `ScriptGCT`;
@@ -28,7 +28,6 @@ CREATE TABLE IF NOT EXISTS `funcionario` (
   FOREIGN KEY (`fk_gerente`) REFERENCES funcionario(`id_funcionario`) ON DELETE CASCADE,
   FOREIGN KEY (`fk_empresa`) REFERENCES empresa(`id_empresa`) ON DELETE CASCADE
 );
-
 
 CREATE TABLE IF NOT EXISTS `servidor` (
   `id_servidor` INT NOT NULL auto_increment,
