@@ -1,7 +1,7 @@
 function listarServidor() {
 
     var idEmpresa = sessionStorage.ID_EMPRESA;
-    var ctx4 = document.getElementById("chart-pie").getContext("2d");                        
+    var ctx4 = document.getElementById("chart-pie").getContext("2d");
     var dataGraficoPizza = [0, 0];
     var qtdServidor = 0;
     var qtdServidorOff = 0;
@@ -42,7 +42,7 @@ function listarServidor() {
                             <span class="text-xs font-weight-bold">${servidor.nome}</span>
                         </td>
                         <td class="align-middle text-center text-sm">
-                            <span class="text-xs font-weight-bold">${servidorEspecificoForaDoAr(idServidor) < 1.30 ? "Offline" : "Online"}</span>
+                            <span class="text-xs font-weight-bold" id="statusServidor${idServidor}"></span>
                         </td>
                         
                         </tr>
@@ -67,7 +67,7 @@ function listarServidor() {
                     </td>
                 </tr>
                 `
-                
+
                     new Chart(ctx4, {
                         type: "pie",
                         data: {
@@ -92,7 +92,7 @@ function listarServidor() {
                     });
                 });
 
-                
+
 
             } else {
 
@@ -108,32 +108,38 @@ function listarServidor() {
 }
 
 function servidorEspecificoForaDoAr(id_servidor) {
-    fetch(`/servidor/foraDoAr/${id_servidor}`, {cache: 'no-store'}).then(function (resposta) {
-        if (resposta.ok){
-            console.log(`>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> RESPOSTA\n\n\n\n\n\n\>>>>>>>>>>>>>>>>>>>>>>>>>>\n${resposta}`)
-            // console.warn(resposta)
+    fetch(`/servidor/foraDoAr/${id_servidor}`, { cache: 'no-store' })
+        .then((resposta) => {
+            console.log(resposta)
 
-            resposta.json().then((json) => {
-                console.log(json);
-                
-                // console.warn(JSON.stringify(json))
-                // console.warn(json[0].tempo_sem_registro)
-                
-                return json[0].tempo_sem_registro;
+            if (resposta.ok) {
+                var statusServidor = document.getElementById(`statusServidor${id_servidor}`);
 
-            })
-            .catch(function (erro) {
-                console.log(erro);
-            });
-            
-        }
-    
-    })
-    .catch(function (erro) {
-        console.log(erro);
-    });
+                if (resposta.status == 200) {
+                    resposta.json().then((json) => {
+                        console.log(json);
+                        console.log(JSON.stringify(json))
+                        console.log(json[0].tempo_sem_registro);
+                        
+                        statusServidor.innerHTML += json[0].tempo_sem_registro < 31 ? "ONLINE" : "OFFLINE";
+                        tempoOciosoDosServidores.push(Number(json[0].tempo_sem_registro)); // variável global para kpi média de tempo ocioso dos servidores
+                    }).catch(function (erro) {
+                        console.log(erro);
+                    });
+                } else {
+                    statusServidor.innerHTML += "OFFLINE";
+                    tempoOciosoDosServidores.push(0);
+                }
+            } else {
+                resposta.text().then((texto) => {
+                    console.error(texto);
+                });
+            }
 
-
+        })
+        .catch(function (erro) {
+            console.log(erro);
+        });
 }
 
 function kpiChamados() {
@@ -153,14 +159,14 @@ function kpiChamados() {
 
                     for (i = 0; i < json.length; i++) {
                         var chamado = json[i];
-                        
+
                         if (chamado.status == "Aberto") {
                             chamadosAbertos++;
                             chamadosTotais++;
                         } else {
                             chamadosTotais++;
                         }
- 
+
                     }
 
                     chamadosAberto.innerHTML += chamadosAbertos;
@@ -436,7 +442,7 @@ function plotarGraficoChamadosPorServidor() {
                         },
                     });
 
-                    
+
 
                 })
             } else {
@@ -450,3 +456,23 @@ function plotarGraficoChamadosPorServidor() {
         });
 }
 
+var tempoOciosoDosServidores = [];
+function kpiMediaTempoOcioso() {
+    
+    var totalTempoOcioso = 0;
+    for (var cont = 0; cont < tempoOciosoDosServidores.length; cont++) {
+        totalTempoOcioso += tempoOciosoDosServidores[cont];
+    }
+    console.log("Total tempo ocioso: " + totalTempoOcioso)
+    totalTempoOcioso /= tempoOciosoDosServidores.length;
+    
+    if (totalTempoOcioso >= 60) {
+        if (totalTempoOcioso > 3600) {
+            mediaTempoOcioso.innerHTML += `${Math.floor(totalTempoOcioso/3600)} ${Math.floor((totalTempoOcioso%3600)/60)} m ${Math.floor((totalTempoOcioso%3600)%60)} s`;    
+        } else {
+            mediaTempoOcioso.innerHTML += `${Math.floor(totalTempoOcioso/60)} m ${Math.floor(totalTempoOcioso%60)} s`;
+        }
+    } else {
+        mediaTempoOcioso.innerHTML += `${totalTempoOcioso.toFixed()} s`;
+    }
+}

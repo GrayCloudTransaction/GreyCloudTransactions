@@ -354,7 +354,7 @@
               </div>
               <div class="text-end pt-1">
                 <p class="text-sm mb-0 text-capitalize">Média de tempo ocioso</p>
-                <h4 class="mb-0">45 s</h4>
+                <h4 class="mb-0" id="mediaTempoOcioso"></h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
@@ -531,7 +531,7 @@
                   <h6>Servidores</h6>
                   <p class="text-sm mb-0">
                     <i class="fa fa-check text-info" aria-hidden="true"></i>
-                    2 Servidores conectados
+                    3 Servidores conectados
                   </p>
                 </div>
                 <!-- <div class="col-lg-6 col-5 my-auto text-end">
@@ -896,6 +896,20 @@
     kpiChamados();
     plotarGraficoChamadosPorServidor();
     plotarGraficoChamadosPorMes();
+
+    setTimeout(() => {
+      var listaDeServidor = document.getElementById("listaDeServidores");
+      for (var n = 1; n < listaDeServidor.rows.length; n++) {
+        var idServidor = document.getElementsByTagName("tr")[n].id;
+        servidorEspecificoForaDoAr(idServidor);
+      }
+      setTimeout(() => {
+        kpiMediaTempoOcioso()
+      }, 500)
+    }, 1000)
+    
+    
+    
   </script>
 </body>
 </html>
