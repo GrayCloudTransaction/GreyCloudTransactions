@@ -1,7 +1,7 @@
 var registroModel = require("../models/registroModel");
 
 function buscarUltimosRegistros(req, res) {
-    const limite_linhas = 15;
+    const limite_linhas = 3;
 
     var id_servidor = req.params.id_servidor;
 
