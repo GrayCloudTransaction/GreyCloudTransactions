@@ -9197,7 +9197,7 @@ fieldset:disabled .btn {
 }
 
 .justify-content-between {
-  justify-content: space-between !important;
+  justify-content: space-evenly !important;
 }
 
 .justify-content-around {
@@ -10101,7 +10101,7 @@ fieldset:disabled .btn {
 }
 
 .p-3 {
-  padding: 1rem !important;
+  padding: 2rem !important;
 }
 
 .p-4 {
