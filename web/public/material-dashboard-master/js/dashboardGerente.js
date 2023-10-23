@@ -121,7 +121,7 @@ function servidorEspecificoForaDoAr(id_servidor) {
                         console.log(JSON.stringify(json))
                         console.log(json[0].tempo_sem_registro);
                         
-                        statusServidor.innerHTML += json[0].tempo_sem_registro < 31 ? "ONLINE" : "OFFLINE";
+                        statusServidor.innerHTML += json[0].tempo_sem_registro < 6 ? "ONLINE" : "OFFLINE";
                         tempoOciosoDosServidores.push(Number(json[0].tempo_sem_registro)); // variável global para kpi média de tempo ocioso dos servidores
                     }).catch(function (erro) {
                         console.log(erro);
@@ -468,7 +468,7 @@ function kpiMediaTempoOcioso() {
     
     if (totalTempoOcioso >= 60) {
         if (totalTempoOcioso > 3600) {
-            mediaTempoOcioso.innerHTML += `${Math.floor(totalTempoOcioso/3600)} ${Math.floor((totalTempoOcioso%3600)/60)} m ${Math.floor((totalTempoOcioso%3600)%60)} s`;    
+            mediaTempoOcioso.innerHTML += `${Math.floor(totalTempoOcioso/3600)} h ${Math.floor((totalTempoOcioso%3600)/60)} m ${Math.floor((totalTempoOcioso%3600)%60)} s`;    
         } else {
             mediaTempoOcioso.innerHTML += `${Math.floor(totalTempoOcioso/60)} m ${Math.floor(totalTempoOcioso%60)} s`;
         }

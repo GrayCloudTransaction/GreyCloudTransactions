@@ -384,6 +384,6 @@ function teste(id_servidor){
     },
   });
 
-
+  obterDadosGrafico(id_servidor, chart1, chart2, chart3)
   setInterval(() => obterDadosGrafico(id_servidor, chart1, chart2, chart3), 5500)
 }
