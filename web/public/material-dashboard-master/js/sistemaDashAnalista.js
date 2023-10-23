@@ -27,6 +27,36 @@ function pegarInfoServidor() {
     });
 }
 
+function chamadosAbertosServidor() {
+  var idEmpresa = sessionStorage.ID_EMPRESA;
+  var idServidor = sessionStorage.ID_SERVIDOR;
+
+  fetch(`/chamado/listarPorServidor/${idEmpresa}`, { cache: 'no-store' })
+        .then(function (resposta) {
+            console.log(resposta);
+
+            if (resposta.ok) {
+                resposta.json().then((json) => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    for (var i = 0; i < json.length; i++) {
+                        if (json[i].id_servidor == idServidor) {
+                          qtdTotalChamados.innerHTML += json[i].qtd_chamados;
+                        }
+                    }
+                    });
+            } else {
+                resposta.text().then((texto) => {
+                    console.error(texto);
+                });
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+        });
+}
+
 function obterDadosGrafico(id_servidor, graficoCpu, graficoRam, graficoDisco) {
   var valorCpu
   var valorRam
