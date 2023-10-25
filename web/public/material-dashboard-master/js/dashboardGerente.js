@@ -24,7 +24,7 @@ function listarServidor() {
                             qtdServidor++;
                         } else if (json[i].status == 0) {
                             dataGraficoPizza[1]++;
-                            qtdServidor;
+                            qtdServidor++;
                             qtdServidorOff++;
                         }
 
@@ -468,11 +468,11 @@ function kpiMediaTempoOcioso() {
     
     if (totalTempoOcioso >= 60) {
         if (totalTempoOcioso > 3600) {
-            mediaTempoOcioso.innerHTML += `${Math.floor(totalTempoOcioso/3600)} h ${Math.floor((totalTempoOcioso%3600)/60)} m ${Math.floor((totalTempoOcioso%3600)%60)} s`;    
+            mediaTempoOcioso.innerHTML = `${Math.floor(totalTempoOcioso/3600)} h ${Math.floor((totalTempoOcioso%3600)/60)} m ${Math.floor((totalTempoOcioso%3600)%60)} s`;    
         } else {
-            mediaTempoOcioso.innerHTML += `${Math.floor(totalTempoOcioso/60)} m ${Math.floor(totalTempoOcioso%60)} s`;
+            mediaTempoOcioso.innerHTML = `${Math.floor(totalTempoOcioso/60)} m ${Math.floor(totalTempoOcioso%60)} s`;
         }
     } else {
-        mediaTempoOcioso.innerHTML += `${totalTempoOcioso.toFixed()} s`;
+        mediaTempoOcioso.innerHTML = `${totalTempoOcioso.toFixed()} s`;
     }
 }
