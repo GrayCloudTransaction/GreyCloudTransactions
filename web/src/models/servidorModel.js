@@ -30,7 +30,7 @@ function pegarInfoCompsServidor(id_servidor){
 // Funções para exportar
 function listar(idEmpresa) {
     var query = `
-        SELECT * FROM servidor WHERE fk_empresa = ${idEmpresa};
+        SELECT * FROM servidor WHERE fk_empresa = ${idEmpresa} ORDER BY prioridade desc;
     `;
 
     info("Listar", query)
