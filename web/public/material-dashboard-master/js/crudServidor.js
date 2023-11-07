@@ -14,6 +14,26 @@ function listarServidor() {
                 for (i = 0; i < json.length; i++) {
                     var servidor = json[i];
                     var idServidor = servidor.id_servidor;
+                    var texto_prioridade = ``;
+                    var cor = ""
+
+
+                    if(servidor.prioridade <= 0){
+                      texto_prioridade = `Seguro`
+                      cor = "green"
+                    }
+                    else if(servidor.prioridade < 4){
+                      texto_prioridade = `Alerta`
+                      cor = "darkgoldenrod"
+                    }
+                    else if(servidor.prioridade < 8){
+                      texto_prioridade = `Perigo`
+                      cor = "brown"
+                    }
+                    else{
+                      texto_prioridade = `PERIGO MÁXIMO`
+                      cor = "maroon"
+                    }
 
                     listaDeServidores.innerHTML += `
                     <tr id="${idServidor}">
@@ -23,6 +43,9 @@ function listarServidor() {
                             <h6 class="mb-0 text-sm"><a href="dashboardAnalista.html" id="codigo_${idServidor}" onclick="salvarIdServidor(${idServidor})">${servidor.codigo}</a></h6>
                           </div>
                         </div>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-xs font-weight-bold" style="color:${cor};">${texto_prioridade}</span>
                       </td>
                       <td class="align-middle text-center text-sm">
                         <span class="text-xs font-weight-bold" id="nome_${idServidor}">${servidor.nome}</span>

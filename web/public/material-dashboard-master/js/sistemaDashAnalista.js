@@ -88,7 +88,7 @@ function obterDadosGrafico(id_servidor, graficoCpu, graficoRam, graficoDisco) {
                 valorCPUID.style.color = "red"
               } 
               else if(valorCpu > 50){
-                valorCPUID.style.color = "yellow"
+                valorCPUID.style.color = "darkgoldenrod"
               }
               else{
                 valorCPUID.style.color = "green"
@@ -105,7 +105,7 @@ function obterDadosGrafico(id_servidor, graficoCpu, graficoRam, graficoDisco) {
                 valorRAMID.style.color = "red"
               } 
               else if(valorRam > 50){
-                valorRAMID.style.color = "yellow"
+                valorRAMID.style.color = "darkgoldenrod"
               }
               else{
                 valorRAMID.style.color = "green"
@@ -123,7 +123,7 @@ function obterDadosGrafico(id_servidor, graficoCpu, graficoRam, graficoDisco) {
                 valorDiscoID.style.color = "red"
               } 
               else if(valorDisco < 40){
-                valorDiscoID.style.color = "yellow"
+                valorDiscoID.style.color = "darkgoldenrod"
               }
               else{
                 valorDiscoID.style.color = "green"
