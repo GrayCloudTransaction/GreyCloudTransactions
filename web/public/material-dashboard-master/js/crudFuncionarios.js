@@ -249,9 +249,6 @@ function listarFuncionarios() {
               <td>
                 <p class="text-xs font-weight-bold mb-0" id="cargo_${idFuncionario}">${funcionario.cargo}</p>
               </td>
-              <td class="password">
-                <p class="text-xs font-weight-bold mb-0" id="senha_${idFuncionario}">${funcionario.senha}</p>
-              </td>
               <td>
                 <p class="text-xs font-weight-bold mb-0" id="cpf_${idFuncionario}">${funcionario.cpf}</p>
               </td>

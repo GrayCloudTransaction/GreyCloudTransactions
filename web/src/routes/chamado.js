@@ -23,4 +23,9 @@ rota.get("/listarPorMes/:id_empresa", (req, res) => {
     chamadoController.listarPorMes(req, res);
 });
 
+rota.get("/listarUltimosChamados/:id_empresa", (req, res) => {
+    info("Listar Últimos Chamados");
+    chamadoController.listarUltimosChamados(req, res);
+});
+
 module.exports = rota;

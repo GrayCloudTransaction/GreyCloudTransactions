@@ -137,6 +137,7 @@ if (document.querySelector('.fixed-plugin')) {
 //Set Sidebar Color
 function sidebarColor(a) {
   var parent = document.querySelector(".nav-link.active");
+  var title = document.querySelector(".title");
   var color = a.getAttribute("data-color");
 
   if (parent.classList.contains('bg-gradient-primary')) {
@@ -157,7 +158,28 @@ function sidebarColor(a) {
   if (parent.classList.contains('bg-gradient-danger')) {
     parent.classList.remove('bg-gradient-danger');
   }
+
+  if (title.classList.contains('bg-gradient-primary')) {
+    title.classList.remove('bg-gradient-primary');
+  }
+  if (title.classList.contains('bg-gradient-dark')) {
+    title.classList.remove('bg-gradient-dark');
+  }
+  if (title.classList.contains('bg-gradient-info')) {
+    title.classList.remove('bg-gradient-info');
+  }
+  if (title.classList.contains('bg-gradient-success')) {
+    title.classList.remove('bg-gradient-success');
+  }
+  if (title.classList.contains('bg-gradient-warning')) {
+    title.classList.remove('bg-gradient-warning');
+  }
+  if (title.classList.contains('bg-gradient-danger')) {
+    title.classList.remove('bg-gradient-danger');
+  }
+  
   parent.classList.add('bg-gradient-' + color);
+  title.classList.add('bg-gradient-' + color);
 }
 
 // Set Sidebar Type
