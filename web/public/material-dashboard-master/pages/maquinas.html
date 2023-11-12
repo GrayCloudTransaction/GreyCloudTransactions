@@ -22,9 +22,6 @@
   <!-- CSS Files -->
   <link id="pagestyle" href="../assets/css/material-dashboard.css" rel="stylesheet" />
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
   <link rel="stylesheet" href="../../css/funcionarios.css">
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
@@ -139,9 +136,7 @@
                 aria-expanded="false">
                 <i class="fa fa-bell cursor-pointer"></i>
               </a>
-              <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
-                
-              </ul>
+              <ul id="listaNotificacoes" class="dropdown-menu dropdown-menu-end me-sm-n4" aria-labelledby="dropdownMenuButton"></ul>
             </li>
             <!-- <li class="nav-item d-flex align-items-center">
             <a href="../pages/sign-in.html" class="nav-link text-body font-weight-bold px-0">
@@ -208,24 +203,24 @@
 
             <div class="modal-body">
               
-              <div class="col-xl-12 col-12">
+              <div class="col-12">
                 <label for="nomeServidor">NOME</label>
                 <input type="text" class="form-control" id="iptCadastrarNomeServidor" maxlength="120"
                   placeholder="Nome">
               </div>
 
-              <div class="d-flex justify-content-between mt-2" style="margin-left: 0;">
-                <div class="col-xl-6 col-6">
+              <div class="row mt-2 ps-0" style="justify-content: space-between;">
+                <div class="col-6">
                   <label for="codigoServidor">CÓDIGO</label>
                   <input type="text" min="0" class="form-control" id="iptCadastrarCodigoServidor" placeholder="Código">
                 </div>
-                <div class="col-xl-6 col-6">
+                <div class="col-6">
                   <label for="tipoServidor">TIPO</label>
                   <input type="text" min="0" class="form-control" id="iptCadastrarTipoServidor" maxlength="90" placeholder="Tipo">
                 </div>
               </div>
 
-              <div class="col-xl-12 col-12">
+              <div class="col-12 mt-2">
                 <label for="descricaoServidor">DESCRIÇÃO</label>
                 <input type="text" class="form-control" id="iptCadastrarDescricaoServidor" maxlength="120"
                   placeholder="Descricao">
@@ -254,23 +249,23 @@
 
             <div class="modal-body">
               
-              <div class="col-xl-12 col-12">
+              <div class="col-12">
                 <label for="nomeServidor">NOME</label>
                 <input type="text" class="form-control" id="iptEditarNomeServidor" maxlength="120">
               </div>
 
-              <div class="d-flex justify-content-between mt-2" style="margin-left: 0;">
-                <div class="col-xl-6 col-6">
+              <div class="row mt-2 ps-0" style="justify-content: space-between;">
+                <div class="col-6">
                   <label for="codigoServidor">CÓDIGO</label>
                   <input type="text" min="0" class="form-control" id="iptEditarCodigoServidor">
                 </div>
-                <div class="col-xl-6 col-6">
+                <div class="col-6">
                   <label for="tipoServidor">TIPO</label>
                   <input type="text" min="0" class="form-control" id="iptEditarTipoServidor" maxlength="90">
                 </div>
               </div>
 
-              <div class="col-xl-12 col-12">
+              <div class="col-12 mt-2">
                 <label for="descricaoServidor">DESCRIÇÃO</label>
                 <input type="text" class="form-control" id="iptEditarDescricaoServidor" maxlength="120">
               </div>
@@ -312,6 +307,7 @@
         </div>
       </div>
 
+      <div class="position-fixed bottom-1 end-1 z-index-1" id="notificacoes"></div>
     </div>
   </main>
   <div class="fixed-plugin">
@@ -405,6 +401,7 @@
 <!-- SWAL --><script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- SWAL -->
 <script src="../js/sessao.js"></script>
 <script src="../js/crudServidor.js"></script>
+<script src="../js/notificacao.js"></script>
 
 <script>
   if (sessionStorage.PERMISSAO == 1){
@@ -413,4 +410,5 @@
   validarSessao()
   
   listarServidor()
+  listarUltimosChamados()
 </script>

@@ -476,3 +476,4 @@ function kpiMediaTempoOcioso() {
         mediaTempoOcioso.innerHTML = `${totalTempoOcioso.toFixed()} s`;
     }
 }
+

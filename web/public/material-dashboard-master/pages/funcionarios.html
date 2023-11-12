@@ -36,8 +36,8 @@
   <!-- CSS Files -->
   <link id="pagestyle" href="../assets/css/material-dashboard.css" rel="stylesheet" />
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
@@ -259,31 +259,31 @@
 
             <div class="modal-body">
               
-              <div class="col-xl-12 col-12">
+              <div class="col-12">
                 <label for="nomeFuncionario">NOME</label>
                 <input type="text" class="form-control" id="iptCadastrarNomeFuncionario" maxlength="120"
                   placeholder="Nome">
               </div>
 
-              <div class="d-flex justify-content-between mt-2" style="margin-left: 0;">
-                <div class="col-xl-6 col-6">
+              <div class="row d-flex mt-2 ms-0" style="justify-content: space-between">
+                <div class="col ps-0">
                   <label for="cpf">CPF</label>
                   <input type="text" min="0" class="form-control" id="iptCadastrarCpfFuncionario" maxlength="14"
                     placeholder="XXX.XXX.XXX-XX" oninput="mascara(this, 'cpf')">
                 </div>
-                <div class="col-xl-6 col-6">
+                <div class="col ps-0">
                   <label for="cargoFuncionario">CARGO</label>
                   <input type="text" min="0" class="form-control" id="iptCadastrarCargoFuncionario" maxlength="90" placeholder="Cargo">
                 </div>
               </div>
 
-              <div class="d-flex justify-content-between mt-2" style="margin-left: 0;">
+              <div class="row d-flex mt-2 ms-0" style="justify-content: space-between;">
 
-                <div class="col-xl-6">
+                <div class="col ps-0">
                   <label for="email">EMAIL</label>
                   <input type="email" min="0" class="form-control" id="iptCadastrarEmailFuncionario" maxlength="150" placeholder="Email">
                 </div>
-                <div class="col-xl-6">
+                <div class="col ps-0">
                   <label for="iptPermissao">PERMISSÃO</label>
                   <select type="number" min="0" class="form-control" id="iptCadastrarPermissaoFuncionario">
                       <option value="1">1-Gerente</option>
@@ -292,12 +292,12 @@
                 </div>
               </div>
               
-              <div class="d-flex justify-content-between mt-2" style="margin-left: 0;">
-                <div class="col-xl-6 col-6">
+              <div class="row d-flex mt-2 ms-0" style="justify-content: space-between;">
+                <div class="col ps-0">
                   <label for="senha">SENHA</label>
                   <input type="password" min="0" class="form-control" id="iptCadastrarSenhaFuncionario" maxlength="150" placeholder="Crie uma senha">
                 </div>
-                <div class="col-xl-6 col-6">
+                <div class="col ps-0">
                   <label for="confirmarSenha">CONFIRMAR SENHA</label>
                   <input type="password" min="0" class="form-control" id="iptCadastrarConfirmarSenhaFuncionario" maxlength="150" placeholder="Confirme a senha">
                 </div>
@@ -326,30 +326,30 @@
 
             <div class="modal-body">
               
-              <div class="col-xl-12 col-12">
+              <div class="col-12">
                 <label for="nomeFuncionario">NOME</label>
                 <input type="text" class="form-control" id="iptEditarNomeFuncionario" maxlength="120">
               </div>
 
-              <div class="d-flex justify-content-between mt-2" style="margin-left: 0;">
-                <div class="col-xl-6 col-6">
+              <div class="row mt-2 ms-0" style="justify-content: space-between;">
+                <div class="col-6 ps-0">
                   <label for="cpf">CPF</label>
                   <input type="text" min="0" class="form-control" id="iptEditarCpfFuncionario" maxlength="14"
                     placeholder="XXX.XXX.XXX-XX" oninput="mascara(this, 'cpf')">
                 </div>
-                <div class="col-xl-6 col-6">
+                <div class="col-6 ps-0">
                   <label for="cargoFuncionario">CARGO</label>
                   <input type="text" min="0" class="form-control" id="iptEditarCargoFuncionario" maxlength="90">
                 </div>
               </div>
 
-              <div class="d-flex justify-content-between mt-2" style="margin-left: 0;">
+              <div class="row mt-2 ms-0" style="justify-content: space-between;">
 
-                <div class="col-xl-6">
+                <div class="col-6 ps-0">
                   <label for="email">EMAIL</label>
                   <input type="email" min="0" class="form-control" id="iptEditarEmailFuncionario" maxlength="150">
                 </div>
-                <div class="col-xl-6">
+                <div class="col-6 ps-0">
                   <label for="iptPermissao">PERMISSÃO</label>
                   <select type="number" min="0" class="form-control" id="iptEditarPermissaoFuncionario">
                       <option value="1">1-Gerente</option>
@@ -397,7 +397,7 @@
 
     </div>
     
-    <div class="position-fixed bottom-1 end-1 z-index-2" id="notificacoes">
+    <div class="position-fixed bottom-1 end-1 z-index-1" id="notificacoes">
 
     </div>
 
@@ -482,7 +482,7 @@
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/material-dashboard.min.js?v=3.1.0"></script>
+  <script src="../assets/js/material-dashboard.min.js"></script>
 
   <!-- <script>
     var teste_edit = 1
