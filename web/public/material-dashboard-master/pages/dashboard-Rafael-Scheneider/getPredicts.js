@@ -90,7 +90,8 @@ function teste() {
       .then(function (resposta) {
         if (resposta.ok) {
           resposta.json().then((json) => {
-            for (var x = 0; x <= json.length;x++){
+            console.log(json)
+            for (var x = 0; x < json.length;x++){
                 chart1.data.labels.push("valor " + x);
                 chart1.data.datasets[0].data.push(json[x]);
 
