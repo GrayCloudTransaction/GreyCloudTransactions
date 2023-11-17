@@ -49,7 +49,7 @@
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
         aria-hidden="true" id="iconSidenav"></i>
-        <a class="navbar-brand m-0" target="_blank">
+      <a class="navbar-brand m-0" target="_blank">
         <img src="../../assets/img/logograyClound.png" class="navbar-brand-img h-100" alt="main_logo">
         <span class="ms-1 font-weight-bold text-white">G.C.T.</span><br>
       </a>
@@ -150,14 +150,16 @@
   </aside>
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
     <!-- Navbar -->
-    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur"
+      data-scroll="true">
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <!-- <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
             <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li> -->
           </ol>
-          <h6 class="font-weight-bolder mb-0">User <span  id="usuarioNome"></span> - Análise Financeira | Billing</h6>
+          <h5 class="font-weight-bolder mb-0">Análise Financeira | Billing</h5>
+          <h5 class="font-weight-bolder mb-0">User <span id="usuarioNome"></span></h5>
         </nav>
 
 
@@ -192,7 +194,8 @@
               </a>
             </li>
             <li class="nav-item dropdown pe-2 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+              <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                aria-expanded="false">
                 <i class="fa fa-bell cursor-pointer"></i>
               </a>
               <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
@@ -316,12 +319,60 @@
     <!-- End Navbar -->
 
     <!-- Parte superior -->
-    <div class="container-fluid py-4">
-      <div class="row" style="justify-content: space-around;">
+    <div class="container-fluid py-1">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 mb-2">
+        <div class="card h-100">
+          <h4 class="card-header mb-0" style="margin-bottom: 0%; padding-bottom: 1%;">Extrato Atual</h4>
+          <h5 style="margin-left: 4%; margin-top: 0%;">Do dia X até Hoje</h5>
+        
+          <hr class="dark horizontal my-2">
 
+          <div class="card-body" style="padding-top: 0.5%;">
+            <h5 class="card-title mt-0">Custo de CPU</h5>
+            <p class="card-text mb-0">Horas de Consumo: 10</p>
+            <p class="card-text mb-0">Preço por Hora R$ 0.84</p>
+            <p class="card-text mb-0">Custo Total R$ 84</p>
 
-        <!-- Icone Azul -->
-        <!-- <div class="col-xl-3 col-sm-6">
+            <hr class="dark horizontal my-3">
+
+            <h5 class="card-title">Custo de RAM</h5>
+            <p class="card-text mb-0">Horas de Consumo: 10</p>
+            <p class="card-text mb-0">Preço por Hora R$ 0.74</p>
+            <p class="card-text mb-0">Custo Total R$ 74</p>
+
+            <hr class="dark horizontal my-3">
+
+            <h5 class="card-title">Custo de Armazenamento</h5>
+            <p class="card-text mb-0">Espaço Disponivel: 1000 GB</p>
+            <p class="card-text mb-0">Espaço Ocupado: 450 GB</p>
+            <p class="card-text mb-0">Preço por GB Ocupado R$ 0.92</p>
+            <p class="card-text mb-0">Custo Total R$ 414</p>
+
+            <!-- <a href="#" class="btn btn-primary position-absolute top-100 start-50 translate-middle">Go somewhere</a> -->
+            <!-- <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown button
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div> -->
+            <select class="btn btn-primary form-select mt-4">
+              <option value="1">PDF - Relatório Completo</option>
+              <option value="2">CSV - Dados para Data Science</option>
+              <option value="3">JSON - Dados para Data Science</option>
+            </select>
+            <button type="button" class="btn btn-primary">Donwload</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="row">
+          <!-- Icone Azul -->
+          <!-- <div class="col-xl-3 col-sm-6">
           <div class="card">
             <div class="card-header p-3 pt-2">
               <div
@@ -339,36 +390,36 @@
             </div>
           </div>
         </div> -->
+          <!-- Icone vermelho -->
+          <div class="col-xl col-sm-6 mb-xl-4 mb-4">
+            <div class="card h-100">
+              <div class="card-header p-3 pt-2">
+                <div
+                  class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
+                  <i class="material-icons opacity-10">account_balance</i>
+                </div>
 
-        
+                <div class="text-end pt-1">
+                  <h5 class="text-sm mb-1 text-capitalize">Servidor com Maior custo de CPU neste mês</h5>
+                  <h4 class="mb-2" id="">Servidor XPTO</h4>
+                  <h5 class="mb-0" id="">Custo Total R$ <span>300</span></h5>
+                </div>
+              </div>
+              
+              <hr class="dark horizontal my-0">
 
-        <!-- Icone vermelho -->
-        <div class="col-xl-4 col-sm-6 mb-xl-4 mb-4">
-          <div class="card h-100">
-            <div class="card-header p-3 pt-2">
-              <div
-                class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                <i class="material-icons opacity-10">account_balance</i>
+              <div class="card-footer p-3">
+                <div class="d-flex h-100 align-items-center">
+                  <i class="material-icons text-sm my-auto me-1">schedule</i>
+                  Atualizado a um minuto </p>
+                </div>
               </div>
 
-              <div class="text-end pt-1">
-                <p class="text-sm mb-1 text-capitalize">Uso Mensal - CPU</p>
-                <h4 class="mb-0" id="mediaTempoOcioso"></h4>
-              </div>
             </div>
-            
-            <hr class="dark horizontal my-0">
-            
-            <div class="card-footer p-3">
-              <div class="d-flex h-100 align-items-center">
-                <i class="material-icons text-sm my-auto me-1">schedule</i>
-                Atualizado a um minuto </p>
-              </div>
-            </div>
-          
+          </div>
         </div>
-        </div>
-        <!-- <div class="col-xl-4 col-sm-6 mb-xl-4 mb-4">
+        <div class="row">
+          <!-- <div class="col-xl-4 col-sm-6 mb-xl-4 mb-4">
             <div class="card">
                 <div class="card-header mx-4 p-3 text-center">
                     <div class="icon icon-shape icon-lg bg-gradient-primary shadow text-center border-radius-lg">
@@ -380,58 +431,62 @@
                 </div>
             </div>
         </div> -->
-
-
-
-
-        <!-- Icone verde -->
-        <div class="col-xl-4 col-sm-6 mb-xl-4 mb-4">
-          <div class="card">
-            <div class="card-header p-3 pt-2">
-              <div
-                class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-                <i class="material-icons opacity-10">person</i>
+          <!-- Icone verde -->
+          <div class="col-xl col-sm-6 mb-xl-4 mb-4">
+            <div class="card">
+              <div class="card-header p-3 pt-2">
+                <div
+                  class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
+                  <i class="material-icons opacity-10">person</i>
+                </div>
+                <div class="text-end pt-1">
+                  <h5 class="text-sm mb-1 text-capitalize">Servidor com Maior custo de RAM neste mês</h5>
+                  <!-- <h4 class="mb-0" id="servidoresForaDoAr"></h4> -->
+                  <h4 class="mb-2" id="">Servidor XPTO</h4>
+                  <h5 class="mb-0" id="">Custo Total R$ <span>300</span></h5>
+                </div>
               </div>
-              <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Servidores fora do ar</p>
-                <h4 class="mb-0" id="servidoresForaDoAr"></h4>
+              <hr class="dark horizontal my-0">
+              <div class="card-footer p-3">
+                Total de servidores: <span id="servidorTotal"></span>
+                
               </div>
-            </div>
-            <hr class="dark horizontal my-0">
-            <div class="card-footer p-3">
-              Total de servidores: <span id="servidorTotal"></span>
-              </p>
             </div>
           </div>
         </div>
+        <div class="row">
 
 
-        <!-- Icone preto -->
-        <div class="col-xl-4 col-sm-6 mb-xl-4 mb-4">
-          <div class="card">
-            <div class="card-header p-3 pt-2">
-              <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                <i class="material-icons opacity-10">weekend</i>
+          <!-- Icone preto -->
+          <div class="col-xl col-sm-6 mb-2">
+            <div class="card">
+              <div class="card-header p-3 pt-2">
+                <div
+                  class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+                  <i class="material-icons opacity-10">weekend</i>
+                </div>
+                <div class="text-end pt-1">
+                  <h5 class="text-sm mb-1 text-capitalize">Servidor Ocupando Maior</h5>
+                  <h4 class="mb-0" id="chamadosAberto"></h4>
+                </div>
               </div>
-              <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">chamados abertos</p>
-                <h4 class="mb-0" id="chamadosAberto"></h4>
+              <hr class="dark horizontal my-0">
+              <div class="card-footer p-3">
+                Total registrados: <span id="chamadosTotal"></span>
+                </p>
               </div>
-            </div>
-            <hr class="dark horizontal my-0">
-            <div class="card-footer p-3">
-              Total registrados: <span id="chamadosTotal"></span>
-              </p>
             </div>
           </div>
         </div>
+      </div>
       </div>
 
       <div class="row mt-4">
         <div class="col-lg-12 col-md-6 mt-4 mb-4">
           <div class="card z-index-2 ">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-              <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1" style="background-image: linear-gradient(195deg,#ec407a,#d81b60);">
+              <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1"
+                style="background-image: linear-gradient(195deg,#ec407a,#d81b60);">
                 <div class="chart">
                   <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
                 </div>
@@ -471,12 +526,12 @@
             </div>
           </div>
         </div> -->
-        <div class="row">
+      <div class="row">
 
-          <div class="col-lg-9 col-md-6 mt-4 mb-4">
-            <div class="card z-index-2  ">
-              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
+        <div class="col-lg-9 col-md-6 mt-4 mb-4">
+          <div class="card z-index-2  ">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+              <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
                 <div class="chart">
                   <canvas id="chart-line-2" class="chart-canvas" height="170"></canvas>
                 </div>
@@ -494,27 +549,27 @@
           </div>
         </div>
 
-          <div class="col-lg-3 col-md-6">
-            
-            <div class="card">
-              <div class="card-header p-0 position-relative bg-transparent">
-                <div class="border-radius-lg pe-1">
-                  <div class="chart">
-                    <canvas id="chart-pie" class="chart-canvas" height="220"></canvas>
-                  </div>
+        <div class="col-lg-3 col-md-6">
+
+          <div class="card">
+            <div class="card-header p-0 position-relative bg-transparent">
+              <div class="border-radius-lg pe-1">
+                <div class="chart">
+                  <canvas id="chart-pie" class="chart-canvas" height="220"></canvas>
                 </div>
               </div>
-              <div class="card-body">
-                <h6 class="mb-0 ">Servidores Online e Offline</h6>
-                <p class="text-sm">Quantidade de servidores Online e Offline</p>
-              </div>
+            </div>
+            <div class="card-body">
+              <h6 class="mb-0 ">Servidores Online e Offline</h6>
+              <p class="text-sm">Quantidade de servidores Online e Offline</p>
             </div>
           </div>
-          
-        
+        </div>
+
+
       </div>
 
-        <!-- <div class="col-lg-4 mt-4 mb-3">
+      <!-- <div class="col-lg-4 mt-4 mb-3">
           <div class="card z-index-2 ">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
               <div class="bg-gradient-dark shadow-dark border-radius-lg py-3 pe-1">
@@ -572,7 +627,8 @@
                       </th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nome
                       </th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Situação
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                        Situação
                       </th>
 
                     </tr>
@@ -587,11 +643,11 @@
 
 
 
-        
+
 
       </div>
 
-      
+
 
       <!-- <footer class="footer py-4  ">
         <div class="container-fluid">
@@ -714,7 +770,7 @@
   <script src="../../assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="../../assets/js/plugins/chartjs.min.js"></script>
   <script>
-  
+
     // var ctx = document.getElementById("chart-line-1").getContext("2d");
 
     // new Chart(ctx, {
@@ -882,7 +938,7 @@
     // });
 
 
-    
+
 
 
   </script>
@@ -920,11 +976,12 @@
         kpiMediaTempoOcioso()
       }, 500)
     }, 1000)
-    
+
     // setInterval(() => {
     //   window.location = "./dashboardGerente.html"
     // }, 10000);
-    
+
   </script>
 </body>
+
 </html>
