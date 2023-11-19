@@ -323,7 +323,7 @@
       <div class="row">
         <div class="col-lg-6 col-md-6 mb-2">
         <div class="card h-100">
-          <h4 class="card-header mb-0" style="margin-bottom: 0%; padding-bottom: 1%;">Extrato Atual</h4>
+          <h4 class="card-header mb-0" style="margin-bottom: 0%; padding-bottom: 1%;">Extrato Atual - Todos Servidores</h4>
           <h5 style="margin-left: 4%; margin-top: 0%;">Do dia X até Hoje</h5>
         
           <hr class="dark horizontal my-2">
@@ -365,7 +365,7 @@
               <option value="2">CSV - Dados para Data Science</option>
               <option value="3">JSON - Dados para Data Science</option>
             </select>
-            <button type="button" class="btn btn-primary">Donwload</button>
+            <button type="button" class="btn btn-primary">Download</button>
           </div>
         </div>
       </div>
@@ -391,7 +391,7 @@
           </div>
         </div> -->
           <!-- Icone vermelho -->
-          <div class="col-xl col-sm-6 mb-xl-4 mb-4">
+          <div class="col-xl col-sm-6 mb-xl-4 mb-4" style="margin-bottom: 0%;">
             <div class="card h-100">
               <div class="card-header p-3 pt-2">
                 <div
@@ -410,8 +410,8 @@
 
               <div class="card-footer p-3">
                 <div class="d-flex h-100 align-items-center">
-                  <button type="button" class="btn bg-gradient-success" style="margin-left: 18%;">Recomendações</button>
-                  <button type="button" class="btn bg-gradient-warning" style="margin-left: 10%;">Lista de Servidores</button>
+                  <button data-bs-toggle="modal" data-bs-target="#modalCPUReco" type="button" class="btn bg-gradient-success" style="margin-left: 18%;">Recomendações</button>
+                  <button data-bs-toggle="modal" data-bs-target="#modalCPULista" type="button" class="btn bg-gradient-warning" style="margin-left: 10%;">Lista de Servidores</button>
                 </div>
               </div>
 
@@ -448,8 +448,10 @@
               </div>
               <hr class="dark horizontal my-0">
               <div class="card-footer p-3">
-                Total de servidores: <span id="servidorTotal"></span>
-                
+                <!-- Total de servidores: <span id="servidorTotal"></span> -->
+              
+                <button type="button" class="btn bg-gradient-success" style="margin-left: 18%;">Recomendações</button>
+                <button type="button" class="btn bg-gradient-warning" style="margin-left: 10%;">Lista de Servidores</button>
               </div>
             </div>
           </div>
@@ -472,8 +474,9 @@
               </div>
               <hr class="dark horizontal my-0">
               <div class="card-footer p-3">
-                Total registrados: <span id="chamadosTotal"></span>
-                </p>
+                
+                <button type="button" class="btn bg-gradient-success" style="margin-left: 18%;">Recomendações</button>
+                <button type="button" class="btn bg-gradient-warning" style="margin-left: 10%;">Lista de Servidores</button>
               </div>
             </div>
           </div>
@@ -683,6 +686,43 @@
       </footer> -->
     </div>
   </main>
+
+  <!-- MODAL CPU - Recomendações -->
+  <div class="modal fade" id="modalCPUReco" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Recomendações para servidor XPTO</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus facilis exercitationem ipsum illum voluptate, similique fuga tempore beatae, reprehenderit quos dolor deleniti assumenda aliquid recusandae esse eum excepturi vel sapiente.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL CPU - Lista -->
+  <div class="modal fade" id="modalCPULista" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Recomendações para servidor XPTO</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus facilis exercitationem ipsum illum voluptate, similique fuga tempore beatae, reprehenderit quos dolor deleniti assumenda aliquid recusandae esse eum excepturi vel sapiente.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <!-- chat-bot -->
   <div class="fixed-plugin">
