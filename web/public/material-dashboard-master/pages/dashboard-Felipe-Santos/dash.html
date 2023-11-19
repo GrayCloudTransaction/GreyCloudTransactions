@@ -622,26 +622,6 @@
               </div>
             </div>
             <!--LISTA DE SERVIDORES-->
-            <div class="card-body px-0 pb-2">
-              <div class="table-responsive">
-                <table class="table align-items-center mb-0">
-                  <thead>
-                    <tr>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Código
-                      </th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nome
-                      </th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                        Situação
-                      </th>
-
-                    </tr>
-                  </thead>
-                  <tbody id="listaDeServidores">
-                  </tbody>
-                </table>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -715,7 +695,26 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus facilis exercitationem ipsum illum voluptate, similique fuga tempore beatae, reprehenderit quos dolor deleniti assumenda aliquid recusandae esse eum excepturi vel sapiente.
+          <div class="card-body px-0 pb-2">
+            <div class="table-responsive">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Código
+                    </th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nome
+                    </th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                      Situação
+                    </th>
+                  </tr>
+                </thead>
+                <tbody id="listaDeServidoresCPU">
+                </tbody>
+              </table>
+            </div>
+          </div>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
@@ -1079,7 +1078,7 @@
     plotarGraficoChamadosPorMes();
 
     setTimeout(() => {
-      var listaDeServidor = document.getElementById("listaDeServidores");
+      var listaDeServidor = document.getElementById("listaDeServidoresCPU");
       for (var n = 1; n < listaDeServidor.rows.length; n++) {
         var idServidor = document.getElementsByTagName("tr")[n].id;
         servidorEspecificoForaDoAr(idServidor);
