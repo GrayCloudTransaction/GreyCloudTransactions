@@ -450,8 +450,8 @@
               <div class="card-footer p-3">
                 <!-- Total de servidores: <span id="servidorTotal"></span> -->
               
-                <button type="button" class="btn bg-gradient-success" style="margin-left: 18%;">Recomendações</button>
-                <button type="button" class="btn bg-gradient-warning" style="margin-left: 10%;">Lista de Servidores</button>
+                <button data-bs-toggle="modal" data-bs-target="#modalRAMReco" type="button" class="btn bg-gradient-success" style="margin-left: 18%;">Recomendações</button>
+                <button data-bs-toggle="modal" data-bs-target="#modalRAMLista" type="button" class="btn bg-gradient-warning" style="margin-left: 10%;">Lista de Servidores</button>
               </div>
             </div>
           </div>
@@ -469,14 +469,15 @@
                 </div>
                 <div class="text-end pt-1">
                   <h5 class="text-sm mb-1 text-capitalize">Servidor Ocupando Maior Espaço em GB</h5>
-                  <h4 class="mb-0" id="chamadosAberto"></h4>
+                  <h4 class="mb-0">Servidor - XPTO</h4>
+                  <h4 class="mb-0"><span id="chamadosAberto"></span> GB de <span> 10 GB</span></h4>
                 </div>
               </div>
               <hr class="dark horizontal my-0">
               <div class="card-footer p-3">
                 
-                <button type="button" class="btn bg-gradient-success" style="margin-left: 18%;">Recomendações</button>
-                <button type="button" class="btn bg-gradient-warning" style="margin-left: 10%;">Lista de Servidores</button>
+                <button data-bs-toggle="modal" data-bs-target="#modalDISCOReco" type="button" class="btn bg-gradient-success" style="margin-left: 18%;">Recomendações</button>
+                <button data-bs-toggle="modal" data-bs-target="#modalDISCOLista" type="button" class="btn bg-gradient-warning" style="margin-left: 10%;">Lista de Servidores</button>
               </div>
             </div>
           </div>
@@ -722,6 +723,79 @@
       </div>
     </div>
   </div>
+
+  <!-- MODAL RAM - Recomendações -->
+  <div class="modal fade" id="modalRAMReco" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Recomendações para servidor XPTO</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus facilis exercitationem ipsum illum voluptate, similique fuga tempore beatae, reprehenderit quos dolor deleniti assumenda aliquid recusandae esse eum excepturi vel sapiente.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL RAM - Lista -->
+  <div class="modal fade" id="modalRAMLista" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Recomendações para servidor XPTO</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus facilis exercitationem ipsum illum voluptate, similique fuga tempore beatae, reprehenderit quos dolor deleniti assumenda aliquid recusandae esse eum excepturi vel sapiente.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DISCO - Recomendação -->
+  <div class="modal fade" id="modalDISCOReco" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Recomendações para servidor XPTO</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus facilis exercitationem ipsum illum voluptate, similique fuga tempore beatae, reprehenderit quos dolor deleniti assumenda aliquid recusandae esse eum excepturi vel sapiente.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DISCO - Lista -->
+  <div class="modal fade" id="modalDISCOLista" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Recomendações para servidor XPTO</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus facilis exercitationem ipsum illum voluptate, similique fuga tempore beatae, reprehenderit quos dolor deleniti assumenda aliquid recusandae esse eum excepturi vel sapiente.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 
   <!-- chat-bot -->
