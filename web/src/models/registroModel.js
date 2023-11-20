@@ -9,7 +9,7 @@ function buscarUltimosRegistros(id_servidor, limite) {
     var instrucao = `
         SELECT registro.*, tipo_componente
         FROM registro, componente
-        WHERE tipo_componente IN ("CPU", "RAM", "Disco")
+        WHERE tipo_componente IN ('CPU', 'RAM', 'Disco')
         AND id_componente = fk_componente
         AND fk_servidor = ${id_servidor}
         ORDER BY data_registro DESC

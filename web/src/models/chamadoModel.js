@@ -51,7 +51,7 @@ function listarPorServidor(id_empresa, data, opcao) {
         FROM chamados 
             INNER JOIN componente ON chamados.fk_componente = componente.id_componente 
             INNER JOIN servidor ON componente.fk_servidor = servidor.id_servidor
-        WHERE chamados.fk_empresa = ${id_empresa} AND CONVERT(VARCHAR(10), chamados.data_hora, 111) = '${data}%'
+        WHERE chamados.fk_empresa = ${id_empresa} AND CONVERT(VARCHAR(10), chamados.data_hora, 111) LIKE '${data}%'
         GROUP BY servidor.id_servidor, servidor.nome, servidor.codigo;
         `;
     }

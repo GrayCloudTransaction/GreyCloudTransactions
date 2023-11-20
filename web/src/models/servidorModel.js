@@ -41,10 +41,10 @@ function listar(idEmpresa) {
 function alterar(id_servidor, nome, codigo, tipo, descricao){
     var query = `
     UPDATE servidor 
-        SET nome = "${nome}"
-        , codigo= "${codigo}"
-        , tipo = "${tipo}"
-        , descricao = "${descricao}"
+        SET nome = '${nome}'
+        , codigo= '${codigo}'
+        , tipo = '${tipo}'
+        , descricao = '${descricao}'
         WHERE id_servidor = ${id_servidor};
     `
     info("Alterar", query);
