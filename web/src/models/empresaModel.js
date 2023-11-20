@@ -9,7 +9,8 @@ function info(func, query){
 // Funções para exportar -- Usada por outros arquivos
 function cadastrar(razaoSocial, cnpj, numero, cep, telefone, email) {
     var instrucao = `
-        INSERT INTO Empresa VALUES (NULL , '${razaoSocial}', '${cnpj}', ${numero}, '${cep}','${email}', '${telefone}');
+        INSERT INTO empresa (razao_social, cnpj, numero, cep, email, telefone, complemento) 
+        VALUES ('${razaoSocial}', '${cnpj}', ${numero}, '${cep}','${email}', '${telefone}', 'NULL');
     `;
 
     info("Cadastrar", instrucao)

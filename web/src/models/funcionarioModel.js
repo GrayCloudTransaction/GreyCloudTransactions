@@ -10,7 +10,8 @@ function info(func, query){
 
 function cadastrarFuncionario(nomeFuncionario, cpfFuncionario, cargoFuncionario, emailFuncionario, senhaFuncionario, fkEmpresa) {
     var instrucao = `
-        INSERT INTO Funcionario VALUES (NULL , '${nomeFuncionario}', '${emailFuncionario}', '${senhaFuncionario}', '${cargoFuncionario}', '${cpfFuncionario}', '1', NULL, ${fkEmpresa});
+        INSERT INTO funcionario (nome, email, senha, cargo, cpf, permissao, fk_gerente, fk_empresa)
+        VALUES ('${nomeFuncionario}', '${emailFuncionario}', '${senhaFuncionario}', '${cargoFuncionario}', '${cpfFuncionario}', 1, NULL, ${fkEmpresa});
     `;
     
     info("Cadastrar Funcionário", instrucao)
@@ -20,7 +21,8 @@ function cadastrarFuncionario(nomeFuncionario, cpfFuncionario, cargoFuncionario,
 
 function cadastrarNovoFuncionario(nomeFuncionario, emailFuncionario, senhaFuncionario, cargoFuncionario, cpfFuncionario, permissaoFuncionario, fkGerente, fkEmpresa) {
     var instrucao = `
-        INSERT INTO Funcionario VALUES (NULL , '${nomeFuncionario}', '${emailFuncionario}', '${senhaFuncionario}', '${cargoFuncionario}', '${cpfFuncionario}', '${permissaoFuncionario}', ${fkGerente}, ${fkEmpresa});
+        INSERT INTO funcionario (nome, email, senha, cargo, cpf, permissao, fk_gerente, fk_empresa) 
+        VALUES ('${nomeFuncionario}', '${emailFuncionario}', '${senhaFuncionario}', '${cargoFuncionario}', '${cpfFuncionario}', ${permissaoFuncionario}, ${fkGerente}, ${fkEmpresa});
     `;
     
     info("Cadastrar Novo Funcionario", instrucao)
