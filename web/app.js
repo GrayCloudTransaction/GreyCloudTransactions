@@ -1,10 +1,10 @@
-process.env.AMBIENTE_PROCESSO = "desenvolvimento";
-// process.env.AMBIENTE_PROCESSO = "producao";
+//process.env.AMBIENTE_PROCESSO = "desenvolvimento";
+process.env.AMBIENTE_PROCESSO = "producao";
 
 var express = require("express");
 var cors = require("cors");
 var path = require("path");
-var PORTA = process.env.AMBIENTE_PROCESSO == "desenvolvimento" ? 3333 : 8080;
+var PORTA = process.env.AMBIENTE_PROCESSO == "desenvolvimento" ? 3333 : 443;
 
 var app = express();
 
@@ -33,6 +33,6 @@ app.use("/chamado", chamadoRouter);
 app.use("/registro", registroRouter);
 
 app.listen(PORTA, function () {
-    console.log(`URL do Site: http://localhost:${PORTA} \n
+    console.log(`URL do Site: https://localhost:${PORTA} \n
     Rodando aplicação em Ambiente de ${process.env.AMBIENTE_PROCESSO}`);
 });
