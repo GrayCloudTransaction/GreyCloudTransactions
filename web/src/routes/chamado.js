@@ -13,7 +13,7 @@ rota.get("/listarPorEmpresa/:id_empresa", (req, res) => {
     chamadoController.listarPorEmpresa(req, res);
 });
 
-rota.get("/listarPorServidor/:id_empresa", (req, res) => {
+rota.post("/listarPorServidor/:id_empresa", (req, res) => {
     info("Listar Por Servidor");
     chamadoController.listarPorServidor(req, res);
 });

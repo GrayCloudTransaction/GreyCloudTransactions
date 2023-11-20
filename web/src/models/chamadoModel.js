@@ -14,19 +14,47 @@ function listarPorEmpresa(id_empresa){
     return database.executar(query);
 }
 
-function listarPorServidor(id_empresa) {
-    var query = `
-    SELECT 
-	    servidor.id_servidor,
-        servidor.nome,
-        servidor.codigo,
-	    COUNT(*) AS "qtd_chamados"
-    FROM chamados 
-	    JOIN componente ON chamados.fk_componente = componente.id_componente 
-	    JOIN servidor ON componente.fk_servidor = servidor.id_servidor
-	WHERE chamados.fk_empresa = ${id_empresa} GROUP BY id_servidor;
-    `;
-    info("Listar por servidor", query);
+function listarPorServidor(id_empresa, data, opcao) {
+
+    if (opcao == "personalizado") {
+        var query = `
+        SELECT 
+            servidor.id_servidor,
+            servidor.nome,
+            servidor.codigo,
+            COUNT(*) AS "qtd_chamados"
+        FROM chamados 
+            JOIN componente ON chamados.fk_componente = componente.id_componente 
+            JOIN servidor ON componente.fk_servidor = servidor.id_servidor
+        WHERE chamados.fk_empresa = ${id_empresa} AND chamados.data_hora BETWEEN "${data[0]}" AND DATE_ADD("${data[1]}", INTERVAL 1 DAY) GROUP BY id_servidor;
+        `;
+    } else if (opcao == "total") {
+        var query = `
+        SELECT 
+            servidor.id_servidor,
+            servidor.nome,
+            servidor.codigo,
+            COUNT(*) AS "qtd_chamados"
+        FROM chamados 
+            JOIN componente ON chamados.fk_componente = componente.id_componente 
+            JOIN servidor ON componente.fk_servidor = servidor.id_servidor
+        WHERE chamados.fk_empresa = ${id_empresa} GROUP BY id_servidor;
+        `;
+    } else {
+        var query = `
+        SELECT 
+            servidor.id_servidor,
+            servidor.nome,
+            servidor.codigo,
+            COUNT(*) AS "qtd_chamados"
+        FROM chamados 
+            JOIN componente ON chamados.fk_componente = componente.id_componente 
+            JOIN servidor ON componente.fk_servidor = servidor.id_servidor
+        WHERE chamados.fk_empresa = ${id_empresa} AND chamados.data_hora LIKE "%${data}%" GROUP BY id_servidor;
+        `;
+    }
+    
+    info(`Listar por servidor [${opcao}]`, query);
     return database.executar(query);
 }
 

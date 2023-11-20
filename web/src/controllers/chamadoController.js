@@ -36,21 +36,27 @@ function listarPorServidor(req, res){
     info("Listar Por Servidor");
 
     var id_empresa = req.params.id_empresa;
+    var opcao = req.body.opcaoServer;
+    var data = req.body.dataServer;
+
+    console.log(id_empresa, opcao, data);
 
     if(id_empresa != null && id_empresa != ""){
-        chamadoModel.listarPorServidor(id_empresa)
-        .then(function (resultado){
-            if(resultado.length > 0){
-                res.status(200).json(resultado);
-            }
-            else{
-                res.status(204).send("Nenhum chamado encontrado");
-            }
-        }).catch(function (erro){
-            console.log(erro);
-            console.log("Houve um erro ao realizar a consulta!\nErro: ", erro.sqlMessage);
-            res.status(500).json(erro.sqlMessage);
-        })
+        if (data != "") {
+            chamadoModel.listarPorServidor(id_empresa, data, opcao)
+            .then(function (resultado){
+                if(resultado.length > 0){
+                    res.status(200).json(resultado);
+                }
+                else{
+                    res.status(204).send("Nenhum chamado encontrado");
+                }
+            }).catch(function (erro){
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta!\nErro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            })
+        }
     }
     else{
         res.status(400).send("O ID Empresa está vazio ou Undefined!")

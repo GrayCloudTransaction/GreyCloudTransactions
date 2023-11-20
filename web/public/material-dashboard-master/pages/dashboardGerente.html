@@ -307,7 +307,7 @@
         <div class="col-lg-12 col-md-6 mt-4 mb-4">
           <div class="row card z-index-2 ">
             <div class="row">
-              <div class="col-9 card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+              <div class="col-9 card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent" style="width: 70%;">
                 <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1" style="background-image: linear-gradient(195deg,#ec407a,#d81b60);">
                   <div class="chart">
                     <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
@@ -334,18 +334,18 @@
                   </div>
 
                   <div class="" id="divDataPersonalizada" style="justify-content: space-between; display: none;">
-                    <div>
+                    <div class="col-4">
                       <label class="form-label m-0 mt-2" for="iptDataInicio">De:</label>
                       <input class="form-control p-1" type="date" id="iptDataInicio" style="border: 1px solid #d2d6da; ">
                     </div>
-                    <div>
+                    <div class="col-4">
                       <label class="form-label m-0 mt-2" for="iptDataFim">Até:</label>
                       <input class="form-control p-1" type="date" id="iptDataFim" style="border: 1px solid #d2d6da; ">
                     </div>
                     
                   </div>
 
-                  <button class="btn btn-outline-primary mt-2" onclick="teste(selectPeriodo.value)">Aplicar</button>
+                  <button class="btn btn-outline-primary mt-2" onclick="getChamadosPorServidor(true)">Aplicar</button>
                 
               </div>
             </div>
@@ -652,7 +652,7 @@
     validarSessao();
     listarServidor();
     kpiChamados();
-    plotarGraficoChamadosPorServidor();
+    getChamadosPorServidor(false);
     plotarGraficoChamadosPorMes();
     // listarUltimosChamados();
 
