@@ -350,11 +350,11 @@ function getChamadosPorServidor(atualizar) {
     var opcao = document.getElementById("selectPeriodo").value;
     var data;
     if (opcao == "dia") {
-        data = document.getElementById("iptDia").value;
+        data = document.getElementById("iptDia").value.replaceAll('-','/');
     } else if (opcao == "mes") {
-        data = document.getElementById("iptMes").value;
+        data = document.getElementById("iptMes").value.replaceAll('-','/');
     } else if (opcao == "personalizado") {
-        data = [document.getElementById("iptDataInicio").value, document.getElementById("iptDataFim").value];
+        data = [document.getElementById("iptDataInicio").value.replaceAll('-','/'), document.getElementById("iptDataFim").value.replaceAll('-','/')];
     } else {
         data = null;
     }
