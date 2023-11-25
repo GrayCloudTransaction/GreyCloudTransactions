@@ -12,7 +12,39 @@ function listar_extrato(idServidor){
     return database.executar(query);
 }
 
+function listar_extrato_atual(idServidor){
+    var query = `
+    SELECT nome_servidor, MONTH(dia) AS mes, tipo_componente, SUM(qtd_horas) FROM vw_extrato 
+	WHERE id_servidor = ${idServidor} 
+    GROUP BY 
+		tipo_componente,
+        mes
+	ORDER BY 
+		mes DESC
+	LIMIT 3;`
+    info("Listar Extrato Atual");
+    return database.executar(query);
+}
+
+function listar_extrato_acumulado(idServidor){
+    var query = `
+    SELECT nome_servidor, YEAR(dia) AS ano, MONTH(dia) AS mes, tipo_componente, SUM(qtd_horas) FROM vw_extrato 
+	WHERE id_servidor = 1
+    GROUP BY 
+		tipo_componente,
+        ano,
+        mes
+	ORDER BY 
+		mes ASC;`
+    
+    info("Listar Extrato Acumulado");
+    return database.executar(query);
+}
+
 module.exports = {
     listar_extrato,
+    listar_extrato_atual,
+    listar_extrato_acumulado,
+
 
 };
