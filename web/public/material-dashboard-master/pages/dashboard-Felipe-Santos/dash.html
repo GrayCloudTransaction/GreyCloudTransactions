@@ -211,21 +211,26 @@
         <div class="col-lg-6 col-md-6 mb-2">
         <div class="card h-100">
           <h4 class="card-header mb-0" style="margin-bottom: 0%; padding-bottom: 1%;">Extrato Atual - Todos Servidores</h4>
-          <h5 style="margin-left: 4%; margin-top: 0%;">Do dia X até Hoje</h5>
+          <h5 style="margin-left: 4%; margin-top: 0%;">Do dia <span id="sp_diasAtras"></span> até Hoje</h5>
+          <div class="input-group">
+            <input style="margin-left: 4%;" type="number" class="form-control" placeholder="Dias" id="ipt_diasAtras">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2" style="margin-right: 7%;" onclick="dias_atras_html()">Filtrar por dias Atrás</button>
+          </div>
+          <!-- <h6 style="margin-left: 4%; margin-top: 0%;"><input type="number" value=""> dias atrás</h6> -->
         
           <hr class="dark horizontal my-2">
 
           <div class="card-body" style="padding-top: 0.5%;">
             <h5 class="card-title mt-0">Custo de CPU</h5>
             <p class="card-text mb-0">Horas Acumuladas de Consumo: 10</p>
-            <p class="card-text mb-0">Preço por Hora R$ 0.84</p>
+            <p class="card-text mb-0">Preço por Hora $ <span id="sp_precoHoraCPU"></span></p>
             <p class="card-text mb-0">Custo Total R$ 84</p>
 
             <hr class="dark horizontal my-3">
 
             <h5 class="card-title">Custo de RAM</h5>
             <p class="card-text mb-0">Horas Acumuladas de Consumo: 10</p>
-            <p class="card-text mb-0">Preço por Hora R$ 0.74</p>
+            <p class="card-text mb-0">Preço por Hora $ <span id="sp_precoHoraRAM"></span></p>
             <p class="card-text mb-0">Custo Total R$ 74</p>
 
             <hr class="dark horizontal my-3">
@@ -233,7 +238,7 @@
             <h5 class="card-title">Custo de Armazenamento</h5>
             <p class="card-text mb-0">Espaço Total Disponivel: 1000 GB</p>
             <p class="card-text mb-0">Espaço Total Ocupado: 450 GB</p>
-            <p class="card-text mb-0">Preço por GB Ocupado R$ 0.92</p>
+            <p class="card-text mb-0">Preço por GB Ocupado $ <span id="sp_precoHoraDISCO"></span></p>
             <p class="card-text mb-0">Custo Total R$ 414</p>
 
             <select class="btn btn-primary form-select mt-4">
@@ -638,25 +643,65 @@
 
   <script>
     validarSessao();
-    listarServidor();
-    kpiChamados();
-    plotarGraficoChamadosPorServidor();
-    plotarGraficoChamadosPorMes();
 
-    setTimeout(() => {
-      var listaDeServidor = document.getElementById("listaDeServidoresCPU");
-      for (var n = 1; n < listaDeServidor.rows.length; n++) {
-        var idServidor = document.getElementsByTagName("tr")[n].id;
-        servidorEspecificoForaDoAr(idServidor);
+
+    // Listando os preços
+    fetch(`/felipe/listar/preco/componente`, {cache : "no-store" }).then(
+      (resposta)=>{
+        if(resposta.ok){
+          resposta.json().then(
+            (json) =>{
+              console.log(json);
+              for(i = 0; i <json.length; i++){
+                let jsonDaVez = json[i];
+                let preco = parseFloat(jsonDaVez.preco)
+
+                if(jsonDaVez.comp == 'CPU'){
+                  sp_precoHoraCPU.innerHTML = preco;
+                }
+                
+                if(jsonDaVez.comp == 'RAM'){
+                  sp_precoHoraRAM.innerHTML = preco;
+                }
+
+                if(jsonDaVez.comp == 'Disco'){
+                  sp_precoHoraDISCO.innerHTML = preco; 
+                }
+
+              }
+              
+            })
+        }else{
+          resposta.text().then(
+            (msg)=>{
+              console.error(msg);
+            })
+        }
+
+      }).catch(
+        (erro)=>{
+          console.error(erro);
+        }
+      )
+    
+      // <span id="sp_diasAtras"></span>
+      function dias_atras_html(){
+        let diasASubrtrair = ipt_diasAtras.value;
+        let dataAtual = new Date();
+        
+        if(diasASubrtrair == ''){
+          diasASubrtrair = 30;
+        }
+        
+        dataAtual.setDate(dataAtual.getDate() - diasASubrtrair)
+        
+        let formatoData = { year: 'numeric', month: '2-digit', day: '2-digit' };
+        let dataFormatada = dataAtual.toLocaleDateString(undefined, formatoData);
+        
+        sp_diasAtras.innerHTML = dataFormatada;
       }
-      setTimeout(() => {
-        kpiMediaTempoOcioso()
-      }, 500)
-    }, 1000)
 
-    // setInterval(() => {
-    //   window.location = "./dashboardGerente.html"
-    // }, 10000);
+      dias_atras_html()
 
   </script>
 </body>

@@ -75,10 +75,24 @@ function listar_extrato_acumulado(req, res){
     }
 }
 
+function listar_preco_componente(req, res){
+    fefeModel.listar_preco_componente().then(
+        (resultado) => {
+            res.status(200).json(resultado);
+        }
+    ).catch(
+        (erro) => {
+            console.log("\nHouve um erro ao fazer a listagem! Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        }
+    )
+}
+
 
 module.exports = {
     listar_extrato,
     listar_extrato_atual,
     listar_extrato_acumulado,
-
+    listar_preco_componente
+    
 }

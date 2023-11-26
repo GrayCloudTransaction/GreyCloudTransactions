@@ -41,10 +41,21 @@ function listar_extrato_acumulado(idServidor){
     return database.executar(query);
 }
 
+function listar_preco_componente(){
+    var query = `
+    SELECT c.tipo_componente AS 'comp', 
+        pc.preco 
+    FROM tb_preco_componente AS pc 
+		    INNER JOIN componente AS c ON pc.fk_componente = c.id_componente;`
+    
+    info("Listar preço dos Componente");
+    return database.executar(query);
+}
+
 module.exports = {
     listar_extrato,
     listar_extrato_atual,
     listar_extrato_acumulado,
-
-
+    listar_preco_componente,
+    
 };

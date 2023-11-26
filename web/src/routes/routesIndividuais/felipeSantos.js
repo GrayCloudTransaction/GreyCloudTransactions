@@ -9,19 +9,23 @@ function info(rota){
 
 // Rotas
 router.post("/listar/extrato", function (req, res) {
-    info("/listaExtrato")
+    info("/listar/extrato")
     felipeSantosController.listar_extrato(req, res);
 })
 
 router.post("/listar/extrato/atual", function(req, res){
-    info("/listarExtratoAtual");
+    info("/listar/extrato/atual");
     felipeSantosController.listar_extrato_atual(req, res);
 })
 
 router.post("/listar/extrato/acumulado", function(req, res){
-    info("/listarExtratoAtual");
+    info("/listar/extrato/acumulado");
     felipeSantosController.listar_extrato_acumulado(req, res);
 })
 
+router.get("/listar/preco/componente", (req, res) =>{
+    info("/listar/preco/componente");
+    felipeSantosController.listar_preco_componente(req, res);
+})
 
 module.exports = router;
