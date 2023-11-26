@@ -56,13 +56,17 @@ function listar_extrato_atual(req, res){
 function listar_extrato_acumulado(req, res){
     info("Listar Extrato Acumulado");
 
-    var idServidor = req.body.idServidor;
+    var idEmpresa = req.body.idEmpresa;
+    var dias = req.body.dias;
 
-    if(idServidor == undefined){
+    if(idEmpresa == undefined){
         res.status(400).send("ID do Servidor está Undefined!!!");
     }
+    else if(dias == undefined){
+        res.status(400).send("A variável dia está Undefined!!!");
+    }
     else{
-        fefeModel.listar_extrato_acumulado(idServidor).then(
+        fefeModel.listar_extrato_acumulado(idEmpresa, dias).then(
             (resultado) => {
                 res.status(200).json(resultado);
             }

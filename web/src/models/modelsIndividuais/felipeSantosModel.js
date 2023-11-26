@@ -22,22 +22,27 @@ function listar_extrato_atual(idServidor){
 	ORDER BY 
 		mes DESC
 	LIMIT 3;`
-    info("Listar Extrato Atual");
+    info("Listar Extrato Atual", query);
     return database.executar(query);
 }
 
-function listar_extrato_acumulado(idServidor){
+function listar_extrato_acumulado(idEmpresa, dias){
     var query = `
-    SELECT nome_servidor, YEAR(dia) AS ano, MONTH(dia) AS mes, tipo_componente, SUM(qtd_horas) FROM vw_extrato 
-	WHERE id_servidor = 1
-    GROUP BY 
-		tipo_componente,
-        ano,
-        mes
-	ORDER BY 
-		mes ASC;`
-    
-    info("Listar Extrato Acumulado");
+    SELECT 
+        MONTH(dia) AS 'mes',
+        tipo_componente AS 'comp', 
+        SUM(qtd_horas) AS 'horas',
+        SUM(valor_calculado) AS 'valor'
+    FROM vw_extrato 
+        WHERE id_empresa = ${idEmpresa} AND 
+        dia >= DATE_SUB(NOW(), INTERVAL ${dias} DAY)
+            GROUP BY
+                comp,
+                MONTH(dia)
+            ORDER BY 
+                MONTH(dia) DESC;`
+        
+    info("Listar Extrato Acumulado", query);
     return database.executar(query);
 }
 
@@ -48,7 +53,7 @@ function listar_preco_componente(){
     FROM tb_preco_componente AS pc 
 		    INNER JOIN componente AS c ON pc.fk_componente = c.id_componente;`
     
-    info("Listar preço dos Componente");
+    info("Listar preço dos Componente", query);
     return database.executar(query);
 }
 
@@ -57,5 +62,5 @@ module.exports = {
     listar_extrato_atual,
     listar_extrato_acumulado,
     listar_preco_componente,
-    
+
 };
