@@ -167,7 +167,9 @@ function teste() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-      },
+      },body: JSON.stringify({
+        idServidorServer: sessionStorage.ID_SERVIDOR,
+      })
     })
       .then(function (resposta) {
         if (resposta.ok) {

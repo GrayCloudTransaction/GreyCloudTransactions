@@ -7,7 +7,6 @@ function info(rota){
     console.log(`[Servidor Router] Rota: ${rota};`);
 }
 
-
 rota.post("/getPredict", (req, res) => {
     info("teste");
     rafaelController.getPredict(req,res)

@@ -6,11 +6,12 @@ function info(func){
 
 function getPredict(req, res) {
     info("getPredict");
-    let codigoEmpresa = "XPTO-0987"
+    var codigo = req.body.idServidorServer;
+    console.log(codigo)
 
     let teste
     //GET DB JSON
-    rafaelModel.listar(codigoEmpresa).then(function (resultado) {
+    rafaelModel.listar(codigo).then(function (resultado) {
         if (resultado.length > 0) { 
             teste = resultado
         }
@@ -42,7 +43,7 @@ function getPredict(req, res) {
             console.log('Some error occured - file either not saved or corrupted file saved.');
         } else{
             console.log('It\'s saved!');
-        }wa
+        }
         }).then(function(){
             //PASS LM
             const result1 = execSync(`Rscript ${pathController}/predict_data/predict_R_RAM.r`);

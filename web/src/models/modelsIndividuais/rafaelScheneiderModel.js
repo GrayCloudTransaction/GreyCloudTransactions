@@ -6,10 +6,10 @@ function info(func, query){
 }
 
 // Funções para exportar
-function listar(codigoEmpresa) {
+function listar(idServidor) {
     var query = `
         SELECT registro.*, codigo, tipo_componente from registro, servidor, componente WHERE
-        fk_servidor = id_servidor AND fk_componente = id_componente AND codigo = "${codigoEmpresa}" AND tipo_componente IN ('RAM','CPU');
+        fk_servidor = id_servidor AND fk_componente = id_componente AND id_servidor = "${idServidor}" AND tipo_componente IN ('RAM','CPU');
     `;
 
     info("Listar", query)
