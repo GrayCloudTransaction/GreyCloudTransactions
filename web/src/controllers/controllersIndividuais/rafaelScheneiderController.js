@@ -42,14 +42,19 @@ function getPredict(req, res) {
             console.log('Some error occured - file either not saved or corrupted file saved.');
         } else{
             console.log('It\'s saved!');
-        }
+        }wa
         }).then(function(){
             //PASS LM
-            const result = execSync(`Rscript ${pathController}/predict_data/predict_R.r`);
+            const result1 = execSync(`Rscript ${pathController}/predict_data/predict_R_RAM.r`);
+            const result2 = execSync(`Rscript ${pathController}/predict_data/predict_R_CPU.r`);
+
+
+            let resultList1 = result1.toString().split(' ')
+            let resultList2 = result2.toString().split(' ')
         
-            let resultList = result.toString().split(' ')
-        
-            res.send(resultList)
+
+
+            res.send([resultList1, resultList2])
         })
     });
 

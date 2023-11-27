@@ -208,6 +208,27 @@
                 <div class="col-lg-9 col-md-6 mt-4 mb-4">
                     <div class="card z-index-2 ">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+              <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
+                                <div class="chart">
+                                    <canvas id="chart-ram" class="chart-canvas" height="300"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="mb-0 ">Gráfico de predicção de RAM</h6>
+                            <p class="text-sm ">Dados previstos utilizando uma regressão linear com base nos ultimos
+                                dados de CPU e RAM</p>
+                            <hr class="dark horizontal">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row mt-5">
+
+                <div class="col-lg-9 col-md-6 mt-4 mb-4">
+                    <div class="card z-index-2 ">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
                                 <div class="chart">
                                     <canvas id="chart-cpu" class="chart-canvas" height="300"></canvas>
@@ -215,8 +236,9 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <h6 class="mb-0 ">Gráfico de predicção de RAM</h6>
-                            <p class="text-sm ">Dados previstos utilizando uma regressão linear com base nos ultimos dados de CPU e RAM</p>
+                            <h6 class="mb-0 ">Gráfico de predicção de CPU</h6>
+                            <p class="text-sm ">Dados previstos utilizando uma regressão linear com base nos ultimos
+                                dados de CPU e RAM</p>
                             <hr class="dark horizontal">
                         </div>
                     </div>
@@ -224,7 +246,7 @@
 
             </div>
 
-        
+
             <!-- <div class="col-lg-12 col-md-12">
         <div class="card h-100 w-100"
           style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
