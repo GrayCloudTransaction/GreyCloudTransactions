@@ -1,10 +1,22 @@
-caminho = getwd()
-caminho <- paste(caminho, "/src/controllers/predict_data/jonas.csv", sep = "")
+args = commandArgs(trailingOnly=TRUE)
 
-jonas = read.csv(caminho, header = TRUE)
+library(RMySQL)
 
-RAM = jonas$valor_registro[jonas$tipo_componente == "RAM"]
-CPU = jonas$valor_registro[jonas$tipo_componente == "CPU"]
+mysqlconnection = dbConnect(RMySQL::MySQL(),
+                            dbname='ScriptGCT',
+                            host='localhost',
+                            port=3306,
+                            user='root',
+                            password='')
+
+query = paste("SELECT registro.*, codigo, tipo_componente from registro, servidor, componente WHERE fk_servidor = id_servidor AND fk_componente = id_componente AND id_servidor = ",args," AND tipo_componente IN ('RAM','CPU');")
+
+result = dbSendQuery(mysqlconnection, query)
+
+df_raw = fetch(result)
+
+RAM = df_raw$valor_registro[df_raw$tipo_componente == "RAM"]
+CPU = df_raw$valor_registro[df_raw$tipo_componente == "CPU"]
 
 df = data.frame(RAM, CPU)
 

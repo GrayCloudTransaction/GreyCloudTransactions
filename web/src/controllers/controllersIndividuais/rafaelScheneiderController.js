@@ -7,7 +7,6 @@ function info(func){
 function getPredict(req, res) {
     info("getPredict");
     var codigo = req.body.idServidorServer;
-    console.log(codigo)
 
     let teste
     //GET DB JSON
@@ -25,38 +24,41 @@ function getPredict(req, res) {
         res.status(500).json(erro.sqlMessage);
 
     }).then(function(){
-        var fs = require('fs');
+        // Aqui era onde seria criado o CSV, por conta da descoberta da tecnologia de passar variavel para terminal não é mais necessário essa parte
+
+
+        //var fs = require('fs');
+        //const util = require('util')
+
         const path = require('node:path');
         const execSync = require("child_process").execSync;
-        const util = require('util')
 
         const pathController = path.join(__dirname, '..')
 
-        // CREATE CSV
-        let converter = require('json-2-csv');
-        const csv = converter.json2csv(teste);
+        // // CREATE CSV
+        // let converter = require('json-2-csv');
+        // const csv = converter.json2csv(teste);
 
-        const writeFile = util.promisify(fs.writeFile)
+        // const writeFile = util.promisify(fs.writeFile)
 
-        writeFile(`${pathController}/predict_data/jonas.csv`, csv, function (err) {
-        if (err) {
-            console.log('Some error occured - file either not saved or corrupted file saved.');
-        } else{
-            console.log('It\'s saved!');
-        }
-        }).then(function(){
-            //PASS LM
-            const result1 = execSync(`Rscript ${pathController}/predict_data/predict_R_RAM.r`);
-            const result2 = execSync(`Rscript ${pathController}/predict_data/predict_R_CPU.r`);
+        // writeFile(`${pathController}/predict_data/jonas.csv`, csv, function (err) {
+        // if (err) {
+        //     console.log('Some error occured - file either not saved or corrupted file saved.');
+        // } else{
+        //     console.log('It\'s saved!');
+        // }
+        //}).then(function(){
 
 
-            let resultList1 = result1.toString().split(' ')
-            let resultList2 = result2.toString().split(' ')
-        
+        //PASS LM
+        const result1 = execSync(`Rscript ${pathController}/predict_data/predict_R_RAM.r ${codigo}`);
+        const result2 = execSync(`Rscript ${pathController}/predict_data/predict_R_CPU.r ${codigo}`);
 
 
-            res.send([resultList1, resultList2])
-        })
+        let resultList1 = result1.toString().split(' ')
+        let resultList2 = result2.toString().split(' ')
+
+        res.send([resultList1, resultList2])
     });
 
 }

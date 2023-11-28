@@ -8,8 +8,13 @@ function info(func, query){
 // Funções para exportar
 function listar(idServidor) {
     var query = `
-        SELECT registro.*, codigo, tipo_componente from registro, servidor, componente WHERE
-        fk_servidor = id_servidor AND fk_componente = id_componente AND id_servidor = "${idServidor}" AND tipo_componente IN ('RAM','CPU');
+        SELECT registro.*, tipo_componente
+        FROM registro, componente
+        WHERE tipo_componente IN ("CPU", "RAM")
+        AND id_componente = fk_componente
+        AND fk_servidor = ${idServidor}
+        ORDER BY data_registro DESC
+        LIMIT 2;
     `;
 
     info("Listar", query)
