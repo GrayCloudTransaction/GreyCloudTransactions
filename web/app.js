@@ -1,5 +1,5 @@
-//process.env.AMBIENTE_PROCESSO = "desenvolvimento";
-process.env.AMBIENTE_PROCESSO = "producao";
+process.env.AMBIENTE_PROCESSO = "desenvolvimento";
+// process.env.AMBIENTE_PROCESSO = "producao";
 
 var express = require("express");
 var cors = require("cors");
@@ -16,6 +16,7 @@ var emailRouter = require("./src/routes/email");
 var servidorRouter = require("./src/routes/servidor");
 var chamadoRouter = require("./src/routes/chamado");
 var registroRouter = require("./src/routes/registro");
+var vitorHideki = require("./src/routes/routesIndividuais/vitorHideki")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -31,6 +32,7 @@ app.use("/email", emailRouter);
 app.use("/servidor", servidorRouter);
 app.use("/chamado", chamadoRouter);
 app.use("/registro", registroRouter);
+app.use("/vitorHideki", vitorHideki)
 
 app.listen(PORTA, function () {
     console.log(`URL do Site: https://localhost:${PORTA} \n
