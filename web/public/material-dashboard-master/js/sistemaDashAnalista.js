@@ -128,8 +128,27 @@ function obterDadosGrafico(id_servidor, graficoCpu, graficoRam, graficoDisco) {
               else{
                 valorDiscoID.style.color = "green"
               }
-            
 
+            } 
+
+            else if (resposta[i].tipo_componente == "rede") {
+              console.log("Achou rede");
+
+              valorRam = resposta[i].valor_registro;
+              labelRam = datetime
+              valorRAMID.innerHTML = valorRam + "%"
+              if(valorRam > 70){
+                valorRAMID.style.color = "red"
+              } 
+              else if(valorRam > 50){
+                valorRAMID.style.color = "darkgoldenrod"
+              }
+              else{
+                valorRAMID.style.color = "green"
+              }
+
+
+            
             } else {
               console.log("Dados incorretos.");
             }
