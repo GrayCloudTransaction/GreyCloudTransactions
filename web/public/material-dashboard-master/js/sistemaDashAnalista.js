@@ -133,37 +133,39 @@ function obterDadosGrafico(id_servidor, graficoCpu, graficoRam, graficoDisco, gr
                 valorDiscoID.style.color = "green"
               }
 
-              if (resposta[i].tipo_componente == "Rede") {
-                console.log("Achou rede");
-  
-                valorDownload = resposta[i].valor_registro;
-                valorUpload = resposta[i].valor_registro;
-                ping = resposta[i].valor_registro;
-                labelRede = datetime
-                valorDownloadID.innerHTML = valorDownload + "Mbps"
-                valorUploadID.innerHTML = valorUpload + "Mbps"
-                ping.innerHTML = ping
-                if(valorDownload < 3 || valorUpload < 3 || ping > 15){
-                  valorDownloadID.style.color = "red"
-                  valorUploadID.style.color = "red"
-                  ping.style.color = "red"
-                } 
-                else if(valorDownload >= 3 && valorDownload <= 5 || valorUpload >= 3 && valorUpload <= 5 || ping >= 10 && ping <= 15){
-                  valorDownloadID.style.color = "darkgoldenrod"
-                  valorUploadID.style.color = "darkgoldenrod"
-                  ping.style.color = "darkgoldenrod"
-                }
-                else{
-                  valorDownloadID.style.color = "green"
-                  valorUploadID.style.color = "green"
-                  ping.style.color = "green"
-                }
-                
+            }
 
-              } else {
-                console.log("Dados incorretos.");
+            else if (resposta[i].tipo_componente == "Rede") {
+              console.log("Achou rede");
+
+              valorDownload = resposta[i].valor_registro;
+              valorUpload = resposta[i].valor_registro;
+              ping = resposta[i].valor_registro;
+              labelRede = datetime
+              valorDownloadID.innerHTML = valorDownload + "Mbps"
+              valorUploadID.innerHTML = valorUpload + "Mbps"
+              ping.innerHTML = ping
+              if(valorDownload < 3 || valorUpload < 3 || ping > 15){
+                valorDownloadID.style.color = "red"
+                valorUploadID.style.color = "red"
+                ping.style.color = "red"
+              } 
+              else if(valorDownload >= 3 && valorDownload <= 5 || valorUpload >= 3 && valorUpload <= 5 || ping >= 10 && ping <= 15){
+                valorDownloadID.style.color = "darkgoldenrod"
+                valorUploadID.style.color = "darkgoldenrod"
+                ping.style.color = "darkgoldenrod"
               }
-          }
+              else{
+                valorDownloadID.style.color = "green"
+                valorUploadID.style.color = "green"
+                ping.style.color = "green"
+              }
+              
+
+            } else {
+              console.log("Dados incorretos.");
+            }
+          
 
           atualizarGrafico(valorCpu, labelCpu, graficoCpu);
           atualizarGrafico(valorRam, labelRam, graficoRam);
@@ -455,13 +457,51 @@ function teste(id_servidor) {
       labels: [],
       datasets: [
         {
-          label: "Mbps",
+          label: "velocidade de download",
           tension: 0,
           borderWidth: 0,
           pointRadius: 5,
           pointBackgroundColor: "rgba(255, 255, 255, .8)",
           pointBorderColor: "transparent",
           borderColor: "rgba(255, 255, 255, .8)",
+          borderWidth: 4,
+          backgroundColor: "transparent",
+          fill: true,
+          data: [],
+          maxBarThickness: 6,
+        },
+      ],
+    },
+    data2: {
+      labels: [],
+      datasets: [
+        {
+          label: "velocidade de upload",
+          tension: 0,
+          borderWidth: 0,
+          pointRadius: 5,
+          pointBackgroundColor: "rgba(255,250,240)",
+          pointBorderColor: "transparent",
+          borderColor: "rgba(255,250,240)",
+          borderWidth: 4,
+          backgroundColor: "transparent",
+          fill: true,
+          data: [],
+          maxBarThickness: 6,
+        },
+      ],
+    },
+    data3: {
+      labels: [],
+      datasets: [
+        {
+          label: "ping",
+          tension: 0,
+          borderWidth: 0,
+          pointRadius: 5,
+          pointBackgroundColor: "rgba(245,245,245)",
+          pointBorderColor: "transparent",
+          borderColor: "rgba(245,245,245)",
           borderWidth: 4,
           backgroundColor: "transparent",
           fill: true,
