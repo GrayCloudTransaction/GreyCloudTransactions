@@ -65,6 +65,14 @@
             <span class="nav-link-text ms-1">Máquinas</span>
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="../pages/dashboard-Rafael-Scheneider/dashPredict.html">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">receipt_long</i>
+            </div>
+            <span class="nav-link-text ms-1">Previsoes</span>
+          </a>
+        </li>
         <!-- <li class="nav-item">
           <a class="nav-link text-white " href="../pages/notifications.html">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -329,7 +337,7 @@
               </div>
               <div class="text-end pt-1">
                 <p class="text-sm mb-0 text-capitalize"> Valor Atual - RAM</p>
-                <h4 class="mb-0" id="valorRAMID"></h4> 
+                <h4 class="mb-0" id="valorRAMID"></h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
@@ -626,8 +634,6 @@
 <script>
   validarSessao()
   pegarInfoServidor()
-
-  obterDadosGrafico(sessionStorage.ID_SERVIDOR)
 
   teste(sessionStorage.ID_SERVIDOR)
   chamadosAbertosServidor();
