@@ -9,7 +9,7 @@ con <- dbConnect(odbc(),
                  PWD = "urubu100",
                  Port = 1433)
 
-query = paste("SELECT registro.*, codigo, tipo_componente FROM registro INNER JOIN servidor ON registro.fk_servidor = servidor.id_servidor INNER JOIN componente ON registro.fk_componente = componente.id_componente WHERE servidor.id_servidor = ",args,"AND componente.tipo_componente IN ('RAM','CPU');")
+query = paste("SELECT registro.*, codigo, tipo_componente FROM registro, servidor, componente WHERE fk_servidor = id_servidor AND fk_componente = id_componente AND id_servidor = ", args, " AND tipo_componente IN ('RAM', 'CPU');")
 
 df_raw <- dbGetQuery(con, query);
 

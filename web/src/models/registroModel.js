@@ -7,13 +7,12 @@ function info(func, query){
 
 function buscarUltimosRegistros(id_servidor, limite) {
     var instrucao = `
-        SELECT registro.*, tipo_componente
-        FROM registro, componente
-        WHERE tipo_componente IN ("CPU", "RAM", "Disco")
-        AND id_componente = fk_componente
-        AND fk_servidor = ${id_servidor}
-        ORDER BY data_registro DESC
-        LIMIT ${limite};
+	SELECT TOP (${limite}) registro.*, componente.tipo_componente
+	FROM registro
+	INNER JOIN componente ON registro.fk_componente = componente.id_componente
+	WHERE componente.tipo_componente IN ('CPU', 'RAM', 'Disco')
+  	AND componente.fk_servidor = ${id_servidor}
+	ORDER BY registro.data_registro DESC;
     `;
     
     info("Buscar Últimos Registros", instrucao)
