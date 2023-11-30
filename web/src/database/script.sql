@@ -40,9 +40,10 @@ CREATE TABLE IF NOT EXISTS `servidor` (
   `fk_empresa` INT NOT NULL,
   `prioridade` INT NULL,
   `localizacao` VARCHAR(200) NOT NULL,
+  `fk_rede` INT NOT NULL,
   PRIMARY KEY (`id_servidor`),
   FOREIGN KEY (`fk_empresa`) REFERENCES `empresa` (`id_empresa`) ON DELETE CASCADE,
-  FOREIGN KEY ()
+  FOREIGN KEY (`fk_rede`) REFERENCES `rede` (`id_rede`) ON DELETE CASCADE
 );
 
 
@@ -110,9 +111,9 @@ CREATE TABLE IF NOT EXISTS `rede`(
     `downloadStat` DECIMAL(5,2),
     `dataSent` DECIMAL(5,2),
     `dataRecv` DECIMAL(5,2),
-    PRIMARY KEY (`id_rede`),
-    FOREIGN KEY ()
-)
+    PRIMARY KEY (`id_rede`)
+);
+
 -- Cadastro de Empresas
 INSERT INTO `empresa` (`razao_social`, `cnpj`, `numero_imovel`, `cep`, `email`, `telefone`) 
 VALUES ('Pague Seguro',"61.186.888/0093-01", 763, '09260-640', 'pagueSeguro@gmail.com', '123123123')
@@ -136,11 +137,17 @@ values ('Cleiton Rodrigues', 'cleiton@gmail.com', '12345', 'Analísta Junior', "
 
 SELECT * FROM `funcionario`;
 
+-- Cadatro de Rede
+INSERT INTO `rede` (`mac_address`, `dataSent`, `dataRecv`) VALUES 
+('COMP1', 12.5, 19.0),
+('COMP2', 13.4, 20.1),
+('COMP3', 15.1, 18.5);
+
 -- Cadastro de Servidores 
-INSERT INTO `servidor` (`nome`, `codigo`, `tipo`,`status`, `descricao`, `fk_empresa`, `localizacao`)
-VALUES ('SERVER-AHRL1NB', 'XPTO-0987', 'Servidor Principal',1, 'Servidor responsável por executar X tarefa', 1, 'Sede empresa 012 - Port 3')
-	, ('SERVER-9HJD2AL', 'XP-9384', 'Servidor de Backup',1, 'Servidor responsável por backups', 1, 'Sede empresa 234 - Comp A')
-    , ('SERVER-UHD71P6', 'LOC-0284', 'Servidor de Homologação',1, 'Servidor responsável por Homologações ', 1, 'Sede empresa 102 - Port 1');
+INSERT INTO `servidor` (`nome`, `codigo`, `tipo`,`status`, `descricao`, `fk_empresa`, `localizacao`, `fk_rede`)
+VALUES ('SERVER-AHRL1NB', 'XPTO-0987', 'Servidor Principal',1, 'Servidor responsável por executar X tarefa', 1, 'Sede empresa 012 - Port 3', 1)
+	, ('SERVER-9HJD2AL', 'XP-9384', 'Servidor de Backup',1, 'Servidor responsável por backups', 1, 'Sede empresa 234 - Comp A', 2)
+    , ('SERVER-UHD71P6', 'LOC-0284', 'Servidor de Homologação',1, 'Servidor responsável por Homologações ', 1, 'Sede empresa 102 - Port 1', 3);
 
 UPDATE servidor set `status` = 0 WHERE id_servidor in(2);
 
@@ -185,6 +192,9 @@ INSERT INTO `chamados` (`titulo`, `descricao`, `data_hora`, `status`, `fk_compon
 ("Alerta uso da Disco", "Uso da Disco está em 75%", "2023-10-09 14:05:32", "Aberto", 3, 1),
 ("Alerta uso da CPU", "Uso da CPU está em 90%", "2023-10-09 14:05:32", "Aberto", 4, 1),
 ("Alerta uso da RAM", "Uso da RAM está em 80%", "2023-10-09 14:05:32", "Aberto", 5, 1);
+
+
+CREATE OR REPLACE VIEW `vw_registro_Disco` 
 
 
 CREATE OR REPLACE VIEW `vw_registro_geral` AS 
@@ -239,3 +249,6 @@ select * from registro
         AND fk_servidor = 1
         ORDER BY data_registro DESC
         LIMIT 3;
+
+SELECT * FROM servidor, rede
+        WHERE id_rede = fk_rede;
