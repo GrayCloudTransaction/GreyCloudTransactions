@@ -1,19 +1,17 @@
 args = commandArgs(trailingOnly=TRUE)
 
-library(RMySQL)
+library(odbc)
+con <- dbConnect(odbc(),
+                 Driver = "SQL Server",
+                 Server = "localhost",
+                 Database = "scriptgct",
+                 UID = "sa",
+                 PWD = "urubu100",
+                 Port = 1433)
 
-mysqlconnection = dbConnect(RMySQL::MySQL(),
-                            dbname='ScriptGCT',
-                            host='localhost',
-                            port=3306,
-                            user='root',
-                            password='')
+query = paste("SELECT registro.*, codigo, tipo_componente FROM registro INNER JOIN servidor ON registro.fk_servidor = servidor.id_servidor INNER JOIN componente ON registro.fk_componente = componente.id_componente WHERE servidor.id_servidor = ",args,"AND componente.tipo_componente IN ('RAM','CPU');")
 
-query = paste("SELECT registro.*, codigo, tipo_componente from registro, servidor, componente WHERE fk_servidor = id_servidor AND fk_componente = id_componente AND id_servidor = ",args," AND tipo_componente IN ('RAM','CPU');")
-
-result = dbSendQuery(mysqlconnection, query)
-
-df_raw = fetch(result)
+df_raw <- dbGetQuery(con, query);
 
 RAM = df_raw$valor_registro[df_raw$tipo_componente == "RAM"]
 CPU = df_raw$valor_registro[df_raw$tipo_componente == "CPU"]
