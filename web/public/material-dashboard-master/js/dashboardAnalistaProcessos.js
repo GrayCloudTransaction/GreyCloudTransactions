@@ -353,5 +353,5 @@ function conversorBytes(num) {
         valor = num/1073741824;
         unidadeMedida = 'GB';
     }
-    return valor.toFixed(2) + ' ' + unidadeMedida;
+    return Number(valor).toFixed(2) + ' ' + unidadeMedida;
 }
