@@ -7,7 +7,7 @@ function info(func, query){
 
 function getQtdTotalProcessos(id_servidor) {
     var query = `
-        SELECT COUNT(*) AS qtd_processos FROM registro_processo WHERE fk_servidor = ${id_servidor} GROUP BY horario;
+        SELECT COUNT(*) AS qtd_processos FROM registro_processo WHERE fk_servidor = ${id_servidor} GROUP BY horario ORDER BY horario;
     `
     info("Pegar quantidade total de processos", query);
     return database.executar(query);
