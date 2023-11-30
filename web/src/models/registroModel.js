@@ -7,8 +7,9 @@ function info(func, query){
 
 function buscarUltimosRegistros(id_servidor, limite) {
     var instrucao = `
-        SELECT registro.*, tipo_componente
-        FROM registro, componente
+        SELECT registro.*, tipo_componente,
+        vel_download,vel_upload,ping 
+        FROM registro, componente, rede
         WHERE tipo_componente IN ("CPU", "RAM", "Disco")
         AND id_componente = fk_componente
         AND fk_servidor = ${id_servidor}
