@@ -8,7 +8,7 @@ function info(rota){
 }
 
 // Rotas
-rota.get("/ultimas/:id_servidor", (req, res) => {
+rota.get("/ultimas", (req, res) => {
     info("Ultimas");
     eduardoCamargoController.buscarUltimosRegistros(req, res);
 });

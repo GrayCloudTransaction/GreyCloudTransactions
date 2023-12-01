@@ -5,17 +5,18 @@ function info(func, query){
     console.log(`[Registro Model] Função: ${func};\nQuery: ${query}`)
 }
 
-function buscarUltimosRegistros(id_servidor, limite) {
-    var instrucao = `
-        SELECT registro.*, tipo_componente,
-        vel_download,vel_upload,ping 
-        FROM registro, componente, rede
-        WHERE tipo_componente IN ("CPU", "RAM", "Disco")
-        AND id_componente = fk_componente
-        AND fk_servidor = ${id_servidor}
-        ORDER BY data_registro DESC
-        LIMIT ${limite};
-    `;
+function buscarUltimosRegistros() {
+    // var instrucao = `
+    //     SELECT registro.*, tipo_componente,
+    //     vel_download,vel_upload,ping 
+    //     FROM registro, componente, rede
+    //     WHERE tipo_componente IN ("CPU", "RAM", "Disco")
+    //     AND id_componente = fk_componente
+    //     AND fk_servidor = ${id_servidor}
+    //     ORDER BY data_registro DESC
+    //     LIMIT ${limite};
+    // `;
+    var instrucao = `select * from rede;`
     
     info("Buscar Últimos Registros", instrucao)
 

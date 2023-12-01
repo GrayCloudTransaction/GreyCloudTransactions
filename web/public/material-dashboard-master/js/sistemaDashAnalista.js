@@ -57,19 +57,19 @@ function chamadosAbertosServidor() {
     });
 }
 
-function obterDadosGrafico(id_servidor, graficoCpu, graficoRam, graficoDisco, graficoRede) {
+function obterDadosGrafico(id_servidor, graficoCpu, graficoRam, graficoDisco) {
   var valorCpu
   var valorRam
   var valorDisco
-  var valorDownload
-  var valorUpload
-  var ping
+  // var valorDownload
+  // var valorUpload
+  // var ping
   var labelCpu
   var labelRam
   var labelDisco
-  var labelRede
+  // var labelRede
 
-  fetch(`/eduardoCamargo/ultimas/${id_servidor}`, {
+  fetch(`/registro/ultimas/${id_servidor}`, {
     cache: "no-store",
   })
     .then(function (response) {
@@ -135,46 +135,17 @@ function obterDadosGrafico(id_servidor, graficoCpu, graficoRam, graficoDisco, gr
 
             }
 
-            else if (resposta[i].tipo_componente == "Rede") {
-              console.log("Achou rede");
-
-              valorDownload = resposta[i].valor_registro;
-              valorUpload = resposta[i].valor_registro;
-              ping = resposta[i].valor_registro;
-              labelRede = datetime
-              valorDownloadID.innerHTML = valorDownload + "Mbps"
-              valorUploadID.innerHTML = valorUpload + "Mbps"
-              ping.innerHTML = ping
-              if(valorDownload < 3 || valorUpload < 3 || ping > 15){
-                valorDownloadID.style.color = "red"
-                valorUploadID.style.color = "red"
-                ping.style.color = "red"
-              } 
-              else if(valorDownload >= 3 && valorDownload <= 5 || valorUpload >= 3 && valorUpload <= 5 || ping >= 10 && ping <= 15){
-                valorDownloadID.style.color = "darkgoldenrod"
-                valorUploadID.style.color = "darkgoldenrod"
-                ping.style.color = "darkgoldenrod"
-              }
-              else{
-                valorDownloadID.style.color = "green"
-                valorUploadID.style.color = "green"
-                ping.style.color = "green"
-              }
-              
-
-            } else {
+            else {
               console.log("Dados incorretos.");
             }
-          
+          }
 
-          atualizarGrafico(valorCpu, labelCpu, graficoCpu);
-          atualizarGrafico(valorRam, labelRam, graficoRam);
-          atualizarGrafico(valorDisco, labelDisco, graficoDisco);
-          atualizarGrafico(valorDownload, labelRede, graficoRede);
-          atualizarGrafico(valorUpload, labelRede, graficoRede);
-          atualizarGrafico(ping, labelRede, graficoRede);
+          atualizarGrafico(valorCpu, labelCpu, graficoCpu, 0);
+          atualizarGrafico(valorRam, labelRam, graficoRam, 0);
+          atualizarGrafico(valorDisco, labelDisco, graficoDisco, 0);
 
-        }});
+        });
+
       } else {
         console.error("Nenhum dado encontrado ou erro na API");
       }
@@ -184,10 +155,94 @@ function obterDadosGrafico(id_servidor, graficoCpu, graficoRam, graficoDisco, gr
     });
 }
 
-function atualizarGrafico(valor, label, ctx) {
-  if (ctx.data.labels.length < 5) {
+
+
+
+
+function obterDadosGraficoRede(graficoRede) {
+
+  var interface
+  var valorDownload
+  var valorUpload
+  var ping
+  var labelRede
+
+
+  fetch(`/eduardoCamargo/ultimas`, {
+    cache: "no-store",
+  })
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+          for (i in resposta) {
+            var datetime = new Date(resposta[i].data_registro).toLocaleString("pt-BR");
+
+            if (resposta[i].interfaces != "eth0") {
+              console.log("Achou rede");
+
+              //interface = resposta[i].interface;
+              valorDownload = resposta[i].vel_download;
+              valorUpload = resposta[i].vel_upload;
+              ping = resposta[i].ping;
+
+
+              labelRede = datetime
+              valorDownloadID.innerHTML = valorDownload + "Mbps"
+              valorUploadID.innerHTML = valorUpload + "Mbps"
+              pingID.innerHTML = ping
+
+              if (valorDownload < 3 || valorUpload < 3 || ping > 15) {
+                valorDownloadID.style.color = "red"
+                valorUploadID.style.color = "red"
+                pingID.style.color = "red"
+              }
+              else if (valorDownload >= 3 && valorDownload <= 5 || valorUpload >= 3 && valorUpload <= 5 || ping >= 10 && ping <= 15) {
+                valorDownloadID.style.color = "darkgoldenrod"
+                valorUploadID.style.color = "darkgoldenrod"
+                pingID.style.color = "darkgoldenrod"
+              }
+              else {
+                valorDownloadID.style.color = "green"
+                valorUploadID.style.color = "green"
+                pingID.style.color = "green"
+              }
+
+            } else {
+              console.log("Dados incorretos.");
+            }
+          }
+
+          console.log("fffffffffffffffffffffffffffffffffffffffffffffffffffffffff")
+          
+          atualizarGrafico(valorDownload, labelRede, graficoRede, 1);
+          atualizarGrafico(valorUpload, labelRede, graficoRede, 2);
+          atualizarGrafico(ping, labelRede, graficoRede, 0);
+
+          console.log("fffffffffffffffffffffffffffffffffffffffffffffffffffffffff")
+
+        });
+      } else {
+        console.error("Nenhum dado encontrado ou erro na API");
+      }
+    })
+    .catch(function (error) {
+      console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
+}
+
+
+
+
+
+
+
+
+function atualizarGrafico(valor, label, ctx, i) {
+  if (ctx.data.datasets[i].data.length < 5) {
     ctx.data.labels.push(label);
-    ctx.data.datasets[0].data.push(valor);
+    ctx.data.datasets[i].data.push(valor);
 
     ctx.update();
   }
@@ -195,14 +250,16 @@ function atualizarGrafico(valor, label, ctx) {
     ctx.data.labels.shift();
     ctx.data.labels.push(label);
 
-    ctx.data.datasets[0].data.shift();
-    ctx.data.datasets[0].data.push(valor);
+    ctx.data.datasets[i].data.shift();
+    ctx.data.datasets[i].data.push(valor);
 
     ctx.update();
   }
+
 }
 
-function teste(id_servidor) {
+
+function teste() {
   var ctx1 = document.getElementById("chart-cpu").getContext("2d");
   var ctx2 = document.getElementById("chart-ram").getContext("2d");
   var ctx3 = document.getElementById("chart-disco").getContext("2d");
@@ -457,7 +514,7 @@ function teste(id_servidor) {
       labels: [],
       datasets: [
         {
-          label: "velocidade de download",
+          label: "ping",
           tension: 0,
           borderWidth: 0,
           pointRadius: 5,
@@ -470,38 +527,30 @@ function teste(id_servidor) {
           data: [],
           maxBarThickness: 6,
         },
-      ],
-    },
-    data2: {
-      labels: [],
-      datasets: [
+
         {
-          label: "velocidade de upload",
+          label: "vel_down",
           tension: 0,
           borderWidth: 0,
           pointRadius: 5,
-          pointBackgroundColor: "rgba(255,250,240)",
+          pointBackgroundColor: "rgba(255, 255, 255, .8)",
           pointBorderColor: "transparent",
-          borderColor: "rgba(255,250,240)",
+          borderColor: "rgba(255, 255, 255, .8)",
           borderWidth: 4,
           backgroundColor: "transparent",
           fill: true,
           data: [],
           maxBarThickness: 6,
         },
-      ],
-    },
-    data3: {
-      labels: [],
-      datasets: [
+
         {
-          label: "ping",
+          label: "vel_up",
           tension: 0,
           borderWidth: 0,
           pointRadius: 5,
-          pointBackgroundColor: "rgba(245,245,245)",
+          pointBackgroundColor: "rgba(255, 255, 255, .8)",
           pointBorderColor: "transparent",
-          borderColor: "rgba(245,245,245)",
+          borderColor: "rgba(255, 255, 255, .8)",
           borderWidth: 4,
           backgroundColor: "transparent",
           fill: true,
@@ -570,6 +619,7 @@ function teste(id_servidor) {
     },
   });
 
-  obterDadosGrafico(id_servidor, chart1, chart2, chart3, chart4)
-  setInterval(() => obterDadosGrafico(id_servidor, chart1, chart2, chart3,chart4), 5500)
+  //obterDadosGrafico(id_servidor, chart1, chart2, chart3)
+  setInterval(() => obterDadosGraficoRede(chart4), 3000)
+  obterDadosGraficoRede(chart4)
 }

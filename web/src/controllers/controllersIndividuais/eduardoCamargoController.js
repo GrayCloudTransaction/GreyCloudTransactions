@@ -1,13 +1,8 @@
-var registroModel = require("../../models/modelsIndividuais/eduardoCamargoModel")
+var eduardoModel = require("../../models/modelsIndividuais/eduardoCamargoModel")
 
 function buscarUltimosRegistros(req, res) {
-    const limite_linhas = 3;
-
-    var id_servidor = req.params.id_servidor;
-
-    console.log(id_servidor)
-
-    registroModel.buscarUltimosRegistros(id_servidor, limite_linhas).then(function (resultado) {
+    console.log('JONAS')
+    eduardoModel.buscarUltimosRegistros().then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
