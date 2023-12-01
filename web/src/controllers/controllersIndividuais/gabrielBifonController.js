@@ -1,13 +1,13 @@
-var registroModel = require("../../models/registroModel");
+var bifonModel = require("../../models/modelsIndividuais/gabrielBifonModel");
 
 function buscarUltimosRegistros(req, res) {
-    const limite_linhas = 3;
+    const limite_linhas = 1;
 
     var id_servidor = req.params.id_servidor;
 
     console.log(id_servidor)
 
-    registroModel.buscarUltimosRegistros(id_servidor, limite_linhas).then(function (resultado) {
+    bifonModel.buscarUltimosRegistros(id_servidor, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
