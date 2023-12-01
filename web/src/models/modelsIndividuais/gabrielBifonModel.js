@@ -7,12 +7,11 @@ function info(func, query){
 
 function buscarUltimosRegistros(id_servidor, limite) {
     var instrucao = `
-        SELECT registro.*, tipo_componente
-        FROM registro, componente
-        WHERE tipo_componente IN ("rede")
-        AND id_componente = fk_componente
-        AND fk_servidor = ${id_servidor}
-        ORDER BY data_registro DESC
+        SELECT mac_address, dataSent, dataRecv
+        FROM rede, servidor
+        WHERE id_rede = fk_rede
+        AND id_servidor = ${id_servidor}
+        ORDER BY id_rede DESC
         LIMIT ${limite};
     `;
     

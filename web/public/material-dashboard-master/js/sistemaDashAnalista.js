@@ -57,13 +57,15 @@ function chamadosAbertosServidor() {
         });
 }
 
-function obterDadosGrafico(id_servidor, graficoCpu, graficoRam, graficoDisco) {
+function obterDadosGrafico(id_servidor, graficoCpu, graficoRam, graficoDisco, graficoRede) {
   var valorCpu
   var valorRam
   var valorDisco
+  var valorRede
   var labelCpu
   var labelRam
   var labelDisco
+  var labelRede
 
   fetch(`/registro/ultimas/${id_servidor}`, {
     cache: "no-store",
@@ -157,6 +159,7 @@ function obterDadosGrafico(id_servidor, graficoCpu, graficoRam, graficoDisco) {
           atualizarGrafico(valorCpu, labelCpu, graficoCpu);
           atualizarGrafico(valorRam, labelRam, graficoRam);
           atualizarGrafico(valorDisco, labelDisco, graficoDisco);
+          atualizarGrafico(valorRde, labelRede, graficoRede);
         });
       } else {
         console.error("Nenhum dado encontrado ou erro na API");
