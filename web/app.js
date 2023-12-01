@@ -17,6 +17,7 @@ var servidorRouter = require("./src/routes/servidor");
 var chamadoRouter = require("./src/routes/chamado");
 var registroRouter = require("./src/routes/registro");
 var rafaelScheneiderRouter = require("./src/routes/routesIndividuais/rafaelScheneider")
+var gabrielRouter = require("./src/routes/routesIndividuais/gabrielBifon")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -33,6 +34,7 @@ app.use("/servidor", servidorRouter);
 app.use("/chamado", chamadoRouter);
 app.use("/registro", registroRouter);
 app.use("/rafael", rafaelScheneiderRouter)
+app.use("/gabriel", gabrielRouter)
 
 app.listen(PORTA, function () {
     console.log(`URL do Site: http://localhost:${PORTA} \n
