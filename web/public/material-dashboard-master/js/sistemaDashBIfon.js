@@ -57,13 +57,11 @@ function chamadosAbertosServidor() {
         });
 }
 
-function obterDadosGrafico(id_servidor, graficoCpu, graficoRam, graficoDisco) {
-  var valorCpu
-  var valorRam
-  var valorDisco
-  var labelCpu
-  var labelRam
-  var labelDisco
+function obterDadosGrafico(id_servidor, graficoRede) {
+  var valorDataRecv
+  var valorDataSent
+  var labelDataRecv
+  var labelDataSent
 
   fetch(`/registro/ultimas/${id_servidor}`, {
     cache: "no-store",
