@@ -18,6 +18,7 @@ var chamadoRouter = require("./src/routes/chamado");
 var registroRouter = require("./src/routes/registro");
 var rafaelScheneiderRouter = require("./src/routes/routesIndividuais/rafaelScheneider")
 var gabrielRouter = require("./src/routes/routesIndividuais/gabrielBifon")
+var vitorHidekiRouter = require("./src/routes/routesIndividuais/vitorHideki")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -35,8 +36,9 @@ app.use("/chamado", chamadoRouter);
 app.use("/registro", registroRouter);
 app.use("/rafael", rafaelScheneiderRouter)
 app.use("/gabriel", gabrielRouter)
+app.use("/vitorHideki", vitorHidekiRouter)
 
 app.listen(PORTA, function () {
-    console.log(`URL do Site: http://localhost:${PORTA} \n
+    console.log(`URL do Site: https://localhost:${PORTA} \n
     Rodando aplicação em Ambiente de ${process.env.AMBIENTE_PROCESSO}`);
 });
