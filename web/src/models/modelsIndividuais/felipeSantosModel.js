@@ -57,10 +57,44 @@ function listar_preco_componente(){
     return database.executar(query);
 }
 
+function lista_preco_disco(idServidor){
+    var query = 
+    `SELECT 
+	    pc.preco AS preco,
+        ebs.espaco_alocado AS espaco
+    FROM 
+	    tb_extrato_ebs AS ebs INNER JOIN tb_preco_componente AS pc ON
+		    pc.id_preco_componente = ebs.fk_preco_componente
+        WHERE fk_servidor = ${idServidor};
+    `
+    info("Listar preço do Disco", query);
+    return database.executar(query)
+}
+
+function historico_somarizado_por_servidor(idEmpresa, dias){
+    var query = `
+    SELECT 
+        id_servidor,
+        nome_servidor,
+        SUM(valor_calculado) AS 'valor'
+    FROM vw_extrato 
+        WHERE id_empresa = 1 AND 
+           dia >= DATE_SUB(NOW(), INTERVAL 30 DAY)
+            GROUP BY
+                id_servidor,
+                nome_servidor;
+    `;
+
+    info("historico somarizado por servidor", query);
+    return database.executar(query);
+}
+
 module.exports = {
     listar_extrato,
     listar_extrato_atual,
     listar_extrato_acumulado,
     listar_preco_componente,
+    lista_preco_disco,
+    historico_somarizado_por_servidor,
 
 };

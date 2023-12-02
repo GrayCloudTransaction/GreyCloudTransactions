@@ -230,22 +230,21 @@
             <h5 class="card-title mt-0">Custo de CPU</h5>
             <p class="card-text mb-0">Horas Acumuladas de Consumo: <span id="sp_horasCPU"></span></p>
             <p class="card-text mb-0">Preço por Hora $ <span id="sp_precoHoraCPU"></span></p>
-            <p class="card-text mb-0">Custo Total R$ <span id="sp_valorCPU"></span></p>
+            <p class="card-text mb-0">Custo Total <b>R$ <span id="sp_valorCPU"></span></b></p>
 
             <hr class="dark horizontal my-3">
 
             <h5 class="card-title">Custo de RAM</h5>
             <p class="card-text mb-0">Horas Acumuladas de Consumo: <span id="sp_horasRAM"></span></p>
             <p class="card-text mb-0">Preço por Hora $ <span id="sp_precoHoraRAM"></span></p>
-            <p class="card-text mb-0">Custo Total R$ <span id="sp_valorRAM"></span></p>
+            <p class="card-text mb-0">Custo Total <b>R$ <span id="sp_valorRAM"></span></b></p>
 
             <hr class="dark horizontal my-3">
 
             <h5 class="card-title">Custo de Armazenamento</h5>
-            <p class="card-text mb-0">Espaço Total Disponivel: 1000 GB</p>
-            <p class="card-text mb-0">Espaço Total Ocupado: 450 GB</p>
-            <p class="card-text mb-0">Preço por GB Hora $ <span id="sp_precoHoraDISCO"></span></p>
-            <p class="card-text mb-0">Custo Total R$ </p>
+            <p class="card-text mb-0">Espaço Total Alocado: <span id="sp_espacoTotal"></span> GB</p>
+            <p class="card-text mb-0">Preço por GB $ <span id="sp_precoHoraDISCO"></span></p>
+            <p class="card-text mb-0">Custo Total <b>R$ <span id="sp_custoDiscoTotal"></span> </b></p>
 
             <select class="btn btn-primary form-select mt-4">
               <option value="1">PDF - Relatório Completo</option>
@@ -268,7 +267,8 @@
                 </div>
 
                 <div class="text-end pt-1">
-                  <h5 class="text-sm mb-1 text-capitalize">Servidor com Maior custo de CPU neste mês</h5>
+                  <h5 class="text-sm mb-1 text-capitalize">Maior custo de CPU - Desde <span id="sp_dataFiltroCPU"></span></h5>
+
                   <h4 class="mb-2" id="">Servidor XPTO</h4>
                   <h5 class="mb-0" id="">Custo Total R$ <span>300</span></h5>
                 </div>
@@ -278,7 +278,7 @@
 
               <div class="card-footer p-3">
                 <div class="d-flex h-100 align-items-center">
-                  <button data-bs-toggle="modal" data-bs-target="#modalCPUReco" type="button" class="btn bg-gradient-success" style="margin-left: 18%;">Recomendações</button>
+                  <!-- <button data-bs-toggle="modal" data-bs-target="#modalCPUReco" type="button" class="btn bg-gradient-success" style="margin-left: 18%;">Recomendações</button> -->
                   <button data-bs-toggle="modal" data-bs-target="#modalCPULista" type="button" class="btn bg-gradient-warning" style="margin-left: 10%;">Lista de Servidores</button>
                 </div>
               </div>
@@ -296,7 +296,7 @@
                   <i class="material-icons opacity-10">person</i>
                 </div>
                 <div class="text-end pt-1">
-                  <h5 class="text-sm mb-1 text-capitalize">Servidor com Maior custo de RAM neste mês</h5>
+                  <h5 class="text-sm mb-1 text-capitalize">Maior custo de RAM - Desde <span id="sp_dataFiltroRAM"></span></h5>
                   <!-- <h4 class="mb-0" id="servidoresForaDoAr"></h4> -->
                   <h4 class="mb-2" id="">Servidor XPTO</h4>
                   <h5 class="mb-0" id="">Custo Total R$ <span>300</span></h5>
@@ -306,7 +306,7 @@
               <div class="card-footer p-3">
                 <!-- Total de servidores: <span id="servidorTotal"></span> -->
               
-                <button data-bs-toggle="modal" data-bs-target="#modalRAMReco" type="button" class="btn bg-gradient-success" style="margin-left: 18%;">Recomendações</button>
+                <!-- <button data-bs-toggle="modal" data-bs-target="#modalRAMReco" type="button" class="btn bg-gradient-success" style="margin-left: 18%;">Recomendações</button> -->
                 <button data-bs-toggle="modal" data-bs-target="#modalRAMLista" type="button" class="btn bg-gradient-warning" style="margin-left: 10%;">Lista de Servidores</button>
               </div>
             </div>
@@ -332,7 +332,7 @@
               <hr class="dark horizontal my-0">
               <div class="card-footer p-3">
                 
-                <button data-bs-toggle="modal" data-bs-target="#modalDISCOReco" type="button" class="btn bg-gradient-success" style="margin-left: 18%;">Recomendações</button>
+                <!-- <button data-bs-toggle="modal" data-bs-target="#modalDISCOReco" type="button" class="btn bg-gradient-success" style="margin-left: 18%;">Recomendações</button> -->
                 <button data-bs-toggle="modal" data-bs-target="#modalDISCOLista" type="button" class="btn bg-gradient-warning" style="margin-left: 10%;">Lista de Servidores</button>
               </div>
             </div>
@@ -348,18 +348,14 @@
               <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1"
                 style="background-image: linear-gradient(195deg,#ec407a,#d81b60);">
                 <div class="chart">
-                  <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
+                  <canvas id="grafico_de_barras_02" class="chart-canvas" height="212" width="1451" style="display: block; box-sizing: border-box; height: 169px; width: 1161.2px;"></canvas>
                 </div>
               </div>
             </div>
             <div class="card-body">
               <h6 class="mb-0 ">Gasto dos Servidores (x100)</h6>    
-              <p class="text-sm ">Servidores com maiores gastos acumulados do dia X até hoje</p>
-              <hr class="dark horizontal">
-              <div class="d-flex ">
-                <i class="material-icons text-sm my-auto me-1">schedule</i>
-                <p class="mb-0 text-sm"> Atualizado a um minuto </p>
-              </div>
+              <p class="text-sm ">Servidores com maiores gastos acumulados de 30 dias atrás até hoje</p>
+              <!-- <hr class="dark horizontal"> -->
             </div>
           </div>
         </div>
@@ -429,7 +425,7 @@
   </main>
 
   <!-- MODAL CPU - Recomendações -->
-  <div class="modal fade" id="modalCPUReco" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- <div class="modal fade" id="modalCPUReco" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -444,7 +440,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- MODAL CPU - Lista -->
   <div class="modal fade" id="modalCPULista" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -452,6 +448,60 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Lista de Servidores com Maior custo em CPU</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="card-body px-0 pb-2">
+            <div class="table-responsive">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Código
+                    </th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nome
+                    </th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Custo R$
+                    </th>
+                  </tr>
+                </thead>
+                <tbody id="listaDeServidoresCPU">
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL RAM - Recomendações -->
+  <!-- <div class="modal fade" id="modalRAMReco" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Recomendações para servidor XPTO</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus facilis exercitationem ipsum illum voluptate, similique fuga tempore beatae, reprehenderit quos dolor deleniti assumenda aliquid recusandae esse eum excepturi vel sapiente.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- MODAL RAM - Lista -->
+  <div class="modal fade" id="modalRAMLista" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Lista de Servidores com Maior custo em RAM</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -474,44 +524,6 @@
               </table>
             </div>
           </div>
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL RAM - Recomendações -->
-  <div class="modal fade" id="modalRAMReco" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Recomendações para servidor XPTO</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus facilis exercitationem ipsum illum voluptate, similique fuga tempore beatae, reprehenderit quos dolor deleniti assumenda aliquid recusandae esse eum excepturi vel sapiente.
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL RAM - Lista -->
-  <div class="modal fade" id="modalRAMLista" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Lista de Servidores com Maior custo em RAM</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus facilis exercitationem ipsum illum voluptate, similique fuga tempore beatae, reprehenderit quos dolor deleniti assumenda aliquid recusandae esse eum excepturi vel sapiente.
-        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
         </div>
@@ -520,7 +532,7 @@
   </div>
 
   <!-- MODAL DISCO - Recomendação -->
-  <div class="modal fade" id="modalDISCOReco" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- <div class="modal fade" id="modalDISCOReco" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -535,7 +547,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- MODAL DISCO - Lista -->
   <div class="modal fade" id="modalDISCOLista" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -546,7 +558,25 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus facilis exercitationem ipsum illum voluptate, similique fuga tempore beatae, reprehenderit quos dolor deleniti assumenda aliquid recusandae esse eum excepturi vel sapiente.
+          <div class="card-body px-0 pb-2">
+            <div class="table-responsive">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Código
+                    </th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nome
+                    </th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                      Custo
+                    </th>
+                  </tr>
+                </thead>
+                <tbody id="listaDeServidoresCPU">
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
@@ -702,11 +732,13 @@
 
   <script src="../../js/sessao.js"></script>
   <script src="../../js/dashboardGerente.js"></script>
+  <SCRipt src="graficos.js"></SCRipt>
 
   <script>
     validarSessao();
 
     ipt_diasAtras.value = 30; 
+    var lista_servers = [];
 
     // Listando os preços
     fetch(`/felipe/listar/preco/componente`, {cache : "no-store" }).then(
@@ -820,11 +852,37 @@
         let dataFormatada = dataAtual.toLocaleDateString(undefined, formatoData);
         
         sp_diasAtras.innerHTML = dataFormatada;
+        sp_dataFiltroCPU.innerHTML = dataFormatada;
+        sp_dataFiltroRAM.innerHTML = dataFormatada;
         listar_extrato_acumulado();
+        plotarGraficoBarrasCustoGeral(ipt_diasAtras.value, sessionStorage.ID_EMPRESA)
       }
+    
+      function busca_disco(){
+        // sp_espacoTotal
+        // sp_precoHoraDISCO
+        // sp_custoDiscoTotal
+
+        
+      }
+
 
       dias_atras_html();
 
+
+      // Buscando lista de servidores
+      fetch(`/servidor/listar/${sessionStorage.ID_EMPRESA}`).then((resposta) =>{
+        if(resposta.ok){
+          resposta.json().then((json) =>{
+            // console.log(json);
+            for(i = 0; i < json.length; i++){
+              lista_servers.push(json[i].id_servidor); 
+            }     
+          })
+        }
+      })
+
+      
   </script>
 </body>
 

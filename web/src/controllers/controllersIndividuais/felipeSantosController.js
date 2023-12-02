@@ -92,11 +92,52 @@ function listar_preco_componente(req, res){
     )
 }
 
+function lista_preco_disco(req, res){
+    idServidor = req.body.idServidor;
+
+    if(idServidor == undefined ){
+        res.status(400).send("ID do Servidor está Undefined!!!");    
+    }
+    else{
+        fefeModel.lista_preco_disco(idServidor).then((resultado)=>{
+                res.status(200).json(resultado);
+            }
+        ).catch((erro)=>{
+            res.status(500).json(erro.sqlMessage);
+        })
+    }
+}
+
+function historico_somarizado_por_servidor(req, res){
+    idEmpresa = req.body.idEmpresa;
+    dias = req.body.dias;
+
+    if(idEmpresa == undefined){
+        res.status(400).send("ID da Empresa está Undefined!!!");    
+    }
+    else if(dias == undefined){
+        res.status(400).send("Os dias estão Undefined!!!");    
+    }
+    else{
+        fefeModel.historico_somarizado_por_servidor(idEmpresa, dias).then(
+            (resultado)=>{
+                res.status(200).json(resultado);
+            }
+        ).catch(
+            (erro)=> {
+                res.status(500).json(erro.sqlMessage);
+            }
+        )
+    }
+}
+
 
 module.exports = {
     listar_extrato,
     listar_extrato_atual,
     listar_extrato_acumulado,
-    listar_preco_componente
+    listar_preco_componente,
+    lista_preco_disco,
+    historico_somarizado_por_servidor
     
 }

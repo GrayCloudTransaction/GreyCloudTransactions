@@ -28,4 +28,14 @@ router.get("/listar/preco/componente", (req, res) =>{
     felipeSantosController.listar_preco_componente(req, res);
 })
 
+router.post("/listar/preco/disco", (req, res)=> {
+    info("/listar/preco/disco");
+    felipeSantosController.lista_preco_disco(req, res);
+})
+
+router.post("/listar/extrato/historico/somarizado", (req, res) => {
+    info("/listar/extrato/historico/somarizado");
+    felipeSantosController.historico_somarizado_por_servidor(req, res);
+})
+
 module.exports = router;
