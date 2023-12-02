@@ -1,3 +1,17 @@
+<!--
+=========================================================
+* Material Dashboard 2 - v3.1.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/material-dashboard
+* Copyright 2023 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://www.creative-tim.com/license)
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,9 +19,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/logograyClound.png">
+  <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
   <title>
-    Grey Cloud Transaction
+    Dashboard | Notificacoes
   </title>
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css"
@@ -20,15 +34,13 @@
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
-  <link id="pagestyle" href="../assets/css/material-dashboard.css" rel="stylesheet" />
-
-  <link rel="stylesheet" href="../../css/funcionarios.css">
+  <link id="pagestyle" href="../assets/css/material-dashboard.css?v=3.1.0" rel="stylesheet" />
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
 </head>
 
-<body class="g-sidenav-show  bg-gray-200" onload="listarServidor()">
+<body class="g-sidenav-show  bg-gray-200">
   <aside
     class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark"
     id="sidenav-main">
@@ -45,7 +57,7 @@
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/dashboardGerente.html" id="link_dashboard">
+          <a class="nav-link text-white" href="../pages/dashboardAnalista.html" id="link_dashboard">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">dashboard</i>
             </div>
@@ -61,28 +73,27 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white active bg-gradient-primary" href="../pages/maquinas.html">
+          <a class="nav-link text-white " href="../pages/maquinas.html">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">receipt_long</i>
             </div>
             <span class="nav-link-text ms-1">Máquinas</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/notificacoes.html">
+        <li>
+          <a class="nav-link text-white active bg-gradient-primary" href="../pages/notificacoes.html">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">notifications</i>
             </div>
-            <span class="nav-link-text ms-1">Notificação</span>
+            <span class="nav-link-text ms-1">Notificações</span>
           </a>
         </li>
       </ul>
     </div>
     <div class="sidenav-footer position-absolute w-100 bottom-0 ">
       <div class="mx-3">
-        <a class="btn btn-outline-primary mt-4 w-100"
-          href="../../index.html"
-          type="button" onclick="limparSessao()">Deslogar</a>
+        <a class="btn btn-outline-primary mt-4 w-100" href="../../index.html" type="button"
+          onclick="limparSessao()">Deslogar</a>
         <!-- <a class="btn bg-gradient-primary w-100" href="https://www.creative-tim.com/product/material-dashboard-pro?ref=sidebarfree" type="button">Upgrade to pro</a> -->
       </div>
     </div>
@@ -95,9 +106,9 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <!-- <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-          <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li> -->
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li> -->
           </ol>
-          <h6 class="font-weight-bolder mb-0">Servidores</h6>
+          <h6 class="font-weight-bolder mb-0">Notificações</h6>
         </nav>
 
 
@@ -105,7 +116,7 @@
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
             <div class="input-group input-group-outline">
               <!-- <label class="form-label">Type here...</label>
-            <input type="text" class="form-control"> -->
+              <input type="text" class="form-control"> -->
             </div>
           </div>
           <ul class="navbar-nav  justify-content-end">
@@ -138,176 +149,28 @@
               </a>
               <ul id="listaNotificacoes" class="dropdown-menu dropdown-menu-end me-sm-n4" aria-labelledby="dropdownMenuButton"></ul>
             </li>
-            <!-- <li class="nav-item d-flex align-items-center">
-            <a href="../pages/sign-in.html" class="nav-link text-body font-weight-bold px-0">
-              <i class="fa fa-user me-sm-1"></i>
-               <span class="d-sm-inline d-none">Sign In</span> 
-            </a>
-          </li> -->
           </ul>
         </div>
       </div>
     </nav>
     <!-- End Navbar -->
-    <!-- End Navbar -->
     <div class="container-fluid py-4">
       <div class="row">
-        <div class="col-12">
-          <div class="card my-4">
-            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-0">
-              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Servidores</h6>
+        <div class="col-lg-12 col-md-12 mx-auto">
+          <div class="card">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="title bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                <h6 class="text-white text-capitalize ps-3">Notificações</h6>
               </div>
             </div>
-            <div class="card-body px-0 pb-2">
-              <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
-                  <thead>
-                    <tr>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Código</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Prioridade</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nome</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tipo</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Descrição</th>
-                      <th class="text-secondary opacity-7"></th>
-                      <th class="text-secondary opacity-7"></th>
-                    </tr>
-                  </thead>
-                  
-                  <tbody id="listaDeServidores">
-
-                    
-                      
-
-                  </tbody>
-                  <!-- fim -->
-
-
-
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="modal" id="modalCadastrarServidor">
-
-        <div class="modal-wrapper" id="modalWrapperCadastrarServidor">
-
-          <div class="modal-content">
-            <div class="modal-header">
-              <h6 text-white text-capitalize ps-3>Cadastrar</h6>
-              <span class="close">&times;</span>
-            </div>
-
-            <div class="modal-body">
+            <div class="card-body p-3 pb-0" id="notificacoes">
               
-              <div class="col-12">
-                <label for="nomeServidor">NOME</label>
-                <input type="text" class="form-control" id="iptCadastrarNomeServidor" maxlength="120"
-                  placeholder="Nome">
-              </div>
 
-              <div class="row mt-2 ps-0" style="justify-content: space-between;">
-                <div class="col-6">
-                  <label for="codigoServidor">CÓDIGO</label>
-                  <input type="text" min="0" class="form-control" id="iptCadastrarCodigoServidor" placeholder="Código">
-                </div>
-                <div class="col-6">
-                  <label for="tipoServidor">TIPO</label>
-                  <input type="text" min="0" class="form-control" id="iptCadastrarTipoServidor" maxlength="90" placeholder="Tipo">
-                </div>
-              </div>
-
-              <div class="col-12 mt-2">
-                <label for="descricaoServidor">DESCRIÇÃO</label>
-                <input type="text" class="form-control" id="iptCadastrarDescricaoServidor" maxlength="120"
-                  placeholder="Descricao">
-              </div>
-              
-              <div class="divBtn pt-3">
-                <div class="d-flex justify-content-center">
-                  <button class="btn btn-outline-primary" id="btnCadastrar">Cadastrar</button>
-                </div>
-              </div>
 
             </div>
           </div>
         </div>
       </div>
-
-      <div class="modal" id="modalEditarServidor">
-
-        <div class="modal-wrapper" id="modalWrapperEditarServidor">
-
-          <div class="modal-content">
-            <div class="modal-header">
-              <h6 text-white text-capitalize ps-3>Editar</h6>
-              <span class="close">&times;</span>
-            </div>
-
-            <div class="modal-body">
-              
-              <div class="col-12">
-                <label for="nomeServidor">NOME</label>
-                <input type="text" class="form-control" id="iptEditarNomeServidor" maxlength="120">
-              </div>
-
-              <div class="row mt-2 ps-0" style="justify-content: space-between;">
-                <div class="col-6">
-                  <label for="codigoServidor">CÓDIGO</label>
-                  <input type="text" min="0" class="form-control" id="iptEditarCodigoServidor">
-                </div>
-                <div class="col-6">
-                  <label for="tipoServidor">TIPO</label>
-                  <input type="text" min="0" class="form-control" id="iptEditarTipoServidor" maxlength="90">
-                </div>
-              </div>
-
-              <div class="col-12 mt-2">
-                <label for="descricaoServidor">DESCRIÇÃO</label>
-                <input type="text" class="form-control" id="iptEditarDescricaoServidor" maxlength="120">
-              </div>
-              
-              <div class="divBtn pt-3">
-                <div class="d-flex justify-content-center">
-                  <button class="btn btn-outline-primary" id="btnEditar">Editar</button>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="modal" id="modalExcluirServidor">
-
-        <div class="modal-wrapper" id="modalWrapperExcluirServidor">
-
-          <div class="modal-content" style="width: 50%;">
-            <div class="modal-header">
-              <h6 text-white text-capitalize ps-3>Excluir</h6>
-              <span class="close">&times;</span>
-            </div>
-
-            <div class="modal-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-              <div style="display: flex; flex-direction: column; justify-content: flex-start; width: 100%;">
-                <h5>Deseja excluir o servidor?</h5>
-                <h6 style="color: grey; font-size: small;">*essa ação é irreversível</h6>
-              </div>
-              <div class="divBtn pt-3">
-                <div class="d-flex justify-content-center">
-                  <button class="btn btn-outline-primary" id="btnExcluir">Excluir</button>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="position-fixed bottom-1 end-1 z-index-1" id="notificacoes"></div>
     </div>
   </main>
   <div class="fixed-plugin">
@@ -344,12 +207,12 @@
         </a>
         <!-- Sidenav Type -->
         <div class="mt-3">
-          <h6 class="mb-0">Tipo da Sidenav</h6>
+          <h6 class="mb-0">Cor do menu</h6>
           <p class="text-sm"></p>
         </div>
         <div class="d-flex">
           <button class="btn bg-gradient-dark px-3 mb-2 active" data-class="bg-gradient-dark"
-            onclick="sidebarType(this)">Escuro</button>
+            onclick="sidebarType(this)">Preto</button>
           <button class="btn bg-gradient-dark px-3 mb-2 ms-2" data-class="bg-transparent"
             onclick="sidebarType(this)">Transparente</button>
           <button class="btn bg-gradient-dark px-3 mb-2 ms-2" data-class="bg-white"
@@ -365,12 +228,26 @@
         </div>
         <hr class="horizontal dark my-3">
         <div class="mt-2 d-flex">
-          <h6 class="mb-0">Modo Escuro</h6>
+          <h6 class="mb-0">Modo escuro</h6>
           <div class="form-check form-switch ps-0 ms-auto my-auto">
             <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)">
           </div>
         </div>
+        <!-- <hr class="horizontal dark my-sm-4">
+        <a class="btn bg-gradient-info w-100" href="https://www.creative-tim.com/product/material-dashboard-pro">Free Download</a>
+        <a class="btn btn-outline-dark w-100" href="https://www.creative-tim.com/learning-lab/bootstrap/overview/material-dashboard">View documentation</a>
+        <div class="w-100 text-center">
+          <a class="github-button" href="https://github.com/creativetimofficial/material-dashboard" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star creativetimofficial/material-dashboard on GitHub">Star</a>
+          <h6 class="mt-3">Thank you for sharing!</h6>
+          <a href="https://twitter.com/intent/tweet?text=Check%20Material%20UI%20Dashboard%20made%20by%20%40CreativeTim%20%23webdesign%20%23dashboard%20%23bootstrap5&amp;url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fsoft-ui-dashboard" class="btn btn-dark mb-0 me-2" target="_blank">
+            <i class="fab fa-twitter me-1" aria-hidden="true"></i> Tweet
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/material-dashboard" class="btn btn-dark mb-0 me-2" target="_blank">
+            <i class="fab fa-facebook-square me-1" aria-hidden="true"></i> Share
+          </a>
+        </div> -->
       </div>
+
     </div>
   </div>
   <!--   Core JS Files   -->
@@ -390,25 +267,20 @@
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/material-dashboard.min.js?v=3.1.0"></script>
-  <script>
-      
-  </script>
+  <script src="../assets/js/material-dashboard.js"></script>
 </body>
 
 </html>
 
-<!-- SWAL --><script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- SWAL -->
 <script src="../js/sessao.js"></script>
-<script src="../js/crudServidor.js"></script>
 <script src="../js/notificacao.js"></script>
+
 
 <script>
   if (sessionStorage.PERMISSAO == 1){
     funcionarios.style.display = "flex"
   }
+
   validarSessao()
-  
-  listarServidor()
   listarUltimosChamados()
 </script>

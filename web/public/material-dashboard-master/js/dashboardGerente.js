@@ -344,14 +344,33 @@ function plotarGraficoChamadosPorMes() {
 
 }
 
-function plotarGraficoChamadosPorServidor() {
+function getChamadosPorServidor(atualizar) {
 
     var idEmpresa = sessionStorage.ID_EMPRESA
-    var ctx5 = document.getElementById("chart-bars").getContext("2d");
+    var opcao = document.getElementById("selectPeriodo").value;
+    var data;
+    if (opcao == "dia") {
+        data = document.getElementById("iptDia").value.replaceAll('-','/');
+    } else if (opcao == "mes") {
+        data = document.getElementById("iptMes").value.replaceAll('-','/');
+    } else if (opcao == "personalizado") {
+        data = [document.getElementById("iptDataInicio").value.replaceAll('-','/'), document.getElementById("iptDataFim").value.replaceAll('-','/')];
+    } else {
+        data = null;
+    }
     var labelsGrafico = [];
     var dataGrafico = [];
 
-    fetch(`/chamado/listarPorServidor/${idEmpresa}`, { cache: 'no-store' })
+    fetch(`/chamado/listarPorServidor/${idEmpresa}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          opcaoServer: opcao,
+          dataServer: data
+        }),
+    })
         .then(function (resposta) {
             console.log(resposta);
 
@@ -365,86 +384,15 @@ function plotarGraficoChamadosPorServidor() {
                         dataGrafico.push(json[i].qtd_chamados);
                     }
 
-                    new Chart(ctx5, {
-                        type: "bar",
-                        data: {
-                            labels: labelsGrafico,
-                            datasets: [{
-                                label: "Quantidade de chamados",
-                                tension: 0,
-                                borderWidth: 0,
-                                borderWidth: 0,
-                                backgroundColor: "rgba(255, 255, 255, .8)",
-                                fill: true,
-                                data: dataGrafico,
-                                barThickness: 60,
-                                maxBarThickness: 100
-
-                            }],
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                legend: {
-                                    display: false,
-                                }
-                            },
-                            interaction: {
-                                intersect: false,
-                                mode: 'index',
-                            },
-                            scales: {
-                                y: {
-                                    grid: {
-                                        drawBorder: false,
-                                        display: true,
-                                        drawOnChartArea: true,
-                                        drawTicks: false,
-                                        borderDash: [5, 5],
-                                        color: 'rgba(255, 255, 255, .2)'
-                                    },
-                                    ticks: {
-                                        display: true,
-                                        color: '#f8f9fa',
-                                        padding: 10,
-                                        font: {
-                                            size: 14,
-                                            weight: 300,
-                                            family: "Roboto",
-                                            style: 'normal',
-                                            lineHeight: 2
-                                        },
-                                    }
-                                },
-                                x: {
-                                    grid: {
-                                        drawBorder: false,
-                                        display: false,
-                                        drawOnChartArea: false,
-                                        drawTicks: false,
-                                        borderDash: [5, 5]
-                                    },
-                                    ticks: {
-                                        display: true,
-                                        color: '#f8f9fa',
-                                        padding: 10,
-                                        font: {
-                                            size: 14,
-                                            weight: 300,
-                                            family: "Roboto",
-                                            style: 'normal',
-                                            lineHeight: 2
-                                        },
-                                    }
-                                },
-                            },
-                        },
-                    });
-
-
-
+                    if (atualizar) {
+                        console.warn("ATUALIZAR " + labelsGrafico, dataGrafico)
+                        atualizarGraficoChamadosPorServidor(labelsGrafico, dataGrafico);
+                    } else {
+                        console.warn("PLOTAR " + labelsGrafico, dataGrafico)
+                        plotarGraficoChamadosPorServidor(labelsGrafico, dataGrafico);
+                    }
                 })
+
             } else {
                 resposta.text().then((texto) => {
                     console.error(texto);
@@ -454,6 +402,95 @@ function plotarGraficoChamadosPorServidor() {
         .catch(function (erro) {
             console.log(erro);
         });
+}
+
+var graficoChamadosPorServidor;
+function plotarGraficoChamadosPorServidor(labels1, data1) {
+
+    var ctx5 = document.getElementById("chart-bars").getContext("2d");
+    
+    graficoChamadosPorServidor = new Chart(ctx5, {
+        type: "bar",
+        data: {
+            labels: labels1,
+            datasets: [{
+                label: "Quantidade de chamados",
+                tension: 0,
+                borderWidth: 0,
+                borderWidth: 0,
+                backgroundColor: "rgba(255, 255, 255, .8)",
+                fill: true,
+                data: data1,
+                barThickness: 60,
+                maxBarThickness: 100
+
+            }],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false,
+                }
+            },
+            interaction: {
+                intersect: false,
+                mode: 'index',
+            },
+            scales: {
+                y: {
+                    grid: {
+                        drawBorder: false,
+                        display: true,
+                        drawOnChartArea: true,
+                        drawTicks: false,
+                        borderDash: [5, 5],
+                        color: 'rgba(255, 255, 255, .2)'
+                    },
+                    ticks: {
+                        display: true,
+                        color: '#f8f9fa',
+                        padding: 10,
+                        font: {
+                            size: 14,
+                            weight: 300,
+                            family: "Roboto",
+                            style: 'normal',
+                            lineHeight: 2
+                        },
+                    }
+                },
+                x: {
+                    grid: {
+                        drawBorder: false,
+                        display: false,
+                        drawOnChartArea: false,
+                        drawTicks: false,
+                        borderDash: [5, 5]
+                    },
+                    ticks: {
+                        display: true,
+                        color: '#f8f9fa',
+                        padding: 10,
+                        font: {
+                            size: 14,
+                            weight: 300,
+                            family: "Roboto",
+                            style: 'normal',
+                            lineHeight: 2
+                        },
+                    }
+                },
+            },
+        },
+    });
+}
+
+function atualizarGraficoChamadosPorServidor(labels, data) {
+    graficoChamadosPorServidor.data.labels = labels;
+    graficoChamadosPorServidor.data.datasets[0].data = data;
+    graficoChamadosPorServidor.update('active');
 }
 
 var tempoOciosoDosServidores = [];
@@ -476,3 +513,4 @@ function kpiMediaTempoOcioso() {
         mediaTempoOcioso.innerHTML = `${totalTempoOcioso.toFixed()} s`;
     }
 }
+

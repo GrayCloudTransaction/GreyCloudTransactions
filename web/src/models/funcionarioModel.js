@@ -10,7 +10,8 @@ function info(func, query){
 
 function cadastrarFuncionario(nomeFuncionario, cpfFuncionario, cargoFuncionario, emailFuncionario, senhaFuncionario, fkEmpresa) {
     var instrucao = `
-        INSERT INTO Funcionario VALUES (NULL , '${nomeFuncionario}', '${emailFuncionario}', '${senhaFuncionario}', '${cargoFuncionario}', '${cpfFuncionario}', '1', NULL, ${fkEmpresa});
+        INSERT INTO funcionario (nome, email, senha, cargo, cpf, permissao, fk_gerente, fk_empresa)
+        VALUES ('${nomeFuncionario}', '${emailFuncionario}', '${senhaFuncionario}', '${cargoFuncionario}', '${cpfFuncionario}', 1, NULL, ${fkEmpresa});
     `;
     
     info("Cadastrar Funcionário", instrucao)
@@ -20,7 +21,8 @@ function cadastrarFuncionario(nomeFuncionario, cpfFuncionario, cargoFuncionario,
 
 function cadastrarNovoFuncionario(nomeFuncionario, emailFuncionario, senhaFuncionario, cargoFuncionario, cpfFuncionario, permissaoFuncionario, fkGerente, fkEmpresa) {
     var instrucao = `
-        INSERT INTO Funcionario VALUES (NULL , '${nomeFuncionario}', '${emailFuncionario}', '${senhaFuncionario}', '${cargoFuncionario}', '${cpfFuncionario}', '${permissaoFuncionario}', ${fkGerente}, ${fkEmpresa});
+        INSERT INTO funcionario (nome, email, senha, cargo, cpf, permissao, fk_gerente, fk_empresa) 
+        VALUES ('${nomeFuncionario}', '${emailFuncionario}', '${senhaFuncionario}', '${cargoFuncionario}', '${cpfFuncionario}', ${permissaoFuncionario}, ${fkGerente}, ${fkEmpresa});
     `;
     
     info("Cadastrar Novo Funcionario", instrucao)
@@ -48,7 +50,7 @@ function delete_funcionario(id_funcionario){
 
 function update_funcionario(nome, email, cargo, cpf, permissao, id_funcionario){
     var instrucao = `
-        UPDATE funcionario SET nome = "${nome}", email = "${email}", cargo = "${cargo}", cpf = "${cpf}", permissao = ${permissao} WHERE id_funcionario = ${id_funcionario};
+        UPDATE funcionario SET nome = '${nome}', email = '${email}', cargo = '${cargo}', cpf = '${cpf}', permissao = ${permissao} WHERE id_funcionario = ${id_funcionario};
     `
     info("Update dos Funcionarios", instrucao)
 

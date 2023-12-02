@@ -30,8 +30,19 @@ function pegarInfoServidor() {
 function chamadosAbertosServidor() {
   var idEmpresa = sessionStorage.ID_EMPRESA;
   var idServidor = sessionStorage.ID_SERVIDOR;
+  var opcao = "total";
+  var data = null;
 
-  fetch(`/chamado/listarPorServidor/${idEmpresa}`, { cache: 'no-store' })
+  fetch(`/chamado/listarPorServidor/${idEmpresa}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        opcaoServer: opcao,
+        dataServer: data
+     }),
+  })
         .then(function (resposta) {
             console.log(resposta);
 

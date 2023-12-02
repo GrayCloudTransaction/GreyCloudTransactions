@@ -1,5 +1,8 @@
 # Grey Cloud Transactions ☁️🌐
 Nós somos uma startup de tecnologia, fictícia, fundada em 2023, com o propósito de garantir a continuidade dos serviços de transações comerciais realizadas por meio de TEF (Transferências  Eletrônicas de Fundo), através do monitoramento do desempenho dos servidores referentes a essa área.
+<p  align="center">
+<img src="https://github.com/GrayCloudTransaction/GreyCloudTransactions/assets/125617308/6cddea23-2d9d-4c27-bde8-9b27cc1b1e42"  width="300px;">
+</p>
 
 ## Equipe
 <table>

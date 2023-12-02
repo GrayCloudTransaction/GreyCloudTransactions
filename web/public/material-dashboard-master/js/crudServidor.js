@@ -5,7 +5,7 @@ function listarServidor() {
     fetch(`/servidor/listar/${idEmpresa}`, {cache: 'no-store'})
     .then(function (resposta) {
         console.log(resposta);
-
+        
         if (resposta.ok) {
             resposta.json().then((json) => {
                 console.log(json);
@@ -16,7 +16,6 @@ function listarServidor() {
                     var idServidor = servidor.id_servidor;
                     var texto_prioridade = ``;
                     var cor = ""
-
 
                     if(servidor.prioridade <= 0){
                       texto_prioridade = `Seguro`
