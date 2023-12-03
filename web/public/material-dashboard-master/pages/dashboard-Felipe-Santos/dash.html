@@ -133,15 +133,15 @@
               </a>
             </li>
             <li class="nav-item px-3 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-body p-0">
+              <a onclick="abrirModal()" class="nav-link text-body p-0">
                 <i class="fa fa-coffee fixed-plugin-button-nav cursor-pointer"></i>
               </a>
             </li>
-            <li class="nav-item px-3 d-flex align-items-center">
+            <!-- <li class="nav-item px-3 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body p-0">
                 <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
               </a>
-            </li>
+            </li> -->
             <li class="nav-item dropdown pe-2 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown"
                 aria-expanded="false">
@@ -149,7 +149,7 @@
               </a>
               <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
                 <li class="mb-2">
-                  <a class="dropdown-item border-radius-md" href="../notifications.html">
+                  <a class="dropdown-item border-radius-md" href="../notificacoes.html">
                     <div class="d-flex py-1">
                       <div class="my-auto">
                         <img src="../../assets/img/icons/icon-notification.png" class="avatar avatar-sm  me-3 ">
@@ -242,8 +242,8 @@
             <hr class="dark horizontal my-3">
 
             <h5 class="card-title">Custo de Armazenamento</h5>
-            <p class="card-text mb-0">Espaço Total Alocado: <span id="sp_espacoTotal"></span> GB</p>
-            <p class="card-text mb-0">Preço por GB $ <span id="sp_precoHoraDISCO"></span></p>
+            <p class="card-text mb-0">Horas Alocado: <span id="sp_horasAlocadoDisco"></span></p>
+            <p class="card-text mb-0">Preço por GB / Hora $ <span id="sp_precoHoraDISCO"></span></p>
             <p class="card-text mb-0">Custo Total <b>R$ <span id="sp_custoDiscoTotal"></span> </b></p>
 
             <select class="btn btn-primary form-select mt-4" style="background-image: linear-gradient(190deg,#3216be,#362E59);">
@@ -251,7 +251,7 @@
               <option value="2">CSV - Dados para Data Science</option>
               <option value="3">JSON - Dados para Data Science</option>
             </select>
-            <button type="button" class="btn btn-primary">Download</button>
+            <button type="button" class="btn btn-primary" style="background-image: linear-gradient(190deg,#3216be,#4a426f);">Download</button>
           </div>
         </div>
       </div>
@@ -276,10 +276,10 @@
               
               <hr class="dark horizontal my-0">
 
-              <div class="card-footer p-3">
+              <div class="card-footer p-2">
                 <div class="d-flex h-100 align-items-center">
                   <!-- <button data-bs-toggle="modal" data-bs-target="#modalCPUReco" type="button" class="btn bg-gradient-success" style="margin-left: 18%;">Recomendações</button> -->
-                  <button data-bs-toggle="modal" data-bs-target="#modalCPULista" type="button" class="btn bg-gradient-warning" style="margin-left: 10%;">Lista de Servidores</button>
+                  <button data-bs-toggle="modal" data-bs-target="#modalCPULista" type="button" class="btn bg-gradient-warning" style="margin-left: 10%; background-image: linear-gradient(190deg,#3515d5,#362E59);">Lista de Servidores</button>
                 </div>
               </div>
 
@@ -303,11 +303,11 @@
                 </div>
               </div>
               <hr class="dark horizontal my-0">
-              <div class="card-footer p-3">
+              <div class="card-footer p-2">
                 <!-- Total de servidores: <span id="servidorTotal"></span> -->
               
                 <!-- <button data-bs-toggle="modal" data-bs-target="#modalRAMReco" type="button" class="btn bg-gradient-success" style="margin-left: 18%;">Recomendações</button> -->
-                <button data-bs-toggle="modal" data-bs-target="#modalRAMLista" type="button" class="btn bg-gradient-warning" style="margin-left: 10%;">Lista de Servidores</button>
+                <button data-bs-toggle="modal" data-bs-target="#modalRAMLista" type="button" class="btn bg-gradient-warning" style="margin-left: 10%; background-image: linear-gradient(190deg,#3515d5,#362E59);  ">Lista de Servidores</button>
               </div>
             </div>
           </div>
@@ -324,17 +324,14 @@
                   <i class="material-icons opacity-10">weekend</i>
                 </div>
                 <div class="text-end pt-1">
-                  <h5 class="text-sm mb-1 text-capitalize">Servidor Ocupando Maior Espaço em GB</h5>
-                  <h4 class="mb-0">Servidor - XPTO</h4>
-                  <h4 class="mb-0"><span id="chamadosAberto"></span> GB de <span> 10 GB</span></h4>
+                  <h5 class="text-sm mb-1 text-capitalize">Maior custo de Disco - Desde <span id="sp_dataFiltroDISCO"></span></h5>
+                  <h4 class="mb-0"><span id="sp_nomeMaiorCustoDisco"></span></h4>
+                  <h4 class="mb-0">Custo Total R$ <span id="sp_maiorValorCustoDISCO"></span></h4>
                 </div>
               </div>
-              <hr class="dark horizontal my-0">
-              <div class="card-footer p-3">
+              <div class="card-footer p-2">
                 
                 <!-- <button data-bs-toggle="modal" data-bs-target="#modalDISCOReco" type="button" class="btn bg-gradient-success" style="margin-left: 18%;">Recomendações</button> -->
-                <button data-bs-toggle="modal" data-bs-target="#modalDISCOLista" type="button" class="btn bg-gradient-warning" style="margin-left: 10%;">Lista de Servidores</button>
-              </div>
             </div>
           </div>
         </div>
@@ -532,11 +529,11 @@
   </div> -->
 
   <!-- MODAL DISCO - Lista -->
-  <div class="modal fade" id="modalDISCOLista" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- <div class="modal fade" id="modalDISCOLista" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Lista de Servidores com Maior espaço de disco ocupado</h5>
+          <h5 class="modal-title">Lista de Servidores com Maior custo em Disco</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -545,34 +542,32 @@
               <table class="table align-items-center mb-0">
                 <thead>
                   <tr>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Código
-                    </th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nome
-                    </th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                      Custo
-                    </th>
+                    <tr>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mês - Ano Referência
+                      </th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nome
+                      </th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Horas Usadas
+                      </th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Custo (BRL)
+                      </th>
                   </tr>
                 </thead>
-                <tbody id="listaDeServidoresCPU">
+                <tbody id="listaDeServidoresRAM">
                 </tbody>
               </table>
             </div>
           </div>
-        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <div class="fixed-plugin">
-    
     <div class="card shadow-lg">
-      
       <div class="card-header pb-0 pt-4">
-      
         <div class="float-start">
           <h5 class="mt-3 mb-0">Configuração do Sistema Java</h5>
           <p>Customize as suas capturas de cada Servidor</p>
@@ -626,7 +621,7 @@
   </div>
 
   <!-- chat-bot -->
-  <div class="fixed-plugin">
+  <!-- <div class="fixed-plugin">
     <div class="card shadow-lg">
       <div class="card-header pb-0 pt-3">
         <div class="float-start">
@@ -638,11 +633,15 @@
             <i class="material-icons">clear</i>
           </button>
         </div>
-        <!-- End Toggle Button -->
+        
+        
+        
       </div>
       <hr class="horizontal dark my-1">
       <div class="card-body pt-sm-3 pt-0">
-        <!-- Sidebar Backgrounds -->
+        
+        
+
         <div>
           <h6 class="mb-0">Cor da opção do menu</h6>
         </div>
@@ -657,7 +656,9 @@
             <span class="badge filter bg-gradient-danger" data-color="danger" onclick="sidebarColor(this)"></span>
           </div>
         </a>
-        <!-- Sidenav Type -->
+        
+        
+
         <div class="mt-3">
           <h6 class="mb-0">Cor do menu</h6>
           <p class="text-sm"></p>
@@ -671,7 +672,9 @@
             onclick="sidebarType(this)">Branco</button>
         </div>
         <p class="text-sm d-xl-none d-block mt-2">You can change the sidenav type just on desktop view.</p>
-        <!-- Navbar Fixed -->
+        
+
+
         <div class="mt-3 d-flex">
           <h6 class="mb-0">Navbar Fixada</h6>
           <div class="form-check form-switch ps-0 ms-auto my-auto">
@@ -688,16 +691,14 @@
       </div>
 
     </div>
-  </div>
+  </div> -->
   <!--   Core JS Files   -->
   <script src="../../assets/js/core/popper.min.js"></script>
   <script src="../../assets/js/core/bootstrap.min.js"></script>
   <script src="../../assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../../assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="../../assets/js/plugins/chartjs.min.js"></script>
-  <script>
-
-  </script>
+  <script src="./integracaoSistemaJava.js"></script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -808,10 +809,21 @@
                 sp_valorRAM.innerHTML = "";
                 sp_valorRAM.innerHTML = valorRAM.toFixed(2);
               
-              } 
+              } else if(json[i].comp == "Disco"){
+                
+                valorDisco += parseFloat(json[i].valor);
+
+                sp_custoDiscoTotal.innerHTML = "";
+                sp_custoDiscoTotal.innerHTML = valorDisco.toFixed(2);
+
+                horasDisco += parseInt(json[i].horas);
+                sp_horasAlocadoDisco.innerHTML = "";
+                sp_horasAlocadoDisco.innerHTML = horasDisco
+
+              }
 
             }
-            valorTotalAcumulado.innerHTML = (valorCPU + valorRAM).toFixed(2);
+            valorTotalAcumulado.innerHTML = (valorCPU + valorRAM + valorDisco).toFixed(2);
           
           })
         }
@@ -836,6 +848,7 @@
         sp_diasAtras.innerHTML = dataFormatada;
         sp_dataFiltroCPU.innerHTML = dataFormatada;
         sp_dataFiltroRAM.innerHTML = dataFormatada;
+        sp_dataFiltroDISCO.innerHTML = dataFormatada;
         listar_extrato_acumulado();
         plotarGraficoBarrasCustoGeral(diasASubrtrair, sessionStorage.ID_EMPRESA);
         plot_kpis_ordenadas("CPU", sessionStorage.ID_EMPRESA, diasASubrtrair);

@@ -151,6 +151,7 @@ function teste_grafico_barras(){
 function plotarGraficoLinhasHistorico(dias, idEmpresa){
     const grafico_linha = document.getElementById("grafico-linha");
     let horas = [];
+    let mesesNum = [];
     let meses = [];
     let valores = [];
 
@@ -170,9 +171,54 @@ function plotarGraficoLinhasHistorico(dias, idEmpresa){
                     console.log(json);
                     for(let i = 0; i < json.length; i++){
                         horas.push(json[i].horas);
-                        meses.push(json[i].mes);
+                        mesesNum.push(json[i].mes);
                         valores.push(json[i].valor);
                     }
+
+                    let ano = 2023;
+
+                    for(let i = 0; i < mesesNum.length; i++){
+                        switch (mesesNum[i]) {
+                            case 1:
+                                meses.push(`Janeiro/${ano}`);
+                                break;
+                            case 2:
+                                meses.push(`Fevereiro/${ano}`);
+                                break;
+                            case 3:
+                                meses.push(`Março/${ano}`);
+                                break;
+                            case 4:
+                                meses.push(`Abril/${ano}`);
+                                break;
+                            case 5:
+                                meses.push(`Maio/${ano}`);
+                                break;
+                            case 6:
+                                meses.push(`Junho/${ano}`);
+                                break;
+                            case 7:
+                                meses.push(`Julho/${ano}`);
+                                break;
+                            case 8:
+                                meses.push(`Agosto/${ano}`);
+                                break;
+                            case 9:
+                                meses.push(`Setembro/${ano}`);
+                                break;
+                            case 10:
+                                meses.push(`Outubro/${ano}`);
+                                break;
+                            case 11:
+                                meses.push(`Novembro/${ano}`);
+                                break;
+                            case 12:
+                                meses.push(`Dezembro/${ano}`);
+                                break;
+                        }
+                    }
+                    
+
 
                     // const data = {
                     // labels: meses,
@@ -320,7 +366,29 @@ function plot_kpis_ordenadas(componente, idEmpresa, dias){
                                     `;
                                 }
                             }
-                        
+                            else if(json[0].comp == "Disco"){
+                                sp_nomeMaiorCustoDisco.innerHTML = "";
+                                sp_nomeMaiorCustoDisco.innerHTML = json[0].nome_servidor;
+                                
+                                sp_maiorValorCustoDISCO.innerHTML = "";
+                                sp_maiorValorCustoDISCO.innerHTML = parseFloat(json[0].valor).toFixed(2);
+
+                                // let tabelaCPU = document.getElementById("listaDeServidoresRAM");
+                                // tabelaCPU.innerHTML = "";
+                                // for(let i = 0; i < json.length; i++){
+                                //     tabelaCPU.innerHTML +=`
+                                //     <tr class="text-center text-uppercase font-weight-bolder" >
+                                //         <td>${json[i].mes} - 2023</td>
+                                //         <td>${json[i].nome_servidor}</td>
+                                //         <td>${json[i].horas}</td>
+                                //         <td>R$ ${parseFloat (json[i].valor).toFixed(2)}</td>
+                                //     </tr>                  
+                                //     `;
+                                // }
+                            }
+
+
+                            
                     }
                 )
             }
