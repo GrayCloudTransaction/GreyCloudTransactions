@@ -130,6 +130,21 @@ function custo_ordenado_kpi(componente, idEmpresa, dias){
     return database.executar(query);
 }
 
+function lista_sistema_java(idEmpresa){
+    var query = `
+    SELECT 
+        s.nome
+        , f.* 
+    FROM tb_felipe_config AS f
+        INNER JOIN servidor AS s ON s.id_servidor = f.fk_servidor
+        WHERE f.fk_empresa = ${idEmpresa}
+        ORDER BY
+            s.nome; 
+    `
+    info("Sistema Java - Listagem", query);
+    return database.executar(query);
+}
+
 module.exports = {
     listar_extrato,
     listar_extrato_atual,
@@ -138,5 +153,6 @@ module.exports = {
     lista_preco_disco,
     historico_somarizado_por_servidor,
     historico_somarizado_por_empresa,
-    custo_ordenado_kpi
+    custo_ordenado_kpi,
+    lista_sistema_java
 };

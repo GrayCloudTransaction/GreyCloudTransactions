@@ -181,6 +181,22 @@ function custo_ordenado_kpi(req, res){
     }
 }
 
+function lista_sistema_java(req, res){
+    idEmpresa = req.params.idEmpresa;
+    
+    if(idEmpresa != undefined){
+        fefeModel.lista_sistema_java(idEmpresa).then(
+            (resultado)=>{
+                res.status(200).json(resultado);
+            }
+        ).catch(
+            (erro)=> {
+                res.status(500).json(erro.sqlMessage);
+            }
+        )
+    }
+}
+
 module.exports = {
     listar_extrato,
     listar_extrato_atual,
@@ -189,6 +205,7 @@ module.exports = {
     lista_preco_disco,
     historico_somarizado_por_servidor,
     historico_somarizado_por_empresa,
-    custo_ordenado_kpi
+    custo_ordenado_kpi,
+    lista_sistema_java
     
 }

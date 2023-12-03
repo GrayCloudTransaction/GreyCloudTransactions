@@ -48,4 +48,9 @@ router.post("/listar/custo/ordenado/componente", (req, res) => {
     felipeSantosController.custo_ordenado_kpi(req, res);
 })
 
+router.get("/java/listar/:idEmpresa", (req, res) => {
+    info("/java/listar");
+    felipeSantosController.lista_sistema_java(req, res);
+})
+
 module.exports = router;
