@@ -16,12 +16,12 @@ rota.get("/listarProcessosConsumidores/:id_servidor", (req, res) => {
     giovannaMenezesController.listarProcessosConsumidores(req, res);
 })
 
-rota.get("/buscarUltimosProcessos/:id_servidor", (req, res) => {
+rota.get("/buscarUltimosProcessos/id_servidor/:id_servidor/limite/:limite", (req, res) => {
     info("Buscar últimos processos");
     giovannaMenezesController.buscarUltimosProcessos(req, res);
 })
 
-rota.get("/buscarProcessosConsumidores/:id_servidor", (req, res) => {
+rota.get("/buscarProcessosConsumidores/:id_servidor/limite/:limite", (req, res) => {
     info("Buscar últimos processos consumidores");
     giovannaMenezesController.buscarProcessosConsumidores(req, res);
 })

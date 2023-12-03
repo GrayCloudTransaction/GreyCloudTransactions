@@ -52,10 +52,10 @@ function buscarUltimosProcessos(req, res) {
     info("Buscar últimos processos");
 
     var id_servidor = req.params.id_servidor;
-    // var limite = req.params.limite;
+    var limite = req.params.limite;
 
     if(id_servidor != null & id_servidor != "") {
-        giovannaMenezesModel.buscarUltimosProcessos(id_servidor).then(function(resultado){
+        giovannaMenezesModel.buscarUltimosProcessos(id_servidor, limite).then(function(resultado){
             if(resultado.length > 0) {
                 res.status(200).json(resultado);
             } else {
@@ -77,7 +77,7 @@ function buscarProcessosConsumidores(req, res) {
     var id_servidor = req.params.id_servidor;
 
     if(id_servidor != null & id_servidor != "") {
-        giovannaMenezesModel.buscarProcessosConsumidores(id_servidor).then(function(resultado){
+        giovannaMenezesModel.buscarProcessosConsumidores(id_servidor, limite).then(function(resultado){
             if(resultado.length > 0) {
                 res.status(200).json(resultado);
             } else {

@@ -22,30 +22,18 @@ function listarProcessosConsumidores(id_servidor) {
     return database.executar(query);
 }
 
-function buscarUltimosProcessos(id_servidor) {
+function buscarUltimosProcessos(id_servidor, limite) {
     var query = `
-        SELECT * FROM processo WHERE fk_servidor = ${id_servidor} ORDER BY uso_cpu;
+        SELECT * FROM processo WHERE fk_servidor = ${id_servidor} LIMIT ${limite};
     `
 
     info("Buscar último processos", query)
     return database.executar(query);
 }
 
-function buscarProcessosConsumidores(id_servidor) {
-    // var query = `
-    //     DROP VIEW IF EXISTS processos_consumidores;
-    // `
-
-    // var query2 = `
-    //     CREATE VIEW processos_consumidores AS
-    //     SELECT * FROM processo
-    //         WHERE uso_cpu > ${filtro}
-    //         AND fk_servidor = ${id_servidor}
-    //         ORDER BY uso_cpu;
-    // `
-
+function buscarProcessosConsumidores(id_servidor, limite) {
     var query = `
-        SELECT * FROM processos_consumidores WHERE fk_servidor=${id_servidor} ORDER BY uso_cpu ;
+        SELECT * FROM processos_consumidores WHERE fk_servidor=${id_servidor} LIMIT ${limite} ;
     `
 
     info("Listar processos consumidores", query);
