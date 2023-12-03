@@ -38,4 +38,14 @@ router.post("/listar/extrato/historico/somarizado", (req, res) => {
     felipeSantosController.historico_somarizado_por_servidor(req, res);
 })
 
+router.post("/listar/extrato/historico/somarizado/empresa", (req, res) => {
+    info("/listar/extrato/historico/somarizado");
+    felipeSantosController.historico_somarizado_por_empresa(req, res);
+})
+
+router.post("/listar/custo/ordenado/componente", (req, res) => {
+    info("/listar/custo/ordenado/componente");
+    felipeSantosController.custo_ordenado_kpi(req, res);
+})
+
 module.exports = router;

@@ -246,7 +246,7 @@
             <p class="card-text mb-0">Preço por GB $ <span id="sp_precoHoraDISCO"></span></p>
             <p class="card-text mb-0">Custo Total <b>R$ <span id="sp_custoDiscoTotal"></span> </b></p>
 
-            <select class="btn btn-primary form-select mt-4">
+            <select class="btn btn-primary form-select mt-4" style="background-image: linear-gradient(190deg,#3216be,#362E59);">
               <option value="1">PDF - Relatório Completo</option>
               <option value="2">CSV - Dados para Data Science</option>
               <option value="3">JSON - Dados para Data Science</option>
@@ -269,8 +269,8 @@
                 <div class="text-end pt-1">
                   <h5 class="text-sm mb-1 text-capitalize">Maior custo de CPU - Desde <span id="sp_dataFiltroCPU"></span></h5>
 
-                  <h4 class="mb-2" id="">Servidor XPTO</h4>
-                  <h5 class="mb-0" id="">Custo Total R$ <span>300</span></h5>
+                  <h4 class="mb-2" id=""><span id="sp_nomeMaiorCustoCPU"></span></h4>
+                  <h5 class="mb-0" id="">Custo Total R$ <span id="sp_maiorValorCustoCPU"></span></h5>
                 </div>
               </div>
               
@@ -298,8 +298,8 @@
                 <div class="text-end pt-1">
                   <h5 class="text-sm mb-1 text-capitalize">Maior custo de RAM - Desde <span id="sp_dataFiltroRAM"></span></h5>
                   <!-- <h4 class="mb-0" id="servidoresForaDoAr"></h4> -->
-                  <h4 class="mb-2" id="">Servidor XPTO</h4>
-                  <h5 class="mb-0" id="">Custo Total R$ <span>300</span></h5>
+                  <h4 class="mb-2" id=""><span id="sp_nomeMaiorCustoRAM"></span></h4>
+                  <h5 class="mb-0" id="">Custo Total R$ <span id="sp_maiorValorCustoRAM"></span></h5>
                 </div>
               </div>
               <hr class="dark horizontal my-0">
@@ -346,15 +346,15 @@
           <div class="card z-index-2 ">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
               <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1"
-                style="background-image: linear-gradient(195deg,#ec407a,#d81b60);">
+                style="background-image: linear-gradient(190deg,#3216be,#362E59);">
                 <div class="chart">
                   <canvas id="grafico_de_barras_02" class="chart-canvas" height="212" width="1451" style="display: block; box-sizing: border-box; height: 169px; width: 1161.2px;"></canvas>
                 </div>
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 ">Gasto dos Servidores (x100)</h6>    
-              <p class="text-sm ">Servidores com maiores gastos acumulados de 30 dias atrás até hoje</p>
+              <h6 class="mb-0 ">Gasto dos Servidores em Reais (BRL)</h6>    
+              <p class="text-sm ">Servidores com gastos acumulados dos últimos 30 dias</p>
               <!-- <hr class="dark horizontal"> -->
             </div>
           </div>
@@ -366,20 +366,16 @@
         <div class="col-lg-9 col-md-6 mt-4 mb-4">
           <div class="card z-index-2  ">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-              <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
+              <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1"
+              style="background-image: linear-gradient(190deg,#3216be,#362E59);">
                 <div class="chart">
-                  <canvas id="chart-line-2" class="chart-canvas" height="170"></canvas>
+                  <canvas id="grafico-linha" class="chart-canvas" style="display: block; box-sizing: border-box; height: 300px; width: 1161.2px;"></canvas>
                 </div>
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 ">Chamados por mês</h6>
-              <p class="text-sm ">Quantidade de chamados abertos em cada mês</p>
-              <hr class="dark horizontal">
-              <div class="d-flex h-100 align-items-center">
-                <i class="material-icons text-sm my-auto me-1">schedule</i>
-                <p class="mb-0 text-sm"> Atualizado a um minuto </p>
-              </div>
+              <h6 class="mb-0 ">Histórico de Gastos em Reais (BRL)</h6>
+              <p class="text-sm ">Histórico do total de gastos por mês</p>
             </div>
           </div>
         </div>
@@ -402,24 +398,6 @@
         </div>
 
 
-      </div>
-      <div class="row mb-4">
-        <div class="col-lg-12 col-md-6 mb-md-0 mb-4">
-          <div class="card">
-            <div class="card-header pb-0">
-              <div class="row">
-                <div class="col-lg-6 col-7">
-                  <h6>Servidores</h6>
-                  <p class="text-sm mb-0">
-                    <i class="fa fa-check text-info" aria-hidden="true"></i>
-                    3 Servidores conectados
-                  </p>
-                </div>
-              </div>
-            </div>
-            <!--LISTA DE SERVIDORES-->
-          </div>
-        </div>
       </div>
     </div>
   </main>
@@ -456,11 +434,13 @@
               <table class="table align-items-center mb-0">
                 <thead>
                   <tr>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Código
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mês - Ano Referência
                     </th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nome
                     </th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Custo R$
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Horas Usadas
+                    </th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Custo (BRL)
                     </th>
                   </tr>
                 </thead>
@@ -510,16 +490,18 @@
               <table class="table align-items-center mb-0">
                 <thead>
                   <tr>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Código
-                    </th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nome
-                    </th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                      Custo
-                    </th>
+                    <tr>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mês - Ano Referência
+                      </th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nome
+                      </th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Horas Usadas
+                      </th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Custo (BRL)
+                      </th>
                   </tr>
                 </thead>
-                <tbody id="listaDeServidoresCPU">
+                <tbody id="listaDeServidoresRAM">
                 </tbody>
               </table>
             </div>
@@ -814,7 +796,7 @@
                 
                 valorCPU += parseFloat(json[i].valor);
                 sp_valorCPU.innerHTML = "";
-                sp_valorCPU.innerHTML = valorCPU;
+                sp_valorCPU.innerHTML = valorCPU.toFixed(2);
               
               } else if(json[i].comp == "RAM" ){
 
@@ -824,12 +806,12 @@
                 
                 valorRAM += parseFloat(json[i].valor);
                 sp_valorRAM.innerHTML = "";
-                sp_valorRAM.innerHTML = valorRAM;
+                sp_valorRAM.innerHTML = valorRAM.toFixed(2);
               
               } 
 
             }
-            valorTotalAcumulado.innerHTML = (valorCPU + valorRAM);
+            valorTotalAcumulado.innerHTML = (valorCPU + valorRAM).toFixed(2);
           
           })
         }
@@ -855,7 +837,10 @@
         sp_dataFiltroCPU.innerHTML = dataFormatada;
         sp_dataFiltroRAM.innerHTML = dataFormatada;
         listar_extrato_acumulado();
-        plotarGraficoBarrasCustoGeral(ipt_diasAtras.value, sessionStorage.ID_EMPRESA)
+        plotarGraficoBarrasCustoGeral(diasASubrtrair, sessionStorage.ID_EMPRESA);
+        plot_kpis_ordenadas("CPU", sessionStorage.ID_EMPRESA, diasASubrtrair);
+        plot_kpis_ordenadas("RAM", sessionStorage.ID_EMPRESA, diasASubrtrair);
+        plot_kpis_ordenadas("Disco", sessionStorage.ID_EMPRESA, diasASubrtrair);
       }
     
       function busca_disco(){
@@ -882,6 +867,7 @@
         }
       })
 
+      plotarGraficoLinhasHistorico(240, sessionStorage.ID_EMPRESA);
       
   </script>
 </body>

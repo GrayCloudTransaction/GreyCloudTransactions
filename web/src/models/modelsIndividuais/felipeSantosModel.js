@@ -78,14 +78,55 @@ function historico_somarizado_por_servidor(idEmpresa, dias){
         nome_servidor,
         SUM(valor_calculado) AS 'valor'
     FROM vw_extrato 
-        WHERE id_empresa = 1 AND 
-           dia >= DATE_SUB(NOW(), INTERVAL 30 DAY)
+        WHERE id_empresa = ${idEmpresa} AND 
+           dia >= DATE_SUB(NOW(), INTERVAL ${dias} DAY)
             GROUP BY
                 id_servidor,
                 nome_servidor;
     `;
 
     info("historico somarizado por servidor", query);
+    return database.executar(query);
+}
+
+function historico_somarizado_por_empresa(idEmpresa, dias){
+    var query = `
+    SELECT 
+        MONTH(dia) AS mes,
+        SUM(qtd_horas) AS horas,
+        SUM(valor_calculado) AS valor
+    FROM vw_extrato 
+        WHERE id_empresa = ${idEmpresa} AND 
+            dia >= DATE_SUB(NOW(), INTERVAL ${dias} DAY)
+            GROUP BY
+                MONTH(dia)
+            ORDER BY 
+                MONTH(dia) ASC;
+    `;
+    info("historico somarizado por empresa", query);
+    return database.executar(query);
+}
+
+function custo_ordenado_kpi(componente, idEmpresa, dias){
+    var query = `
+    SELECT 
+        nome_servidor,
+        MONTH(dia) AS 'mes',
+        tipo_componente AS 'comp', 
+        SUM(qtd_horas) AS 'horas',
+        SUM(valor_calculado) AS 'valor'
+    FROM vw_extrato 
+        WHERE id_empresa = ${idEmpresa} AND 
+        dia >= DATE_SUB(NOW(), INTERVAL ${dias} DAY) AND
+        tipo_componente = '${componente}'
+            GROUP BY
+                nome_servidor,
+                comp,
+                MONTH(dia)
+            ORDER BY 
+                valor desc;
+    `;
+    info("custo ordenado kpi", query);
     return database.executar(query);
 }
 
@@ -96,5 +137,6 @@ module.exports = {
     listar_preco_componente,
     lista_preco_disco,
     historico_somarizado_por_servidor,
-
+    historico_somarizado_por_empresa,
+    custo_ordenado_kpi
 };
