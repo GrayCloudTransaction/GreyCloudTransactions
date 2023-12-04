@@ -16,6 +16,7 @@ var emailRouter = require("./src/routes/email");
 var servidorRouter = require("./src/routes/servidor");
 var chamadoRouter = require("./src/routes/chamado");
 var registroRouter = require("./src/routes/registro");
+var bifonRouter = require("./src/routes/routesIndividuais/gabrielBifon");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -31,6 +32,7 @@ app.use("/email", emailRouter);
 app.use("/servidor", servidorRouter);
 app.use("/chamado", chamadoRouter);
 app.use("/registro", registroRouter);
+app.use("/gabriel", bifonRouter);
 
 app.listen(PORTA, function () {
     console.log(`URL do Site: http://localhost:${PORTA} \n

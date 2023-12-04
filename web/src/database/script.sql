@@ -1,3 +1,4 @@
+-- Active: 1701716906273@@127.0.0.1@3306
 DROP DATABASE IF EXISTS ScriptGCT;
 CREATE DATABASE IF NOT EXISTS `ScriptGCT` DEFAULT CHARACTER SET utf8 ;
 USE `ScriptGCT`;
@@ -29,6 +30,9 @@ CREATE TABLE IF NOT EXISTS `funcionario` (
   FOREIGN KEY (`fk_empresa`) REFERENCES empresa(`id_empresa`) ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS localizacao(id_temperatura INT PRIMARY KEY AUTO_INCREMENT NOT NULL, pais VARCHAR(100), estado VARCHAR(100), cidade VARCHAR(100), valor_temperatura DECIMAL(4,2), data_registro DATETIME, fk_servidor INT NOT NULL, FOREIGN KEY (fk_servidor) REFERENCES servidor (id_servidor));
+
+CREATE TABLE IF NOT EXISTS rede(id_rede INT PRIMARY KEY AUTO_INCREMENT NOT NULL,  mac_address VARCHAR(100), ip_publico VARCHAR(100), vel_upload DECIMAL(4,2), vel_download DECIMAL(4,2), ping DECIMAL(4,2), uploadStat DECIMAL(5,2), downloadStat DECIMAL(5,2), dataSent DECIMAL(5,2), dataRecv DECIMAL(5,2), data_registro DATETIME, fk_servidor INT NOT NULL, FOREIGN KEY (fk_servidor) REFERENCES servidor (id_servidor));
 
 CREATE TABLE IF NOT EXISTS `servidor` (
   `id_servidor` INT NOT NULL auto_increment,
@@ -40,10 +44,8 @@ CREATE TABLE IF NOT EXISTS `servidor` (
   `fk_empresa` INT NOT NULL,
   `prioridade` INT NULL,
   `localizacao` VARCHAR(200) NOT NULL,
-  `fk_rede` INT NOT NULL,
   PRIMARY KEY (`id_servidor`),
-  FOREIGN KEY (`fk_empresa`) REFERENCES `empresa` (`id_empresa`) ON DELETE CASCADE,
-  FOREIGN KEY (`fk_rede`) REFERENCES `rede` (`id_rede`) ON DELETE CASCADE
+  FOREIGN KEY (`fk_empresa`) REFERENCES empresa(`id_empresa`) ON DELETE CASCADE
 );
 
 
@@ -104,15 +106,6 @@ CREATE TABLE IF NOT EXISTS `anomalia`(
   foreign key (`fk_chamados`) REFERENCES `chamados`(`id_chamados`) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS `rede`(
-    `id_rede` INT NOT NULL auto_increment,
-    `mac_address` VARCHAR(100),
-    `uploadStat` DECIMAL(5,2),
-    `downloadStat` DECIMAL(5,2),
-    `dataSent` DECIMAL(5,2),
-    `dataRecv` DECIMAL(5,2),
-    PRIMARY KEY (`id_rede`)
-);
 
 -- Cadastro de Empresas
 INSERT INTO `empresa` (`razao_social`, `cnpj`, `numero_imovel`, `cep`, `email`, `telefone`) 
@@ -138,16 +131,18 @@ values ('Cleiton Rodrigues', 'cleiton@gmail.com', '12345', 'Analísta Junior', "
 SELECT * FROM `funcionario`;
 
 -- Cadatro de Rede
-INSERT INTO `rede` (`mac_address`, `dataSent`, `dataRecv`) VALUES 
-('COMP1', 12.5, 19.0),
-('COMP2', 13.4, 20.1),
-('COMP3', 15.1, 18.5);
+INSERT INTO `rede` (`mac_address`, `ip_publico`, `dataSent`, `dataRecv`, `fk_servidor`, `data_registro`) VALUES 
+('COMP1', '123456', 12.5, 19.0, 1, '2023-02-03'),
+('COMP2', '123456', 13.4, 20.1, 1, '2023-02-03'),
+('COMP3', '123456', 15.1, 18.5, 1, '2023-02-03');
+
+INSERT INTO `localizacao` (cidade, valor_temperatura, fk_servidor) VALUES ('São Paulo', 23.0, 1);
 
 -- Cadastro de Servidores 
-INSERT INTO `servidor` (`nome`, `codigo`, `tipo`,`status`, `descricao`, `fk_empresa`, `localizacao`, `fk_rede`)
-VALUES ('SERVER-AHRL1NB', 'XPTO-0987', 'Servidor Principal',1, 'Servidor responsável por executar X tarefa', 1, 'Sede empresa 012 - Port 3', 1)
-	, ('SERVER-9HJD2AL', 'XP-9384', 'Servidor de Backup',1, 'Servidor responsável por backups', 1, 'Sede empresa 234 - Comp A', 2)
-    , ('SERVER-UHD71P6', 'LOC-0284', 'Servidor de Homologação',1, 'Servidor responsável por Homologações ', 1, 'Sede empresa 102 - Port 1', 3);
+INSERT INTO `servidor` (`nome`, `codigo`, `tipo`,`status`, `descricao`, `fk_empresa`, `localizacao`)
+VALUES ('SERVER-AHRL1NB', 'XPTO-0987', 'Servidor Principal',1, 'Servidor responsável por executar X tarefa', 1, 'Sede empresa 012 - Port 3')
+	, ('SERVER-9HJD2AL', 'XP-9384', 'Servidor de Backup',1, 'Servidor responsável por backups', 1, 'Sede empresa 234 - Comp A')
+    , ('SERVER-UHD71P6', 'LOC-0284', 'Servidor de Homologação',1, 'Servidor responsável por Homologações ', 1, 'Sede empresa 102 - Port 1');
 
 UPDATE servidor set `status` = 0 WHERE id_servidor in(2);
 
@@ -252,3 +247,10 @@ select * from registro
 
 SELECT * FROM servidor, rede
         WHERE id_rede = fk_rede;
+
+
+        SELECT mac_address, ip_publico, dataSent, dataRecv, rede.data_registro, cidade, valor_temperatura
+        FROM rede, localizacao
+        WHERE rede.fk_servidor = 1
+        ORDER BY rede.data_registro DESC
+        LIMIT 1;
