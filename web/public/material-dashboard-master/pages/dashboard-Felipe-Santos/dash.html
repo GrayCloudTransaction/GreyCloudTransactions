@@ -1,0 +1,943 @@
+<!--
+=========================================================
+* Material Dashboard 2 - v3.1.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/material-dashboard
+* Copyright 2023 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://www.creative-tim.com/license)
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/logograyClound.png">
+  <link rel="icon" type="image/png" href="../../assets/img/logograyClound.png">
+  <link rel="stylesheet" href="../notifications.html">
+  <title>
+    Gray Cloud Transaction
+  </title>
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+  <!-- Nucleo Icons -->
+  <link href="../../assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="../../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <!-- CSS Files -->
+  <link id="pagestyle" href="../../assets/css/material-dashboard.css?v=3.1.0" rel="stylesheet" />
+  <!-- Nepcha Analytics (nepcha.com) -->
+  <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
+  <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+</head>
+
+<body class="g-sidenav-show  bg-gray-200" onload="validarSessao()">
+  <!-- Menu lateral esquerdo-->
+  <aside
+    class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark"
+    id="sidenav-main">
+    <div class="sidenav-header">
+      <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+        aria-hidden="true" id="iconSidenav"></i>
+      <a class="navbar-brand m-0" target="_blank">
+        <img src="../../assets/img/logograyClound.png" class="navbar-brand-img h-100" alt="main_logo">
+        <span class="ms-1 font-weight-bold text-white">G.C.T.</span><br>
+      </a>
+    </div>
+    <hr class="horizontal light mt-0 mb-2">
+    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-white active bg-gradient-primary" href="../../pages/dashboardAnalista.html"
+            id="link_dashboard">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">dashboard</i>
+            </div>
+            <span class="nav-link-text ms-1">Análise Financeira</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="../../pages/funcionarios.html">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">table_view</i>
+            </div>
+            <span class="nav-link-text ms-1">Funcionários</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="../../pages/maquinas.html">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">receipt_long</i>
+            </div>
+            <span class="nav-link-text ms-1">Máquinas</span>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+    <div class="sidenav-footer position-absolute w-100 bottom-0 ">
+      <div class="mx-3">
+        <a class="btn btn-outline-primary mt-4 w-100" href="../../../index.html" type="button"
+          onclick="limparSessao()">Deslogar</a>
+      </div>
+    </div>
+  </aside>
+  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <!-- Navbar -->
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur"
+      data-scroll="true">
+      <div class="container-fluid py-1 px-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+            <!-- <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li> -->
+          </ol>
+          <h5 class="font-weight-bolder mb-0">Análise Financeira | Billing</h5>
+          <h5 class="font-weight-bolder mb-0">User <span id="usuarioNome"></span></h5>
+        </nav>
+
+
+        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+            <div class="input-group input-group-outline">
+              <!-- <label class="form-label">Type here...</label>
+              <input type="text" class="form-control"> -->
+            </div>
+          </div>
+          <ul class="navbar-nav  justify-content-end">
+            <li class="nav-item d-flex align-items-center">
+              <!-- <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="https://www.creative-tim.com/builder?ref=navbar-material-dashboard">Online Builder</a> -->
+            </li>
+            <li class="mt-2">
+              <!-- <a class="github-button" href="https://github.com/creativetimofficial/material-dashboard" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star creativetimofficial/material-dashboard on GitHub">Star</a> -->
+            </li>
+
+            <!-- Notificações -->
+            <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
+                <div class="sidenav-toggler-inner">
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                </div>
+              </a>
+            </li>
+            <li class="nav-item px-3 d-flex align-items-center">
+              <a data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="nav-link text-body p-0">
+                <i class="fa fa-coffee fixed-plugin-button-nav cursor-pointer"></i>
+              </a>
+              <!-- Modal -->
+              <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel">Configuração do Sistema Java</h5>
+                    </div>
+                    <div class="modal-body">
+                      <div class="table-responsive">
+                        <table class="table align-items-center mb-0">
+                          <thead>
+                            <tr>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Servidor
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody id="tabelaSistemaJava">
+                            
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                      <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="atualizarTabelaSistema()">Confirmar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <!-- <li class="nav-item px-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-body p-0">
+                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+              </a>
+            </li> -->
+            <li class="nav-item dropdown pe-2 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <i class="fa fa-bell cursor-pointer"></i>
+              </a>
+              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                <li class="mb-2">
+                  <a class="dropdown-item border-radius-md" href="../notificacoes.html">
+                    <div class="d-flex py-1">
+                      <div class="my-auto">
+                        <img src="../../assets/img/icons/icon-notification.png" class="avatar avatar-sm  me-3 ">
+                      </div>
+                      <div class="d-flex flex-column justify-content-center" href="../notifications.html">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          RAM em 70% na maquina 049385
+                        </h6>
+                        <p class="text-xs text-secondary mb-0">
+                          <i class="fa fa-clock me-1"></i>
+                          13 minutes ago
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li class="mb-2">
+                  <a class="dropdown-item border-radius-md" href="../notifications.html">
+                    <div class="d-flex py-1">
+                      <div class="my-auto">
+                        <img src="../../assets/img/icons/icon-aviso.png" class="avatar avatar-sm  me-3 ">
+                      </div>
+                      <div class="d-flex flex-column justify-content-center" href="../notifications.html">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          Comunicado enviado com sucesso
+                        </h6>
+                        <p class="text-xs text-secondary mb-0">
+                          <i class="fa fa-clock me-1"></i>
+                          20 minutes ago
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li class="mb-2">
+                  <a class="dropdown-item border-radius-md" href="../notifications.html">
+                    <div class="d-flex py-1">
+                      <div class="my-auto">
+                        <img src="../../assets/img/icons/icon-erro.png" class="avatar avatar-sm  me-3 ">
+                      </div>
+                      <div class="d-flex flex-column justify-content-center" href="../notifications.html">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          Memória de disco acima de 90%
+                        </h6>
+                        <p class="text-xs text-secondary mb-0">
+                          <i class="fa fa-clock me-1"></i>
+                          5h ago
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- End Navbar -->
+
+    <!-- Parte superior -->
+    <div class="container-fluid py-1">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 mb-2">
+          <div class="card h-100">
+            <h4 class="card-header mb-0" style="margin-bottom: 0%; padding-bottom: 1%;">Extrato Atual - Todos Servidores
+            </h4>
+            <h5 style="margin-left: 4%; margin-top: 0%;">Do dia <span id="sp_diasAtras"></span> até Hoje</h5>
+            <div class="input-group">
+              <input style="margin-left: 4%;" type="number" class="form-control" placeholder="Dias" id="ipt_diasAtras">
+              <button class="btn btn-outline-secondary" type="button" id="button-addon2" style="margin-right: 7%;"
+                onclick="dias_atras_html()">Filtrar por dias Atrás</button>
+            </div>
+            <h5 style="margin-left: 4%; margin-top: 0%;">Valor Total Final R$ <span id="valorTotalAcumulado"></span>
+            </h5>
+            <!-- <h6 style="margin-left: 4%; margin-top: 0%;"><input type="number" value=""> dias atrás</h6> -->
+
+            <hr class="dark horizontal my-2">
+
+            <div class="card-body" style="padding-top: 0.5%;">
+              <h5 class="card-title mt-0">Custo de CPU</h5>
+              <p class="card-text mb-0">Horas Acumuladas de Consumo: <span id="sp_horasCPU"></span></p>
+              <p class="card-text mb-0">Preço por Hora $ <span id="sp_precoHoraCPU"></span></p>
+              <p class="card-text mb-0">Custo Total <b>R$ <span id="sp_valorCPU"></span></b></p>
+
+              <hr class="dark horizontal my-3">
+
+              <h5 class="card-title">Custo de RAM</h5>
+              <p class="card-text mb-0">Horas Acumuladas de Consumo: <span id="sp_horasRAM"></span></p>
+              <p class="card-text mb-0">Preço por Hora $ <span id="sp_precoHoraRAM"></span></p>
+              <p class="card-text mb-0">Custo Total <b>R$ <span id="sp_valorRAM"></span></b></p>
+
+              <hr class="dark horizontal my-3">
+
+              <h5 class="card-title">Custo de Armazenamento</h5>
+              <p class="card-text mb-0">Horas Alocado: <span id="sp_horasAlocadoDisco"></span></p>
+              <p class="card-text mb-0">Preço por GB / Hora $ <span id="sp_precoHoraDISCO"></span></p>
+              <p class="card-text mb-0">Custo Total <b>R$ <span id="sp_custoDiscoTotal"></span> </b></p>
+
+              <select class="btn btn-primary form-select mt-4"
+                style="background-image: linear-gradient(190deg,#3216be,#362E59);">
+                <option value="1">PDF - Relatório Completo</option>
+                <option value="2">CSV - Dados para Data Science</option>
+                <option value="3">JSON - Dados para Data Science</option>
+              </select>
+              <button type="button" class="btn btn-primary"
+                style="background-image: linear-gradient(190deg,#3216be,#4a426f);">Download</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="row">
+            <!-- Icone vermelho -->
+            <div class="col-xl col-sm-6 mb-xl-4 mb-4" style="margin-bottom: 0%;">
+              <div class="card h-100">
+                <div class="card-header p-3 pt-2">
+                  <div
+                    class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
+                    <i class="material-icons opacity-10">account_balance</i>
+                  </div>
+
+                  <div class="text-end pt-1">
+                    <h5 class="text-sm mb-1 text-capitalize">Maior custo de CPU - Desde <span
+                        id="sp_dataFiltroCPU"></span></h5>
+
+                    <h4 class="mb-2" id=""><span id="sp_nomeMaiorCustoCPU"></span></h4>
+                    <h4 class="mb-0" id="">Custo Total R$ <span id="sp_maiorValorCustoCPU"></span></h4>
+                  </div>
+                </div>
+
+                <hr class="dark horizontal my-0">
+
+                <div class="card-footer p-2">
+                  <div class="d-flex h-100 align-items-center">
+                    <!-- <button data-bs-toggle="modal" data-bs-target="#modalCPUReco" type="button" class="btn bg-gradient-success" style="margin-left: 18%;">Recomendações</button> -->
+                    <button data-bs-toggle="modal" data-bs-target="#modalCPULista" type="button"
+                      class="btn bg-gradient-warning"
+                      style="margin-left: 10%; background-image: linear-gradient(190deg,#3515d5,#362E59);">Lista de
+                      Servidores</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <!-- Icone verde -->
+            <div class="col-xl col-sm-6 mb-xl-4 mb-4">
+              <div class="card">
+                <div class="card-header p-3 pt-2">
+                  <div
+                    class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
+                    <i class="material-icons opacity-10">person</i>
+                  </div>
+                  <div class="text-end pt-1">
+                    <h5 class="text-sm mb-1 text-capitalize">Maior custo de RAM - Desde <span
+                        id="sp_dataFiltroRAM"></span></h5>
+                    <!-- <h4 class="mb-0" id="servidoresForaDoAr"></h4> -->
+                    <h4 class="mb-2" id=""><span id="sp_nomeMaiorCustoRAM"></span></h4>
+                    <h4 class="mb-0" id="">Custo Total R$ <span id="sp_maiorValorCustoRAM"></span></h4>
+                  </div>
+                </div>
+                <hr class="dark horizontal my-0">
+                <div class="card-footer p-2">
+                  <!-- Total de servidores: <span id="servidorTotal"></span> -->
+
+                  <!-- <button data-bs-toggle="modal" data-bs-target="#modalRAMReco" type="button" class="btn bg-gradient-success" style="margin-left: 18%;">Recomendações</button> -->
+                  <button data-bs-toggle="modal" data-bs-target="#modalRAMLista" type="button"
+                    class="btn bg-gradient-warning"
+                    style="margin-left: 10%; background-image: linear-gradient(190deg,#3515d5,#362E59);  ">Lista de
+                    Servidores</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+
+
+            <!-- Icone preto -->
+            <div class="col-xl col-sm-6 mb-2">
+              <div class="card">
+                <div class="card-header p-3 pt-2">
+                  <div
+                    class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+                    <i class="material-icons opacity-10">weekend</i>
+                  </div>
+                  <div class="text-end pt-1">
+                    <h5 class="text-sm mb-1 text-capitalize">Maior custo de Disco - Desde <span
+                        id="sp_dataFiltroDISCO"></span></h5>
+                    <h4 class="mb-0"><span id="sp_nomeMaiorCustoDisco"></span></h4>
+                    <h4 class="mb-0">Custo Total R$ <span id="sp_maiorValorCustoDISCO"></span></h4>
+                  </div>
+                </div>
+                <div class="card-footer p-2">
+
+                  <!-- <button data-bs-toggle="modal" data-bs-target="#modalDISCOReco" type="button" class="btn bg-gradient-success" style="margin-left: 18%;">Recomendações</button> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col-lg-12 col-md-6 mt-4 mb-4">
+            <div class="card z-index-2 ">
+              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1"
+                  style="background-image: linear-gradient(190deg,#3216be,#362E59);">
+                  <div class="chart">
+                    <canvas id="grafico_de_barras_02" class="chart-canvas" height="212" width="1451"
+                      style="display: block; box-sizing: border-box; height: 169px; width: 1161.2px;"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <h6 class="mb-0 ">Gasto dos Servidores em Reais (BRL)</h6>
+                <p class="text-sm ">Servidores com gastos acumulados dos últimos 30 dias</p>
+                <!-- <hr class="dark horizontal"> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-4">
+
+          <div class="col-lg-12 col-md-6 mt-4 mb-4 ">
+            <div class="card z-index-2  ">
+              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1"
+                  style="background-image: linear-gradient(190deg,#3216be,#362E59);">
+                  <div class="chart">
+                    <canvas id="grafico-linha" class="chart-canvas"
+                      style="display: block; box-sizing: border-box; height: 200px; width: 1161.2px;"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <h6 class="mb-0 ">Histórico de Gastos em Reais (BRL)</h6>
+                <p class="text-sm ">Histórico do total de gastos por mês</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="col-lg-3 col-md-6">
+
+            <div class="card">
+              <div class="card-header p-0 position-relative bg-transparent">
+                <div class="border-radius-lg pe-1">
+                  <div class="chart">
+                    <canvas id="chart-pie" class="chart-canvas" height="220"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <h6 class="mb-0 ">Servidores Online e Offline</h6>
+                <p class="text-sm">Quantidade de servidores Online e Offline</p>
+              </div>
+            </div>
+          </div> -->
+
+
+        </div>
+      </div>
+  </main>
+
+  <!-- MODAL CPU - Recomendações -->
+  <!-- <div class="modal fade" id="modalCPUReco" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Recomendações para servidor XPTO</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus facilis exercitationem ipsum illum voluptate, similique fuga tempore beatae, reprehenderit quos dolor deleniti assumenda aliquid recusandae esse eum excepturi vel sapiente.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- MODAL CPU - Lista -->
+  <div class="modal fade" id="modalCPULista" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Lista de Servidores com Maior custo em CPU</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="card-body px-0 pb-2">
+            <div class="table-responsive">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mês -
+                      Ano Referência
+                    </th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nome
+                    </th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Horas
+                      Usadas
+                    </th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Custo
+                      (BRL)
+                    </th>
+                  </tr>
+                </thead>
+                <tbody id="listaDeServidoresCPU">
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL RAM - Recomendações -->
+  <!-- <div class="modal fade" id="modalRAMReco" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Recomendações para servidor XPTO</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus facilis exercitationem ipsum illum voluptate, similique fuga tempore beatae, reprehenderit quos dolor deleniti assumenda aliquid recusandae esse eum excepturi vel sapiente.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- MODAL RAM - Lista -->
+  <div class="modal fade" id="modalRAMLista" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Lista de Servidores com Maior custo em RAM</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="card-body px-0 pb-2">
+            <div class="table-responsive">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                  <tr>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mês -
+                      Ano Referência
+                    </th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nome
+                    </th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Horas
+                      Usadas
+                    </th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Custo
+                      (BRL)
+                    </th>
+                  </tr>
+                </thead>
+                <tbody id="listaDeServidoresRAM">
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL DISCO - Recomendação -->
+    <!-- <div class="modal fade" id="modalDISCOReco" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Recomendações para servidor XPTO</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus facilis exercitationem ipsum illum voluptate, similique fuga tempore beatae, reprehenderit quos dolor deleniti assumenda aliquid recusandae esse eum excepturi vel sapiente.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+    <!-- MODAL DISCO - Lista -->
+    <!-- <div class="modal fade" id="modalDISCOLista" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Lista de Servidores com Maior custo em Disco</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="card-body px-0 pb-2">
+            <div class="table-responsive">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <tr>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mês - Ano Referência
+                      </th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nome
+                      </th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Horas Usadas
+                      </th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Custo (BRL)
+                      </th>
+                  </tr>
+                </thead>
+                <tbody id="listaDeServidoresRAM">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+    <div class="fixed-plugin">
+      <div class="card shadow-lg">
+        <div class="card-header pb-0 pt-4">
+          <div class="float-start">
+            <h5 class="mt-3 mb-0">Configuração do Sistema Java</h5>
+            <p>Customize as suas capturas de cada Servidor</p>
+          </div>
+
+        </div>
+        <hr class="horizontal dark my-1">
+
+        <div class="card-body pt-sm-3 pt-0">
+
+          <div class="mt-3">
+            <h6 class="mb-0">Total de servidores com o sistema: X</h6>
+            <p class="text-sm"></p>
+          </div>
+
+          <div>
+            <h5 class="mb-0">Servidores</h5>
+          </div>
+
+          <div class="d-flex">
+            <!-- <button class="btn bg-gradient-dark px-3 mb-2 active" data-class="bg-gradient-dark"
+            onclick="sidebarType(this)">Preto</button>
+          <button class="btn bg-gradient-dark px-3 mb-2 ms-2" data-class="bg-transparent"
+            onclick="sidebarType(this)">Transparente</button>
+          <button class="btn bg-gradient-dark px-3 mb-2 ms-2" data-class="bg-white"
+            onclick="sidebarType(this)">Branco</button> -->
+
+          </div>
+
+          <!-- Navbar Fixed -->
+          <div class="mt-3 d-flex">
+            <!-- <h6 class="mb-0">Navbar Fixada</h6>
+          <div class="form-check form-switch ps-0 ms-auto my-auto">
+            <input class="form-check-input mt-1 ms-auto" type="checkbox" id="navbarFixed" onclick="navbarFixed(this)">
+          </div> -->
+          </div>
+
+          <hr class="horizontal dark my-3">
+
+          <div class="mt-2 d-flex">
+
+            <!-- <h6 class="mb-0">Modo escuro</h6>
+          <div class="form-check form-switch ps-0 ms-auto my-auto">
+            <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)">
+          </div> -->
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- chat-bot -->
+    <!-- <div class="fixed-plugin">
+    <div class="card shadow-lg">
+      <div class="card-header pb-0 pt-3">
+        <div class="float-start">
+          <h5 class="mt-3 mb-0">Configuração de tela</h5>
+          <p>Veja outros tipos de customização.</p>
+        </div>
+        <div class="float-end mt-4">
+          <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
+            <i class="material-icons">clear</i>
+          </button>
+        </div>
+        
+        
+        
+      </div>
+      <hr class="horizontal dark my-1">
+      <div class="card-body pt-sm-3 pt-0">
+        
+        
+
+        <div>
+          <h6 class="mb-0">Cor da opção do menu</h6>
+        </div>
+        <a href="javascript:void(0)" class="switch-trigger background-color">
+          <div class="badge-colors my-2 text-start">
+            <span class="badge filter bg-gradient-primary active" data-color="primary"
+              onclick="sidebarColor(this)"></span>
+            <span class="badge filter bg-gradient-dark" data-color="dark" onclick="sidebarColor(this)"></span>
+            <span class="badge filter bg-gradient-info" data-color="info" onclick="sidebarColor(this)"></span>
+            <span class="badge filter bg-gradient-success" data-color="success" onclick="sidebarColor(this)"></span>
+            <span class="badge filter bg-gradient-warning" data-color="warning" onclick="sidebarColor(this)"></span>
+            <span class="badge filter bg-gradient-danger" data-color="danger" onclick="sidebarColor(this)"></span>
+          </div>
+        </a>
+        
+        
+
+        <div class="mt-3">
+          <h6 class="mb-0">Cor do menu</h6>
+          <p class="text-sm"></p>
+        </div>
+        <div class="d-flex">
+          <button class="btn bg-gradient-dark px-3 mb-2 active" data-class="bg-gradient-dark"
+            onclick="sidebarType(this)">Preto</button>
+          <button class="btn bg-gradient-dark px-3 mb-2 ms-2" data-class="bg-transparent"
+            onclick="sidebarType(this)">Transparente</button>
+          <button class="btn bg-gradient-dark px-3 mb-2 ms-2" data-class="bg-white"
+            onclick="sidebarType(this)">Branco</button>
+        </div>
+        <p class="text-sm d-xl-none d-block mt-2">You can change the sidenav type just on desktop view.</p>
+        
+
+
+        <div class="mt-3 d-flex">
+          <h6 class="mb-0">Navbar Fixada</h6>
+          <div class="form-check form-switch ps-0 ms-auto my-auto">
+            <input class="form-check-input mt-1 ms-auto" type="checkbox" id="navbarFixed" onclick="navbarFixed(this)">
+          </div>
+        </div>
+        <hr class="horizontal dark my-3">
+        <div class="mt-2 d-flex">
+          <h6 class="mb-0">Modo escuro</h6>
+          <div class="form-check form-switch ps-0 ms-auto my-auto">
+            <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div> -->
+    <!--   Core JS Files   -->
+    <script src="../../assets/js/core/popper.min.js"></script>
+    <script src="../../assets/js/core/bootstrap.min.js"></script>
+    <script src="../../assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="../../assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <script src="../../assets/js/plugins/chartjs.min.js"></script>
+    <script src="./integracaoSistemaJava.js"></script>
+    <script>
+      var win = navigator.platform.indexOf('Win') > -1;
+      if (win && document.querySelector('#sidenav-scrollbar')) {
+        var options = {
+          damping: '0.5'
+        }
+        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+      }
+    </script>
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="../../assets/js/material-dashboard.min.js?v=3.1.0"></script>
+
+    <script src="../../js/sessao.js"></script>
+    <script src="../../js/dashboardGerente.js"></script>
+    <SCRipt src="graficos.js"></SCRipt>
+
+    <script>
+      validarSessao();
+
+      ipt_diasAtras.value = 30;
+      var lista_servers = [];
+
+      // Listando os preços
+      fetch(`/felipe/listar/preco/componente`, { cache: "no-store" }).then(
+        (resposta) => {
+          if (resposta.ok) {
+            resposta.json().then(
+              (json) => {
+                console.log(json);
+                for (i = 0; i < json.length; i++) {
+                  let jsonDaVez = json[i];
+                  let preco = parseFloat(jsonDaVez.preco)
+
+                  if (jsonDaVez.comp == 'CPU') {
+                    sp_precoHoraCPU.innerHTML = preco;
+                  }
+
+                  if (jsonDaVez.comp == 'RAM') {
+                    sp_precoHoraRAM.innerHTML = preco;
+                  }
+
+                  if (jsonDaVez.comp == 'Disco') {
+                    sp_precoHoraDISCO.innerHTML = preco;
+                  }
+
+                }
+
+              })
+          } else {
+            resposta.text().then(
+              (msg) => {
+                console.error(msg);
+              })
+          }
+
+        }).catch(
+          (erro) => {
+            console.error(erro);
+          }
+        )
+
+      //Folha de Extrato
+      function listar_extrato_acumulado() {
+        fetch(`/felipe/listar/extrato/acumulado`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            idEmpresa: sessionStorage.ID_EMPRESA,
+            dias: ipt_diasAtras.value
+          }),
+        }).then((resposta) => {
+
+          if (resposta.ok) {
+            resposta.json().then((json) => {
+              console.log(json);
+              let valorCPU = 0;
+              var horasCPU = 0;
+
+              let valorRAM = 0;
+              let horasRAM = 0;
+
+              let valorDisco = 0;
+              let horasDisco = 0;
+
+              for (i = 0; i < json.length; i++) {
+
+                if (json[i].comp == "CPU") {
+
+                  horasCPU += parseInt(json[i].horas);
+                  sp_horasCPU.innerHTML = "";
+                  sp_horasCPU.innerHTML = horasCPU;
+
+                  valorCPU += parseFloat(json[i].valor);
+                  sp_valorCPU.innerHTML = "";
+                  sp_valorCPU.innerHTML = valorCPU.toFixed(2);
+
+                } else if (json[i].comp == "RAM") {
+
+                  horasRAM += parseInt(json[i].horas);
+                  sp_horasRAM.innerHTML = "";
+                  sp_horasRAM.innerHTML = horasRAM;
+
+                  valorRAM += parseFloat(json[i].valor);
+                  sp_valorRAM.innerHTML = "";
+                  sp_valorRAM.innerHTML = valorRAM.toFixed(2);
+
+                } else if (json[i].comp == "Disco") {
+
+                  valorDisco += parseFloat(json[i].valor);
+
+                  sp_custoDiscoTotal.innerHTML = "";
+                  sp_custoDiscoTotal.innerHTML = valorDisco.toFixed(2);
+
+                  horasDisco += parseInt(json[i].horas);
+                  sp_horasAlocadoDisco.innerHTML = "";
+                  sp_horasAlocadoDisco.innerHTML = horasDisco
+
+                }
+
+              }
+              valorTotalAcumulado.innerHTML = (valorCPU + valorRAM + valorDisco).toFixed(2);
+
+            })
+          }
+
+        })
+      }
+
+      // <span id="sp_diasAtras"></span>
+      function dias_atras_html() {
+        let diasASubrtrair = ipt_diasAtras.value;
+        let dataAtual = new Date();
+
+        if (diasASubrtrair == '') {
+          diasASubrtrair = 30;
+        }
+
+        dataAtual.setDate(dataAtual.getDate() - diasASubrtrair)
+
+        let formatoData = { year: 'numeric', month: '2-digit', day: '2-digit' };
+        let dataFormatada = dataAtual.toLocaleDateString(undefined, formatoData);
+
+        sp_diasAtras.innerHTML = dataFormatada;
+        sp_dataFiltroCPU.innerHTML = dataFormatada;
+        sp_dataFiltroRAM.innerHTML = dataFormatada;
+        sp_dataFiltroDISCO.innerHTML = dataFormatada;
+        listar_extrato_acumulado();
+        plotarGraficoBarrasCustoGeral(diasASubrtrair, sessionStorage.ID_EMPRESA);
+        plot_kpis_ordenadas("CPU", sessionStorage.ID_EMPRESA, diasASubrtrair);
+        plot_kpis_ordenadas("RAM", sessionStorage.ID_EMPRESA, diasASubrtrair);
+        plot_kpis_ordenadas("Disco", sessionStorage.ID_EMPRESA, diasASubrtrair);
+      }
+
+      function busca_disco() {
+        // sp_espacoTotal
+        // sp_precoHoraDISCO
+        // sp_custoDiscoTotal
+
+
+      }
+
+
+      dias_atras_html();
+
+
+      // Buscando lista de servidores
+      fetch(`/servidor/listar/${sessionStorage.ID_EMPRESA}`).then((resposta) => {
+        if (resposta.ok) {
+          resposta.json().then((json) => {
+            // console.log(json);
+            for (i = 0; i < json.length; i++) {
+              lista_servers.push(json[i].id_servidor);
+            }
+          })
+        }
+      })
+
+      var idEmpresa = sessionStorage.ID_EMPRESA
+      plotarGraficoLinhasHistorico(240, idEmpresa);
+
+      plotTabelaSistemas(idEmpresa);
+
+    </script>
+</body>
+
+</html>

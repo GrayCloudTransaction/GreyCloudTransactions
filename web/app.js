@@ -21,6 +21,8 @@ var rafaelScheneiderRouter = require("./src/routes/routesIndividuais/rafaelSchen
 var gabrielRouter = require("./src/routes/routesIndividuais/gabrielBifon")
 var vitorHidekiRouter = require("./src/routes/routesIndividuais/vitorHideki")
 
+var felipeRouter = require("./src/routes/routesIndividuais/felipeSantos")
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -35,6 +37,7 @@ app.use("/email", emailRouter);
 app.use("/servidor", servidorRouter);
 app.use("/chamado", chamadoRouter);
 app.use("/registro", registroRouter);
+app.use("/felipe", felipeRouter);
 app.use("/giovannaMenezes", giovannaMenezesRouter);
 app.use("/rafael", rafaelScheneiderRouter)
 app.use("/gabriel", gabrielRouter)
