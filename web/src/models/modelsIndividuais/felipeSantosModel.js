@@ -13,6 +13,16 @@ function listar_extrato(idServidor){
 }
 
 function listar_extrato_atual(idServidor){
+    var sqlServer = `
+    SELECT TOP 3 nome_servidor, MONTH(dia) AS mes, tipo_componente, SUM(qtd_horas) FROM vw_extrato 
+	WHERE id_servidor = ${idServidor} 
+    GROUP BY 
+        nome_servidor,
+		tipo_componente,
+        MONTH(dia)
+	ORDER BY 
+		mes DESC;
+    `
     var query = `
     SELECT nome_servidor, MONTH(dia) AS mes, tipo_componente, SUM(qtd_horas) FROM vw_extrato 
 	WHERE id_servidor = ${idServidor} 
@@ -22,11 +32,26 @@ function listar_extrato_atual(idServidor){
 	ORDER BY 
 		mes DESC
 	LIMIT 3;`
-    info("Listar Extrato Atual", query);
-    return database.executar(query);
+    info("Listar Extrato Atual", process.env.AMBIENTE_PROCESSO  == "desenvolvimento" ? query : sqlServer);
+    return database.executar(process.env.AMBIENTE_PROCESSO  == "desenvolvimento" ? query : sqlServer);
 }
 
 function listar_extrato_acumulado(idEmpresa, dias){
+    var sqlServer = `
+    SELECT 
+        MONTH(dia) AS 'mes',
+        tipo_componente AS 'comp', 
+        SUM(qtd_horas) AS 'horas',
+        SUM(valor_calculado) AS 'valor'
+    FROM vw_extrato 
+    WHERE id_empresa = ${idEmpresa} AND 
+        dia >= DATEADD(DAY, -${dias}, GETDATE())
+    GROUP BY
+        tipo_componente,
+        MONTH(dia)
+    ORDER BY 
+        MONTH(dia) DESC;
+    `
     var query = `
     SELECT 
         MONTH(dia) AS 'mes',
@@ -42,8 +67,8 @@ function listar_extrato_acumulado(idEmpresa, dias){
             ORDER BY 
                 MONTH(dia) DESC;`
         
-    info("Listar Extrato Acumulado", query);
-    return database.executar(query);
+    info("Listar Extrato Acumulado", process.env.AMBIENTE_PROCESSO  == "desenvolvimento" ? query : sqlServer);
+    return database.executar(process.env.AMBIENTE_PROCESSO  == "desenvolvimento" ? query : sqlServer);
 }
 
 function listar_preco_componente(){
@@ -72,6 +97,18 @@ function lista_preco_disco(idServidor){
 }
 
 function historico_somarizado_por_servidor(idEmpresa, dias){
+    var sqlServer = `
+    SELECT 
+        id_servidor,
+        nome_servidor,
+        SUM(valor_calculado) AS 'valor'
+    FROM vw_extrato 
+    WHERE id_empresa = ${idEmpresa} AND 
+        dia >= DATEADD(DAY, -${dias}, GETDATE())
+    GROUP BY
+        id_servidor,
+        nome_servidor;
+    `;
     var query = `
     SELECT 
         id_servidor,
@@ -85,11 +122,26 @@ function historico_somarizado_por_servidor(idEmpresa, dias){
                 nome_servidor;
     `;
 
-    info("historico somarizado por servidor", query);
-    return database.executar(query);
+    info("historico somarizado por servidor", process.env.AMBIENTE_PROCESSO  == "desenvolvimento" ? query : sqlServer);
+    return database.executar(process.env.AMBIENTE_PROCESSO  == "desenvolvimento" ? query : sqlServer);
 }
 
 function historico_somarizado_por_empresa(idEmpresa, dias){
+    var sqlServer = `
+    SELECT 
+        MONTH(dia) AS mes,
+        SUM(qtd_horas) AS horas,
+        SUM(valor_calculado) AS valor
+    FROM vw_extrato 
+    WHERE id_empresa = ${idEmpresa} AND 
+        dia >= DATEADD(DAY, -${dias}, GETDATE())
+    GROUP BY
+        MONTH(dia)
+    ORDER BY 
+        MONTH(dia) ASC;
+    
+    `
+    
     var query = `
     SELECT 
         MONTH(dia) AS mes,
@@ -103,11 +155,29 @@ function historico_somarizado_por_empresa(idEmpresa, dias){
             ORDER BY 
                 MONTH(dia) ASC;
     `;
-    info("historico somarizado por empresa", query);
-    return database.executar(query);
+    info("historico somarizado por empresa", process.env.AMBIENTE_PROCESSO  == "desenvolvimento" ? query : sqlServer);
+    return database.executar(process.env.AMBIENTE_PROCESSO  == "desenvolvimento" ? query : sqlServer);
 }
 
 function custo_ordenado_kpi(componente, idEmpresa, dias){
+    var sqlServer =`
+    SELECT
+        nome_servidor,
+        MONTH(dia) AS 'mes',
+        tipo_componente AS 'comp', 
+        SUM(qtd_horas) AS 'horas',
+        SUM(valor_calculado) AS 'valor'
+    FROM vw_extrato 
+    WHERE id_empresa = ${idEmpresa} AND 
+        dia >= DATEADD(DAY, -${dias}, GETDATE()) AND
+        tipo_componente = '${componente}'
+    GROUP BY
+        nome_servidor,
+        tipo_componente,
+        MONTH(dia)
+    ORDER BY 
+        SUM(valor_calculado) DESC;
+    `
     var query = `
     SELECT 
         nome_servidor,
@@ -126,8 +196,8 @@ function custo_ordenado_kpi(componente, idEmpresa, dias){
             ORDER BY 
                 valor desc;
     `;
-    info("custo ordenado kpi", query);
-    return database.executar(query);
+    info("custo ordenado kpi", process.env.AMBIENTE_PROCESSO  == "desenvolvimento" ? query : sqlServer);
+    return database.executar(process.env.AMBIENTE_PROCESSO  == "desenvolvimento" ? query : sqlServer);
 }
 
 function lista_sistema_java(idEmpresa){
@@ -147,7 +217,7 @@ function lista_sistema_java(idEmpresa){
 
 function atualizar_sistema_java(is_ativo, id_config){
     var query = `
-    UPDATE tb_felipe_config SET is_ativo = "${is_ativo}" WHERE id_config = ${id_config};
+    UPDATE tb_felipe_config SET is_ativo = '${is_ativo}' WHERE id_config = ${id_config};
     `;
     info("Sistema Java - Atualização", query);
     return database.executar(query);
