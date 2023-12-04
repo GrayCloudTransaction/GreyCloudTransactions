@@ -13,4 +13,9 @@ rota.get("/ultimas/:id_servidor", (req, res) => {
     gabrielController.buscarUltimosRegistros(req, res);
 });
 
+rota.post("/getCorrelacao", (req, res) => {
+    info("teste");
+    gabrielController.getCorrelacao(req,res)
+});
+
 module.exports = rota;

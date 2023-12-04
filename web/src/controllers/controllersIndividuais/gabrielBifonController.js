@@ -21,7 +21,23 @@ function buscarUltimosRegistros(req, res) {
 }
 
 
+function getCorrelacao(req, res) {
+    info('getCorrelacao');
+    var codigo = req.body.idServidorServer;
+
+    const path = require('node:path');
+    const execSync = require("child_process").execSync;
+
+    const pathController = path.join(__dirname, '..')
+
+
+    const result1 = execSync(`Rscript ${pathController}/insightsBifon/correlacao.r ${codigo}`);
+
+    let resultList1 = result1.toString().split(' ')
+    res.status(200).json([resultList1])
+}
 
 module.exports = {
-    buscarUltimosRegistros
+    buscarUltimosRegistros,
+    getCorrelacao
 }
