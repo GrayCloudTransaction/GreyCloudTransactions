@@ -161,7 +161,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                      <button type="button" class="btn btn-success" data-bs-dismiss="modal">Confirmar</button>
+                      <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="atualizarTabelaSistema()">Confirmar</button>
                     </div>
                   </div>
                 </div>
@@ -403,16 +403,16 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-4">
 
-          <div class="col-lg-9 col-md-6 mt-4 mb-4">
+          <div class="col-lg-12 col-md-6 mt-4 mb-4 ">
             <div class="card z-index-2  ">
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
                 <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1"
                   style="background-image: linear-gradient(190deg,#3216be,#362E59);">
                   <div class="chart">
                     <canvas id="grafico-linha" class="chart-canvas"
-                      style="display: block; box-sizing: border-box; height: 300px; width: 1161.2px;"></canvas>
+                      style="display: block; box-sizing: border-box; height: 200px; width: 1161.2px;"></canvas>
                   </div>
                 </div>
               </div>
@@ -423,7 +423,7 @@
             </div>
           </div>
 
-          <div class="col-lg-3 col-md-6">
+          <!-- <div class="col-lg-3 col-md-6">
 
             <div class="card">
               <div class="card-header p-0 position-relative bg-transparent">
@@ -438,7 +438,7 @@
                 <p class="text-sm">Quantidade de servidores Online e Offline</p>
               </div>
             </div>
-          </div>
+          </div> -->
 
 
         </div>
