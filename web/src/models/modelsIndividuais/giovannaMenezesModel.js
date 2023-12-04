@@ -15,7 +15,7 @@ function listarProcessos(id_servidor) {
 
 function listarProcessosConsumidores(id_servidor) {
     var query = `
-        SELECT COUNT(id) AS qtd_processos_consumidores FROM processos_consumidores WHERE fk_servidor = ${id_servidor};
+        SELECT COUNT(id) AS qtd_processos_consumidores FROM vw_processos_consumidores WHERE fk_servidor = ${id_servidor};
     `;
 
     info("Listar processos que mais consomem CPU", query);
@@ -33,7 +33,7 @@ function buscarUltimosProcessos(id_servidor, limite) {
 
 function buscarProcessosConsumidores(id_servidor, limite) {
     var query = `
-        SELECT * FROM processos_consumidores WHERE fk_servidor=${id_servidor} LIMIT ${limite} ;
+        SELECT * FROM vw_processos_consumidores WHERE fk_servidor = ${id_servidor} LIMIT ${limite};
     `
 
     info("Listar processos consumidores", query);
@@ -42,9 +42,9 @@ function buscarProcessosConsumidores(id_servidor, limite) {
 
 function getServidorPorUsoCpu() {
     var query = `
-        SELECT servidor.codigo, COUNT(processos_consumidores.id) AS qtd_processos_consumidores 
+        SELECT servidor.codigo, COUNT(vw_processos_consumidores.id) AS qtd_processos_consumidores 
         FROM servidor 
-        JOIN processos_consumidores ON fk_servidor = id_servidor 
+        JOIN vw_processos_consumidores ON fk_servidor = id_servidor 
         GROUP BY id_servidor;
     `
 

@@ -1,6 +1,3 @@
-var listaProcessos = [];
-var listaProcessosConsumidores = [];
-
 function totaisDeProcessos() {
   var idServidor = sessionStorage.ID_SERVIDOR;
 
@@ -68,114 +65,77 @@ function totaisDeProcessosConsumidores() {
     });
 }
 
-function obterProcessos(limite) {
-  // select limite = limite
+function exibirProcessos(limite) {
   var idServidor = sessionStorage.ID_SERVIDOR;
 
-  fetch(
-    `/giovannaMenezes/buscarUltimosProcessos/id_servidor/${idServidor}/limite/${limite}`,
-    { cache: "no-store" }
-  )
-    .then(function (resposta) {
+  fetch(`/giovannaMenezes/buscarUltimosProcessos/id_servidor/${idServidor}/limite/${limite}`, {cache: 'no-store'}).then(function(resposta){
       console.log(resposta);
 
-      if (resposta.ok) {
-        resposta.json().then((json) => {
-          console.log(json);
-          console.log(JSON.stringify(json));
+      if(resposta.ok) {
+          resposta.json().then((json) => {
+              console.log(json);
+              console.log(JSON.stringify(json));
 
-          processoPID.innerHTML = "";
-          processoNome.innerHTML = "";
-          processoCPU.innerHTML = "";
+              qtdProcessos.innerHTML = limite;
 
-            qtdProcessos.innerHTML = limite;
+              processoPID.innerHTML = ""
+              processoNome.innerHTML = ""
+              processoCPU.innerHTML = ""
 
-            for (let i = json.length - 1; i <= json.length - limite; i--) {
-              processoPID.innerHTML += `<p class="text-sm mb-1">${json[i].pid}</p>`;
-              processoNome.innerHTML += `<p class="text-sm mb-1">${json[i].nome}</p>`;
-              processoCPU.innerHTML += `<p class="text-sm mb-1">${json[i].uso_cpu}</p>`;
-            }
-
-          return json;
-        });
+              for (let i = 0; i <= json.length; i++) {
+                  processoPID.innerHTML += `<p class="text-sm mb-1">${json[i].pid}</p>`
+                  processoNome.innerHTML += `<p class="text-sm mb-1">${json[i].nome}</p>`
+                  processoCPU.innerHTML += `<p class="text-sm mb-1">${json[i].uso_cpu}</p>`
+              }
+          });
       } else {
-        resposta.text().then((texto) => {
-          console.error(texto);
-        });
+          resposta.text().then((texto) => {
+              console.error(texto);
+          })
       }
-    })
-    .catch(function (erro) {
+  })
+  .catch(function (erro) {
       console.log(erro);
-    });
-
-    setInterval(() => {
-      obterProcessos(limite);
-    }, 2000);
-
-  // return lista doq foi recebido
-}
-
-// function exibirProcessos(limite) {
-//   // fazer um foreach com a lista e printar os dados
-
-//   var pidAtual = 0;
-
-//     for (let f = 0; f < listaProcessos.length; f++) {
-//         if (pidAtual == listaProcessos[i].pid) {
-//             delete listaProcessos[i];
-//         } else {
-//             pidAtual = listaProcessos[i];
-//         }    
-//     }
-// }
-
-
-
-function obterProcessosConsumidores() {
-  var idServidor = sessionStorage.ID_SERVIDOR;
-
-  fetch(
-        `/giovannaMenezes/buscarProcessosConsumidores/${idServidor}/limite/${limite}`,
-        { cache: "no-store" }
-    )
-        .then(function (resposta) {
-        console.log(resposta);
-
-        if (resposta.ok) {
-            resposta.json().then((json) => {
-            console.log(json);
-            console.log(JSON.stringify(json));
-
-            listaProcessosConsumidores = json;
-            return json;
-            });
-        } else {
-            resposta.text().then((texto) => {
-            console.error(texto);
-            });
-        }
-        })
-        .catch(function (erro) {
-        console.log(erro);
-        });
+  });
 }
 
 function exibirProcessosConsumidores(limiteConsumidor) {
-  if (json.length <= limiteConsumidor) {
-    qtdConsumidores.innerHTML = json.length;
-  } else {
-    qtdConsumidores.innerHTML = limiteConsumidor;
-  }
+  var idServidor = sessionStorage.ID_SERVIDOR;
 
-  for (let i = json.length - 1; i <= json.length - limiteConsumidor; i--) {
-    processoConsumidorPID.innerHTML += `<p class="text-sm mb-1">${json[i].pid}</p>`;
-    if (json[i].uso_cpu > 50 && json[i].uso_cpu < 70) {
-      comandoRecomendado.innerHTML += `<p class="text-sm mb-1">suspend processo</p>`;
-    } else {
-      comandoRecomendado.innerHTML += `<p class="text-sm mb-1">kill process</p>`;
-    }
-  }
+  fetch(`/giovannaMenezes/buscarProcessosConsumidores/id_servidor/${idServidor}/limite/${limite}`, {cache: 'no-store'}).then(function(resposta){
+      console.log(resposta);
+
+      if(resposta.ok) {
+          resposta.json().then((json) => {
+              console.log(json);
+              console.log(JSON.stringify(json));
+
+              qtdConsumidores.innerHTML = limiteConsumidor;
+
+              processoConsumidorPID.innerHTML = "";
+              comandoRecomendado.innerHTML = "";
+
+              for (let i = 0; i <= json.length; i++) {
+                  processoConsumidorPID.innerHTML += `<p class="text-sm mb-1">${json[i].pid}</p>`
+
+                  if (json[i].uso_cpu > 50 && json[i].uso_cpu < 70) {
+                    comandoRecomendado.innerHTML += `<p class="text-sm mb-1">suspend processo</p>`;
+                  } else {
+                    comandoRecomendado.innerHTML += `<p class="text-sm mb-1">kill process</p>`;
+                  }
+              }
+          });
+      } else {
+          resposta.text().then((texto) => {
+              console.error(texto);
+          })
+      }
+  })
+  .catch(function (erro) {
+      console.log(erro);
+  });
 }
+
 
 function graficoServerXcpu() {
   var ctx5 = document.getElementById("chart-bars").getContext("2d");

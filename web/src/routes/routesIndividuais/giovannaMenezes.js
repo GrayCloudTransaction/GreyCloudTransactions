@@ -21,7 +21,7 @@ rota.get("/buscarUltimosProcessos/id_servidor/:id_servidor/limite/:limite", (req
     giovannaMenezesController.buscarUltimosProcessos(req, res);
 })
 
-rota.get("/buscarProcessosConsumidores/:id_servidor/limite/:limite", (req, res) => {
+rota.get("/buscarProcessosConsumidores/id_servidor/:id_servidor/limite/:limite", (req, res) => {
     info("Buscar últimos processos consumidores");
     giovannaMenezesController.buscarProcessosConsumidores(req, res);
 })

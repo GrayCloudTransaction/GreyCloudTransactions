@@ -75,6 +75,7 @@ function buscarProcessosConsumidores(req, res) {
     info("Buscar últimos processos consumidores");
 
     var id_servidor = req.params.id_servidor;
+    var limite = req.params.limite;
 
     if(id_servidor != null & id_servidor != "") {
         giovannaMenezesModel.buscarProcessosConsumidores(id_servidor, limite).then(function(resultado){
