@@ -238,3 +238,25 @@ function teste(id_servidor){
   obterDadosGrafico(id_servidor, chart1)
   setInterval(() => obterDadosGrafico(id_servidor, chart1), 5500)
 }
+
+function correlacao(id_servidor){
+  fetch(`/gabriel/getCorrelacao/${id_servidor}`, {
+    cache: "no-store"
+  }).then(function (resposta) {
+    console.log(resposta)
+    if (resposta.ok) {
+      alert('jonas')
+      resposta.json().then((json) => {
+        
+        interferenciaID.innerHTML = json[0]
+        });
+    }else{
+      resposta.text().then((texto) => {
+        console.erro(texto);
+      });
+    }
+  })
+  .catch(function (erro) {
+    console.log(erro);
+  });
+}
