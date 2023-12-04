@@ -7,8 +7,8 @@ function info(func, query){
 
 function buscarUltimosRegistros(id_servidor, limite) {
     var instrucao = `
-        SELECT mac_address, dataSent, dataRecv, data_registro
-        FROM rede 
+        SELECT mac_address, ip_publico, dataSent, dataRecv, data_registro, cidade, valor_temperatura
+        FROM rede, localizacao 
         WHERE fk_servidor = ${id_servidor}
         ORDER BY data_registro DESC
         LIMIT ${limite};

@@ -20,6 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/logograyClound.png">
   <link rel="icon" type="image/png" href="../../assets/img/logograyClound.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
   <title>
     Grey Cloud Transaction
   </title>
@@ -258,24 +259,81 @@
 
       <div class="row mt-5">
 
-        <div class="d-inline-flex flex-column justify-content-between col-xl-6 col-sm-6 mb-xl-4 mb-4" style="margin-left: 15.5vw;">
+        <div class="d-inline-flex flex-column justify-content-between col-xl-4 col-sm-6 mb-xl-4 mb-4" style ="margin-left: 6vw;">
 
-          <div class="card pb-3">
+          <div class="card pb-1">
             <div class="card-header p-3 pt-2 pb-2">
               <div
-                class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                <i class="material-icons opacity-10">person</i>
+                class="icon icon-lg icon-shape bg-gradient-secondary shadow-secondary text-center border-radius-xl mt-n4 position-absolute">
+                <i class="bi bi-pc-horizontal"></i>
               </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize"> Máquina com rede com tendência a cair</p>
-                <h4 class="mb-0" id="valorDiscoID"></h4>
+                <p class="text-sm mb-0 text-capitalize">Mac Address</p>
+                <h4 class="mb-0" id="macAddress"></h4>
+              </div>
+            </div>
+            <hr class="dark horizontal my-0">
+            <div class="card-footer p-3">
+            </div>
+          </div>
+
+        </div>
+        <div class="d-inline-flex flex-column justify-content-between col-xl-4 col-sm-6 mb-xl-4 mb-4">
+
+          <div class="card pb-1">
+            <div class="card-header p-3 pt-2 pb-2">
+              <div
+                class="icon icon-lg icon-shape bg-gradient-secondary shadow-secondary text-center border-radius-xl mt-n4 position-absolute">
+                <i class="bi bi-router"></i>
+              </div>
+              <div class="text-end pt-1">
+                <p class="text-sm mb-0 text-capitalize">IP Público</p>
+                <h4 class="mb-0" id="ipPublico"></h4>
+              </div>
+            </div>
+            <hr class="dark horizontal my-0">
+            <div class="card-footer p-3">
+            </div>
+          </div>
+
+        </div>
+        <div class="d-inline-flex flex-column justify-content-between col-xl-4 col-sm-6 mb-xl-4 mb-4" style ="margin-left: 20vw;">
+
+          <div class="card pb-1">
+            <div class="card-header p-3 pt-2 pb-2">
+              <div
+                class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
+                <i class="bi bi-geo-alt"></i>
+              </div>
+              <div class="text-end pt-1">
+                <p class="text-sm mb-0 text-capitalize">Cidade</p>
+                <h4 class="mb-0" id="cidadeServidor"></h4>
+              </div>
+            </div>
+            <hr class="dark horizontal my-0">
+            <div class="card-footer p-3">
+            </div>
+          </div>
+
+        </div>
+        <div class="d-inline-flex flex-column justify-content-between col-xl-4 col-sm-6 mb-xl-4 mb-4">
+
+          <div class="card pb-1">
+            <div class="card-header p-3 pt-2 pb-2">
+              <div
+                class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
+                <i class="bi bi-thermometer-half"></i>
+              </div>
+              <div class="text-end pt-1">
+                <p class="text-sm mb-0 text-capitalize">Temperatura da cidade</p>
+                <h4 class="mb-0" id="temperaturaCidade"></h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
-                <p class="mb-0 text-sm">Atualizado a 5.5 segundos</p>
+                <p class="mb-0 text-sm">Atualizado a cada 5.5 segundos</p>
               </div>
             </div>
           </div>
@@ -285,7 +343,7 @@
       </div>
       
 
-      <div class="row mt-5">
+      <div class="row mt-4">
 
         <div class="d-inline-flex flex-column justify-content-between col-xl-6 col-sm-6 mb-xl-4 mb-4">
 
@@ -293,7 +351,7 @@
             <div class="card-header p-3 pt-2 pb-2">
               <div
                 class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                <i class="material-icons opacity-10">person</i>
+                <i class="bi bi-intersect"></i>
               </div>
               <div class="text-end pt-1">
                 <p class="text-sm mb-0 text-capitalize"> Interferência da Temperatura Hoje</p>
@@ -304,7 +362,7 @@
             <div class="card-footer p-3">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
-                <p class="mb-0 text-sm">Atualizado a 5.5 segundos</p>
+                <p class="mb-0 text-sm">Atualizado a cada 5.5 segundos</p>
               </div>
             </div>
           </div>
@@ -322,11 +380,11 @@
             </div>
             <div class="card-body">
               <h6 class="mb-0 ">Gráfico de Pacotes de Rede</h6>
-              <p class="text-sm ">Quantidade de pacotes recebidos e enviados (em minutos)</p>
+              <p class="text-sm ">Quantidade de pacotes recebidos e enviados</p>
               <hr class="dark horizontal">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
-                <p class="mb-0 text-sm">Atualizado a 5.5 segundos</p>
+                <p class="mb-0 text-sm">Atualizado a cada 5.5 segundos</p>
               </div>
             </div>
           </div>

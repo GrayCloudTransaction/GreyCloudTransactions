@@ -77,6 +77,11 @@ function obterDadosGrafico(id_servidor, graficoRede) {
           for (i in resposta) {
             var datetime = new Date(resposta[i].data_registro).toLocaleString("pt-BR");
             
+            macAddress.innerHTML = resposta[i].mac_address;
+            ipPublico.innerHTML = resposta[i].ip_publico;
+            cidadeServidor.innerHTML = resposta[i].cidade;
+            temperaturaCidade.innerHTML = resposta[i].valor_temperatura;
+            
             valorDataRecv = resposta[i].dataRecv;
             valorDataSent = resposta[i].dataSent;
             
