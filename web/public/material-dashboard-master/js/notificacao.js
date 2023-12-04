@@ -42,7 +42,7 @@ function listarUltimosChamados() {
                             }
                         }
 
-                        if (i < 5) {
+                        if (i < 3) {
                             listaNotificacoes.innerHTML += `
                             <li class="mb-2">
                                 <a class="dropdown-item border-radius-md" href="notificacoes.html">

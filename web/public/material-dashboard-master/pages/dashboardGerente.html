@@ -20,7 +20,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/logograyClound.png">
   <link rel="icon" type="image/png" href="../assets/img/logograyClound.png">
-  <link rel="stylesheet" href="notifications.html">
   <title>
     Gray Cloud Transaction
   </title>
@@ -35,7 +34,7 @@
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
-  <link id="pagestyle" href="../assets/css/material-dashboard.css?v=3.1.0" rel="stylesheet" />
+  <link id="pagestyle" href="../assets/css/material-dashboard.css" rel="stylesheet" />
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
@@ -306,14 +305,51 @@
 
       <div class="row mt-4">
         <div class="col-lg-12 col-md-6 mt-4 mb-4">
-          <div class="card z-index-2 ">
-            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-              <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1" style="background-image: linear-gradient(195deg,#ec407a,#d81b60);">
-                <div class="chart">
-                  <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
+          <div class="row card z-index-2 ">
+            <div class="row">
+              <div class="col-9 card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent" style="width: 70%;">
+                <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1" style="background-image: linear-gradient(195deg,#ec407a,#d81b60);">
+                  <div class="chart">
+                    <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
+                  </div>
                 </div>
               </div>
+              <div class="col d-flex flex-column mt-2">
+                  <span>Selecionar período</span>
+                  <select class="form-select p-1" name="periodo" id="selectPeriodo" onchange="selecionarPeriodo()">
+                    <option value="dia">Por dia</option>
+                    <option value="mes">Por mês</option>
+                    <option value="personalizado">Personalizado</option>
+                    <option selected value="total">Total</option>
+                  </select>
+
+                  <div id="divDia" style="display: none; flex-direction: column;">
+                    <label class="form-label m-0 mt-2" for="iptDia">Dia:</label>
+                    <input class="form-control p-1" type="date" id="iptDia" style="border: 1px solid #d2d6da; ">
+                  </div>
+
+                  <div id="divMes" style="display: none; flex-direction: column;">
+                    <label class="form-label m-0 mt-2" for="iptMes">Mês:</label>
+                    <input class="form-control p-1" type="month" id="iptMes" style="border: 1px solid #d2d6da; ">
+                  </div>
+
+                  <div class="" id="divDataPersonalizada" style="justify-content: space-between; display: none;">
+                    <div class="col-4">
+                      <label class="form-label m-0 mt-2" for="iptDataInicio">De:</label>
+                      <input class="form-control p-1" type="date" id="iptDataInicio" style="border: 1px solid #d2d6da; ">
+                    </div>
+                    <div class="col-4">
+                      <label class="form-label m-0 mt-2" for="iptDataFim">Até:</label>
+                      <input class="form-control p-1" type="date" id="iptDataFim" style="border: 1px solid #d2d6da; ">
+                    </div>
+                    
+                  </div>
+
+                  <button class="btn btn-outline-primary mt-2" onclick="getChamadosPorServidor(true)">Aplicar</button>
+                
+              </div>
             </div>
+            
             <div class="card-body">
               <h6 class="mb-0 ">Chamados por servidor</h6>
               <p class="text-sm ">Quantidade total de chamados abertos por servidor</p>
@@ -610,15 +646,15 @@
 
   <script src="../js/sessao.js"></script>
   <script src="../js/dashboardGerente.js"></script>
-  <script src="../js/notificacao.js"></script>
+  <!-- <script src="../js/notificacao.js"></script> -->
 
   <script>
     validarSessao();
     listarServidor();
     kpiChamados();
-    plotarGraficoChamadosPorServidor();
+    getChamadosPorServidor(false);
     plotarGraficoChamadosPorMes();
-    listarUltimosChamados();
+    // listarUltimosChamados();
 
     setTimeout(() => {
       var listaDeServidor = document.getElementById("listaDeServidores");
@@ -635,6 +671,53 @@
     //   window.location = "./dashboardGerente.html"
     // }, 10000);
     
+  </script>
+  <style>
+    #selectPeriodo:focus {
+      border: solid 1px #d2d6da;
+    }
+  </style>
+  <script>
+
+    function selecionarPeriodo() {
+      var periodo = selectPeriodo.value;
+      divDia.style.display = 'none';
+      divMes.style.display = 'none';
+      divDataPersonalizada.style.display = 'none';
+      
+      switch (periodo) {
+        case "dia": divDia.style.display = 'flex'; break;
+        case "mes": divMes.style.display = 'flex'; break;
+        case "personalizado": divDataPersonalizada.style.display = 'flex'; break;
+        default: break;
+      }
+    }
+
+    function teste(tipo) {
+      
+      if (tipo == "dia") {
+        console.log("dia")
+        var dia = iptDia.value;
+        
+        fetch("/")
+
+      } else if (tipo == "mes") {
+        console.log("mes")
+
+        
+      } else if (tipo == "personalizado") {
+        console.log("personalzado")
+
+
+      } else {
+        console.log("total")
+
+
+      }
+
+    }
+    
+
   </script>
 </body>
 </html>

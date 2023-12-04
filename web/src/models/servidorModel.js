@@ -41,10 +41,10 @@ function listar(idEmpresa) {
 function alterar(id_servidor, nome, codigo, tipo, descricao){
     var query = `
     UPDATE servidor 
-        SET nome = "${nome}"
-        , codigo= "${codigo}"
-        , tipo = "${tipo}"
-        , descricao = "${descricao}"
+        SET nome = '${nome}'
+        , codigo= '${codigo}'
+        , tipo = '${tipo}'
+        , descricao = '${descricao}'
         WHERE id_servidor = ${id_servidor};
     `
     info("Alterar", query);
@@ -74,10 +74,11 @@ function deletar(id_servidor){
 function servidorForaDoAr(id_servidor){
     // Essa divisão por 60 é para trazer os minutos, pois a conta retorna segundos
     var query =`
-    SELECT TIME_TO_SEC(TIMEDIFF(NOW(), data_registro)) AS tempo_sem_registro FROM vw_registro_geral 
-        WHERE fk_servidor = ${id_servidor}
-        ORDER BY tempo_sem_registro ASC
-        LIMIT 1;
+    SELECT DATEDIFF(SECOND, data_registro, GETDATE()) AS tempo_sem_registro
+    FROM vw_registro_geral
+    WHERE fk_servidor = ${id_servidor}
+    ORDER BY tempo_sem_registro ASC
+    OFFSET 0 ROWS FETCH FIRST 1 ROWS ONLY;
     `
     info("Servidor Fora Do Ar", query)
     return database.executar(query);
