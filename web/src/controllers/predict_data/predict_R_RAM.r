@@ -18,7 +18,7 @@ CPU = df_raw$valor_registro[df_raw$tipo_componente == "CPU"]
 
 df = data.frame(RAM, CPU)
 
-treino <- sample(1:nrow(df), length(df$RAM)*0.90)
+treino <- sample(1:nrow(df), length(df$RAM)-10)
 teste <- setdiff(1:nrow(df), treino)
 
 modelo1 <- lm(RAM ~ CPU, data = df[treino, ])
