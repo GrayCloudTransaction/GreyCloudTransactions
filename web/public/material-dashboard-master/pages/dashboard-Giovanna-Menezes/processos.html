@@ -551,14 +551,12 @@
     var limite = document.getElementById('selectLimite').value;
     var limiteConsumidor = document.getElementById('selectLimiteConsumidor').value;
 
+    setInterval(() => {
+      limite = document.getElementById('selectLimite').value;
+      setLimite(limite)
+    }, 2000)
     pegarInfoServidor()
 
-    totaisDeProcessos()
-    totaisDeProcessosConsumidores()
-
-    exibirProcessos(limite)
-    exibirProcessosConsumidores(limiteConsumidor)
- 
     graficoServerXcpu()
     // wordcloud()
   </script>

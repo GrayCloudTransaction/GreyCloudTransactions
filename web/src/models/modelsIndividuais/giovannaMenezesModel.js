@@ -4,36 +4,18 @@ function info(func, query) {
     console.log(`[Giovanna Model] - Função: ${func}; \nQuery: ${query}`)
 }
 
-function listarProcessos(id_servidor) {
+function getProcessos(id_servidor) {
     var query = `
-        SELECT COUNT(processo.id) AS qtd_processos FROM processo WHERE processo.fk_servidor = ${id_servidor};
-    `;
-
-    info("Listar processos", query);
-    return database.executar(query);
-}
-
-function listarProcessosConsumidores(id_servidor) {
-    var query = `
-        SELECT COUNT(id) AS qtd_processos_consumidores FROM vw_processos_consumidores WHERE fk_servidor = ${id_servidor};
-    `;
-
-    info("Listar processos que mais consomem CPU", query);
-    return database.executar(query);
-}
-
-function buscarUltimosProcessos(id_servidor, limite) {
-    var query = `
-        SELECT * FROM processo WHERE fk_servidor = ${id_servidor} LIMIT ${limite};
+        SELECT * FROM processo WHERE fk_servidor = ${id_servidor};
     `
 
-    info("Buscar último processos", query)
+    info("Buscar processos", query)
     return database.executar(query);
 }
 
-function buscarProcessosConsumidores(id_servidor, limite) {
+function getProcessosConsumidores(id_servidor){
     var query = `
-        SELECT * FROM vw_processos_consumidores WHERE fk_servidor = ${id_servidor} LIMIT ${limite};
+        SELECT * FROM vw_processos_consumidores WHERE fk_servidor = ${id_servidor};
     `
 
     info("Listar processos consumidores", query);
@@ -53,9 +35,7 @@ function getServidorPorUsoCpu() {
 }
 
 module.exports = {
-    listarProcessos,
-    listarProcessosConsumidores,
-    buscarUltimosProcessos, 
-    buscarProcessosConsumidores,
+    getProcessos,
+    getProcessosConsumidores,
     getServidorPorUsoCpu
 };

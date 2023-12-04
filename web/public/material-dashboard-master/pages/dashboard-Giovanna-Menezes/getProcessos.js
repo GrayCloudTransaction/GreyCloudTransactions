@@ -1,141 +1,102 @@
-function totaisDeProcessos() {
-  var idServidor = sessionStorage.ID_SERVIDOR;
+const processos = []
+var processosConsumidores = []
+var totalProcessos = 0
+var totalProcessosConsumidores = 0
+var limiteAtual = 10;
 
-  fetch(`/giovannaMenezes/listarProcessos/${idServidor}`, { cache: "no-store" })
-    .then(function (resposta) {
-      console.log(resposta);
+function setLimite(limite){
 
-      if (resposta.ok) {
-        resposta.json().then((json) => {
-          console.log(json);
-          console.log(JSON.stringify(json));
+  limiteAtual = limite
+}
 
-          qtdProcessosTotais.innerHTML = json[0].qtd_processos;
+function getProcessos(){
 
-          if (json[0].qtd_processos <= 0) {
-            listaProcessos.innerHTML = "<p>Nenhum processo foi capturado</p>";
+  idServidor = sessionStorage.ID_SERVIDOR
+  fetch(`/giovannaMenezes/getProcessos/${idServidor}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application.json"
+    }
+  }).then((resposta) => {
+    if(resposta.ok) {
+      console.log(resposta)
+      resposta.json().then((json) => {
+        console.log(json)
+        processos.length = 0
+        for(i = 0; i < json.length; i++){
+          if(processos.length < limiteAtual){
+            processos.push(json[i])
+            totalProcessos = json.length
           }
-        });
-      } else {
-        resposta.text().then((texto) => {
-          console.error(texto);
-        });
-      }
-    })
-    .catch(function (erro) {
-      console.log(erro);
-    });
+        }
+      })
+    }
+  })
 }
 
-function totaisDeProcessosConsumidores() {
-  var idServidor = sessionStorage.ID_SERVIDOR;
+function getProcessosConsumidores(){
 
-  fetch(`/giovannaMenezes/listarProcessosConsumidores/${idServidor}`, {
-    cache: "no-store",
-  })
-    .then(function (resposta) {
-      console.log(resposta);
-
-      if (resposta.ok) {
-        resposta.json().then((json) => {
-          console.log(json);
-          console.log(JSON.stringify(json));
-          qtdConsumidoresTotais.innerHTML = json[0].qtd_processos_consumidores;
-
-          if (json[0].qtd_processos_consumidores <= 0) {
-            qtdConsumidores.innerHTML = 0;
-            listaProcessosConsumidores.innerHTML =
-              "<p>Nenhum processo consumidor foi capturado</p>";
-
-            var element = document.getElementById("chart_canvas");
-
-            element.style.display = "block";
-            card_grafico.innerHTML =
-              "<p class='text-m mb-1 text-center'>Nenhum processo consumindo CPU foi capturado</p>";
+  idServidor = sessionStorage.ID_SERVIDOR
+  fetch(`/giovannaMenezes/getProcessosConsumidores/${idServidor}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application.json"
+    }
+  }).then((resposta) => {
+    if(resposta.ok) {
+      console.log(resposta)
+      resposta.json().then((json) => {
+        console.log(json)
+        processosConsumidores.length = 0
+        for(i = 0; i < json.length; i++){
+          if(processosConsumidores.length < limiteAtual){
+              processosConsumidores.push(json[i])
+              totalProcessosConsumidores = json.length
           }
-        });
-      } else {
-        resposta.text().then((texto) => {
-          console.error(texto);
-        });
-      }
-    })
-    .catch(function (erro) {
-      console.log(erro);
-    });
-}
+        }
 
-function exibirProcessos(limite) {
-  var idServidor = sessionStorage.ID_SERVIDOR;
 
-  fetch(`/giovannaMenezes/buscarUltimosProcessos/id_servidor/${idServidor}/limite/${limite}`, {cache: 'no-store'}).then(function(resposta){
-      console.log(resposta);
-
-      if(resposta.ok) {
-          resposta.json().then((json) => {
-              console.log(json);
-              console.log(JSON.stringify(json));
-
-              qtdProcessos.innerHTML = limite;
-
-              processoPID.innerHTML = ""
-              processoNome.innerHTML = ""
-              processoCPU.innerHTML = ""
-
-              for (let i = 0; i <= json.length; i++) {
-                  processoPID.innerHTML += `<p class="text-sm mb-1">${json[i].pid}</p>`
-                  processoNome.innerHTML += `<p class="text-sm mb-1">${json[i].nome}</p>`
-                  processoCPU.innerHTML += `<p class="text-sm mb-1">${json[i].uso_cpu}</p>`
-              }
-          });
-      } else {
-          resposta.text().then((texto) => {
-              console.error(texto);
-          })
-      }
+      })
+    }
   })
-  .catch(function (erro) {
-      console.log(erro);
-  });
 }
 
-function exibirProcessosConsumidores(limiteConsumidor) {
-  var idServidor = sessionStorage.ID_SERVIDOR;
+function atualizarPagina(){
 
-  fetch(`/giovannaMenezes/buscarProcessosConsumidores/id_servidor/${idServidor}/limite/${limite}`, {cache: 'no-store'}).then(function(resposta){
-      console.log(resposta);
+  getProcessos()
+  getProcessosConsumidores()
 
-      if(resposta.ok) {
-          resposta.json().then((json) => {
-              console.log(json);
-              console.log(JSON.stringify(json));
+  processoPID.innerHTML = ``
+  processoNome.innerHTML = ``
+  processoCPU.innerHTML = ``
 
-              qtdConsumidores.innerHTML = limiteConsumidor;
+  for(i = 0; i < processos.length; i++) {
+        processoAtual = processos[i]
 
-              processoConsumidorPID.innerHTML = "";
-              comandoRecomendado.innerHTML = "";
+        processoPID.innerHTML += `<p>${processoAtual.pid}</p>`
+        processoNome.innerHTML += `<p>${processoAtual.nome}</p>`
+        processoCPU.innerHTML += `<p>${processoAtual.uso_cpu}</p>`
+  }
 
-              for (let i = 0; i <= json.length; i++) {
-                  processoConsumidorPID.innerHTML += `<p class="text-sm mb-1">${json[i].pid}</p>`
+  qtdProcessos.innerHTML = processos.length
+  qtdProcessosTotais.innerHTML = totalProcessos
 
-                  if (json[i].uso_cpu > 50 && json[i].uso_cpu < 70) {
-                    comandoRecomendado.innerHTML += `<p class="text-sm mb-1">suspend processo</p>`;
-                  } else {
-                    comandoRecomendado.innerHTML += `<p class="text-sm mb-1">kill process</p>`;
-                  }
-              }
-          });
-      } else {
-          resposta.text().then((texto) => {
-              console.error(texto);
-          })
-      }
-  })
-  .catch(function (erro) {
-      console.log(erro);
-  });
+  processoConsumidorPID.innerHTML = ``
+
+  for(i = 0; i < processosConsumidores.length; i++) {
+        processoConsumidorAtual = processosConsumidores[i]
+
+        processoConsumidorPID.innerHTML += `<p>${processoConsumidorAtual.pid}</p>`
+  }
+
+  qtdConsumidores.innerHTML = processosConsumidores.length
+  qtdConsumidoresTotais.innerHTML = totalProcessos
 }
 
+atualizarPagina()
+setInterval( () => {
+  atualizarPagina()
+}, 2000 )
 
 function graficoServerXcpu() {
   var ctx5 = document.getElementById("chart-bars").getContext("2d");
