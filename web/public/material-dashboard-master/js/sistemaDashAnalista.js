@@ -224,10 +224,8 @@ function obterDadosGraficoRede(graficoRede) {
             }
           }
 
-          
-          atualizarGrafico(valorDownload, labelRede, graficoRede, 1);
-          atualizarGrafico(valorUpload, labelRede, graficoRede, 2);
-          atualizarGrafico(ping, labelRede, graficoRede, 0);
+
+          atualizarGrafico(ping,valorDownload,valorUpload, labelRede, graficoRede, 0,1,2);
 
 
         });
@@ -247,10 +245,12 @@ function obterDadosGraficoRede(graficoRede) {
 
 
 
-function atualizarGrafico(valor, label, ctx, i) {
+function atualizarGrafico(valor1,valor2, valor3, label, ctx, i,j,k) {
   if (ctx.data.datasets[i].data.length < 5) {
     ctx.data.labels.push(label);
-    ctx.data.datasets[i].data.push(valor);
+    ctx.data.datasets[i].data.push(valor1);
+    ctx.data.datasets[j].data.push(valor2);
+    ctx.data.datasets[k].data.push(valor3);
 
     ctx.update();
   }
@@ -259,7 +259,11 @@ function atualizarGrafico(valor, label, ctx, i) {
     ctx.data.labels.push(label);
 
     ctx.data.datasets[i].data.shift();
-    ctx.data.datasets[i].data.push(valor);
+    ctx.data.datasets[j].data.shift();
+    ctx.data.datasets[k].data.shift();
+    ctx.data.datasets[i].data.push(valor1);
+    ctx.data.datasets[j].data.push(valor2);
+    ctx.data.datasets[k].data.push(valor3);
 
     ctx.update();
   }
