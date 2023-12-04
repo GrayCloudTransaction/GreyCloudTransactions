@@ -16,6 +16,14 @@ df_raw <- dbGetQuery(con, query);
 RAM = df_raw$valor_registro[df_raw$tipo_componente == "RAM"]
 CPU = df_raw$valor_registro[df_raw$tipo_componente == "CPU"]
 
+if (length(RAM) > length(CPU)){
+  RAM = RAM[1:length(RAM)-1]
+}
+
+if(length(CPU) > length(RAM)){
+  CPU = CPU[1:length(CPU)-1]
+}
+
 df = data.frame(RAM, CPU)
 
 treino <- sample(1:nrow(df), length(df$RAM)-10)
