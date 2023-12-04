@@ -145,6 +145,14 @@ function lista_sistema_java(idEmpresa){
     return database.executar(query);
 }
 
+function atualizar_sistema_java(is_ativo, id_config){
+    var query = `
+    UPDATE tb_felipe_config SET is_ativo = "${is_ativo}" WHERE id_config = ${id_config};
+    `;
+    info("Sistema Java - Atualização", query);
+    return database.executar(query);
+}
+
 module.exports = {
     listar_extrato,
     listar_extrato_atual,
@@ -154,5 +162,6 @@ module.exports = {
     historico_somarizado_por_servidor,
     historico_somarizado_por_empresa,
     custo_ordenado_kpi,
-    lista_sistema_java
+    lista_sistema_java,
+    atualizar_sistema_java
 };

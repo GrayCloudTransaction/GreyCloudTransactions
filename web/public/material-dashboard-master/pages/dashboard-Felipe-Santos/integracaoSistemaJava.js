@@ -29,7 +29,7 @@ function plotTabelaSistemas(idEmpresa){
                             tabela.innerHTML +=`
                                 <td>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" name="comp" ${json[i].is_ativo == "s" ? "checked" : ""}/>
+                                        <input class="form-check-input" type="checkbox" value="${json[y].id_config}" name="comp" ${json[i].is_ativo == 's' ? "checked" : ""} />
                                         <label class="form-check-label" for="comp">${json[y].comp}</label>
                                     </div>    
                                 </td>
@@ -37,9 +37,68 @@ function plotTabelaSistemas(idEmpresa){
                                 `;
                         }
                     }
-
                 }
             })
         }
     })
 }
+
+function atualizarTabelaSistema(){
+    let checkbox = document.getElementsByName('comp');
+    for(let i = 0; i < checkbox.length; i++){
+        // console.log(checkbox[i].value);
+        let idConfig = checkbox[i].value;
+        console.log(idConfig);
+        fetch(`/felipe/java/atualizar`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                is_ativo: checkbox[i].checked ? "s":"n",
+                idConfig: idConfig
+            }),
+        }).then((resposta)=>{
+            if(resposta.ok){
+                console.log("Atualização OK :)")
+            }
+            else{
+                console.log("Atualização DEU ERRADO :(");
+            }
+        }).catch((erro)=>{
+            console.log(erro);
+        });
+    
+    }
+}
+
+
+// function atualizarTabelaSistema_n(){
+//     let checkbox = document.getElementsByName('comp');
+//     for(let i = 0; i < checkbox.length; i++){
+//         if(!checkbox[i].checked){
+//             // console.log(checkbox[i].value);
+//             let idConfig = checkbox[i].value;
+//             console.log(idConfig);
+//             fetch(`/felipe/java/atualizar`, {
+//                 method: "PUT",
+//                 headers: {
+//                     "Content-Type": "application/json",
+//                 },
+//                 body: JSON.stringify({
+//                     is_ativo: "n",
+//                     idConfig: idConfig
+//                 }),
+//             }).then((resposta)=>{
+//                 if(resposta.ok){
+//                     console.log("Atualização OK :)")
+//                 }
+//                 else{
+//                     console.log("Atualização DEU ERRADO :(");
+//                 }
+//             }).catch((erro)=>{
+//                 console.log(erro);
+//             });
+//         }
+//     }
+// }

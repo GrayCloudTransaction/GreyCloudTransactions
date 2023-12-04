@@ -53,4 +53,9 @@ router.get("/java/listar/:idEmpresa", (req, res) => {
     felipeSantosController.lista_sistema_java(req, res);
 })
 
+router.put("/java/atualizar", (req, res) => {
+    info("/java/atualizar");
+    felipeSantosController.atualizar_sistema_java(req, res);
+})
+
 module.exports = router;

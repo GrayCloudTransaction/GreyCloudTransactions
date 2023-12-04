@@ -197,6 +197,31 @@ function lista_sistema_java(req, res){
     }
 }
 
+function atualizar_sistema_java(req, res){
+    var isAtivo = req.body.is_ativo;
+    var idConfig = req.body.idConfig;
+
+    if(isAtivo == undefined || isAtivo == ""){
+        res.status(400).send("Is_Ativo está vazio ou Undefined!!!");    
+    }
+    else if(idConfig == undefined){
+        res.status(400).send("idConfig está Undefined!!!");    
+    }
+    else{
+        fefeModel.atualizar_sistema_java(isAtivo, idConfig).then(
+            (resultado)=>{
+                res.status(200).json(resultado);
+            }
+        ).catch(
+            (erro)=> {
+                res.status(500).json(erro.sqlMessage);
+            }
+        )
+    }
+
+
+}
+
 module.exports = {
     listar_extrato,
     listar_extrato_atual,
@@ -206,6 +231,7 @@ module.exports = {
     historico_somarizado_por_servidor,
     historico_somarizado_por_empresa,
     custo_ordenado_kpi,
-    lista_sistema_java
+    lista_sistema_java,
+    atualizar_sistema_java
     
 }
