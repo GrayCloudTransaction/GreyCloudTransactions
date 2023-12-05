@@ -27,7 +27,7 @@ function getServidorPorUsoCpu() {
         SELECT servidor.codigo, COUNT(vw_processos_consumidores.id) AS qtd_processos_consumidores 
         FROM servidor 
         JOIN vw_processos_consumidores ON fk_servidor = id_servidor 
-        GROUP BY id_servidor;
+        GROUP BY id_servidor, servidor.codigo;
     `
 
     info("Reunindo dados dos servidores que mais utilizaram a cpu", query);
