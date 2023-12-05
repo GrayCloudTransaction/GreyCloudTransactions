@@ -20,7 +20,7 @@ var giovannaMenezesRouter = require("./src/routes/routesIndividuais/giovannaMene
 var rafaelScheneiderRouter = require("./src/routes/routesIndividuais/rafaelScheneider")
 var gabrielRouter = require("./src/routes/routesIndividuais/gabrielBifon")
 var vitorHidekiRouter = require("./src/routes/routesIndividuais/vitorHideki")
-
+var eduardoCamargo = require("./src/routes/routesIndividuais/eduardoCamargo");
 var felipeRouter = require("./src/routes/routesIndividuais/felipeSantos")
 
 app.use(express.json());
@@ -42,6 +42,8 @@ app.use("/giovannaMenezes", giovannaMenezesRouter);
 app.use("/rafael", rafaelScheneiderRouter)
 app.use("/gabriel", gabrielRouter)
 app.use("/vitorHideki", vitorHidekiRouter)
+app.use("/eduardoCamargo", eduardoCamargo)
+
 
 app.listen(PORTA, function () {
     console.log(`URL do Site: https://localhost:${PORTA} \n
