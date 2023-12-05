@@ -1,0 +1,15 @@
+2023-11-17 21:47:39.902399-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "REDE" not found (this database is empty); SQL statement:
+INSERT INTO rede (interface) VALUES (?) [42104-222]
+2023-11-17 21:49:01.518388-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "REDE" not found (this database is empty); SQL statement:
+INSERT INTO rede (interface) VALUES (?) [42104-222]
+2023-11-17 22:25:38.729077-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE IF NOT EXISTS rede(`interfaces` VARCHAR(100),`vel_download` VARCHAR(100),`vel_upload` VARCHAR(100), `ping` VARCHAR(100)[*]"; expected "ARRAY, INVISIBLE, VISIBLE, NOT NULL, DEFAULT, GENERATED, ON UPDATE, NOT NULL, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE IF NOT EXISTS rede(`interfaces` VARCHAR(100),`vel_download` VARCHAR(100),`vel_upload` VARCHAR(100), `ping` VARCHAR(100) [42001-222]
+2023-11-17 23:01:32.866420-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE IF NOT EXISTS rede(`interfaces` VARCHAR(100)[*]"; expected "ARRAY, INVISIBLE, VISIBLE, NOT NULL, DEFAULT, GENERATED, ON UPDATE, NOT NULL, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE IF NOT EXISTS rede(`interfaces` VARCHAR(100) [42001-222]
+2023-11-17 23:03:38.396101-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE IF NOT EXISTS rede(`interfaces` VARCHAR(100)[*]"; expected "ARRAY, INVISIBLE, VISIBLE, NOT NULL, DEFAULT, GENERATED, ON UPDATE, NOT NULL, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE IF NOT EXISTS rede(`interfaces` VARCHAR(100) [42001-222]

@@ -1,0 +1,28 @@
+var database = require("../../database/config");
+
+// Funções locais -- Usado somene por esse arquivo;
+function info(func, query){
+    console.log(`[Registro Model] Função: ${func};\nQuery: ${query}`)
+}
+
+function buscarUltimosRegistros() {
+    // var instrucao = `
+    //     SELECT registro.*, tipo_componente,
+    //     vel_download,vel_upload,ping 
+    //     FROM registro, componente, rede
+    //     WHERE tipo_componente IN ("CPU", "RAM", "Disco")
+    //     AND id_componente = fk_componente
+    //     AND fk_servidor = ${id_servidor}
+    //     ORDER BY data_registro DESC
+    //     LIMIT ${limite};
+    // `;
+    var instrucao = `select registro.data_registro,vel_download,vel_upload,ping from registro, rede;`
+    
+    info("Buscar Últimos Registros", instrucao)
+
+    return database.executar(instrucao);
+}
+
+module.exports = {
+    buscarUltimosRegistros
+};
