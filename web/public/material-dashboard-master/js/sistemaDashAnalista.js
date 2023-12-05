@@ -92,7 +92,7 @@ function obterDadosGrafico(id_servidor, graficoCpu, graficoRam, graficoDisco) {
             if (resposta[i].tipo_componente == "CPU") {
               console.log("Achou cpu");
 
-              valorCpu = resposta[i].valor_registro;
+              valorCpu = parseFloat(resposta[i].valor_registro).toFixed(2);
               labelCpu = datetime
               valorCPUID.innerHTML = valorCpu + "%"
               if(valorCpu > 70){
