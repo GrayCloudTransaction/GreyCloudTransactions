@@ -1,7 +1,7 @@
 var eduardoModel = require("../../models/modelsIndividuais/eduardoCamargoModel")
 
 function buscarUltimosRegistros(req, res) {
-    console.log('JONAS')
+
     eduardoModel.buscarUltimosRegistros().then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
