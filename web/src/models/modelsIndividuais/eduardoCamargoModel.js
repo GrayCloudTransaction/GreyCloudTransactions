@@ -16,7 +16,7 @@ function buscarUltimosRegistros() {
     //     ORDER BY data_registro DESC
     //     LIMIT ${limite};
     // `;
-    var instrucao = `select registro.data_registro,vel_download,vel_upload,ping from registro, rede;`
+    var instrucao = `select TOP 10 registro.data_registro,vel_download,vel_upload,ping from registro, rede;`
     
     info("Buscar Últimos Registros", instrucao)
 
