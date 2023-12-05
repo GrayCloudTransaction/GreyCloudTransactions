@@ -54,8 +54,6 @@ function getProcessosConsumidores(){
               totalProcessosConsumidores = json.length
           }
         }
-
-
       })
     }
   })
@@ -73,20 +71,27 @@ function atualizarPagina(){
   for(i = 0; i < processos.length; i++) {
         processoAtual = processos[i]
 
-        processoPID.innerHTML += `<p>${processoAtual.pid}</p>`
-        processoNome.innerHTML += `<p>${processoAtual.nome}</p>`
-        processoCPU.innerHTML += `<p>${processoAtual.uso_cpu}</p>`
+        processoPID.innerHTML += `<p class="text-sm mb-1">${processoAtual.pid}</p>`
+        processoNome.innerHTML += `<p class="text-sm mb-1">${processoAtual.nome}</p>`
+        processoCPU.innerHTML += `<p class="text-sm mb-1">${processoAtual.uso_cpu}</p>`
   }
 
   qtdProcessos.innerHTML = processos.length
   qtdProcessosTotais.innerHTML = totalProcessos
 
   processoConsumidorPID.innerHTML = ``
+  comandoRecomendado.innerHTML = ``
 
   for(i = 0; i < processosConsumidores.length; i++) {
         processoConsumidorAtual = processosConsumidores[i]
 
-        processoConsumidorPID.innerHTML += `<p>${processoConsumidorAtual.pid}</p>`
+        processoConsumidorPID.innerHTML += `<p class="text-sm mb-1">${processoConsumidorAtual.pid}</p>`
+
+        if (processosConsumidores[i].uso_cpu > 50 && processosConsumidores[i].uso_cpu < 70) {
+          comandoRecomendado.innerHTML += `<p class="text-sm mb-1">suspend processo</p>`;
+        } else {
+          comandoRecomendado.innerHTML += `<p class="text-sm mb-1">kill process</p>`;
+        }
   }
 
   qtdConsumidores.innerHTML = processosConsumidores.length
@@ -210,8 +215,23 @@ function graficoServerXcpu() {
 
 function wordcloud() {
   anychart.onDocumentReady(function() {
-    // var data = $.csv.toObjects(csv)
-    var data = []
+    var data = [
+      {"x": "systemd", value: 12, category: "Sistema"},
+      {"x": "kthreadd", value: 3, category: "Sistema"},
+      {"x": "pool_workqueue_release", value: 10, category: "Sistema"},
+      {"x": "kworker/R-rcu_g", value: 42, category: "Aplicação"},
+      {"x": "accounts-daemon", value: 24, category: "Sistema"},
+      {"x": "kworker/4:2-events", value: 67, category: "Sistema"},
+      {"x": "kworker/R-rcu_p", value: 32, category: "Aplicação"},
+      {"x": "kworker/R-slub_", value: 87, category: "Aplicação"},
+      {"x": "kworker/R-netns", value: 54, category: "Aplicação"},
+      {"x": "kworker/0:0H-events_highpri", value: 2, category: "Sistema"},
+      {"x": "code", value: 12, category: "Aplicação"},
+      {"x": "wpa_supplicant", value: 3, category: "Sistema"},
+      {"x": "Isolated Web Co", value: 10, category: "Aplicação"},
+      {"x": "firefox", value: 42, category: "Aplicação"},
+      {"x": "node", value: 24, category: "Aplicação"}
+    ]
 
   // create a tag (word) cloud chart
   var chart = anychart.tagCloud(data);
@@ -223,7 +243,7 @@ function wordcloud() {
   // enable a color range
   chart.colorRange(true);
   // set the color range length
-  chart.colorRange().length('80%');
+  chart.colorRange().length('100%');
 
   // display the word cloud chart
   chart.container("container");
