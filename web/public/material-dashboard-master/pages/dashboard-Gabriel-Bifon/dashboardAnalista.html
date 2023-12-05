@@ -18,8 +18,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/logograyClound.png">
-  <link rel="icon" type="image/png" href="../assets/img/logograyClound.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/logograyClound.png">
+  <link rel="icon" type="image/png" href="../../assets/img/logograyClound.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
   <title>
     Grey Cloud Transaction
   </title>
@@ -27,14 +28,14 @@
   <link rel="stylesheet" type="text/css"
     href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <!-- Nucleo Icons -->
-  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="../../assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="../../assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
-  <link id="pagestyle" href="../assets/css/material-dashboard.css" rel="stylesheet" />
+  <link id="pagestyle" href="../../assets/css/material-dashboard.css" rel="stylesheet" />
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
@@ -49,7 +50,7 @@
       <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
         aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" target="_blank">
-        <img src="../assets/img/logograyClound.png" class="navbar-brand-img h-100" alt="main_logo">
+        <img src="../../assets/img/logograyClound.png" class="navbar-brand-img h-100" alt="main_logo">
         <span class="ms-1 font-weight-bold text-white">G.C.T</span><br>
         <span class="ms-1 font-weight-bold text-white" id="usuarioNome"></span>
       </a>
@@ -58,7 +59,7 @@
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/maquinas.html">
+          <a class="nav-link text-white " href="../../pages/maquinas.html">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">receipt_long</i>
             </div>
@@ -66,87 +67,21 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/dashboard-Giovanna-Menezes/processos.html">
+          <a class="nav-link text-white " href="../dashboardAnalista.html">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">receipt_long</i>
+              <span class='material-icons'>arrow_back_ios</span>
             </div>
-            <span class="nav-link-text ms-1">Processos</span>
+            <span class="nav-link-text ms-1">Voltar</span>
           </a>
         </li>
         <!-- <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/notifications.html">
-          <a class="nav-link text-white " href="../pages/dashboard-Rafael-Scheneider/dashPredict.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">receipt_long</i>
-            </div>
-            <span class="nav-link-text ms-1">Previsoes</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/dashboard-Vitor-Hideki/dashboardAnalistaProcessos.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">receipt_long</i>
-            </div>
-            <span class="nav-link-text ms-1">Hideki</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/notificacoes.html">
+          <a class="nav-link text-white " href="../../pages/notifications.html">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">notifications</i>
             </div>
             <span class="nav-link-text ms-1">Notificação</span>
           </a>
-        </li>
-        <li class="navbar-nav">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="collapse" 
-          data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" 
-          aria-label="Toggle navigation">
-          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="material-icons opacity-10">person</i>
-          </div>
-          <span class="nav-link-text ms-1">Dashboards Individuais</span>
-          </a>
-            <ul class="collapse" id="navbarToggleExternalContent" style="list-style: none">
-
-              <li class="nav-item">
-                <a class="nav-link text-white " href="../pages/dashboard-Eduardo-Camargo/dashboardAnalista.html">
-                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="material-icons opacity-10">person</i>
-                  </div>
-                  <span class="nav-link-text ms-1">Eduardo</span>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link text-white " href="../pages/dashboard-Gabriel-Bifon//dashboardAnalista.html">
-                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="material-icons opacity-10">person</i>
-                  </div>
-                  <span class="nav-link-text ms-1">Gabriel</span>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link text-white " href="../pages/dashboard-Rafael-Scheneider/dashPredict.html">
-                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="material-icons opacity-10">person</i>
-                  </div>
-                  <span class="nav-link-text ms-1">Rafael</span>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link text-white " href="../pages/dashboard-Vitor-Hideki/dashboardAnalistaProcessos.html">
-                  <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="material-icons opacity-10">person</i>
-                  </div>
-                  <span class="nav-link-text ms-1">Vitor Hideki</span>
-                </a>
-              </li>
-
-            </ul>
-        </li>
+        </li> -->
       </ul>
     </div>
     <a style="display: none;" id="link_dashboard"> </a>
@@ -154,7 +89,7 @@
     </div>
     <div class="sidenav-footer position-absolute w-100 bottom-0 ">
       <div class="mx-3">
-        <a class="btn btn-outline-primary mt-4 w-100" href="../../index.html" type="button"
+        <a class="btn btn-outline-primary mt-4 w-100" href="../../../../index.html" type="button"
           onclick="limparSessao()">Deslogar</a>
         <!-- <a class="btn bg-gradient-primary w-100" href="https://www.creative-tim.com/product/material-dashboard-pro?ref=sidebarfree" type="button">Upgrade to pro</a> -->
       </div>
@@ -213,7 +148,7 @@
                   <a class="dropdown-item border-radius-md" href="notifications.html">
                     <div class="d-flex py-1">
                       <div class="my-auto">
-                        <img src="../assets/img/icons/icon-notification.png" class="avatar avatar-sm  me-3 ">
+                        <img src="../../assets/img/icons/icon-notification.png" class="avatar avatar-sm  me-3 ">
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
@@ -231,7 +166,7 @@
                   <a class="dropdown-item border-radius-md" href="notifications.html">
                     <div class="d-flex py-1">
                       <div class="my-auto">
-                        <img src="../assets/img/icons/icon-aviso.png" class="avatar avatar-sm  me-3 ">
+                        <img src="../../assets/img/icons/icon-aviso.png" class="avatar avatar-sm  me-3 ">
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
@@ -249,7 +184,7 @@
                   <a class="dropdown-item border-radius-md" href="notifications.html">
                     <div class="d-flex py-1">
                       <div class="my-auto">
-                        <img src="../assets/img/icons/icon-erro.png" class="avatar avatar-sm  me-3 ">
+                        <img src="../../assets/img/icons/icon-erro.png" class="avatar avatar-sm  me-3 ">
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
@@ -324,204 +259,132 @@
 
       <div class="row mt-5">
 
-        <div class="d-inline-flex flex-column justify-content-between col-xl-3 col-sm-6 mb-xl-4 mb-4">
+        <div class="d-inline-flex flex-column justify-content-between col-xl-4 col-sm-6 mb-xl-4 mb-4" style ="margin-left: 6vw;">
 
-          <div class="card pb-3">
+          <div class="card pb-1">
             <div class="card-header p-3 pt-2 pb-2">
               <div
-                class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                <i class="material-icons opacity-10">person</i>
+                class="icon icon-lg icon-shape bg-gradient-secondary shadow-secondary text-center border-radius-xl mt-n4 position-absolute">
+                <i class="bi bi-pc-horizontal"></i>
               </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize"> Valor Atual - CPU</p>
-                <h4 class="mb-0" id="valorCPUID"></h4>
+                <p class="text-sm mb-0 text-capitalize">Mac Address</p>
+                <h4 class="mb-0" id="macAddress"></h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <div class="d-flex ">
-                <i class="material-icons text-sm my-auto me-1">schedule</i>
-                <p class="mb-0 text-sm">Atualizado a 5.5 segundos</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="card pb-3">
-            <div class="card-header p-3 pt-2 pb-2">
-              <div
-                class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                <i class="material-icons opacity-10">person</i>
-              </div>
-              <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize"> Valor Máximo - CPU</p>
-                <h4 class="mb-0" id="maxCPU">80.9%</h4>
-              </div>
-            </div>
-            <hr class="dark horizontal my-0">
-            <div class="card-footer p-3">
-              <div class="d-flex ">
-                <i class="material-icons text-sm my-auto me-1">schedule</i>
-                <p class="mb-0 text-sm">Atualizado a 5.5 segundos</p>
-              </div>
             </div>
           </div>
 
         </div>
+        <div class="d-inline-flex flex-column justify-content-between col-xl-4 col-sm-6 mb-xl-4 mb-4">
 
-        <div class="col-lg-9 col-md-6 mt-4 mb-4">
-          <div class="card z-index-2 ">
-            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-              <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                <div class="chart">
-                  <canvas id="chart-cpu" class="chart-canvas" height="300"></canvas>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <h6 class="mb-0 ">Gráfico de CPU</h6>
-              <p class="text-sm ">Porcentagem de uso da CPU por tempo(em minutos)</p>
-              <hr class="dark horizontal">
-              <div class="d-flex ">
-                <i class="material-icons text-sm my-auto me-1">schedule</i>
-                <p class="mb-0 text-sm">Atualizado a 5.5 segundos</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="row mt-3">
-
-        <div class="d-inline-flex flex-column justify-content-between col-xl-3 col-sm-6 mb-xl-4 mb-4">
-
-          <div class="card pb-3">
+          <div class="card pb-1">
             <div class="card-header p-3 pt-2 pb-2">
               <div
-                class="icon icon-lg icon-shape bg-gradient-success shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                <i class="material-icons opacity-10">person</i>
+                class="icon icon-lg icon-shape bg-gradient-secondary shadow-secondary text-center border-radius-xl mt-n4 position-absolute">
+                <i class="bi bi-router"></i>
               </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize"> Valor Atual - RAM</p>
-                <h4 class="mb-0" id="valorRAMID"></h4>
+                <p class="text-sm mb-0 text-capitalize">IP Público</p>
+                <h4 class="mb-0" id="ipPublico"></h4>
+              </div>
+            </div>
+            <hr class="dark horizontal my-0">
+            <div class="card-footer p-3">
+            </div>
+          </div>
+
+        </div>
+        <div class="d-inline-flex flex-column justify-content-between col-xl-4 col-sm-6 mb-xl-4 mb-4" style ="margin-left: 20vw;">
+
+          <div class="card pb-1">
+            <div class="card-header p-3 pt-2 pb-2">
+              <div
+                class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
+                <i class="bi bi-geo-alt"></i>
+              </div>
+              <div class="text-end pt-1">
+                <p class="text-sm mb-0 text-capitalize">Cidade</p>
+                <h4 class="mb-0" id="cidadeServidor"></h4>
+              </div>
+            </div>
+            <hr class="dark horizontal my-0">
+            <div class="card-footer p-3">
+            </div>
+          </div>
+
+        </div>
+        <div class="d-inline-flex flex-column justify-content-between col-xl-4 col-sm-6 mb-xl-4 mb-4">
+
+          <div class="card pb-1">
+            <div class="card-header p-3 pt-2 pb-2">
+              <div
+                class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
+                <i class="bi bi-thermometer-half"></i>
+              </div>
+              <div class="text-end pt-1">
+                <p class="text-sm mb-0 text-capitalize">Temperatura da cidade</p>
+                <h4 class="mb-0" id="temperaturaCidade"></h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
-                <p class="mb-0 text-sm">Atualizado a 5.5 segundos</p>
+                <p class="mb-0 text-sm">Atualizado a cada 5.5 segundos</p>
               </div>
             </div>
           </div>
 
-          <div class="card pb-3">
-            <div class="card-header p-3 pt-2 pb-2">
-              <div
-                class="icon icon-lg icon-shape bg-gradient-success shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                <i class="material-icons opacity-10">person</i>
-              </div>
-              <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize"> Valor Máximo - RAM</p>
-                <h4 class="mb-0" id="maxRAM">98.2%</h4>
-              </div>
-            </div>
-            <hr class="dark horizontal my-0">
-            <div class="card-footer p-3">
-              <div class="d-flex ">
-                <i class="material-icons text-sm my-auto me-1">schedule</i>
-                <p class="mb-0 text-sm">Atualizado a 5.5 segundos</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="col-lg-9 col-md-6 mt-4 mb-4">
-          <div class="card z-index-2  ">
-            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-              <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
-                <div class="chart">
-                  <canvas id="chart-ram" class="chart-canvas" height="300"></canvas>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <h6 class="mb-0 "> Gráfico de memória RAM </h6>
-              <p class="text-sm "> Quantidade de uso de memória RAM por tempo (em minutos) </p>
-              <hr class="dark horizontal">
-              <div class="d-flex ">
-                <i class="material-icons text-sm my-auto me-1">schedule</i>
-                <p class="mb-0 text-sm">Atualizado a 5.5 segundos</p>
-              </div>
-            </div>
-          </div>
         </div>
 
       </div>
+      
 
-      <div class="row mt-3">
+      <div class="row mt-4">
 
-        <div class="d-inline-flex flex-column justify-content-between col-xl-3 col-sm-6 mb-xl-4 mb-4">
+        <div class="d-inline-flex flex-column justify-content-between col-xl-6 col-sm-6 mb-xl-4 mb-4">
 
           <div class="card pb-3">
             <div class="card-header p-3 pt-2 pb-2">
               <div
                 class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                <i class="material-icons opacity-10">person</i>
+                <i class="bi bi-intersect"></i>
               </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize"> Valor Atual - Disco</p>
-                <h4 class="mb-0" id="valorDiscoID"></h4>
+                <p class="text-sm mb-0 text-capitalize"> Interferência da Temperatura Hoje</p>
+                <h4 class="mb-0" id="interferenciaID"> 17% </h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
-                <p class="mb-0 text-sm">Atualizado a 5.5 segundos</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="card pb-3">
-            <div class="card-header p-3 pt-2 pb-2">
-              <div
-                class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                <i class="material-icons opacity-10">person</i>
-              </div>
-              <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize"> Valor Máximo - Disco</p>
-                <h4 class="mb-0" id="maxDisco">40.3%</h4>
-              </div>
-            </div>
-            <hr class="dark horizontal my-0">
-            <div class="card-footer p-3">
-              <div class="d-flex ">
-                <i class="material-icons text-sm my-auto me-1">schedule</i>
-                <p class="mb-0 text-sm">Atualizado a 5.5 segundos</p>
+                <p class="mb-0 text-sm">Atualizado a cada 5.5 segundos</p>
               </div>
             </div>
           </div>
 
         </div>
 
-        <div class="col-lg-9 col-md-6 mt-4 mb-4">
+        <div class="col-lg-6 col-md-6 mt-4 mb-4">
           <div class="card z-index-2 ">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
               <div class="bg-gradient-dark shadow-dark border-radius-lg py-3 pe-1">
                 <div class="chart">
-                  <canvas id="chart-disco" class="chart-canvas" height="300"></canvas>
+                  <canvas id="chart-rede" class="chart-canvas" height="200"></canvas>
                 </div>
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 ">Gráfico de Disco</h6>
-              <p class="text-sm ">Quantidade de uso do disco por tempo (em minutos)</p>
+              <h6 class="mb-0 ">Gráfico de Pacotes de Rede</h6>
+              <p class="text-sm ">Quantidade de pacotes recebidos e enviados</p>
               <hr class="dark horizontal">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
-                <p class="mb-0 text-sm">Atualizado a 5.5 segundos</p>
+                <p class="mb-0 text-sm">Atualizado a cada 5.5 segundos</p>
               </div>
             </div>
           </div>
@@ -539,7 +402,7 @@
             <div class="timeline timeline-one-side">
               <div class="timeline-block mb-3">
                 <span class="timeline-step">
-                  <i><img src="../assets/img/icons/circulo-icone.png" alt=""></i>
+                  <i><img src="../../assets/img/icons/circulo-icone.png" alt=""></i>
                 </span>
                 <div class="timeline-content">
                   <h6 class="text-dark text-sm font-weight-bold mb-0">Sistema Operacional:</h6>
@@ -548,7 +411,7 @@
               </div>
               <div class="timeline-block mb-3">
                 <span class="timeline-step">
-                  <i><img src="../assets/img/icons/circulo-icone.png" alt=""></i>
+                  <i><img src="../../assets/img/icons/circulo-icone.png" alt=""></i>
                 </span>
                 <div class="timeline-content">
                   <h6 class="text-dark text-sm font-weight-bold mb-0">Modelo da CPU:</h6>
@@ -557,7 +420,7 @@
               </div>
               <div class="timeline-block mb-3">
                 <span class="timeline-step">
-                  <i><img src="../assets/img/icons/circulo-icone.png" alt=""></i>
+                  <i><img src="../../assets/img/icons/circulo-icone.png" alt=""></i>
                 </span>
                 <div class="timeline-content">
                   <h6 class="text-dark text-sm font-weight-bold mb-0">Tipo de FileSystem:</h6>
@@ -566,7 +429,7 @@
               </div>
               <div class="timeline-block mb-3">
                 <span class="timeline-step">
-                  <i><img src="../assets/img/icons/circulo-icone.png" alt=""></i>
+                  <i><img src="../../assets/img/icons/circulo-icone.png" alt=""></i>
                 </span>
                 <div class="timeline-content">
                   <h6 class="text-dark text-sm font-weight-bold mb-0"> Tamanho do disco:</h6>
@@ -575,7 +438,7 @@
               </div>
               <div class="timeline-block mb-3">
                 <span class="timeline-step">
-                  <i><img src="../assets/img/icons/circulo-icone.png" alt=""></i>
+                  <i><img src="../../assets/img/icons/circulo-icone.png" alt=""></i>
                 </span>
                 <div class="timeline-content">
                   <h6 class="text-dark text-sm font-weight-bold mb-0">Tamanho da Memória virtual:</h6>
@@ -584,7 +447,7 @@
               </div>
               <div class="timeline-block">
                 <span class="timeline-step">
-                  <i><img src="../assets/img/icons/circulo-icone.png" alt=""></i>
+                  <i><img src="../../assets/img/icons/circulo-icone.png" alt=""></i>
                 </span>
                 <div class="timeline-content">
                   <h6 class="text-dark text-sm font-weight-bold mb-0">Quantidade de processadores:</h6>
@@ -670,16 +533,12 @@
 
     </div>
   </div>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <!--   Core JS Files   -->
-  <script src="../assets/js/core/popper.min.js"></script>
-  <script src="../assets/js/core/bootstrap.min.js"></script>
-  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <script src="../assets/js/plugins/chartjs.min.js"></script>
-  
+  <script src="../../assets/js/core/popper.min.js"></script>
+  <script src="../../assets/js/core/bootstrap.min.js"></script>
+  <script src="../../assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="../../assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="../../assets/js/plugins/chartjs.min.js"></script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -692,19 +551,21 @@
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/material-dashboard.min.js?v=3.1.0"></script>
-  <script src="../js/crudFuncionarios.js"></script>
+  <script src="../../assets/js/material-dashboard.min.js?v=3.1.0"></script>
+  <script src="../../js/crudFuncionarios.js"></script>
 </body>
 
 </html>
 
-<script src="../js/sessao.js"></script>
-<script src="../js/sistemaDashAnalista.js"></script>
+<script src="../../js/sessao.js"></script>
+<script src="../../js/sistemaDashBifon.js"></script>
 
 <script>
   validarSessao()
   pegarInfoServidor()
 
+  obterDadosGrafico(sessionStorage.ID_SERVIDOR)
+  correlacao(sessionStorage.ID_SERVIDOR)
   teste(sessionStorage.ID_SERVIDOR)
   chamadosAbertosServidor();
 </script>

@@ -1,0 +1,9 @@
+Com base dos dados das CPUs que o analista monitora e com os analytics feitos em R, será possivel ele conseguir 
+prever falhas no sistema, e se muitas dessas falhas se colidir, um alerta poderá ser enviado ao gerente de TI, 
+possibilitando o gerente a ter uma idéia de um possível período de urgência do serviço.
+
+Adicionar alguma forma de metas, para o analista ir concluindo conforme for fazendo seu trabalho
+
+Dar ferramentas para ele conseguir se organizar -> filtros
+
+Dar ferramentas para ele conseguir monitorar o que há de urgente no momento -> o que for urgente, aparece primeiro na lista
