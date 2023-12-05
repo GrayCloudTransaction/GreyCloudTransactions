@@ -1,10 +1,10 @@
-// process.env.AMBIENTE_PROCESSO = "desenvolvimento";
-process.env.AMBIENTE_PROCESSO = "producao";
+process.env.AMBIENTE_PROCESSO = "desenvolvimento";
+// process.env.AMBIENTE_PROCESSO = "producao";
 
 var express = require("express");
 var cors = require("cors");
 var path = require("path");
-var PORTA = process.env.AMBIENTE_PROCESSO == "producao" ? 3333 : 8080;
+var PORTA = process.env.AMBIENTE_PROCESSO == "desenvolvimento" ? 3333 : 443;
 
 var app = express();
 
@@ -16,7 +16,12 @@ var emailRouter = require("./src/routes/email");
 var servidorRouter = require("./src/routes/servidor");
 var chamadoRouter = require("./src/routes/chamado");
 var registroRouter = require("./src/routes/registro");
+var giovannaMenezesRouter = require("./src/routes/routesIndividuais/giovannaMenezes"); 
+var rafaelScheneiderRouter = require("./src/routes/routesIndividuais/rafaelScheneider")
+var gabrielRouter = require("./src/routes/routesIndividuais/gabrielBifon")
+var vitorHidekiRouter = require("./src/routes/routesIndividuais/vitorHideki")
 var eduardoCamargo = require("./src/routes/routesIndividuais/eduardoCamargo");
+var felipeRouter = require("./src/routes/routesIndividuais/felipeSantos")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -32,10 +37,15 @@ app.use("/email", emailRouter);
 app.use("/servidor", servidorRouter);
 app.use("/chamado", chamadoRouter);
 app.use("/registro", registroRouter);
-
+app.use("/felipe", felipeRouter);
+app.use("/giovannaMenezes", giovannaMenezesRouter);
+app.use("/rafael", rafaelScheneiderRouter)
+app.use("/gabriel", gabrielRouter)
+app.use("/vitorHideki", vitorHidekiRouter)
 app.use("/eduardoCamargo", eduardoCamargo)
 
+
 app.listen(PORTA, function () {
-    console.log(`URL do Site: http://localhost:${PORTA} \n
+    console.log(`URL do Site: https://localhost:${PORTA} \n
     Rodando aplicação em Ambiente de ${process.env.AMBIENTE_PROCESSO}`);
 });
