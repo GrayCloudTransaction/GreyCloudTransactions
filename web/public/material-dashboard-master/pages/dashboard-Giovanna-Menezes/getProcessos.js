@@ -68,12 +68,16 @@ function atualizarPagina(){
   processoNome.innerHTML = ``
   processoCPU.innerHTML = ``
 
-  for(i = processos.length - 1; i >= 0; i--) {
-        processoAtual = processos[i]
+  if (processos.length <= 0) {
+    listaProcessos.innerHTML = "<p>Nenhum processo foi capturado</p>";
+  } else {
+    for(i = processos.length - 1; i >= 0; i--) {
+      processoAtual = processos[i]
 
-        processoPID.innerHTML += `<p class="text-sm mb-1">${processoAtual.pid}</p>`
-        processoNome.innerHTML += `<p class="text-sm mb-1">${processoAtual.nome}</p>`
-        processoCPU.innerHTML += `<p class="text-sm mb-1">${processoAtual.uso_cpu}</p>`
+      processoPID.innerHTML += `<p class="text-sm mb-1">${processoAtual.pid}</p>`
+      processoNome.innerHTML += `<p class="text-sm mb-1">${processoAtual.nome}</p>`
+      processoCPU.innerHTML += `<p class="text-sm mb-1">${processoAtual.uso_cpu}</p>`
+    }
   }
 
   qtdProcessos.innerHTML = processos.length
@@ -82,17 +86,22 @@ function atualizarPagina(){
   processoConsumidorPID.innerHTML = ``
   comandoRecomendado.innerHTML = ``
 
-  for(i = processosConsumidores.length - 1; i >= 0; i--) {
-        processoConsumidorAtual = processosConsumidores[i]
+  if (processosConsumidores.length <= 0) {
+    listaProcessosConsumidores.innerHTML = "<p>Nenhum processo consumidor foi capturado</p>";
+  } else {
+    for(i = processosConsumidores.length - 1; i >= 0; i--) {
+      processoConsumidorAtual = processosConsumidores[i]
 
-        processoConsumidorPID.innerHTML += `<p class="text-sm mb-1">${processoConsumidorAtual.pid}</p>`
+      processoConsumidorPID.innerHTML += `<p class="text-sm mb-1">${processoConsumidorAtual.pid}</p>`
 
-        if (processosConsumidores[i].uso_cpu > 50 && processosConsumidores[i].uso_cpu < 70) {
-          comandoRecomendado.innerHTML += `<p class="text-sm mb-1">suspend processo</p>`;
-        } else {
-          comandoRecomendado.innerHTML += `<p class="text-sm mb-1">kill process</p>`;
-        }
+      if (processosConsumidores[i].uso_cpu > 50 && processosConsumidores[i].uso_cpu < 70) {
+        comandoRecomendado.innerHTML += `<p class="text-sm mb-1">suspend processo</p>`;
+      } else {
+        comandoRecomendado.innerHTML += `<p class="text-sm mb-1">kill process</p>`;
+      }
+    }
   }
+
 
   qtdConsumidores.innerHTML = processosConsumidores.length
   qtdConsumidoresTotais.innerHTML = totalProcessosConsumidores
