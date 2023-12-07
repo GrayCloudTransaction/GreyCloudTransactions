@@ -68,9 +68,6 @@ function atualizarPagina(){
   processoNome.innerHTML = ``
   processoCPU.innerHTML = ``
 
-  if (processos.length <= 0) {
-    listaProcessos.innerHTML = "<p>Nenhum processo foi capturado</p>";
-  } else {
     for(i = processos.length - 1; i >= 0; i--) {
       processoAtual = processos[i]
 
@@ -78,7 +75,6 @@ function atualizarPagina(){
       processoNome.innerHTML += `<p class="text-sm mb-1">${processoAtual.nome}</p>`
       processoCPU.innerHTML += `<p class="text-sm mb-1">${processoAtual.uso_cpu}</p>`
     }
-  }
 
   qtdProcessos.innerHTML = processos.length
   qtdProcessosTotais.innerHTML = totalProcessos
