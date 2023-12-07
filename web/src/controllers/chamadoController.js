@@ -43,6 +43,15 @@ function listarPorServidor(req, res){
 
     if(id_empresa != null && id_empresa != ""){
         if (data != "") {
+            if (data != null) {
+                if (opcao == "personalizado") {
+                    data[0] = data[0].replaceAll('/', '-');
+                    data[1] = data[1].replaceAll('/', '-');
+                } else {
+                    data = data.replaceAll('/', '-');
+                }
+                console.log(data);
+            }
             chamadoModel.listarPorServidor(id_empresa, data, opcao)
             .then(function (resultado){
                 if(resultado.length > 0){

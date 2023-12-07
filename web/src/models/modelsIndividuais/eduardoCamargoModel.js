@@ -6,21 +6,35 @@ function info(func, query){
 }
 
 function buscarUltimosRegistros() {
-    // var instrucao = `
-    //     SELECT registro.*, tipo_componente,
-    //     vel_download,vel_upload,ping 
-    //     FROM registro, componente, rede
-    //     WHERE tipo_componente IN ("CPU", "RAM", "Disco")
-    //     AND id_componente = fk_componente
-    //     AND fk_servidor = ${id_servidor}
-    //     ORDER BY data_registro DESC
-    //     LIMIT ${limite};
-    // `;
-    var instrucao = `select TOP 10 registro.data_registro,vel_download,vel_upload,ping from registro, rede;`
-    
-    info("Buscar Últimos Registros", instrucao)
 
-    return database.executar(instrucao);
+    if (process.env.AMBIENTE_PROCESSO  == "desenvolvimento") {
+        var query = `
+        SELECT 
+            registro.*, 
+            tipo_componente,
+            vel_download,
+            vel_upload,ping 
+        FROM registro, componente, rede
+        WHERE tipo_componente IN ("CPU", "RAM", "Disco")
+        AND id_componente = fk_componente
+        AND fk_servidor = ${id_servidor}
+        ORDER BY data_registro DESC
+        LIMIT ${limite};
+    `;
+    } else {
+        var query = `
+        SELECT TOP 10 
+            registro.data_registro,
+            vel_download,
+            vel_upload,
+            ping 
+        FROM registro, rede;
+    `;
+    }
+        
+    info("Buscar Últimos Registros", query)
+
+    return database.executar(query);
 }
 
 module.exports = {

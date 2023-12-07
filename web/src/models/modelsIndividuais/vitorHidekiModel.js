@@ -34,46 +34,60 @@ function getProcessosMaiorConsumo(id_servidor) {
 }
 
 function getProcessTree(id_servidor, pid) {
-    var query = `
-    CREATE TABLE #process_tree (
-        id_processo INT NOT NULL,
-        pid INT NOT NULL,
-        ppid INT NULL,
-        nome VARCHAR(100) NULL,
-        prioridade INT NULL,
-        usuario VARCHAR(100) NULL,
-        estado VARCHAR(15) NULL,
-        uso_ram DECIMAL(5,2) NULL,
-        bytes_lidos BIGINT NULL,
-        bytes_escritos BIGINT NULL,
-        comando TEXT NULL,
-        horario DATETIME NOT NULL,
-        fk_servidor INT NOT NULL,
-    );
-    
-    INSERT INTO #process_tree
-        SELECT *
-        FROM vw_registro_processo_ultimos
-        WHERE pid = ${pid};
-    
-
-    DECLARE @rowCount INT = 1;
-    
-    WHILE @rowCount > 0
-    BEGIN
+    if (process.env.AMBIENTE_PROCESSO  == "desenvolvimento") {
+        var query = `
+        WITH RECURSIVE process_tree AS (
+            SELECT * FROM vw_registro_processo_ultimos
+            WHERE pid = ${pid}
+        UNION ALL
+            SELECT vw.* FROM vw_registro_processo_ultimos AS vw, process_tree AS pt
+                WHERE vw.pid = pt.ppid OR ((pt.pid != 0 AND pt.ppid = 0) AND (vw.pid = 0 AND vw.ppid = 0)) LIMIT 20
+        )
+        SELECT * FROM process_tree;
+        `;
+    } else {
+        var query = `
+        CREATE TABLE #process_tree (
+            id_processo INT NOT NULL,
+            pid INT NOT NULL,
+            ppid INT NULL,
+            nome VARCHAR(100) NULL,
+            prioridade INT NULL,
+            usuario VARCHAR(100) NULL,
+            estado VARCHAR(15) NULL,
+            uso_ram DECIMAL(5,2) NULL,
+            bytes_lidos BIGINT NULL,
+            bytes_escritos BIGINT NULL,
+            comando TEXT NULL,
+            horario DATETIME NOT NULL,
+            fk_servidor INT NOT NULL,
+        );
+        
         INSERT INTO #process_tree
-            SELECT vw.*
-                FROM vw_registro_processo_ultimos AS vw
-            INNER JOIN #process_tree AS pt ON vw.pid = pt.ppid AND pt.pid != 0
-            WHERE NOT EXISTS (SELECT 1 FROM #process_tree WHERE pid = vw.pid)
-            OPTION (MAXRECURSION 0);
-        SET @rowCount = @@ROWCOUNT;
-    END;
-
-    SELECT * FROM #process_tree WHERE fk_servidor = 1;
+            SELECT *
+            FROM vw_registro_processo_ultimos
+            WHERE pid = ${pid};
+        
     
-    DROP TABLE #process_tree;
-    `
+        DECLARE @rowCount INT = 1;
+        
+        WHILE @rowCount > 0
+        BEGIN
+            INSERT INTO #process_tree
+                SELECT vw.*
+                    FROM vw_registro_processo_ultimos AS vw
+                INNER JOIN #process_tree AS pt ON vw.pid = pt.ppid AND pt.pid != 0
+                WHERE NOT EXISTS (SELECT 1 FROM #process_tree WHERE pid = vw.pid)
+                OPTION (MAXRECURSION 0);
+            SET @rowCount = @@ROWCOUNT;
+        END;
+    
+        SELECT * FROM #process_tree WHERE fk_servidor = ${id_servidor};
+        
+        DROP TABLE #process_tree;
+        `
+    }
+   
     info("Pegar árvore do processo", query);
     return database.executar(query);
 }
