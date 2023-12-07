@@ -84,7 +84,7 @@ function atualizarPagina(){
       processoConsumidorPID.innerHTML += `<p class="text-sm mb-1">${processoConsumidorAtual.pid}</p>`
 
       if (processosConsumidores[i].uso_cpu > 50 && processosConsumidores[i].uso_cpu < 70) {
-        comandoRecomendado.innerHTML += `<p class="text-sm mb-1">suspend processo</p>`;
+        comandoRecomendado.innerHTML += `<p class="text-sm mb-1">suspend process</p>`;
       } else {
         comandoRecomendado.innerHTML += `<p class="text-sm mb-1">kill process</p>`;
       }
