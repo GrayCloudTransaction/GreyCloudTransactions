@@ -68,7 +68,7 @@ function atualizarPagina(){
   processoNome.innerHTML = ``
   processoCPU.innerHTML = ``
 
-  for(i = 0; i <  processos.length; i++) {
+  for(i = processos.length - 1; i >= 0; i--) {
         processoAtual = processos[i]
 
         processoPID.innerHTML += `<p class="text-sm mb-1">${processoAtual.pid}</p>`
@@ -82,7 +82,7 @@ function atualizarPagina(){
   processoConsumidorPID.innerHTML = ``
   comandoRecomendado.innerHTML = ``
 
-  for(i = 0; i < processosConsumidores.length; i++) {
+  for(i = processosConsumidores.length - 1; i >= 0; i--) {
         processoConsumidorAtual = processosConsumidores[i]
 
         processoConsumidorPID.innerHTML += `<p class="text-sm mb-1">${processoConsumidorAtual.pid}</p>`
