@@ -27,9 +27,6 @@ function getProcessos(){
             totalProcessos = json.length
           }
         }
-        if (totalProcessos <= 0) {
-          listaProcessos.innerHTML = "<p>Nenhum processo foi capturado</p>"
-        }
       })
     }
   })
@@ -53,9 +50,6 @@ function getProcessosConsumidores(){
               processosConsumidores.push(json[i])
               totalProcessosConsumidores = json.length
           }
-        }
-        if (totalProcessosConsumidores <= 0) {
-          listaProcessosConsumidores.innerHTML = "<p>Nenhum processo consumidor foi capturado</p>"
         }
       })
     }
