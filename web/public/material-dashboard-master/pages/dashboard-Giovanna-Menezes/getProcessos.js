@@ -78,9 +78,6 @@ function atualizarPagina(){
   processoConsumidorPID.innerHTML = ``
   comandoRecomendado.innerHTML = ``
 
-  if (processosConsumidores.length <= 0) {
-    listaProcessosConsumidores.innerHTML = "<p>Nenhum processo consumidor foi capturado</p>";
-  } else {
     for(i = processosConsumidores.length - 1; i >= 0; i--) {
       processoConsumidorAtual = processosConsumidores[i]
 
@@ -92,7 +89,6 @@ function atualizarPagina(){
         comandoRecomendado.innerHTML += `<p class="text-sm mb-1">kill process</p>`;
       }
     }
-  }
 
   qtdConsumidores.innerHTML = processosConsumidores.length
   qtdConsumidoresTotais.innerHTML = totalProcessosConsumidores
