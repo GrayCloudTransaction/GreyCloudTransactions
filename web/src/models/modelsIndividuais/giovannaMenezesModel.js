@@ -15,7 +15,7 @@ function getProcessos(id_servidor) {
 
 function getProcessosConsumidores(id_servidor){
     var query = `
-        SELECT * FROM vw_processos_consumidores WHERE fk_servidor = ${id_servidor};
+        SELECT * FROM vw_processos_consumidores WHERE fk_servidor = ${id_servidor} ORDER BY data_registro DESC;
     `
 
     info("Listar processos consumidores", query);

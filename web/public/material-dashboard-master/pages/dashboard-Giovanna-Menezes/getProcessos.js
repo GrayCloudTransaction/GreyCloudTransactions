@@ -5,12 +5,10 @@ var totalProcessosConsumidores = 0
 var limiteAtual = 10;
 
 function setLimite(limite){
-
   limiteAtual = limite
 }
 
 function getProcessos(){
-
   idServidor = sessionStorage.ID_SERVIDOR
   fetch(`/giovannaMenezes/getProcessos/${idServidor}`, {
     method: "GET",
@@ -38,7 +36,6 @@ function getProcessos(){
 }
 
 function getProcessosConsumidores(){
-
   idServidor = sessionStorage.ID_SERVIDOR
   fetch(`/giovannaMenezes/getProcessosConsumidores/${idServidor}`, {
     method: "GET",
@@ -66,7 +63,6 @@ function getProcessosConsumidores(){
 }
 
 function atualizarPagina(){
-
   getProcessos()
   getProcessosConsumidores()
 
@@ -103,7 +99,6 @@ function atualizarPagina(){
       }
     }
   }
-
 
   qtdConsumidores.innerHTML = processosConsumidores.length
   qtdConsumidoresTotais.innerHTML = totalProcessosConsumidores
