@@ -6,7 +6,7 @@ function info(func, query) {
 
 function getProcessos(id_servidor) {
     var query = `
-        SELECT * FROM processo WHERE fk_servidor = ${id_servidor};
+        SELECT * FROM processo WHERE fk_servidor = ${id_servidor} ORDER BY data_registro DESC;
     `
 
     info("Buscar processos", query)
