@@ -209,25 +209,30 @@ function graficoServerXcpu() {
     });
 }
 
+function getWcDados() {
+  const fs = require('node:fs');
+
+  fs.readFile('./wordcloud/wc_processos.json', 'utf-8', (err, data) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    
+    console.log(data);
+    return data;
+  })
+}
+
 function wordcloud() {
+  var json_processos = getWcDados();
+  var data = [];
+
   anychart.onDocumentReady(function() {
-    var data = [
-      {"x": "systemd", value: 12, category: "Sistema"},
-      {"x": "kthreadd", value: 3, category: "Sistema"},
-      {"x": "pool_workqueue_release", value: 10, category: "Sistema"},
-      {"x": "kworker/R-rcu_g", value: 42, category: "Aplicação"},
-      {"x": "accounts-daemon", value: 24, category: "Sistema"},
-      {"x": "kworker/4:2-events", value: 67, category: "Sistema"},
-      {"x": "kworker/R-rcu_p", value: 32, category: "Aplicação"},
-      {"x": "kworker/R-slub_", value: 87, category: "Aplicação"},
-      {"x": "kworker/R-netns", value: 54, category: "Aplicação"},
-      {"x": "kworker/0:0H-events_highpri", value: 2, category: "Sistema"},
-      {"x": "code", value: 12, category: "Aplicação"},
-      {"x": "wpa_supplicant", value: 3, category: "Sistema"},
-      {"x": "Isolated Web Co", value: 10, category: "Aplicação"},
-      {"x": "firefox", value: 42, category: "Aplicação"},
-      {"x": "node", value: 24, category: "Aplicação"}
-    ]
+    for (let i = 0; i < json_processos.length; i++) {
+      data = [{
+        "x": `${json_processos[i].word}`, value: json_processos[i].freq, category: "XPTO", 
+      }]
+    }
 
   // create a tag (word) cloud chart
   var chart = anychart.tagCloud(data);
