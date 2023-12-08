@@ -75,7 +75,7 @@ function obterDadosGrafico(id_servidor, graficoRede) {
           console.log(resposta);
 
           for (i in resposta) {
-            var datetime = new Date(resposta[i].data_registro).toLocaleString("pt-BR");
+            var datetime = new Date(resposta[i].data_registro).toLocaleString("pt-PT");
             
             macAddress.innerHTML = resposta[i].mac_address;
             ipPublico.innerHTML = resposta[i].ip_publico;
@@ -242,11 +242,16 @@ function teste(id_servidor){
 function correlacao(id_servidor){
   fetch(`/gabriel/buscarCorrelacao/${id_servidor}`, {
     cache: "no-store"
-  }).then(function (resposta) {
-    console.log(resposta)
-    
-    interferenciaID.innerHTML = resposta
-    
+  }).then(function (response) {
+    if (response.ok) {
+        response.json().then(function (resposta) {
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            console.log(resposta);
+            interferenciaID.innerHTML = resposta[0].interferencia * 100 + '%'
+        });
+      } else {
+        console.error("Nenhum dado encontrado ou erro na API");
+      }
   })
   .catch(function (erro) {
     console.log(erro);

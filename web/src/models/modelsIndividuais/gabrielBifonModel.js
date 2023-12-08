@@ -31,19 +31,7 @@ function buscarUltimosRegistros(id_servidor, limite) {
 
 function buscarCorrelacao(id_servidor){
     var instrucao = `
-    CREATE FUNCTION interference()
-    RETURNS decimal(4,1)
-    BEGIN
-    DECLARE temp_avg decimal(4,1);
-    DECLARE data1 decimal(4,1);
-    DECLARE data2 decimal(4,1);
-    DECLARE data_avg decimal(4,1);
-    SELECT AVG(temp_register) INTO temp_avg FROM tb_temperature WHERE fk_servidor = ${id_servidor} AND date = CURDATE();
-    SELECT AVG(dataRecv) INTO data1 FROM internet WHERE fk_servidor = ${id_servidor} AND date = CURDATE();
-    SELECT AVG(dataSent) INTO data2 FROM internet WHERE fk_servidor = ${id_servidor} AND date = CURDATE();
-    SET data_avg = data1+data2/2;
-    RETURN temp_avg / data_avg;
-    END;
+    SELECT dbo.interference(${id_servidor}) AS interferencia
     `
     info("Buscar corrlação temp~rede", instrucao)
 
