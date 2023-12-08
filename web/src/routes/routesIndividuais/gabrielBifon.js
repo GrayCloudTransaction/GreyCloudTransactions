@@ -18,5 +18,10 @@ rota.get("/getCorrelacao/:id_servidor", (req, res) => {
     gabrielController.getCorrelacao(req,res)
 });
 
+rota.get("/buscarCorrelacao/:id_servidor", (res, req) => {
+    info("BuscandoCorrelacao");
+    gabrielController.buscarCorrelacao(req, res)
+});
+
 
 module.exports = rota;

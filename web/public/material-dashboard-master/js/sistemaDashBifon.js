@@ -240,21 +240,13 @@ function teste(id_servidor){
 }
 
 function correlacao(id_servidor){
-  fetch(`/gabriel/getCorrelacao/${id_servidor}`, {
+  fetch(`/gabriel/buscarCorrelacao/${id_servidor}`, {
     cache: "no-store"
   }).then(function (resposta) {
     console.log(resposta)
-    if (resposta.ok) {
-      alert('jonas')
-      resposta.json().then((json) => {
-        
-        interferenciaID.innerHTML = json[0]
-        });
-    }else{
-      resposta.text().then((texto) => {
-        console.erro(texto);
-      });
-    }
+    
+    interferenciaID.innerHTML = resposta
+    
   })
   .catch(function (erro) {
     console.log(erro);
