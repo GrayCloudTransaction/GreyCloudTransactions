@@ -11,20 +11,22 @@ function getQtdTotalProcessos() {
 
                 qtdTotalProcessos.innerHTML = `${json[json.length - 1].qtd_processos}`
                 plotarHistograma(json);
+                
             });
         } else {
             resposta.text().then((texto) => {
                 console.error(texto);
             });
         }
+        
     })
     .catch(function (erro) {
         console.log(erro);
     });
+    // setInterval(() => getQtdTotalProcessos(), 10000);
 }
 
 function plotarHistograma(data) {
-
   const optionsProcesses = {
     container: document.getElementById('chart-processos'),
     background: {
@@ -110,8 +112,10 @@ function plotarHistograma(data) {
       }
     },
   };
-  
+  document.getElementById('chart-processos').innerHTML = '';
   var chart = agCharts.AgChart.create(optionsProcesses);
+
+    setTimeout(() => getQtdTotalProcessos(), 10000);
 
 }
 
@@ -129,6 +133,7 @@ function getProcessos() {
                     <i class="fa fa-check text-info" aria-hidden="true"></i>
                     ${json.length} processos ativos
                 `
+                listaDeProcessos.innerHTML = '';
                 for (var i = 0; i < json.length; i++) {
                     var processo = json[i];
                     var opcaoCorRam = '';
