@@ -23,7 +23,6 @@ function getQtdTotalProcessos() {
     .catch(function (erro) {
         console.log(erro);
     });
-    // setInterval(() => getQtdTotalProcessos(), 10000);
 }
 
 function plotarHistograma(data) {
@@ -192,7 +191,6 @@ function getProcessos() {
                             </td>
                         </tr>
                         `
-                  
                 }
             });
         } else {
@@ -204,6 +202,7 @@ function getProcessos() {
     .catch(function (erro) {
         console.log(erro);
     });
+    setTimeout(() => getProcessos(), 10000);
 }
 
 function mostrarProcessTree() {
@@ -337,6 +336,7 @@ function getProcessosMaiorConsumo() {
     .catch(function (erro) {
         console.log(erro);
     });
+    setTimeout(() => getProcessosMaiorConsumo(), 10000);
 }
 
 
