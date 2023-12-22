@@ -63,7 +63,7 @@ Por isso, a nossa solução tem como objetivo monitorar o desempenho de servidor
 Garantir a estabilidade dos servidores presentes no TEF (Transferência eletrônica de fundos).
 
 ### Justificativa 
-Em quantidade de transações, ocorreram, ao todo, 8,2 bilhões de pagamentos com cartões nos meses de julho a setembro de 2021, o equivalente a quase 63 mil pagamentos por minuto. 
+Reduzir em 77% o prejuízo financeiro por hora falhada nos servidores. 
 
 ### Escopo 
 
